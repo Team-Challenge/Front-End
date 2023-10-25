@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  frontend: 
+    build:
+      context: .
+    env_file:
+      - .env
+    container_name: tc-frontend
+    ports: 
+      - '3000:3000'
+    restart: on-failure
