@@ -1,0 +1,103 @@
+.section {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+  align-items: center;
+
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
+.signup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 450px;
+
+  &_form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  &_btn {
+    width: 360px;
+  }
+
+  &_text {
+    font-weight: 300; 
+    font-size: 10px;
+    text-align: center; 
+    margin-bottom: 1rem; 
+  }
+
+  &_line {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    &::before {
+      content: '';
+      background: #818181;
+      display: inline-block;
+      width: 65.5px;
+      height: 1px;
+    }
+
+    &::after {
+      content: '';
+      background: #818181;
+      display: inline-block;
+      width: 65.5px;
+      height: 1px;
+    }
+  }
+}
+
+.email {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  &_form {
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+}
+
+.message {
+  width: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  &_buttons {
+    width: 100%;
+    display: flex;
+    gap: 1.5rem;
+  }
+}
+
+.modal {
+  &_title {
+    color: #000;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 120%;
+  }
+
+  &_text {
+    color: #000;
+    font-weight: 300;
+    line-height: 120%;
+    margin: 32px 0 40px;
+  }
+}

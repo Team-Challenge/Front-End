@@ -1,0 +1,66 @@
+.block {
+  max-width: 922px;
+  padding: 32px;
+  border-radius: 16px;
+  background: #F4F8F9;
+
+  &_title {
+    font-size: 20px;
+    font-weight: 400;
+  }
+
+  &_text {
+    color: #818181;
+    font-weight: 400;
+    margin: 32px 0 16px;
+  }
+}
+
+.modal {
+  display: grid;
+  gap: 1rem;
+  position: relative;
+
+  &_title {
+    font-size: 36px;
+    font-weight: 400;
+  }
+
+  &_subtitle {
+    color: #000;
+    font-size: 20px;
+  }
+
+  &_text {
+    color: #818181;
+  }
+
+  &_close {
+    position: absolute;
+    right: 0;
+    color: #FF0000;
+    padding: 0.7rem;
+  }
+}
+
+.form {
+  display: grid;
+  gap: 1rem;
+
+  &_label {
+    color: #212529;
+    line-height: 150%;
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  &_btn {
+    padding: 6px 12px;
+    border-radius: 4px;
+    border: 1px solid #0D6EFD;
+    background: #0D6EFD;
+    color:#FFF;
+    line-height: 150%;
+    width: 155px;
+  }
+}

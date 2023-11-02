@@ -1,0 +1,22 @@
+.order {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(266px, 1fr));
+  row-gap: 2rem;
+  column-gap: 1rem;
+}
+
+.buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.button {
+  padding: 12px 24px;
+  border-radius: 50px;
+  border: 1px solid #000;
+  margin-bottom: 32px;
+
+  &:hover {
+    background: #F4F8F9;
+  }
+}

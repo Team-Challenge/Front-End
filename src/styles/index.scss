@@ -1,0 +1,40 @@
+@import './reset.scss';
+@import './fonts.scss';
+
+body {
+  font-family: 'e-Ukraine-Regular', sans-serif;
+  font-size: 1rem;
+  line-height: normal;
+}
+
+input {
+  font-family: 'e-Ukraine-Regular', sans-serif;
+
+  &::placeholder {
+    font-family: 'e-Ukraine-Regular', sans-serif;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'e-UkraineHead-Bold', sans-serif;
+}
+
+.user-panel-title {
+  color: #000;
+  font-family: 'e-UkraineHead-Bold', sans-serif;
+  font-size: 36px;
+  line-height: normal;
+  margin-bottom: 48px;
+}
+
+.user-panel-subtitle {
+  color: #000;
+  font-family: 'e-UkraineHead-Bold', sans-serif;
+  font-size: 21px;
+  font-style: normal;
+}

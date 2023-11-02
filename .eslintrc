@@ -40,10 +40,17 @@
     "import/prefer-default-export": "off",
     "react/function-component-definition": "off",
     "react/react-in-jsx-scope": "off",
+    "no-underscore-dangle": "off",
+    "no-param-reassign": "warn",
+    "consistent-return": "warn",
+    "react/jsx-props-no-spreading": "off",
+    "react/require-default-props": "off",
+    "object-shorthand": "off",
+    "jsx-a11y/label-has-associated-control": "off",
     "max-len": [
       "error",
       {
-        "code": 120
+        "code": 140
       }
     ],
     "prettier/prettier": [
