@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { BASE_URL } from '@/http';
 import { setAuth } from '../auth/authSlice';
 import { setFullName, setPassword, setPhoneNumber } from './userSettingsSlice';
 
