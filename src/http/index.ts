@@ -28,7 +28,7 @@ $api.interceptors.request.use(
     ) {
       originalRequest._isRetry = true;
       try {
-        const response = await axios.get<AuthResponse>(
+        const response = await axios.post<AuthResponse>(
           `${BASE_URL}/accounts/refresh`,
           {
             withCredentials: true,
