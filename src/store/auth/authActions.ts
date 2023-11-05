@@ -11,7 +11,7 @@ export const checkAuth = () => {
   return async (dispatch: AppDispatch) => {
     dispatch(setLoading(true));
     try {
-      const response = await axios.get<AuthResponse>(`${BASE_URL}/accounts/refresh`, {
+      const response = await axios.post<AuthResponse>(`${BASE_URL}/accounts/refresh`, {
         withCredentials: true,
       });
       console.log(response);
