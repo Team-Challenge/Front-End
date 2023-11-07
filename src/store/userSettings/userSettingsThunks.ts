@@ -14,7 +14,7 @@ export const changeFullName = createAsyncThunk(
         Authorization: `Bearer ${token}`,
       };
       const response = await axios.post(
-        `http://${BASE_URL}/accounts/change_full_name`,
+        `${BASE_URL}/accounts/change_full_name`,
         { full_name: newFullName },
         { headers },
       );
@@ -41,7 +41,7 @@ export const changePhoneNumber = createAsyncThunk(
         Authorization: `Bearer ${token}`,
       };
       const response = await axios.post(
-        `http://${BASE_URL}/accounts/change_phone_number`,
+        `${BASE_URL}/accounts/change_phone_number`,
         {
           phone_number: addNumber,
         },
@@ -70,7 +70,7 @@ export const changePassword = createAsyncThunk(
         Authorization: `Bearer ${token}`,
       };
       const response = await axios.post(
-        `http://${BASE_URL}/accounts/change_password`,
+        `${BASE_URL}/accounts/change_password`,
         {
           current_password: credentials.currentPassword,
           new_password: credentials.newPassword,
@@ -94,7 +94,7 @@ export const userLogout = createAsyncThunk('userSettings/logout', async (_, { di
     const headers = {
       Authorization: `Bearer ${token}`,
     };
-    const response = await axios.delete('http://207.154.197.128:8080/accounts/logout', { headers });
+    const response = await axios.delete(`${BASE_URL}/accounts/logout`, { headers });
     if (response.status === 200) {
       localStorage.removeItem('token');
       dispatch(setAuth(false));
