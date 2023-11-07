@@ -3,11 +3,12 @@
 import axios from 'axios';
 import { AuthResponse } from '@/types';
 
-export const BASE_URL = 'http://207.154.197.128:8080/';
+
+export const API_URL = import.meta.env.VITE_APP_API_URL ? import.meta.env.VITE_APP_API_URL : 'http://207.154.197.128:8080/';
 
 const $api = axios.create({
   withCredentials: true,
-  baseURL: BASE_URL,
+  baseURL: API_URL,
 });
 
 $api.interceptors.request.use((config) => {
@@ -29,7 +30,7 @@ $api.interceptors.request.use(
       originalRequest._isRetry = true;
       try {
         const response = await axios.get<AuthResponse>(
-          `${BASE_URL}/accounts/refresh`,
+          `${API_URL}/accounts/refresh`,
           {
             withCredentials: true,
           },

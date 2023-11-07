@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { AppDispatch, AuthResponse } from '@/types';
-import { BASE_URL } from '@/http';
+import { API_URL } from '@/http';
 import { setAuth, setUser, setLoading } from './authSlice';
 
 interface ErrorMessage {
@@ -11,7 +11,7 @@ export const checkAuth = () => {
   return async (dispatch: AppDispatch) => {
     dispatch(setLoading(true));
     try {
-      const response = await axios.get<AuthResponse>(`${BASE_URL}/accounts/refresh`, {
+      const response = await axios.get<AuthResponse>(`${API_URL}/accounts/refresh`, {
         withCredentials: true,
       });
       console.log(response);

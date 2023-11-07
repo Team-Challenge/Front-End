@@ -8,5 +8,6 @@ services:
       - .env
     container_name: tc-frontend
     ports: 
-      - '3000:3000'
+      - 5173:5173
+      - 8000:8000
     restart: on-failure
