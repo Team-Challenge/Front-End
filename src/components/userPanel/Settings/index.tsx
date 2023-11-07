@@ -38,6 +38,7 @@ export const Settings = ({ userPhone }: SettingsProps) => {
       dispatch(changePhoneNumber(data.phoneNumber)).then((response) => {
         if (response.payload) {
           setMessage('Ваші дані успішно оновлено');
+          methods.reset();
         } else {
           setMessage('Виникла помилка, спробуйте ще раз');
         }
@@ -53,6 +54,7 @@ export const Settings = ({ userPhone }: SettingsProps) => {
       ).then((response) => {
         if (response.payload) {
           setMessage('Ваші дані успішно оновлено');
+          methods.reset();
         } else {
           setMessage('Виникла помилка, спробуйте ще раз');
         }
