@@ -25,9 +25,6 @@ export const UserPassword = () => {
         placeholder='Старий пароль'
         required={isAnyPasswordFilled}
       />
-      {/* {errors.oldPassword && (
-      <p className={`${s.form_error}`}>Невірний старий пароль</p>
-    )} */}
       <PasswordInput id='new_password' placeholder='Новий пароль' required={isAnyPasswordFilled} />
       {errors.new_password && (
         <p className={`${s.form_error}`}>{errors.new_password.message as string}</p>
