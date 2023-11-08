@@ -9,21 +9,11 @@ export const changeFullName = createAsyncThunk(
   'userSettings/changeFullName',
   async (newFullName: string, { dispatch }) => {
     try {
-      const token = localStorage.getItem('token');
-      console.log(token, 'token');
-      const headers = {
-        Authorization: `Bearer ${token}`,
-      };
-      const response = await axios.post(
-        `${API_URL}/accounts/change_full_name`,
-        { full_name: newFullName },
-        { headers },
-      );
-      console.log(response.data, 'data');
-      console.log(response.status, 'status');
+      const response = await $api.post('/accounts/change_full_name', {
+        full_name: newFullName,
+      });
       if (response.status === 200) {
         dispatch(setFullName);
-        console.log(response.data, 'data');
         return response.data;
       }
     } catch (e) {
