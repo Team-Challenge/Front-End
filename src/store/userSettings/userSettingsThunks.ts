@@ -51,18 +51,10 @@ export const changePassword = createAsyncThunk(
     { dispatch },
   ) => {
     try {
-      const token = localStorage.getItem('token');
-      const headers = {
-        Authorization: `Bearer ${token}`,
-      };
-      const response = await axios.post(
-        `${API_URL}/accounts/change_password`,
-        {
-          current_password: credentials.currentPassword,
-          new_password: credentials.newPassword,
-        },
-        { headers },
-      );
+      const response = await $api.post('/accounts/change_password', {
+        current_password: credentials.currentPassword,
+        new_password: credentials.newPassword,
+      });
       if (response.status === 200) {
         dispatch(setPassword);
         return response.data;
