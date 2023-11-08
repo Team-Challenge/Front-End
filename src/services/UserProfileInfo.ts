@@ -1,3 +1,4 @@
+import { API_URL } from '@/http';
 import axios from 'axios';
 
 export const getAccountsInfo = async () => {
@@ -7,7 +8,7 @@ export const getAccountsInfo = async () => {
       Authorization: `Bearer ${token}`,
     };
     const response = await axios.get(
-      'http://207.154.197.128:8080/accounts/info',
+      `${API_URL}/accounts/info`,
       {
         headers,
       },

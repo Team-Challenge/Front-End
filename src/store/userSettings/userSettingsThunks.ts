@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { BASE_URL } from '@/http';
+import { API_URL } from '@/http';
 import { setAuth } from '../auth/authSlice';
 import { setFullName, setPassword, setPhoneNumber } from './userSettingsSlice';
 
@@ -14,7 +14,7 @@ export const changeFullName = createAsyncThunk(
         Authorization: `Bearer ${token}`,
       };
       const response = await axios.post(
-        `http://${BASE_URL}/accounts/change_full_name`,
+        `${API_URL}/accounts/change_full_name`,
         { full_name: newFullName },
         { headers },
       );
@@ -41,7 +41,7 @@ export const changePhoneNumber = createAsyncThunk(
         Authorization: `Bearer ${token}`,
       };
       const response = await axios.post(
-        `http://${BASE_URL}/accounts/change_phone_number`,
+        `${API_URL}/accounts/change_phone_number`,
         {
           phone_number: addNumber,
         },
@@ -70,7 +70,7 @@ export const changePassword = createAsyncThunk(
         Authorization: `Bearer ${token}`,
       };
       const response = await axios.post(
-        `http://${BASE_URL}/accounts/change_password`,
+        `${API_URL}/accounts/change_password`,
         {
           current_password: credentials.currentPassword,
           new_password: credentials.newPassword,
