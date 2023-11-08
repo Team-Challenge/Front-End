@@ -27,17 +27,9 @@ export const changePhoneNumber = createAsyncThunk(
   'userSettings/changePhoneNumber',
   async (addNumber: string | undefined, { dispatch }) => {
     try {
-      const token = localStorage.getItem('token');
-      const headers = {
-        Authorization: `Bearer ${token}`,
-      };
-      const response = await axios.post(
-        `${API_URL}/accounts/change_phone_number`,
-        {
-          phone_number: addNumber,
-        },
-        { headers },
-      );
+      const response = await $api.post('/accounts/change_phone_number', {
+        phone_number: addNumber,
+      });
       if (response.status === 200) {
         dispatch(setPhoneNumber);
         return response.data;
