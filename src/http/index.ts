@@ -3,10 +3,14 @@
 import axios from 'axios';
 import { AuthResponse } from '@/types';
 
-
-export const API_URL = import.meta.env.VITE_APP_API_URL ? import.meta.env.VITE_APP_API_URL : 'http://207.154.197.128:8080/';
+export const API_URL = import.meta.env.VITE_APP_API_URL
+  ? import.meta.env.VITE_APP_API_URL
+  : 'http://207.154.197.128:8080/';
 
 const $api = axios.create({
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem('token')}`,
+  },
   withCredentials: true,
   baseURL: API_URL,
 });
