@@ -64,7 +64,8 @@
       "warn",
       {
         "singleQuote": true,
-        "parser": "flow"
+        "parser": "typescript",
+        "endOfLine": "off"
       }
     ],
     "import/no-extraneous-dependencies": [
