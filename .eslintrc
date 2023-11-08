@@ -23,18 +23,24 @@
     "ecmaVersion": "latest",
     "sourceType": "module",
     "ecmaFeatures": {
-        "jsx": true
+      "jsx": true
     },
     "project": "./tsconfig.json"
   },
-  "plugins": ["import", "prettier", "react", "react-hooks", "@typescript-eslint"],
+  "plugins": [
+    "import",
+    "prettier",
+    "react",
+    "react-hooks",
+    "@typescript-eslint"
+  ],
   "settings": {
     "import/resolver": {
       "typescript": {}
     }
   },
-  "rules" : {
-    "import/no-unresolved" : "error",
+  "rules": {
+    "import/no-unresolved": "error",
     "react-hooks/rules-of-hooks": "error",
     "@typescript-eslint/no-explicit-any": "error",
     "import/prefer-default-export": "off",
@@ -47,6 +53,7 @@
     "react/require-default-props": "off",
     "object-shorthand": "off",
     "jsx-a11y/label-has-associated-control": "off",
+    "no-console": "off",
     "max-len": [
       "error",
       {
@@ -68,4 +75,3 @@
     ]
   }
 }
-
