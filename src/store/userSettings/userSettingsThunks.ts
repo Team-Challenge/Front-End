@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { API_URL } from '@/http';
+import $api from '@/http';
 import { setAuth } from '../auth/authSlice';
 import { setFullName, setPassword, setPhoneNumber } from './userSettingsSlice';
 
@@ -61,7 +62,10 @@ export const changePhoneNumber = createAsyncThunk(
 export const changePassword = createAsyncThunk(
   'userSettings/changePassword',
   async (
-    credentials: { currentPassword: string | undefined; newPassword: string | undefined },
+    credentials: {
+      currentPassword: string | undefined;
+      newPassword: string | undefined;
+    },
     { dispatch },
   ) => {
     try {
@@ -88,20 +92,26 @@ export const changePassword = createAsyncThunk(
   },
 );
 
-export const userLogout = createAsyncThunk('userSettings/logout', async (_, { dispatch }) => {
-  try {
-    const token = localStorage.getItem('token');
-    const headers = {
-      Authorization: `Bearer ${token}`,
-    };
-    const response = await axios.delete('http://207.154.197.128:8080/accounts/logout', { headers });
-    if (response.status === 200) {
-      localStorage.removeItem('token');
-      dispatch(setAuth(false));
-      return response.data;
+export const userLogout = createAsyncThunk(
+  'userSettings/logout',
+  async (_, { dispatch }) => {
+    try {
+      const token = localStorage.getItem('token');
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+      const response = await axios.delete(
+        'http://207.154.197.128:8080/accounts/logout',
+        { headers },
+      );
+      if (response.status === 200) {
+        localStorage.removeItem('token');
+        dispatch(setAuth(false));
+        return response.data;
+      }
+    } catch (e) {
+      const error = e as Error;
+      throw error;
     }
-  } catch (e) {
-    const error = e as Error;
-    throw error;
-  }
-});
+  },
+);
