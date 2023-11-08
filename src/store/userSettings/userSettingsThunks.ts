@@ -70,13 +70,8 @@ export const userLogout = createAsyncThunk(
   'userSettings/logout',
   async (_, { dispatch }) => {
     try {
-      const token = localStorage.getItem('token');
-      const headers = {
-        Authorization: `Bearer ${token}`,
-      };
-      const response = await axios.delete(
+      const response = await $api.delete(
         'http://207.154.197.128:8080/accounts/logout',
-        { headers },
       );
       if (response.status === 200) {
         localStorage.removeItem('token');
