@@ -1,6 +1,4 @@
-import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { API_URL } from '@/http';
 import $api from '@/http';
 import { setAuth } from '../auth/authSlice';
 import { setFullName, setPassword, setPhoneNumber } from './userSettingsSlice';
