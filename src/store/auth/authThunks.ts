@@ -4,7 +4,7 @@ import { setAuth } from './authSlice';
 
 export const login = createAsyncThunk(
   'accounts/signin',
-  async (credentials: { email: string, password: string }, { dispatch }) => {
+  async (credentials: { email: string; password: string }, { dispatch }) => {
     const response = await AuthService.login(
       credentials.email,
       credentials.password,
@@ -20,9 +20,9 @@ export const registration = createAsyncThunk(
   'accounts/signup',
   async (
     credentials: {
-      full_name: string | undefined,
-      email: string,
-      password: string,
+      full_name: string | undefined;
+      email: string;
+      password: string;
     },
     { dispatch },
   ) => {
@@ -35,9 +35,6 @@ export const registration = createAsyncThunk(
       dispatch(
         login({ email: credentials.email, password: credentials.password }),
       );
-      console.log('user is alredy register', response.data.user);
-    } else {
-      console.log('user is not');
     }
     return response.data;
   },
