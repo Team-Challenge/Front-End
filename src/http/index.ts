@@ -33,12 +33,7 @@ $api.interceptors.request.use(
     ) {
       originalRequest._isRetry = true;
       try {
-        const response = await axios.get<AuthResponse>(
-          `${API_URL}/accounts/refresh`,
-          {
-            withCredentials: true,
-          },
-        );
+        const response = await $api.get<AuthResponse>('/accounts/refresh');
         localStorage.setItem('token', response.data.access_token);
         return await $api.request(originalRequest);
       } catch (e) {
