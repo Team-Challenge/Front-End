@@ -39,7 +39,3 @@ export const registration = createAsyncThunk(
     return response.data;
   },
 );
-
-export const logout = createAsyncThunk('/logout', async () => {
-  await AuthService.logout();
-});

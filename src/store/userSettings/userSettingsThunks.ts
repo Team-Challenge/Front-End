@@ -68,9 +68,7 @@ export const userLogout = createAsyncThunk(
   'userSettings/logout',
   async (_, { dispatch }) => {
     try {
-      const response = await $api.delete(
-        'http://207.154.197.128:8080/accounts/logout',
-      );
+      const response = await $api.delete('/accounts/logout');
       if (response.status === 200) {
         localStorage.removeItem('token');
         dispatch(setAuth(false));
