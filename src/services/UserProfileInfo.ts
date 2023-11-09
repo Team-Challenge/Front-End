@@ -1,18 +1,8 @@
-import { API_URL } from '@/http';
-import axios from 'axios';
+import $api from '@/http';
 
 export const getAccountsInfo = async () => {
   try {
-    const token = localStorage.getItem('token');
-    const headers = {
-      Authorization: `Bearer ${token}`,
-    };
-    const response = await axios.get(
-      `${API_URL}/accounts/info`,
-      {
-        headers,
-      },
-    );
+    const response = await $api.get('/accounts/info');
     if (response.status === 200) {
       return response.data;
     }

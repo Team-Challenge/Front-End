@@ -20,9 +20,6 @@ const AuthService = {
       password,
     });
   },
-  logout: async (): Promise<void> => {
-    return $api.delete('/accounts/logout');
-  },
 };
 
 export default AuthService;

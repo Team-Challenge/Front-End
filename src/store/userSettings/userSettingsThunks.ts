@@ -1,6 +1,5 @@
-import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { API_URL } from '@/http';
+import $api from '@/http';
 import { setAuth } from '../auth/authSlice';
 import { setFullName, setPassword, setPhoneNumber } from './userSettingsSlice';
 
@@ -8,21 +7,11 @@ export const changeFullName = createAsyncThunk(
   'userSettings/changeFullName',
   async (newFullName: string, { dispatch }) => {
     try {
-      const token = localStorage.getItem('token');
-      console.log(token, 'token');
-      const headers = {
-        Authorization: `Bearer ${token}`,
-      };
-      const response = await axios.post(
-        `${API_URL}/accounts/change_full_name`,
-        { full_name: newFullName },
-        { headers },
-      );
-      console.log(response.data, 'data');
-      console.log(response.status, 'status');
+      const response = await $api.post('/accounts/change_full_name', {
+        full_name: newFullName,
+      });
       if (response.status === 200) {
         dispatch(setFullName);
-        console.log(response.data, 'data');
         return response.data;
       }
     } catch (e) {
@@ -36,17 +25,9 @@ export const changePhoneNumber = createAsyncThunk(
   'userSettings/changePhoneNumber',
   async (addNumber: string | undefined, { dispatch }) => {
     try {
-      const token = localStorage.getItem('token');
-      const headers = {
-        Authorization: `Bearer ${token}`,
-      };
-      const response = await axios.post(
-        `${API_URL}/accounts/change_phone_number`,
-        {
-          phone_number: addNumber,
-        },
-        { headers },
-      );
+      const response = await $api.post('/accounts/change_phone_number', {
+        phone_number: addNumber,
+      });
       if (response.status === 200) {
         dispatch(setPhoneNumber);
         return response.data;
@@ -61,22 +42,17 @@ export const changePhoneNumber = createAsyncThunk(
 export const changePassword = createAsyncThunk(
   'userSettings/changePassword',
   async (
-    credentials: { currentPassword: string | undefined; newPassword: string | undefined },
+    credentials: {
+      currentPassword: string | undefined;
+      newPassword: string | undefined;
+    },
     { dispatch },
   ) => {
     try {
-      const token = localStorage.getItem('token');
-      const headers = {
-        Authorization: `Bearer ${token}`,
-      };
-      const response = await axios.post(
-        `${API_URL}/accounts/change_password`,
-        {
-          current_password: credentials.currentPassword,
-          new_password: credentials.newPassword,
-        },
-        { headers },
-      );
+      const response = await $api.post('/accounts/change_password', {
+        current_password: credentials.currentPassword,
+        new_password: credentials.newPassword,
+      });
       if (response.status === 200) {
         dispatch(setPassword);
         return response.data;
@@ -88,20 +64,19 @@ export const changePassword = createAsyncThunk(
   },
 );
 
-export const userLogout = createAsyncThunk('userSettings/logout', async (_, { dispatch }) => {
-  try {
-    const token = localStorage.getItem('token');
-    const headers = {
-      Authorization: `Bearer ${token}`,
-    };
-    const response = await axios.delete('http://207.154.197.128:8080/accounts/logout', { headers });
-    if (response.status === 200) {
-      localStorage.removeItem('token');
-      dispatch(setAuth(false));
-      return response.data;
+export const userLogout = createAsyncThunk(
+  'userSettings/logout',
+  async (_, { dispatch }) => {
+    try {
+      const response = await $api.delete('/accounts/logout');
+      if (response.status === 200) {
+        localStorage.removeItem('token');
+        dispatch(setAuth(false));
+        return response.data;
+      }
+    } catch (e) {
+      const error = e as Error;
+      throw error;
     }
-  } catch (e) {
-    const error = e as Error;
-    throw error;
-  }
-});
+  },
+);
