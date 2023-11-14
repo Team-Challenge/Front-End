@@ -102,3 +102,19 @@ export const uploadProfilePhoto = createAsyncThunk(
     }
   },
 );
+
+export const deleteProfilePhoto = createAsyncThunk(
+  'userSettings/deleteProfilePhoto',
+  async () => {
+    try {
+      const response = await $api.delete('/accounts/profile_photo');
+
+      if (response.status === 200) {
+        return response.data;
+      }
+    } catch (error) {
+      console.error('error in delete profile photo', error);
+      throw error;
+    }
+  },
+);

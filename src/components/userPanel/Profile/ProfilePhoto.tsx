@@ -2,7 +2,10 @@ import { useState } from 'react';
 import { Modal } from '@/components/Modal';
 import { EditIcon } from '@/components/icons/EditIcon';
 import s from './Profile.module.scss';
-import { uploadProfilePhoto } from '@/store/userSettings/userSettingsThunks';
+import {
+  deleteProfilePhoto,
+  uploadProfilePhoto,
+} from '@/store/userSettings/userSettingsThunks';
 import { useAppDispatch } from '@/hooks/reduxHook';
 
 export const ProfilePhoto = () => {
@@ -46,7 +49,7 @@ export const ProfilePhoto = () => {
   };
 
   const handleDelete = () => {
-    console.log('delete');
+    dispatch(deleteProfilePhoto());
   };
 
   return (
