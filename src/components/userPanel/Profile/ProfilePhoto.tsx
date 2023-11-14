@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Modal } from '@/components/Modal';
 import { EditIcon } from '@/components/icons/EditIcon';
 import s from './Profile.module.scss';
+import { uploadProfilePhoto } from '@/store/userSettings/userSettingsThunks';
+import { useAppDispatch } from '@/hooks/reduxHook';
 
 export const ProfilePhoto = () => {
   const [img, setImg] = useState<string>(
@@ -12,26 +14,35 @@ export const ProfilePhoto = () => {
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
+  const dispatch = useAppDispatch();
 
-  const handleAdd = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
+  const handleAdd = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    try {
+      const file = event.target.files?.[0];
+      if (!file) return;
 
-    const fileSize = file.size / 1024 / 1024;
-    const allowedExtensions = ['png', 'jpg', 'jpeg', 'webp'];
-    const fileExtension = file.name.split('.').pop()?.toLowerCase();
+      const fileSize = file.size / 1024 / 1024;
+      const allowedExtensions = ['png', 'jpg', 'jpeg', 'webp'];
+      const fileExtension = file.name.split('.').pop()?.toLowerCase();
 
-    if (fileSize > 3) {
-      alert('Файл повинен бути менше 3 MB');
-      return;
+      if (fileSize > 3) {
+        alert('Файл повинен бути менше 3 MB');
+        return;
+      }
+
+      if (!allowedExtensions.includes(fileExtension || '')) {
+        alert('Дозволені формати файлів: png, jpg, jpeg, webp');
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('image', file);
+
+      await dispatch(uploadProfilePhoto(formData));
+      setImg(URL.createObjectURL(file));
+    } catch (error) {
+      console.error('Error in handleAdd:', error);
     }
-
-    if (!allowedExtensions.includes(fileExtension || '')) {
-      alert('Дозволені формати файлів: png, jpg, jpeg, webp');
-      return;
-    }
-
-    setImg(URL.createObjectURL(file));
   };
 
   const handleDelete = () => {
