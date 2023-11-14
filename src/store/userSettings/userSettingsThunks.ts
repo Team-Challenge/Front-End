@@ -80,3 +80,37 @@ export const userLogout = createAsyncThunk(
     }
   },
 );
+
+import axios from 'axios';
+
+export const uploadProfilePhoto = createAsyncThunk(
+  'userSettings/uploadProfilePhoto',
+  async (formData: FormData, { dispatch }) => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        throw new Error('No token found');
+      }
+
+      const response = await axios.post(
+        'http://207.154.197.128:8080/accounts/profile_photo',
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'multipart/form-data',
+          },
+        },
+      );
+
+      if (response.status === 200) {
+        return response.data;
+      } else {
+        throw new Error('Failed to upload profile photo');
+      }
+    } catch (error) {
+      console.error('Error in uploadProfilePhoto:', error);
+      throw error;
+    }
+  },
+);
