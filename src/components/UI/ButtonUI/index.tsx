@@ -6,6 +6,7 @@ export const ButtonUI = ({
   variant = 'main',
   className,
   onClick,
+  type = 'submit',
   disabled = false,
 }: ButtonUIProps) => {
   const btnStyle = `${s.btn} ${className}
@@ -13,7 +14,7 @@ export const ButtonUI = ({
 
   return (
     <button
-      type='submit'
+      type={type}
       className={btnStyle}
       onClick={onClick}
       disabled={disabled}

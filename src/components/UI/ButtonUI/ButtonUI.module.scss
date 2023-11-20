@@ -1,23 +1,40 @@
+@import '@/styles/global.scss';
+
 .btn {
-  font-size: 15px;
-  font-weight: 500;
-  padding: 11px 15px;
+  font-family: 'Craftwork Grotesk', sans-serif;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 0.48px;
   border-radius: 4px;
 
+  padding: 11px 15px;
+
   &:disabled {
-    border: none;
-    color: #FFF;
-    background: #818181;
+    color: $white;
+    background: $light-grey;
+    cursor: not-allowed;
   }
 }
 
 .main {
-  color: #FFF;
-  background: #000;
+  color: $white;
+  background: $main-btn-color;
+
+  &:not(:disabled):hover {
+    background: $hover-main-btn;
+    transition: background 0.3s ease;
+  }
 }
 
 .secondary {
-  color: #000;
-  background: #FFF;
-  border: 1px solid #818181;
+  color: $green;
+  background: $secondary-btn-color;
+  border: 1px solid $green;
+
+  &:not(:disabled):hover {
+    background: $hover-secondary-btn;
+    transition: background 0.3s ease;
+  }
 }
