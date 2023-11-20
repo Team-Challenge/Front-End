@@ -1,9 +1,10 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { PasswordInputProps } from '@/types';
-import { EyeIcon } from '@/components/icons/EyeIcon';
+import { OpenEyeIcon } from '@/components/icons/OpenEyeIcon';
+import { CloseEyeIcon } from '@/components/icons/CloseEyeIcon';
+import { InvalidIcon } from '@/components/icons/InvalidIcon';
+import { ValidIcon } from '@/components/icons/ValidIcon';
 import s from './PasswordInput.module.scss';
 
 export const PasswordInput = ({
@@ -11,37 +12,74 @@ export const PasswordInput = ({
   placeholder,
   validate,
   required,
+  onClick,
+  isRepeatPassword = false,
 }: PasswordInputProps) => {
-  const { register } = useFormContext();
+  const {
+    register,
+    formState: { errors, dirtyFields },
+  } = useFormContext();
 
   const [passwordShown, setPasswordShown] = useState(false);
-  const togglePasswordVisiblity = () => {
+  const togglePasswordVisibility = () => {
     setPasswordShown(!passwordShown);
   };
 
+  const hasError = errors[id];
+  const isDirty = id in dirtyFields;
+
+  const inputClassName = `${s.input} ${hasError ? s.input_error : ''} ${
+    !hasError && isDirty ? s.input_success : ''
+  }`;
+
   return (
-    <div className={s.wrap}>
-      <input
-        type={passwordShown ? 'text' : 'password'}
-        placeholder={placeholder}
-        {...register(id, {
-          validate: validate,
-          pattern: {
-            value: /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).+$/,
-            message:
-              'Your password must contain at least one uppercase letter, one lowercase letter, and a number',
-          },
-          required: required,
-          minLength: {
-            value: 8,
-            message: 'Minimum of 8 characters',
-          },
-        })}
-        className={s.input}
-      />
-      <i onClick={togglePasswordVisiblity} className={s.icon}>
-        <EyeIcon />
-      </i>
-    </div>
+    <>
+      <div className={s.wrap}>
+        <input
+          type={passwordShown ? 'text' : 'password'}
+          placeholder={placeholder}
+          {...register(id, {
+            validate: validate,
+            pattern: {
+              value: /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).+$/,
+              message:
+                'Пароль повинен містити хоча б одну велику літеру, одну маленьку літеру та цифру',
+            },
+            required: required,
+            minLength: {
+              value: 8,
+              message:
+                'Будь ласка, введіть пароль, який містить принаймні 8 символів',
+            },
+          })}
+          onClick={onClick}
+          className={inputClassName}
+        />
+        <div className={s.icon}>
+          <button onClick={togglePasswordVisibility} className={s.icon_eye}>
+            {passwordShown ? <OpenEyeIcon /> : <CloseEyeIcon />}
+          </button>
+          {hasError ? (
+            <i className={s.icon_invalid}>
+              <InvalidIcon />
+            </i>
+          ) : (
+            isDirty && (
+              <i className={s.icon_valid}>
+                <ValidIcon />
+              </i>
+            )
+          )}
+        </div>
+      </div>
+
+      {hasError && (
+        <p className={`error-text ${s.error}`}>
+          {isRepeatPassword
+            ? 'Введені паролі не співпадають. Будь ласка, перевірте і спробуйте ще раз'
+            : (hasError.message as string)}
+        </p>
+      )}
+    </>
   );
 };
