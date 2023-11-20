@@ -4,18 +4,15 @@ import s from './Settings.module.scss';
 
 export const UserPassword = () => {
   const methods = useFormContext();
-
-  const {
-    getValues,
-    watch,
-    formState: { errors },
-  } = methods;
+  const { getValues, watch } = methods;
 
   const oldPassword = watch('current_password');
   const newPassword = watch('new_password');
   const newPasswordRepeat = watch('new_password_repeat');
 
-  const isAnyPasswordFilled = Boolean(newPassword || newPasswordRepeat || oldPassword);
+  const isAnyPasswordFilled = Boolean(
+    newPassword || newPasswordRepeat || oldPassword,
+  );
 
   return (
     <label className={s.form_label}>
@@ -25,19 +22,20 @@ export const UserPassword = () => {
         placeholder='Старий пароль'
         required={isAnyPasswordFilled}
       />
-      <PasswordInput id='new_password' placeholder='Новий пароль' required={isAnyPasswordFilled} />
-      {errors.new_password && (
-        <p className={`${s.form_error}`}>{errors.new_password.message as string}</p>
-      )}
+      <PasswordInput
+        id='new_password'
+        placeholder='Новий пароль'
+        required={isAnyPasswordFilled}
+      />
       <PasswordInput
         id='new_password_repeat'
         placeholder='Повторіть пароль'
         required={isAnyPasswordFilled}
         validate={(value: string) =>
-          value === getValues('new_password') || 'Passwords do not match'
+          value === getValues('new_password') || 'Введені паролі не співпадають'
         }
+        isRepeatPassword
       />
-      {errors.new_password_repeat && <p className={`${s.form_error}`}>Passwords do not match</p>}
     </label>
   );
 };
