@@ -4,34 +4,40 @@ import {
   FormProvider,
   FieldValues,
 } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
-import { useAppSelector, useAppDispatch } from '@/hooks/reduxHook';
+import { useAppDispatch } from '@/hooks/reduxHook';
 import { login } from '@/store/auth/authThunks';
-import { IUserAuth } from '@/types';
-import { PasswordInput } from '@/components/UI/PasswordInput';
+import { IUserAuth, LoginFormProps } from '@/types';
 import { Email } from '@/components/Email';
-import { AuthButton } from '../AuthButton';
+import { PasswordInput } from '@/components/UI/PasswordInput';
+import { ButtonUI } from '@/components/UI/ButtonUI';
 import s from './AuthForm.module.scss';
 
-export const LoginForm = () => {
-  const methods = useForm({
-    mode: 'onChange',
-  });
-
-  const navigate = useNavigate();
-  const { isAuth } = useAppSelector((state) => state.auth);
+export const LoginForm = ({
+  isForgotPassword,
+  isSuccessLogin,
+}: LoginFormProps) => {
   const dispatch = useAppDispatch();
 
+  const methods = useForm({
+    mode: 'onChange',
+    shouldUnregister: true,
+  });
+
   const {
+    setError,
     formState: { errors, isValid },
   } = methods;
 
-  const onSubmit: SubmitHandler<IUserAuth> = (data) => {
-    dispatch(login(data));
-  };
-  const isUserAuth = () => {
-    if (isAuth) {
-      navigate('/userpanel');
+  const onSubmit: SubmitHandler<IUserAuth> = async (data) => {
+    try {
+      await dispatch(login(data)).unwrap();
+      isSuccessLogin();
+    } catch (error: any) {
+      setError('loginError', {
+        type: 'manual',
+        message:
+          'Неправильно введені дані. Будь ласка, перевірте та спробуйте ще раз',
+      });
     }
   };
 
@@ -42,19 +48,38 @@ export const LoginForm = () => {
         className={s.form}
         onSubmit={methods.handleSubmit(onSubmit as SubmitHandler<FieldValues>)}
       >
-        <Email />
+        <Email isLogin onClick={() => methods.clearErrors('loginError')} />
+        <PasswordInput
+          id='password'
+          placeholder='Пароль'
+          required
+          isLogin
+          onClick={() => methods.clearErrors('loginError')}
+        />
 
-        <PasswordInput id='password' placeholder='Pass' required />
-        {errors.password && (
-          <p className={`${s.error}`}>{errors.password.message as string}</p>
+        {errors.loginError && (
+          <p className={`error-text ${s.error}`}>
+            {errors.loginError.message as string}
+          </p>
         )}
 
-        <AuthButton
-          text='Далі'
-          variant='main'
-          disabled={!isValid}
-          onClick={isUserAuth}
-        />
+        <button
+          type='button'
+          onClick={isForgotPassword}
+          className={s.forgot_password_button}
+        >
+          Забули пароль?
+        </button>
+
+        <div className={s.form_buttons}>
+          <ButtonUI label='Увійти' variant='main' disabled={!isValid} />
+          <span className={s.decorative_line}>або</span>
+          <ButtonUI
+            type='button'
+            label='Увійти через Google'
+            variant='secondary'
+          />
+        </div>
       </form>
     </FormProvider>
   );
