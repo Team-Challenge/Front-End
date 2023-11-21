@@ -1,0 +1,34 @@
+@import '@/styles/index.scss';
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 24px;
+  text-align: center;
+
+  &::before {
+    content: '';
+    background: url('@assets/small-decorative-element.svg') no-repeat;
+    display: inline-block;
+    width: 40px;
+    height: 25px;
+
+    @media (max-width: $mobile) {
+      filter: brightness(0.8);
+    }
+  }
+
+  &::after {
+    content: '';
+    background: url('@assets/small-decorative-element.svg') no-repeat;
+    display: inline-block;
+    width: 40px;
+    height: 25px;
+    transform: rotate(180deg);
+
+    @media (max-width: $mobile) {
+      filter: brightness(0.8);
+    }
+  }
+}
