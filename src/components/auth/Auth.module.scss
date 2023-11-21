@@ -1,0 +1,13 @@
+@import '@/styles/index.scss';
+
+.passwordRecovery {
+  p {
+    @include adaptiveValue('max-width', 430, 280, 0, 1440, 360);
+  }
+}
+
+.success_message {
+  p {
+    max-width: 365px;
+  }
+}
