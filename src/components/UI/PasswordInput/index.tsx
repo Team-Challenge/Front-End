@@ -12,6 +12,7 @@ export const PasswordInput = ({
   placeholder,
   validate,
   required,
+  isLogin,
   onClick,
   isRepeatPassword = false,
 }: PasswordInputProps) => {
@@ -28,9 +29,9 @@ export const PasswordInput = ({
   const hasError = errors[id];
   const isDirty = id in dirtyFields;
 
-  const inputClassName = `${s.input} ${hasError ? s.input_error : ''} ${
-    !hasError && isDirty ? s.input_success : ''
-  }`;
+  const inputClassName = `${s.input} ${
+    hasError && !isLogin ? s.input_error : ''
+  } ${!hasError && isDirty && !isLogin ? s.input_success : ''}`;
 
   return (
     <>
@@ -59,12 +60,13 @@ export const PasswordInput = ({
           <button onClick={togglePasswordVisibility} className={s.icon_eye}>
             {passwordShown ? <OpenEyeIcon /> : <CloseEyeIcon />}
           </button>
-          {hasError ? (
+          {hasError && !isLogin ? (
             <i className={s.icon_invalid}>
               <InvalidIcon />
             </i>
           ) : (
-            isDirty && (
+            isDirty &&
+            !isLogin && (
               <i className={s.icon_valid}>
                 <ValidIcon />
               </i>
@@ -73,7 +75,7 @@ export const PasswordInput = ({
         </div>
       </div>
 
-      {hasError && (
+      {hasError && !isLogin && (
         <p className={`error-text ${s.error}`}>
           {isRepeatPassword
             ? 'Введені паролі не співпадають. Будь ласка, перевірте і спробуйте ще раз'

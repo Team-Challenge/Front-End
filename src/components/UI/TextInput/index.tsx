@@ -9,6 +9,7 @@ export const TextInput = ({
   id,
   placeholder,
   required = false,
+  isLogin,
   onClick,
   regex,
   errorMessage,
@@ -27,8 +28,8 @@ export const TextInput = ({
   const isDirty = id in dirtyFields;
 
   const inputClassName = `${s.input} ${className} ${
-    hasError ? s.input_error : ''
-  } ${!hasError && isDirty ? s.input_success : ''}`;
+    hasError && !isLogin ? s.input_error : ''
+  } ${!hasError && isDirty && !isLogin ? s.input_success : ''}`;
 
   return (
     <>
@@ -55,12 +56,13 @@ export const TextInput = ({
           onClick={onClick}
         />
 
-        {hasError ? (
+        {hasError && !isLogin ? (
           <i className={`${s.icon} ${s.icon_invalid}`}>
             <InvalidIcon />
           </i>
         ) : (
-          isDirty && (
+          isDirty &&
+          !isLogin && (
             <i className={`${s.icon} ${s.icon_valid}`}>
               <ValidIcon />
             </i>
@@ -68,7 +70,7 @@ export const TextInput = ({
         )}
       </div>
 
-      {hasError && (
+      {hasError && !isLogin && (
         <p className={`error-text ${s.error}`}>{hasError.message as string}</p>
       )}
     </>

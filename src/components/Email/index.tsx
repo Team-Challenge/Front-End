@@ -2,9 +2,15 @@ import { TextInput } from '../UI/TextInput';
 
 interface EmailProps {
   required?: boolean;
+  onClick?: () => void;
+  isLogin?: boolean;
 }
 
-export const Email = ({ required = true }: EmailProps) => {
+export const Email = ({
+  required = true,
+  isLogin,
+  onClick,
+}: EmailProps) => {
   return (
     <TextInput
       type='email'
@@ -12,7 +18,9 @@ export const Email = ({ required = true }: EmailProps) => {
       placeholder='Email'
       required={required}
       regex={/^[\p{L}\p{N}_.-]+@([\p{L}\p{N}-]+\.)+[\p{L}\p{N}-]{2,}$/gu}
-      errorMessage='The email should be in the format "email@mail.com"'
+      errorMessage='Будь ласка, введіть електронну адресу у форматі "email@mail.com"'
+      isLogin={isLogin}
+      onClick={onClick}
     />
   );
 };
