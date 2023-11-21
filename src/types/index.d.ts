@@ -5,29 +5,22 @@ declare module '*.png';
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
-export interface ModalProps {
-  isOpen: boolean;
-  onClose?: () => void;
-  children: React.ReactNode;
-  buttonText?: string;
+//auth types
+export interface UserAuthProps {
+  toggleForm: () => void;
 }
 
-export interface TextInputProps {
-  type: string;
-  id: string;
-  placeholder: string;
-  required?: boolean;
-  regex?: RegExp;
-  errorMessage?: string;
-  minLength?: number;
-  minLengthMessage?: string;
-  maxLength?: number;
-  maxLengthMessage?: string;
-  className?: string;
+export interface LoginFormProps {
+  isForgotPassword: () => void;
+  isSuccessLogin: () => void;
 }
 
-export interface SignUpOptionsProps {
-  handleSignUpEmail: () => void;
+export interface RegistrationFormProps {
+  isSuccessRegistration: () => void;
+}
+
+export interface PasswordRecoveryFormProps {
+  isForgotPassword: () => void;
 }
 
 export interface IUserAuth {
@@ -38,50 +31,29 @@ export interface IUserAuth {
   passwordRepeat?: string;
 }
 
-export interface SignUpEmailProps {
-  openModal: () => void;
-}
-
 export interface AuthResponse {
   access_token: string;
   refresh_token: string;
   user: SignUpEmailType;
 }
 
-export interface AuthHeaderProps {
+//UI types
+export interface OrnamentalTitleProps {
+  tag: keyof JSX.IntrinsicElements;
   text: string;
 }
 
-export interface AuthData {
-  openModal?: () => void;
-  isRegistration?: boolean;
-}
-
-export interface AuthButtonProps {
-  text: string;
-  onClick?: () => void;
-  className?: string;
+export interface ButtonUIProps {
+  label: string;
   variant?: string;
+  className?: string;
+  onClick?: () => void;
+  type?: 'button' | 'reset' | 'submit';
   disabled?: boolean;
 }
 
-export interface SettingsFromData {
-  current_password?: string;
-  new_password?: string;
-  new_password_repeat?: string;
-  email?: string;
-  phoneNumber?: string;
-}
-
-export interface UserInfo {
-  email: string;
-  full_name: string;
-  phone_number: string | null;
-  profile_picture: null;
-}
-
-export interface ChangeFullNameFormData {
-  full_name: string;
+export interface ModalProps {
+  children: React.ReactNode;
 }
 
 export interface ProductItemProps {
@@ -92,25 +64,48 @@ export interface ProductItemProps {
   link?: string; // for btn
 }
 
-export interface ButtonUIProps {
-  label: string;
-  variant?: string;
-  className?: string;
+export interface TextInputProps {
+  type: string;
+  id: string;
+  placeholder: string;
+  required?: boolean;
+  isLogin?: boolean;
   onClick?: () => void;
-  disabled?: boolean;
+  regex?: RegExp;
+  errorMessage?: string;
+  minLength?: number;
+  minLengthMessage?: string;
+  maxLength?: number;
+  maxLengthMessage?: string;
+  className?: string;
 }
 
 export interface PasswordInputProps {
   id: string;
   placeholder: string;
   required: boolean;
+  isLogin?: boolean;
   validate?: any;
+  onClick?: () => void;
+  isRepeatPassword?: boolean;
 }
 
-export interface ProfileProps {
-  userName: string;
+//user info types
+export interface UserInfo {
+  email: string;
+  full_name: string;
+  phone_number: string | null;
+  profile_picture: null;
 }
 
-export interface SettingsProps {
-  userPhone?: string;
+export interface SettingsFromData {
+  current_password?: string;
+  new_password?: string;
+  new_password_repeat?: string;
+  email?: string;
+  phoneNumber?: string;
+}
+
+export interface ChangeFullNameFormData {
+  full_name: string;
 }
