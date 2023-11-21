@@ -13,11 +13,11 @@ export const Store = () => {
 
   return (
     <div>
-      <h1 className='user-panel-title'>Управління магазином</h1>
+      <h4 className='user-panel-title'>Управління магазином</h4>
       <div className={s.block}>
-        <h2 className={s.block_title}>
+        <h5 className={s.block_title}>
           Приєднуйтеся до нашої спільноти та розширюйте ваш бізнес разом з нами!
-        </h2>
+        </h5>
         <p className={s.block_text}>
           На нашому маркетплейсі ви маєте можливість не лише купувати товари,
           але й створювати власні магазини та представляти свої товари на нашому
@@ -37,13 +37,6 @@ export const Store = () => {
               Реєструючись, ви погоджуєтеся з угодою користувача і політикою
               конфіденційності маркетплейсу store.ua
             </p>
-            <button
-              type='submit'
-              className={s.modal_close}
-              onClick={toggleModal}
-            >
-              X
-            </button>
           </div>
         </Modal>
       )}

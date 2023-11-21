@@ -5,7 +5,7 @@ import s from './Order.module.scss';
 export const Order = () => {
   return (
     <div>
-      <h1 className='user-panel-title'>Ваші замовлення</h1>
+      <h4 className='user-panel-title'>Ваші замовлення</h4>
       <div className={s.buttons}>
         {buttonOrderData.map((button) => (
           <button type='submit' key={button.id} className={s.button}>

@@ -28,9 +28,9 @@ export const Profile = ({ userName }: ProfileProps) => {
 
   return (
     <div>
-      <h1 className='user-panel-title'>Профіль</h1>
+      <h4 className='user-panel-title'>Профіль</h4>
       <ProfilePhoto />
-      <h2 className='user-panel-subtitle'>Налаштування профілю</h2>
+      <h5 className='user-panel-subtitle'>Налаштування профілю</h5>
       <FormProvider {...methods}>
         <form
           id='changeFullName'

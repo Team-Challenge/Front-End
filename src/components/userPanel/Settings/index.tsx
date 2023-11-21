@@ -66,7 +66,7 @@ export const Settings = ({ userPhone }: SettingsProps) => {
 
   return (
     <div className={s.settings}>
-      <h1 className='user-panel-title'>Налаштування входу</h1>
+      <h4 className='user-panel-title'>Налаштування входу</h4>
       <FormProvider {...methods}>
         <form
           id='settings'

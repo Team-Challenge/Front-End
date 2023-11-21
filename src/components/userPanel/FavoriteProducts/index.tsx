@@ -4,7 +4,7 @@ import s from './FavoriteProducts.module.scss';
 export const FavoriteProducts = () => {
   return (
     <div>
-      <h1 className='user-panel-title'>Обрані товари</h1>
+      <h4 className='user-panel-title'>Обрані товари</h4>
       <div className={s.products}>
         <ProductItem
           img=''
