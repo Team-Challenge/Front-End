@@ -1,0 +1,20 @@
+.header {
+  &_container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &_categories {
+    display: flex;
+    gap: 1rem;
+  }
+
+  &_buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+}
