@@ -1,12 +1,10 @@
-@import '@/styles/variables.scss';
+@import '@/styles/index.scss';
 
 .wrap {
   position: relative;
 }
 
 .input {
-  padding: 14px 16px;
-
   &_error {
     border-color: $error-color;
   }

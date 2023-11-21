@@ -1,15 +1,24 @@
-@import '@/styles/global.scss';
+@import '@/styles/index.scss';
 
 .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-family: 'Craftwork Grotesk', sans-serif;
-  font-size: 1rem;
+  @include adaptiveValue('font-size', 16, 12, 0, 1440, 360);
   font-style: normal;
   font-weight: 700;
-  line-height: 20px;
+  line-height: 24px;
   letter-spacing: 0.48px;
   border-radius: 4px;
+  padding: 15px;
+  max-height: 54px;
+  width: 100%;
 
-  padding: 11px 15px;
+  @media (max-width: $mobile) {
+    letter-spacing: 0.36px;
+    max-height: 48px;
+  }
 
   &:disabled {
     color: $white;
@@ -36,5 +45,9 @@
   &:not(:disabled):hover {
     background: $hover-secondary-btn;
     transition: background 0.3s ease;
+  }
+
+  @media (max-width: $mobile) {
+    background: transparent;
   }
 }
