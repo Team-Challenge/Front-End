@@ -1,33 +1,48 @@
-.modal {
-  display: flex; 
-  position: fixed; 
-  top: 0; 
-  left: 0; 
-  justify-content: center; 
-  align-items: center; 
-  width: 100%; 
-  height: 100%; 
-  background: rgba(0,0,0,0.5);
+@import '@/styles/index.scss';
 
-  &_block {
-    width: 706px;
-    border-radius: 1rem; 
-    background-color: #ffffff;
-    padding: 64px;
+.modal {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: $screen-bg-at-modal;
+  backdrop-filter: blur(0.5px);
+
+  &_wrap {
+    position: relative;
   }
 
-  &_btn {
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem; 
-    padding-left: 1rem;
-    padding-right: 1rem; 
-    border-radius: 0.375rem; 
-    width: 100%; 
-    font-size: 0.75rem;
-    line-height: 1rem; 
-    font-weight: 300; 
-    color: #ffffff; 
-    text-transform: uppercase; 
-    background: black;
+  &_block {
+    @include adaptiveValue('width', 648, 320, 0, 1440, 320);
+    @include adaptiveValue('padding-top', 80, 48, 0, 1440, 320);
+    @include adaptiveValue('padding-right', 52, 20, 0, 1440, 320);
+    @include adaptiveValue('padding-bottom', 80, 48, 0, 1440, 320);
+    @include adaptiveValue('padding-left', 52, 20, 0, 1440, 320);
+    background-color: $white;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    @media (max-width: $mobile) {
+      background-color: $mobile-modal-bg;
+    }
+  }
+
+  &_close {
+    position: absolute;
+    top: 36px;
+    right: 42px;
+    color: $light-grey;
+
+    @media (max-width: $mobile) {
+      top: 17px;
+      right: 20px;
+    }
   }
 }
