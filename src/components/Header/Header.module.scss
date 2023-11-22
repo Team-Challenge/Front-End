@@ -16,5 +16,15 @@
     align-items: center;
     justify-content: center;
     gap: 1rem;
+
+    button {
+      display: flex;
+      align-items: center;
+    }
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
   }
 }

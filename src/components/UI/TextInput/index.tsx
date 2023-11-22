@@ -1,8 +1,8 @@
 import { useFormContext } from 'react-hook-form';
 import { TextInputProps } from '@/types';
-import { InvalidIcon } from '@/components/icons/InvalidIcon';
 import { ValidIcon } from '@/components/icons/ValidIcon';
 import s from './TextInput.module.scss';
+import { Icon } from '@iconify/react';
 
 export const TextInput = ({
   type = 'text',
@@ -29,7 +29,7 @@ export const TextInput = ({
   const isDirty = id in dirtyFields;
 
   const inputClassName = `${s.input} ${className}
-    ${(hasError && !isLogin) || isLoginError ? s.input_error : ''} 
+    ${(hasError && !isLogin) || isLoginError ? s.input_error : ''}
     ${!hasError && isDirty && !isLogin ? s.input_success : ''}`;
 
   return (
@@ -59,13 +59,13 @@ export const TextInput = ({
 
         {(hasError && !isLogin) || isLoginError ? (
           <i className={`${s.icon} ${s.icon_invalid}`}>
-            <InvalidIcon />
+            <Icon icon='solar:danger-circle-outline' />
           </i>
         ) : (
           isDirty &&
           !isLogin && (
             <i className={`${s.icon} ${s.icon_valid}`}>
-              <ValidIcon />
+              <Icon icon='solar:unread-outline' />
             </i>
           )
         )}

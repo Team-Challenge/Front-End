@@ -1,14 +1,12 @@
 import { useState } from 'react';
-import { FavoriteIcon } from '../icons/FavoriteIcon';
-import { CartIcon } from '../icons/CartIcon';
-import s from './Header.module.scss';
+import { Link } from 'react-router-dom';
+import { Icon } from '@iconify/react';
+import { openModal } from '@/store/modalSlice';
+import { useAppSelector, useAppDispatch } from '@/hooks/reduxHook';
 import { SignIn } from '../auth/SignIn';
 import { SignUp } from '../auth/SignUp';
 import { Modal } from '../Modal';
-import { openModal } from '@/store/modalSlice';
-import { useAppSelector, useAppDispatch } from '@/hooks/reduxHook';
-import { UserIcon } from '../icons/UserIcon';
-import { Link } from 'react-router-dom';
+import s from './Header.module.scss';
 
 export const Header = () => {
   const [isSignIn, setIsSignIn] = useState<boolean>(true);
@@ -40,15 +38,15 @@ export const Header = () => {
             <button onClick={handleOpenModal}>Увійти</button>
           ) : (
             <Link to='/userpanel'>
-              <UserIcon />
+              <Icon icon='solar:user-outline' />
             </Link>
           )}
 
           <button>
-            <FavoriteIcon />
+            <Icon icon='solar:heart-outline' />
           </button>
           <button>
-            <CartIcon />
+            <Icon icon='solar:bag-5-outline' />
           </button>
         </div>
       </div>

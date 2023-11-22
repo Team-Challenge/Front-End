@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useAppDispatch } from '@/hooks/reduxHook';
 import { closeModal } from '@/store/modalSlice';
+import { Icon } from '@iconify/react';
 import { ModalProps } from '@/types';
-import { CloseIcon } from '../icons/CloseIcon';
 import s from './Modal.module.scss';
 
 export const Modal = ({ children, modalId }: ModalProps) => {
@@ -25,7 +25,7 @@ export const Modal = ({ children, modalId }: ModalProps) => {
       <div className={s.modal_wrap}>
         <div className={s.modal_block}>{children}</div>
         <button className={s.modal_close} onClick={handleCloseModal}>
-          <CloseIcon />
+          <Icon icon='pajamas:close' />
         </button>
       </div>
     </div>

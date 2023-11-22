@@ -1,37 +1,41 @@
+import { Icon } from '@iconify/react';
 import {
   Profile,
   Order,
   Messages,
   FavoriteProducts,
   Settings,
-  Store,
 } from '@/components/userPanel';
-import user from '@assets/icons/user.svg';
-import message from '@assets/icons/message.svg';
-import settings from '@assets/icons/settings.svg';
-import favorite from '@assets/icons/favorite.svg';
-import order from '@assets/icons/shopping-bag.svg';
 
 export const buttonsUserPanel = [
   {
     id: '1',
     label: 'Профіль',
     content: <Profile />,
-    icon: user,
+    icon: <Icon icon='solar:user-outline' />,
   },
-  { id: '2', label: 'Мої покупки', content: <Order />, icon: order },
-  { id: '3', label: 'Повідомлення', content: <Messages />, icon: message },
+  {
+    id: '2',
+    label: 'Мої покупки',
+    content: <Order />,
+    icon: <Icon icon='solar:bag-5-outline' />,
+  },
+  {
+    id: '3',
+    label: 'Повідомлення',
+    content: <Messages />,
+    icon: <Icon icon='solar:letter-linear' />,
+  },
   {
     id: '4',
     label: 'Обрані товари',
     content: <FavoriteProducts />,
-    icon: favorite,
+    icon: <Icon icon='solar:heart-outline' />,
   },
-  { id: '5', label: 'Мій магазин', content: <Store /> },
   {
-    id: '6',
+    id: '5',
     label: 'Налаштування',
     content: <Settings />,
-    icon: settings,
+    icon: <Icon icon='solar:settings-outline' />,
   },
 ];

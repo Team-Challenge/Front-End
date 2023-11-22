@@ -1,9 +1,9 @@
 import { useState, ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Icon } from '@iconify/react';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
 import { userLogout } from '@/store/userSettings/userSettingsThunks';
 import { buttonsUserPanel } from '@/constants/buttonsUserPanel';
-import logOut from '@assets/icons/logout.svg';
 import s from './UserPanel.module.scss';
 
 export const UserPanel = () => {
@@ -37,13 +37,13 @@ export const UserPanel = () => {
               selectedComponent === button.content ? s.active : ''
             }`}
           >
-            <img src={button.icon} alt='' />
+            {button.icon}
             {button.label}
           </button>
         ))}
         <span className={s.line} />
-        <button className={`${s.btn} ${s.btn_logOut}`} onClick={logoutUser}>
-          <img src={logOut} alt='' />
+        <button className={s.btn} onClick={logoutUser}>
+          <Icon icon='solar:logout-2-outline' />
           Вийти
         </button>
       </div>

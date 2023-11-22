@@ -1,11 +1,8 @@
 import { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { PasswordInputProps } from '@/types';
-import { OpenEyeIcon } from '@/components/icons/OpenEyeIcon';
-import { CloseEyeIcon } from '@/components/icons/CloseEyeIcon';
-import { InvalidIcon } from '@/components/icons/InvalidIcon';
-import { ValidIcon } from '@/components/icons/ValidIcon';
 import s from './PasswordInput.module.scss';
+import { Icon } from '@iconify/react';
 
 export const PasswordInput = ({
   id,
@@ -16,7 +13,7 @@ export const PasswordInput = ({
   isLoginError,
   onClick,
   isRepeatPassword = false,
-  className
+  className,
 }: PasswordInputProps) => {
   const {
     register,
@@ -32,7 +29,7 @@ export const PasswordInput = ({
   const isDirty = id in dirtyFields;
 
   const inputClassName = `${s.input} ${className}
-    ${hasError && !isLogin || isLoginError ? s.input_error : ''}
+    ${(hasError && !isLogin) || isLoginError ? s.input_error : ''}
     ${!hasError && isDirty && !isLogin ? s.input_success : ''}`;
 
   return (
@@ -60,17 +57,21 @@ export const PasswordInput = ({
         />
         <div className={s.icon}>
           <button onClick={togglePasswordVisibility} className={s.icon_eye}>
-            {passwordShown ? <OpenEyeIcon /> : <CloseEyeIcon />}
+            {passwordShown ? (
+              <Icon icon='solar:eye-outline' />
+            ) : (
+              <Icon icon='solar:eye-closed-outline' />
+            )}
           </button>
-          {hasError && !isLogin || isLoginError ? (
+          {(hasError && !isLogin) || isLoginError ? (
             <i className={s.icon_invalid}>
-              <InvalidIcon />
+              <Icon icon='solar:danger-circle-outline' />
             </i>
           ) : (
             isDirty &&
             !isLogin && (
               <i className={s.icon_valid}>
-                <ValidIcon />
+                <Icon icon='solar:unread-outline' />
               </i>
             )
           )}
