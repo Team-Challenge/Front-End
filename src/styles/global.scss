@@ -1,0 +1,151 @@
+@import './reset.scss';
+@import './fonts.scss';
+@import './index.scss';
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  color: $text-color;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: $text-color;
+  font-family: 'Craftwork Grotesk', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 110%;
+}
+
+h1 {
+  font-size: 62px;
+  letter-spacing: 1.86px;
+}
+
+h2 {
+  font-size: 48px;
+  letter-spacing: 1.44px;
+}
+
+h3 {
+  font-size: 32px;
+  letter-spacing: 0.96px;
+}
+
+h4 {
+  @include adaptiveValue('font-size', 28, 20, 0, 1440, 360);
+  @include adaptiveValue('letter-spacing', 0.84, 0.6, 0, 1440, 360);
+  line-height: 120%;
+}
+
+h5 {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+h6 {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 120%;
+}
+
+input {
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid $border-color;
+  background: $white;
+  padding: 14px 16px;
+
+  @media (max-width: $mobile) {
+    max-height: 48px;
+    border: none;
+  }
+
+  &::placeholder {
+    color: $grey;
+    font-family: 'Montserrat', sans-serif;
+    @include adaptiveValue('font-size', 14, 12, 0, 1440, 360);
+    font-style: normal;
+    font-weight: 400;
+    line-height: 110%;
+  }
+}
+
+.error-text {
+  color: $red;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 17px;
+}
+
+.account-promt {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: $text-color;
+  @include adaptiveValue('font-size', 12, 10, 0, 1440, 360);
+  line-height: 16px;
+
+  p {
+    font-weight: 300;
+  }
+
+  button {
+    font-weight: 400;
+    text-decoration-line: underline;
+  }
+}
+
+.auth-modal-message {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+
+  @media (max-width: $mobile) {
+    &::before {
+      content: '';
+      background: url('@assets/small-decorative-element.svg') no-repeat;
+      display: inline-block;
+      width: 40px;
+      height: 25px;
+      transform: rotate(90deg);
+      margin-bottom: 20px;
+      filter: brightness(0.8);
+    }
+  
+    &::after {
+      content: '';
+      background: url('@assets/small-decorative-element.svg') no-repeat;
+      display: inline-block;
+      width: 40px;
+      height: 25px;
+      transform: rotate(-90deg);
+      margin-top: 20px;
+      filter: brightness(0.8);
+    }
+  }
+
+  h4 {
+    &::before,
+    &::after {
+      content: '';
+      background: none;
+    }
+  }
+
+  p {
+    text-align: center;
+    @include adaptiveValue('font-size', 16, 12, 0, 1440, 360);
+    font-weight: 400;
+    line-height: 24px;
+    margin-bottom: 32px;
+
+    @media (max-width: $mobile) {
+      line-height: 16px;
+    }
+  }
+}
