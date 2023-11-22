@@ -13,11 +13,11 @@ import { Link } from 'react-router-dom';
 export const Header = () => {
   const [isSignIn, setIsSignIn] = useState<boolean>(true);
   const { isAuth } = useAppSelector((state) => state.auth);
-  const isModalOpen = useAppSelector((state) => state.modal.isOpen);
+  const isModalOpen = useAppSelector((state) => state.modal.auth);
   const dispatch = useAppDispatch();
 
   const handleOpenModal = () => {
-    dispatch(openModal());
+    dispatch(openModal('auth'));
   };
 
   const toggleForm = () => {
@@ -53,7 +53,7 @@ export const Header = () => {
         </div>
       </div>
       {isModalOpen && (
-        <Modal>
+        <Modal modalId='auth'>
           {isSignIn ? (
             <SignIn toggleForm={toggleForm} />
           ) : (

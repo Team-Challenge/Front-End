@@ -1,22 +1,20 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface ModalState {
-  isOpen: boolean;
+  [key: string]: boolean;
 }
 
-const initialState: ModalState = {
-  isOpen: false,
-};
+const initialState: ModalState = {};
 
 const modalSlice = createSlice({
   name: 'modal',
   initialState,
   reducers: {
-    openModal: (state) => {
-      state.isOpen = true;
+    openModal: (state, action: PayloadAction<string>) => {
+      state[action.payload] = true;
     },
-    closeModal: (state) => {
-      state.isOpen = false;
+    closeModal: (state, action: PayloadAction<string>) => {
+      state[action.payload] = false;
     },
   },
 });

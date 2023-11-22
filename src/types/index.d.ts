@@ -54,6 +54,7 @@ export interface ButtonUIProps {
 
 export interface ModalProps {
   children: React.ReactNode;
+  modalId: string;
 }
 
 export interface ProductItemProps {

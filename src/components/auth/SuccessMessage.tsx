@@ -8,7 +8,7 @@ export const SuccessMessage = () => {
   const dispatch = useAppDispatch();
 
   const handleCloseModal = () => {
-    dispatch(closeModal());
+    dispatch(closeModal('auth'));
   };
 
   return (

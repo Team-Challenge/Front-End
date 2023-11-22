@@ -5,11 +5,11 @@ import { ModalProps } from '@/types';
 import { CloseIcon } from '../icons/CloseIcon';
 import s from './Modal.module.scss';
 
-export const Modal = ({ children }: ModalProps) => {
+export const Modal = ({ children, modalId }: ModalProps) => {
   const dispatch = useAppDispatch();
 
   const handleCloseModal = () => {
-    dispatch(closeModal());
+    dispatch(closeModal(modalId));
   };
 
   useEffect(() => {
