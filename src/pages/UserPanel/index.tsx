@@ -2,39 +2,13 @@ import { useState, ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
 import { userLogout } from '@/store/userSettings/userSettingsThunks';
-import {
-  Profile,
-  Order,
-  Messages,
-  FavoriteProducts,
-  Store,
-  Settings,
-} from '@/components/userPanel';
-import { useAccountInfo } from '@/hooks/useAccountInfo';
+import { buttonsUserPanel } from '@/constants/buttonsUserPanel';
+import logOut from '@assets/icons/logout.svg';
 import s from './UserPanel.module.scss';
 
 export const UserPanel = () => {
-  const accountInfo = useAccountInfo();
-
-  const buttonData = [
-    {
-      id: '1',
-      label: 'Профіль',
-      content: <Profile userName={accountInfo?.full_name as string} />,
-    },
-    { id: '2', label: 'Ваші замовлення', content: <Order /> },
-    { id: '3', label: 'Повідомлення', content: <Messages /> },
-    { id: '4', label: 'Обрані товари', content: <FavoriteProducts /> },
-    { id: '5', label: 'Мій магазин', content: <Store /> },
-    {
-      id: '6',
-      label: 'Налаштування',
-      content: <Settings userPhone={accountInfo?.phone_number as string} />,
-    },
-  ];
-
   const [selectedComponent, setSelectedComponent] = useState<ReactNode>(
-    buttonData[0].content,
+    buttonsUserPanel[0].content,
   );
 
   const handleButtonClick = (content: ReactNode) => {
@@ -48,27 +22,28 @@ export const UserPanel = () => {
   const logoutUser = () => {
     dispatch(userLogout());
     if (!isAuth) {
-      navigate('/signin');
+      navigate('/');
     }
   };
 
   return (
     <section className={s.panel}>
       <div className={s.wrap}>
-        {buttonData.map((button) => (
+        {buttonsUserPanel.map((button) => (
           <button
-            type='submit'
             key={button.id}
             onClick={() => handleButtonClick(button.content)}
             className={`${s.btn} ${
               selectedComponent === button.content ? s.active : ''
             }`}
           >
+            <img src={button.icon} alt='' />
             {button.label}
           </button>
         ))}
         <span className={s.line} />
-        <button type='submit' className={s.btn} onClick={logoutUser}>
+        <button className={`${s.btn} ${s.btn_logOut}`} onClick={logoutUser}>
+          <img src={logOut} alt='' />
           Вийти
         </button>
       </div>

@@ -4,7 +4,7 @@ import {
   SubmitHandler,
   useForm,
 } from 'react-hook-form';
-import { ProfileProps, ChangeFullNameFormData } from '@/types';
+import { ChangeFullNameFormData } from '@/types';
 import { useAppDispatch } from '@/hooks/reduxHook';
 import { changeFullName } from '@/store/userSettings/userSettingsThunks';
 import { FullName } from '@/components/FullName';
@@ -12,7 +12,7 @@ import { ButtonUI } from '@/components/UI/ButtonUI';
 import { ProfilePhoto } from './ProfilePhoto';
 import s from './Profile.module.scss';
 
-export const Profile = ({ userName }: ProfileProps) => {
+export const Profile = () => {
   const methods = useForm();
 
   const {
@@ -41,7 +41,7 @@ export const Profile = ({ userName }: ProfileProps) => {
         >
           <label className={s.form_label}>
             Ім’я та Прізвище
-            <FullName placeholder={userName} />
+            <FullName placeholder={`Ім'я користувача`} />
           </label>
           <ButtonUI
             label='Зберігти'

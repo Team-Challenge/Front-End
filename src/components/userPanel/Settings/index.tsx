@@ -12,12 +12,12 @@ import {
   changePassword,
   changePhoneNumber,
 } from '@/store/userSettings/userSettingsThunks';
-import { SettingsFromData, SettingsProps } from '@/types';
+import { SettingsFromData } from '@/types';
 import { UserPassword } from './UserPassword';
 import { UserPhoneNumber } from './UserPhoneNumber';
 import s from './Settings.module.scss';
 
-export const Settings = ({ userPhone }: SettingsProps) => {
+export const Settings = () => {
   const [message, setMessage] = useState<string>('');
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const dispatch = useAppDispatch();
@@ -76,7 +76,7 @@ export const Settings = ({ userPhone }: SettingsProps) => {
           )}
         >
           <UserPassword />
-          <UserPhoneNumber userPhone={userPhone} />
+          <UserPhoneNumber />
           <ButtonUI label='Зберігти' className={s.form_btn} />
         </form>
       </FormProvider>
@@ -87,7 +87,7 @@ export const Settings = ({ userPhone }: SettingsProps) => {
         className={s.btn_delete}
       />
 
-      {isModalOpen && message !== '' && (
+      {/* {isModalOpen && message !== '' && (
         <Modal isOpen={isModalOpen}>
           <div className={s.modal}>
             <div className={s.modal_subtitle}>{message}</div>
@@ -100,7 +100,7 @@ export const Settings = ({ userPhone }: SettingsProps) => {
             </button>
           </div>
         </Modal>
-      )}
+      )} */}
     </div>
   );
 };

@@ -18,10 +18,16 @@
   display: flex;
   justify-content: flex-start;
   background: transparent;
+  align-items: center;
+  gap: 6px;
 
   &.active {
-    border-radius: 8px;
-    background: #F4F8F9;
+    border-radius: 6px;
+    background: #F0F6F7;
+  }
+
+  &_logOut {
+    color: #AFB0AF;
   }
 }
 
