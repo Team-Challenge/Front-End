@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useAppDispatch } from '@/hooks/reduxHook';
 import { closeModal } from '@/store/modalSlice';
 import { ModalProps } from '@/types';
@@ -10,6 +11,14 @@ export const Modal = ({ children }: ModalProps) => {
   const handleCloseModal = () => {
     dispatch(closeModal());
   };
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, []);
 
   return (
     <div className={s.modal}>
