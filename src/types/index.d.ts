@@ -70,6 +70,7 @@ export interface TextInputProps {
   placeholder: string;
   required?: boolean;
   isLogin?: boolean;
+  isLoginError?: boolean;
   onClick?: () => void;
   regex?: RegExp;
   errorMessage?: string;
@@ -85,9 +86,11 @@ export interface PasswordInputProps {
   placeholder: string;
   required: boolean;
   isLogin?: boolean;
+  isLoginError?: boolean;
   validate?: any;
   onClick?: () => void;
   isRepeatPassword?: boolean;
+  className?: string;
 }
 
 //user info types
