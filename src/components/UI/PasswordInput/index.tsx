@@ -13,8 +13,10 @@ export const PasswordInput = ({
   validate,
   required,
   isLogin,
+  isLoginError,
   onClick,
   isRepeatPassword = false,
+  className
 }: PasswordInputProps) => {
   const {
     register,
@@ -29,9 +31,9 @@ export const PasswordInput = ({
   const hasError = errors[id];
   const isDirty = id in dirtyFields;
 
-  const inputClassName = `${s.input} ${
-    hasError && !isLogin ? s.input_error : ''
-  } ${!hasError && isDirty && !isLogin ? s.input_success : ''}`;
+  const inputClassName = `${s.input} ${className}
+    ${hasError && !isLogin || isLoginError ? s.input_error : ''}
+    ${!hasError && isDirty && !isLogin ? s.input_success : ''}`;
 
   return (
     <>
@@ -60,7 +62,7 @@ export const PasswordInput = ({
           <button onClick={togglePasswordVisibility} className={s.icon_eye}>
             {passwordShown ? <OpenEyeIcon /> : <CloseEyeIcon />}
           </button>
-          {hasError && !isLogin ? (
+          {hasError && !isLogin || isLoginError ? (
             <i className={s.icon_invalid}>
               <InvalidIcon />
             </i>

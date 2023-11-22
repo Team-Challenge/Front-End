@@ -28,6 +28,8 @@ export const LoginForm = ({
     formState: { errors, isValid },
   } = methods;
 
+  const hasError = Boolean(errors.loginError);
+
   const onSubmit: SubmitHandler<IUserAuth> = async (data) => {
     try {
       await dispatch(login(data)).unwrap();
@@ -48,18 +50,23 @@ export const LoginForm = ({
         className={s.form}
         onSubmit={methods.handleSubmit(onSubmit as SubmitHandler<FieldValues>)}
       >
-        <Email isLogin onClick={() => methods.clearErrors('loginError')} />
+        <Email
+          isLogin
+          isLoginError={hasError}
+          onClick={() => methods.clearErrors('loginError')}
+        />
         <PasswordInput
           id='password'
           placeholder='Пароль'
           required
           isLogin
+          isLoginError={hasError}
           onClick={() => methods.clearErrors('loginError')}
         />
 
-        {errors.loginError && (
+        {hasError && (
           <p className={`error-text ${s.error}`}>
-            {errors.loginError.message as string}
+            {errors?.loginError?.message as string}
           </p>
         )}
 

@@ -4,12 +4,14 @@ interface EmailProps {
   required?: boolean;
   onClick?: () => void;
   isLogin?: boolean;
+  isLoginError?: boolean;
 }
 
 export const Email = ({
   required = true,
   isLogin,
   onClick,
+  isLoginError,
 }: EmailProps) => {
   return (
     <TextInput
@@ -21,6 +23,7 @@ export const Email = ({
       errorMessage='Будь ласка, введіть електронну адресу у форматі "email@mail.com"'
       isLogin={isLogin}
       onClick={onClick}
+      isLoginError={isLoginError}
     />
   );
 };
