@@ -106,6 +106,14 @@ input {
   align-items: center;
 
   @media (max-width: $mobile) {
+    h4 {
+      &::before,
+      &::after {
+        content: '';
+        background: none;
+      }
+    }
+
     &::before {
       content: '';
       background: url('@assets/small-decorative-element.svg') no-repeat;
@@ -126,14 +134,6 @@ input {
       transform: rotate(-90deg);
       margin-top: 20px;
       filter: brightness(0.8);
-    }
-  }
-
-  h4 {
-    &::before,
-    &::after {
-      content: '';
-      background: none;
     }
   }
 
