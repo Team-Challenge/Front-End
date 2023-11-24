@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
+import { PASSWORD_REGEX } from '@/constants/RegExp';
 import { PasswordInputProps } from '@/types';
-import s from './PasswordInput.module.scss';
 import { Icon } from '@iconify/react';
+import s from './PasswordInput.module.scss';
 
 export const PasswordInput = ({
   id,
@@ -41,7 +42,7 @@ export const PasswordInput = ({
           {...register(id, {
             validate: validate,
             pattern: {
-              value: /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).+$/,
+              value: PASSWORD_REGEX,
               message:
                 'Пароль повинен містити хоча б одну велику літеру, одну маленьку літеру та цифру',
             },

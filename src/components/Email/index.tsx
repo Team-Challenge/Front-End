@@ -1,3 +1,4 @@
+import { EMAIL_REGEX } from '@/constants/RegExp';
 import { TextInput } from '../UI/TextInput';
 
 interface EmailProps {
@@ -19,7 +20,7 @@ export const Email = ({
       id='email'
       placeholder='Email'
       required={required}
-      regex={/^[\p{L}\p{N}_.-]+@([\p{L}\p{N}-]+\.)+[\p{L}\p{N}-]{2,}$/gu}
+      regex={EMAIL_REGEX}
       errorMessage='Будь ласка, введіть електронну адресу у форматі "email@mail.com"'
       isLogin={isLogin}
       onClick={onClick}
