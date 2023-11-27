@@ -1,22 +1,26 @@
 .order {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(266px, 1fr));
-  row-gap: 2rem;
-  column-gap: 1rem;
-}
+  &_title {
+    margin-bottom: 24px;
+  }
 
-.buttons {
-  display: flex;
-  gap: 0.5rem;
-}
+  &_buttons {
+    display: flex;
+    gap: 0.5rem;
 
-.button {
-  padding: 12px 24px;
-  border-radius: 50px;
-  border: 1px solid #000;
-  margin-bottom: 32px;
+    button {
+      font-family: Craftwork Grotesk;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 24px;
+      letter-spacing: 0.36px;
+      background: var(--Green, #F0F6F7);
+      border-radius: 4px;
+      padding: 8px 24px;
+    }
+  }
 
-  &:hover {
-    background: #F4F8F9;
+  .active {
+    background: #1A7171;
+    color: #fff;
   }
 }

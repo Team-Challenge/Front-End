@@ -16,7 +16,7 @@ export const UserPassword = () => {
 
   return (
     <label className={s.form_label}>
-      Зміна паролю
+      Налаштування паролю
       <PasswordInput
         id='current_password'
         placeholder='Старий пароль'
