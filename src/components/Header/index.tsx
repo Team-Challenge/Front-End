@@ -5,21 +5,28 @@ import { openModal } from '@/store/modalSlice';
 import { useAppSelector, useAppDispatch } from '@/hooks/reduxHook';
 import { SignIn } from '../auth/SignIn';
 import { SignUp } from '../auth/SignUp';
+import { UserDropdownMenu } from '../UserDropdownMenu';
 import { Modal } from '../Modal';
 import s from './Header.module.scss';
 
 export const Header = () => {
   const [isSignIn, setIsSignIn] = useState<boolean>(true);
-  const { isAuth } = useAppSelector((state) => state.auth);
+  const [isDropdownMenuOpen, setIsDropdownMenuOpen] = useState<boolean>(false);
   const isModalOpen = useAppSelector((state) => state.modal.auth);
   const dispatch = useAppDispatch();
 
-  const handleOpenModal = () => {
+  const handleOpenModal = (isLogin: boolean) => {
     dispatch(openModal('auth'));
+    setIsDropdownMenuOpen(false);
+    setIsSignIn(isLogin);
   };
 
   const toggleForm = () => {
     setIsSignIn(!isSignIn);
+  };
+
+  const handleOpenAuthMenu = () => {
+    setIsDropdownMenuOpen(!isDropdownMenuOpen);
   };
 
   return (
@@ -34,13 +41,10 @@ export const Header = () => {
           <li>на шию</li>
         </ul>
         <div className={s.header_buttons}>
-          {!isAuth ? (
-            <button onClick={handleOpenModal}>Увійти</button>
-          ) : (
-            <Link to='/userpanel'>
-              <Icon icon='solar:user-outline' />
-            </Link>
-          )}
+          <button onClick={handleOpenAuthMenu}>
+            <Icon icon='solar:user-outline' />
+            <Icon icon='solar:alt-arrow-down-outline' />
+          </button>
 
           <button>
             <Icon icon='solar:heart-outline' />
@@ -50,6 +54,11 @@ export const Header = () => {
           </button>
         </div>
       </div>
+
+      {isDropdownMenuOpen && (
+        <UserDropdownMenu handleOpenModal={handleOpenModal} />
+      )}
+
       {isModalOpen && (
         <Modal modalId='auth'>
           {isSignIn ? (

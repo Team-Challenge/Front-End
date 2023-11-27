@@ -1,0 +1,32 @@
+@import '@/styles/index.scss';
+
+.dropdownMenu {
+  max-width: 226px;
+  display: grid;
+  gap: 12px;
+  padding: 12px 15px;
+  border-radius: 4px;
+  // background: $white;
+  background: #f4efef;
+  z-index: 20;
+
+  position: absolute;
+  right: 10%;
+  top: 150%;
+
+  &_registration {
+    display: flex;
+    gap: 0.5rem;
+    font-size: 12px;
+    line-height: 16px;
+
+    p {
+      font-weight: 300;
+    }
+
+    button {
+      font-weight: 400;
+      text-decoration-line: underline;
+    }
+  }
+}

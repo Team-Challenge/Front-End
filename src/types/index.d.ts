@@ -113,3 +113,7 @@ export interface SettingsFromData {
 export interface ChangeFullNameFormData {
   full_name: string;
 }
+
+export interface UserDropdownMenuProps {
+  handleOpenModal: (arg0: boolean) => void;
+}
