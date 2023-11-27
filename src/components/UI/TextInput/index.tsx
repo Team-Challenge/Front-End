@@ -1,8 +1,7 @@
 import { useFormContext } from 'react-hook-form';
 import { TextInputProps } from '@/types';
-import { ValidIcon } from '@/components/icons/ValidIcon';
-import s from './TextInput.module.scss';
 import { Icon } from '@iconify/react';
+import s from './TextInput.module.scss';
 
 export const TextInput = ({
   type = 'text',
