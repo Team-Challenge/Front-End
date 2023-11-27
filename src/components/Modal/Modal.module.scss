@@ -18,6 +18,7 @@
   }
 
   &_block {
+    max-height: 99vh;
     @include adaptiveValue('width', 648, 320, 0, 1440, 320);
     @include adaptiveValue('padding-top', 80, 48, 0, 1440, 320);
     @include adaptiveValue('padding-right', 52, 20, 0, 1440, 320);
