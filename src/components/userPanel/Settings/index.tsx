@@ -1,26 +1,29 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   FieldValues,
   FormProvider,
   SubmitHandler,
   useForm,
 } from 'react-hook-form';
-import { Modal } from '@/components/Modal';
-import { ButtonUI } from '@/components/UI/ButtonUI';
-import { useAppDispatch } from '@/hooks/reduxHook';
 import {
   changePassword,
   changePhoneNumber,
 } from '@/store/userSettings/userSettingsThunks';
-import { SettingsFromData, SettingsProps } from '@/types';
+import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
+import { closeModal, openModal } from '@/store/modalSlice';
+import { SettingsFromData } from '@/types';
 import { UserPassword } from './UserPassword';
 import { UserPhoneNumber } from './UserPhoneNumber';
+import { UserDeliveryData } from './UserDeliveryData';
+import { OrnamentalTitle } from '@/components/OrnamentalTitle';
+import { ButtonUI } from '@/components/UI/ButtonUI';
+import { Modal } from '@/components/Modal';
 import s from './Settings.module.scss';
 
-export const Settings = ({ userPhone }: SettingsProps) => {
-  const [message, setMessage] = useState<string>('');
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+export const Settings = () => {
+  const [isSuccessfulChange, setIsSuccessfulChange] = useState<boolean>(false);
   const dispatch = useAppDispatch();
+  const isModalOpen = useAppSelector((state) => state.modal.settings);
 
   const methods = useForm<SettingsFromData>({
     mode: 'onChange',
@@ -29,20 +32,20 @@ export const Settings = ({ userPhone }: SettingsProps) => {
   const newPassword = methods.watch('new_password');
   const phoneNumber = methods.watch('phoneNumber');
 
-  const toggleModal = () => {
-    setIsModalOpen(!isModalOpen);
+  const closeModalWindow = () => {
+    dispatch(closeModal('settings'));
   };
 
   const onSubmit = (data: SettingsFromData) => {
     if (phoneNumber) {
       dispatch(changePhoneNumber(data.phoneNumber)).then((response) => {
         if (response.payload) {
-          setMessage('Ваші дані успішно оновлено');
+          setIsSuccessfulChange(true);
           methods.reset();
         } else {
-          setMessage('Виникла помилка, спробуйте ще раз');
+          setIsSuccessfulChange(false);
         }
-        setIsModalOpen(true);
+        dispatch(openModal('settings'));
       });
     }
 
@@ -54,19 +57,19 @@ export const Settings = ({ userPhone }: SettingsProps) => {
         }),
       ).then((response) => {
         if (response.payload) {
-          setMessage('Ваші дані успішно оновлено');
+          setIsSuccessfulChange(true);
           methods.reset();
         } else {
-          setMessage('Виникла помилка, невірний старий пароль');
+          setIsSuccessfulChange(false);
         }
-        setIsModalOpen(true);
+        dispatch(openModal('settings'));
       });
     }
   };
 
   return (
-    <div className={s.settings}>
-      <h1 className='user-panel-title'>Налаштування входу</h1>
+    <section className={s.settings}>
+      <h4 className={s.settings_title}>Налаштування</h4>
       <FormProvider {...methods}>
         <form
           id='settings'
@@ -76,31 +79,47 @@ export const Settings = ({ userPhone }: SettingsProps) => {
           )}
         >
           <UserPassword />
-          <UserPhoneNumber userPhone={userPhone} />
-          <ButtonUI label='Зберігти' className={s.form_btn} />
+          <UserPhoneNumber />
+          <UserDeliveryData />
+          <ButtonUI label='Зберегти' className={s.form_btn} />
         </form>
       </FormProvider>
 
-      <ButtonUI
+      {/* <ButtonUI
         label='Видалити профіль'
         variant='secondary'
-        className={s.btn_delete}
-      />
+      /> */}
 
-      {isModalOpen && message !== '' && (
-        <Modal isOpen={isModalOpen}>
-          <div className={s.modal}>
-            <div className={s.modal_subtitle}>{message}</div>
-            <button
-              type='submit'
-              className={s.modal_close}
-              onClick={toggleModal}
-            >
-              X
-            </button>
-          </div>
+      {isModalOpen && (
+        <Modal modalId='settings'>
+          {isSuccessfulChange ? (
+            <>
+              <OrnamentalTitle tag='h4' text='Зміни збережено' />
+              <p className={s.modal_text}>
+                Ваші нові дані успішно збережено. Приємного користування!
+              </p>
+              <ButtonUI
+                label='Готово!'
+                onClick={closeModalWindow}
+                className={s.modal_button}
+              />
+            </>
+          ) : (
+            <>
+              <OrnamentalTitle tag='h4' text='Щось пішло не так...' />
+              <p className={s.modal_text}>
+                Вибачте, виникла помилка при спробі змінити ваші дані. Будь
+                ласка, перевірте інформацію та спробуйте ще раз.
+              </p>
+              <ButtonUI
+                label='Повторити'
+                onClick={closeModalWindow}
+                className={s.modal_button}
+              />
+            </>
+          )}
         </Modal>
       )}
-    </div>
+    </section>
   );
 };

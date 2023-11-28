@@ -4,16 +4,22 @@ import { setAuth } from './authSlice';
 
 export const login = createAsyncThunk(
   'accounts/signin',
-  async (credentials: { email: string; password: string }, { dispatch }) => {
-    const response = await AuthService.login(
-      credentials.email,
-      credentials.password,
-    );
-    localStorage.setItem('token', response.data.access_token);
-    dispatch(setAuth(true));
+  async (credentials: { email: string; password: string }, { dispatch, rejectWithValue }) => {
+    try {
+      const response = await AuthService.login(
+        credentials.email,
+        credentials.password,
+      );
 
-    return response.data;
-  },
+      localStorage.setItem('token', response.data.access_token);
+      dispatch(setAuth(true));
+
+      return response.data;
+    } catch (error: any) {
+      const errorMessage = error.response?.data?.message || 'Помилка авторизації';
+      return rejectWithValue(errorMessage);
+    }
+  }
 );
 
 export const registration = createAsyncThunk(

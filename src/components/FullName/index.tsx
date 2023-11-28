@@ -1,3 +1,4 @@
+import { FULL_NAME_REGEX } from '@/constants/RegExp';
 import { TextInput } from '../UI/TextInput';
 
 interface FullNameProps {
@@ -11,12 +12,10 @@ export const FullName = ({ placeholder }: FullNameProps) => {
       id='full_name'
       placeholder={placeholder}
       required
-      regex={
-        /^[a-zA-Z\xC0-\uFFFF]+([ \-']{0,1}[a-zA-Z\xC0-\uFFFF]+){1,4}\s[a-zA-Z\xC0-\uFFFF]+([ \-']{0,1}[a-zA-Z\xC0-\uFFFF]+){0,2}$/u
-      }
-      errorMessage='Only letters'
-      maxLength={50}
-      maxLengthMessage='The name is too long'
+      regex={FULL_NAME_REGEX}
+      errorMessage={`Будь ласка, введіть повне ім'я, що складається лише з літер`}
+      maxLength={30}
+      maxLengthMessage={`Будь ласка, введіть повне ім'я, що не перевищує 30 символів`}
     />
   );
 };

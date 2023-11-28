@@ -1,6 +1,5 @@
-import { SignIn } from './SignIn';
-import { SignUp } from './SignUp';
 import { UserPanel } from './UserPanel';
 import { PageNotFound } from './PageNotFound';
+import { Home } from './Home';
 
-export { SignIn, SignUp, UserPanel, PageNotFound };
+export { Home, UserPanel, PageNotFound };

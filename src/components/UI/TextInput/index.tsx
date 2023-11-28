@@ -1,5 +1,6 @@
-import { TextInputProps } from '@/types';
 import { useFormContext } from 'react-hook-form';
+import { TextInputProps } from '@/types';
+import { Icon } from '@iconify/react';
 import s from './TextInput.module.scss';
 
 export const TextInput = ({
@@ -7,6 +8,9 @@ export const TextInput = ({
   id,
   placeholder,
   required = false,
+  isLogin,
+  isLoginError,
+  onClick,
   regex,
   errorMessage,
   minLength,
@@ -17,33 +21,57 @@ export const TextInput = ({
 }: TextInputProps) => {
   const {
     register,
-    formState: { errors },
+    formState: { errors, dirtyFields },
   } = useFormContext();
+
+  const hasError = errors[id];
+  const isDirty = id in dirtyFields;
+
+  const inputClassName = `${s.input} ${className}
+    ${(hasError && !isLogin) || isLoginError ? s.input_error : ''}
+    ${!hasError && isDirty && !isLogin ? s.input_success : ''}`;
 
   return (
     <>
-      <input
-        type={type}
-        placeholder={placeholder}
-        {...register(id, {
-          required: required,
-          pattern: {
-            value: regex as RegExp,
-            message: errorMessage as string,
-          },
-          maxLength: {
-            value: maxLength as number,
-            message: maxLengthMessage as string,
-          },
-          minLength: {
-            value: minLength as number,
-            message: minLengthMessage as string,
-          },
-        })}
-        className={`${s.input} ${className}`}
-      />
-      {errors[id] && (
-        <p className={`${s.error}`}>{errors[id]?.message as string}</p>
+      <div className={s.wrap}>
+        <input
+          type={type}
+          placeholder={placeholder}
+          {...register(id, {
+            required: required,
+            pattern: {
+              value: regex as RegExp,
+              message: errorMessage as string,
+            },
+            maxLength: {
+              value: maxLength as number,
+              message: maxLengthMessage as string,
+            },
+            minLength: {
+              value: minLength as number,
+              message: minLengthMessage as string,
+            },
+          })}
+          className={inputClassName}
+          onClick={onClick}
+        />
+
+        {(hasError && !isLogin) || isLoginError ? (
+          <i className={`${s.icon} ${s.icon_invalid}`}>
+            <Icon icon='solar:danger-circle-outline' />
+          </i>
+        ) : (
+          isDirty &&
+          !isLogin && (
+            <i className={`${s.icon} ${s.icon_valid}`}>
+              <Icon icon='solar:unread-outline' />
+            </i>
+          )
+        )}
+      </div>
+
+      {hasError && !isLogin && (
+        <p className={`error-text ${s.error}`}>{hasError.message as string}</p>
       )}
     </>
   );

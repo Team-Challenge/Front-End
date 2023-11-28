@@ -3,8 +3,8 @@ import { Route, Routes } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from './hooks/reduxHook';
 import { checkAuth } from './store/auth/authActions';
 import { setAuth } from './store/auth/authSlice';
-import { PageNotFound, SignIn, SignUp, UserPanel } from './pages';
-import './App.scss';
+import { PageNotFound, UserPanel, Home } from './pages';
+import { Header } from './components/Header';
 
 export const App = () => {
   const { isAuth } = useAppSelector((state) => state.auth);
@@ -19,20 +19,11 @@ export const App = () => {
 
   return (
     <div>
+      <Header />
       <Routes>
-        {!isAuth ? (
-          <>
-            <Route path='/' element={<SignUp />} />
-            <Route path='/signin' element={<SignIn />} />
-          </>
-        ) : (
-          <>
-            {['/', '/userpanel', '/signin'].map((path) => (
-              <Route key={path} path={path} element={<UserPanel />} />
-            ))}
-          </>
-        )}
+        <Route path='/' element={<Home />} />
         <Route path='*' element={<PageNotFound />} />
+        {isAuth && <Route path='/userpanel' element={<UserPanel />} />}
       </Routes>
     </div>
   );

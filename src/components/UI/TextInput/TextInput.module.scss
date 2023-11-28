@@ -1,20 +1,38 @@
-.input {
-  width: 100%;
-  border-radius: 6px;
-  border: 1px solid #818181;
-  padding: 14px 16px;
+@import '@/styles/index.scss';
 
-  &::placeholder {
-    color: #818181;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 16px;
+.wrap {
+  position: relative;
+}
+
+.input {
+  &_error {
+    border-color: $error-color;
+  }
+
+  &_success {
+    border-color: $success-color;
+  }
+}
+
+.icon {
+  position: absolute;
+  top: 30%;
+  right: 5%;
+
+  &_invalid {
+    color: $error-color;
+  }
+
+  &_valid {
+    color: $success-color;
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
   }
 }
 
 .error {
-  font-size: 0.7rem;
-  color: red;
   margin-top: -0.5rem;
 }

@@ -1,3 +1,3 @@
 export const Messages = () => {
-  return <h1 className='user-panel-title'>Мої повідомлення</h1>;
+  return <h4>Мої повідомлення</h4>;
 };

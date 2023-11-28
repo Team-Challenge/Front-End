@@ -1,28 +1,41 @@
 @font-face {
-  font-family: 'e-UkraineHead-Bold';
-  src: url('../assets/fonts/e-UkraineHead-Bold.otf') format('opentype');
-  font-weight: 700;
+  font-family: 'Craftwork Grotesk';
+  src: url('../assets/fonts/CraftworkGrotesk-Regular.ttf') format('truetype'),
+       url('../assets/fonts/CraftworkGrotesk-Regular.woff') format('woff');
+  font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'e-Ukraine-Bold';
-  src: url('../assets/fonts/e-Ukraine-Bold.otf') format('opentype');
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'e-Ukraine-Medium';
-  src: url('../assets/fonts/e-Ukraine-Medium.otf') format('opentype');
+  font-family: 'Craftwork Grotesk';
+  src: url('../assets/fonts/CraftworkGrotesk-Medium.ttf') format('truetype'),
+       url('../assets/fonts/CraftworkGrotesk-Medium.woff') format('woff');
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'e-Ukraine-Regular';
-  src: url('../assets/fonts/e-Ukraine-Regular.otf') format('opentype');
-  font-weight: normal;
+  font-family: 'Craftwork Grotesk';
+  src: url('../assets/fonts/CraftworkGrotesk-SemiBold.ttf') format('truetype'),
+       url('../assets/fonts/CraftworkGrotesk-SemiBold.woff') format('woff');
+  font-weight: 600;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'Craftwork Grotesk';
+  src: url('../assets/fonts/CraftworkGrotesk-Bold.ttf') format('truetype'),
+       url('../assets/fonts/CraftworkGrotesk-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Craftwork Grotesk';
+  src: url('../assets/fonts/CraftworkGrotesk-Heavy.ttf') format('truetype'),
+       url('../assets/fonts/CraftworkGrotesk-Heavy.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+}
+
 

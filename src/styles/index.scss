@@ -1,40 +1,45 @@
-@import './reset.scss';
-@import './fonts.scss';
+@use 'sass:math';
+@import './mixins.scss';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+@import './variables.scss';
 
-body {
-  font-family: 'e-Ukraine-Regular', sans-serif;
-  font-size: 1rem;
-  line-height: normal;
-}
+// Мінімальна ширина сторінки
+$minWidth: 360;
+// Ширина полотна (макету)
+$maxWidth: 1440;
+// Ширина обмежуючого контейнера
+$maxWidthContainer: 1320;
+// Загальний відступ у контейнера
+$containerPadding: 20;
 
-input {
-  font-family: 'e-Ukraine-Regular', sans-serif;
+// Ширина спрацьовування першого брейкпоінту
+$containerWidth: $maxWidthContainer + $containerPadding;
 
-  &::placeholder {
-    font-family: 'e-Ukraine-Regular', sans-serif;
+// Брейк-поїнти
+$pc: em($containerWidth); // ПК, ноутбуки, деякі планшети у горизонтальному положенні
+$tablet: em(991.98); // Планшети, деякі телефони в горизонтальному положенні
+$mobile: em(767.98); // Телефони L
+$mobileSmall: em(479.98); // Телефони S
+
+.container {
+  @if ($maxWidthContainer > 0) {
+    max-width: toRem($containerWidth);
+    margin: 0 auto;
   }
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: 'e-UkraineHead-Bold', sans-serif;
-}
-
-.user-panel-title {
-  color: #000;
-  font-family: 'e-UkraineHead-Bold', sans-serif;
-  font-size: 36px;
-  line-height: normal;
-  margin-bottom: 48px;
-}
-
-.user-panel-subtitle {
-  color: #000;
-  font-family: 'e-UkraineHead-Bold', sans-serif;
-  font-size: 21px;
-  font-style: normal;
+  @if ($containerPadding > 0) {
+    @if ($maxWidthContainer > 0) {
+      padding: 0 toRem(math.div($containerPadding, 2));
+    } @else {
+      @include adaptiveValue(
+        'padding-left',
+        math.div($containerPadding, 2),
+        10
+      );
+      @include adaptiveValue(
+        'padding-right',
+        math.div($containerPadding, 2),
+        10
+      );
+    }
+  }
 }

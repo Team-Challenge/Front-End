@@ -8,26 +8,36 @@
 .wrap {
   display: grid;
   align-self: start;
+  gap: 4px;
 }
 
 .btn {
-  color: #000;
-  font-size: 20px;
-  line-height: normal;
-  padding: 1rem;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  padding: 13px 16px;
   display: flex;
   justify-content: flex-start;
   background: transparent;
+  align-items: center;
+  gap: 14px;
+  max-height: 44px;
+
+  svg {
+    width: 20px;
+    height: 20px;
+    color: #AFB0AF;
+  }
 
   &.active {
-    border-radius: 8px;
-    background: #F4F8F9;
+    border-radius: 6px;
+    background: #F0F6F7;
   }
 }
 
 .line {
   width: 100%;
   height: 2px;
-  background: #F4F8F9;
-  margin: 16px 0;
+  background: #E3E2E1;
+  border-radius: 5px;
 }

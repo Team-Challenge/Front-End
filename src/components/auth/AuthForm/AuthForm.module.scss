@@ -1,32 +1,101 @@
+@import '@/styles/index.scss';
+
 .form {
+  max-width: 424px;
+  width: 100%;
   display: grid;
-  gap: 12px;
+  @include adaptiveValue('gap', 16, 8, 0, 1440, 360);
 
-  &_pass {
-    color: #000;
-    font-size: 10px;
-    font-weight: 300;
-
-    span {
-      text-decoration-line: underline;
-    }
+  &_buttons {
+    width: 100%;
+    display: grid;
+    gap: 1rem;
+    margin: 20px 0;
   }
 }
 
 .checkbox {
   display: flex;
+  align-items: center;
   gap: 0.5rem;
-  align-self: stretch;
+
+  &_input {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    padding: 4px;
+    display: grid;
+    place-content: center;
+    cursor: pointer;
+
+    &::before {
+      content: "";
+      background: url('@assets/checkmark.svg');
+      width: 16px;
+      height: 16px;
+      transform: scale(0);
+      transition: 120ms transform ease-in-out;
+      transform-origin: bottom left;
+    }
+
+    &:checked::before {
+      transform: scale(1);
+    }
+
+    &:checked {
+      background: $green;
+      border-color: transparent;
+    }
+  }
 
   &_text {
+    @include adaptiveValue('font-size', 12, 10, 0, 1440, 360);
     font-weight: 300;
-    font-size: 8px;
-    color: #818181;
+    line-height: 16px;
+
+    & span {
+      text-decoration: underline;
+      cursor: pointer;
+    }
   }
 }
 
-.error {
-  font-size: 0.7rem;
-  color: red;
-  margin-top: -0.5rem;
+.forgot_password_button {
+  justify-self: flex-start;
+  color: $text-color;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  text-decoration-line: underline;
+  margin: -0.5rem 0;
+}
+
+.decorative_line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 16px;
+
+  &::before {
+    content: '';
+    background: $light-grey;
+    display: inline-block;
+    width: 65.5px;
+    height: 1px;
+    opacity: 0.8;
+  }
+
+  &::after {
+    content: '';
+    background: $light-grey;
+    display: inline-block;
+    width: 65.5px;
+    height: 1px;
+    opacity: 0.8;
+  }
 }
