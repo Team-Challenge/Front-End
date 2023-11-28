@@ -6,7 +6,7 @@ import {
 } from 'react-hook-form';
 import { ChangeFullNameFormData } from '@/types';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
-import { changeFullName } from '@/store/userSettings/userSettingsThunks';
+import { changeFullName } from '@/store/userProfile/userProfileThunks';
 import { FullName } from '@/components/FullName';
 import { ButtonUI } from '@/components/UI/ButtonUI';
 import { ProfilePhoto } from './ProfilePhoto';
@@ -14,7 +14,7 @@ import s from './Profile.module.scss';
 
 export const Profile = () => {
   const dispatch = useAppDispatch();
-  const fullName = useAppSelector((state) => state.userSettings.full_name);
+  const fullName = useAppSelector((state) => state.userProfile.full_name);
 
   const methods = useForm({
     mode: 'onChange',

@@ -4,7 +4,7 @@ import { TextInput } from '@/components/UI/TextInput';
 import s from './Settings.module.scss';
 
 export const UserPhoneNumber = () => {
-  const userPhoneNumber = useAppSelector((state) => state.userSettings.phone_number);
+  const userPhoneNumber = useAppSelector((state) => state.userProfile.phone_number);
 
   return (
     <label className={s.form_label}>

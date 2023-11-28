@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authSlice from './auth/authSlice';
-import userSettingsSlice from './userSettings/userSettingsSlice';
+import userProfileSlice from './userProfile/userProfileSlice';
 import modalSlice from './modalSlice';
 
 const store = configureStore({
   reducer: {
     auth: authSlice,
-    userSettings: userSettingsSlice,
+    userProfile: userProfileSlice,
     modal: modalSlice,
   },
   middleware: (getDefaultMiddleWare) => getDefaultMiddleWare().concat(),
