@@ -2,12 +2,14 @@ import { useState, ReactNode, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
-import { userLogout } from '@/store/userSettings/userSettingsThunks';
+import { userLogout } from '@/store/userProfile/userProfileThunks';
 import { buttonsUserPanel } from '@/constants/buttonsUserPanel';
 import { getAccountsInfo } from '@/services/UserProfileInfo';
-import { setFullName, setPhoneNumber } from '@/store/userSettings/userSettingsSlice';
+import {
+  setFullName,
+  setPhoneNumber,
+} from '@/store/userProfile/userProfileSlice';
 import s from './UserPanel.module.scss';
-
 
 export const UserPanel = () => {
   const navigate = useNavigate();

@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import $api from '@/http';
 import { setAuth } from '../auth/authSlice';
-import { setFullName, setPassword, setPhoneNumber } from './userSettingsSlice';
+import { setFullName, setPhoneNumber } from './userProfileSlice';
 
 export const changeFullName = createAsyncThunk(
   'userSettings/changeFullName',
@@ -54,7 +54,6 @@ export const changePassword = createAsyncThunk(
         new_password: credentials.newPassword,
       });
       if (response.status === 200) {
-        dispatch(setPassword);
         return response.data;
       }
     } catch (e) {

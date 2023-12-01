@@ -8,7 +8,7 @@ import {
 import {
   changePassword,
   changePhoneNumber,
-} from '@/store/userSettings/userSettingsThunks';
+} from '@/store/userProfile/userProfileThunks';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
 import { closeModal, openModal } from '@/store/modalSlice';
 import { SettingsFromData } from '@/types';
