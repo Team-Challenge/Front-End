@@ -4,7 +4,10 @@ import { setAuth } from './authSlice';
 
 export const login = createAsyncThunk(
   'accounts/signin',
-  async (credentials: { email: string; password: string }, { dispatch, rejectWithValue }) => {
+  async (
+    credentials: { email: string; password: string },
+    { dispatch, rejectWithValue },
+  ) => {
     try {
       const response = await AuthService.login(
         credentials.email,
@@ -12,14 +15,16 @@ export const login = createAsyncThunk(
       );
 
       localStorage.setItem('token', response.data.access_token);
+      localStorage.setItem('refresh', response.data.refresh_token);
       dispatch(setAuth(true));
 
       return response.data;
     } catch (error: any) {
-      const errorMessage = error.response?.data?.message || 'Помилка авторизації';
+      const errorMessage =
+        error.response?.data?.message || 'Помилка авторизації';
       return rejectWithValue(errorMessage);
     }
-  }
+  },
 );
 
 export const registration = createAsyncThunk(
