@@ -1,4 +1,4 @@
-export const buttonsOrderData = [
+export const purchaseStatusList = [
   {
     id: 1,
     label: 'Всі',
