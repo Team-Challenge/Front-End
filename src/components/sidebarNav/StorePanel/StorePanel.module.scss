@@ -1,0 +1,9 @@
+@import '@/styles/index.scss';
+
+.returnBtn {
+  color: $green;
+
+  svg {
+    color: inherit;
+  }
+}
