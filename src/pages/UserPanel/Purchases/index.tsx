@@ -1,8 +1,8 @@
-import { buttonsOrderData } from '@/constants/buttonsOrderData';
-import s from './Order.module.scss';
 import { useState } from 'react';
+import { purchaseStatusList } from '@/constants/purchaseStatusList';
+import s from './Purchases.module.scss';
 
-export const Order = () => {
+export const Purchases = () => {
   const [activeButtonId, setActiveButtonId] = useState<number>(1);
 
   const handleButtonClick = (buttonId: number) => {
@@ -13,13 +13,13 @@ export const Order = () => {
     <section className={s.order}>
       <h4 className={s.order_title}>Мої покупки</h4>
       <div className={s.order_buttons}>
-        {buttonsOrderData.map((button) => (
+        {purchaseStatusList.map((status) => (
           <button
-            key={button.id}
-            className={button.id === activeButtonId ? s.active : ''}
-            onClick={() => handleButtonClick(button.id)}
+            key={status.id}
+            className={status.id === activeButtonId ? s.active : ''}
+            onClick={() => handleButtonClick(status.id)}
           >
-            {button.label}
+            {status.label}
           </button>
         ))}
       </div>

@@ -1,0 +1,23 @@
+@import '@/styles/index.scss';
+
+.store {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 872px;
+  max-height: 256px;
+  padding: 36px 115px;
+  background: $azure;
+  border-radius: 16px;
+
+  &_text {
+    color: $grey;
+    text-align: center;
+    letter-spacing: 0.32px;
+    margin: 16px 0 32px;
+  }
+
+  &_button {
+    max-width: 424px;
+  }
+}

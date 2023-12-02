@@ -1,3 +1,5 @@
+@import '@/styles/index.scss';
+
 .settings {
   display: grid;
 
@@ -21,7 +23,7 @@
   }
 
   &_hints {
-    color: #AFB0AF;
+    color: $grey;
     font-size: 12px;
     font-weight: 300;
     line-height: 16px;
