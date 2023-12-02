@@ -149,3 +149,48 @@ input {
     }
   }
 }
+
+.user-panel-page {
+  display: grid;
+  grid-template-columns: 224px 1fr;
+  column-gap: 88px;
+  margin-top: 60px;
+}
+
+.cabinet-sidebar-nav {
+  display: grid;
+  align-self: start;
+  gap: 4px;
+
+  &_btn {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  padding: 12px 15px;
+  background: transparent;
+  border-radius: 4px;
+
+    svg {
+      width: 16px;
+      height: 16px;
+      color: $grey;
+    }
+  }
+
+  &_line {
+    width: 100%;
+    height: 1px;
+    background: #F1F1F1;
+    border-radius: 5px;
+  }
+
+  &_active {
+    background: $azure;
+    transition: background 0.4s;
+  }
+}
