@@ -4,6 +4,7 @@ import { LoginForm } from './AuthForm/LoginForm';
 import { OrnamentalTitle } from '@/components/OrnamentalTitle';
 import { PasswordRecoveryForm } from './PasswordRecoveryForm';
 import { SuccessMessage } from './SuccessMessage';
+import s from './Auth.module.scss';
 
 export const SignIn = ({ toggleForm }: UserAuthProps) => {
   const [isPasswordRecovery, setIsPasswordRecovery] = useState<boolean>(false);
@@ -21,12 +22,12 @@ export const SignIn = ({ toggleForm }: UserAuthProps) => {
     <>
       {!isPasswordRecovery && !isSuccessMessage && (
         <>
-          <OrnamentalTitle tag='h4' text='Вхід' />
+          <OrnamentalTitle tag='h4' text='Вхід' className={s.login_title}/>
           <LoginForm
             isForgotPassword={isForgotPassword}
             isSuccessLogin={isSuccessLogin}
           />
-          <div className='account-promt'>
+          <div className={`account-promt ${s.login_promt}`}>
             <p>Ще немає облікового запису?</p>
             <button onClick={toggleForm}>Зареєструватися</button>
           </div>

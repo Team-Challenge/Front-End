@@ -47,18 +47,20 @@ export const RegistrationForm = ({
         className={s.form}
         onSubmit={methods.handleSubmit(onSubmit as SubmitHandler<FieldValues>)}
       >
-        <FullName placeholder='Ім’я та Прізвище' />
-        <Email />
-        <PasswordInput id='password' placeholder='Пароль' required />
-        <PasswordInput
-          id='passwordRepeat'
-          placeholder='Повторіть пароль'
-          required
-          validate={(value: string) =>
-            value === getValues('password') || 'Введені паролі не співпадають'
-          }
-          isRepeatPassword
-        />
+        <div className={s.form_inputs}>
+          <FullName placeholder='Ім’я та Прізвище' />
+          <Email />
+          <PasswordInput id='password' placeholder='Пароль' required />
+          <PasswordInput
+            id='passwordRepeat'
+            placeholder='Повторіть пароль'
+            required
+            validate={(value: string) =>
+              value === getValues('password') || 'Введені паролі не співпадають'
+            }
+            isRepeatPassword
+          />
+        </div>
 
         <div className={s.checkbox}>
           <input
