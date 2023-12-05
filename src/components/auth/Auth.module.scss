@@ -1,13 +1,38 @@
 @import '@/styles/index.scss';
 
-.passwordRecovery {
+.password_recovery {
   p {
     @include adaptiveValue('max-width', 430, 280, 0, 1440, 360);
+    display: grid;
+  }
+
+  button {
+    max-width: 424px;
   }
 }
 
 .success_message {
   p {
-    max-width: 365px;
+    max-width: 448px;
+    display: grid;
+  }
+
+  button {
+    max-width: 424px;
+  }
+}
+
+.login_title,
+.registration_title {
+  margin-bottom: 24px;
+
+  @media (max-width: $mobile) {
+    margin-bottom: 20px;
+  }
+}
+
+.login_promt {
+  @media (max-width: $mobile) {
+    flex-direction: column;
   }
 }

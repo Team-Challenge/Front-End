@@ -4,20 +4,37 @@
   max-width: 424px;
   width: 100%;
   display: grid;
-  @include adaptiveValue('gap', 16, 8, 0, 1440, 360);
+  
+  &_inputs {
+    display: grid;
+    gap: 1rem;
+
+    @media (max-width: $mobile) {
+      gap: 10px;
+    }
+  }
 
   &_buttons {
     width: 100%;
     display: grid;
     gap: 1rem;
-    margin: 20px 0;
+    margin: 32px 0;
+
+    @media (max-width: $mobile) {
+      margin: 20px 0;
+    }
   }
+}
+
+.login_error {
+  margin-top: 4px;
 }
 
 .checkbox {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  margin-top: 0.5rem;
 
   &_input {
     -webkit-appearance: none;
@@ -28,6 +45,11 @@
     display: grid;
     place-content: center;
     cursor: pointer;
+
+    @media (max-width: $mobile) {
+      width: 20px;
+      height: 20px;
+    }
 
     &::before {
       content: "";
@@ -50,9 +72,14 @@
   }
 
   &_text {
-    @include adaptiveValue('font-size', 12, 10, 0, 1440, 360);
+    font-size: 12px;
     font-weight: 300;
     line-height: 16px;
+
+    @media (max-width: $mobile) {
+      font-weight: 400;
+      line-height: 17px;
+    }
 
     & span {
       text-decoration: underline;
@@ -68,7 +95,7 @@
   font-weight: 400;
   line-height: 16px;
   text-decoration-line: underline;
-  margin: -0.5rem 0;
+  margin-top: 0.5rem;
 }
 
 .decorative_line {
@@ -76,10 +103,11 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
-
+  
+  color: $text-color;
   font-size: 12px;
-  font-weight: 300;
-  line-height: 16px;
+  font-weight: 400;
+  line-height: 17px;
 
   &::before {
     content: '';

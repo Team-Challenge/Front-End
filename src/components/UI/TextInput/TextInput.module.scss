@@ -17,7 +17,12 @@
 .icon {
   position: absolute;
   top: 30%;
-  right: 5%;
+  right: 4%;
+
+  @media (max-width: $mobile) {
+    top: 32%;
+    right: 6%;
+  }
 
   &_invalid {
     color: $error-color;
@@ -30,6 +35,11 @@
   svg {
     width: 20px;
     height: 20px;
+
+    @media (max-width: $mobile) {
+      width: 18px;
+      height: 18px;
+    }
   }
 }
 
