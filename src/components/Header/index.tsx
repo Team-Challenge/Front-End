@@ -7,6 +7,7 @@ import { SignIn } from '../auth/SignIn';
 import { SignUp } from '../auth/SignUp';
 import { UserDropdownMenu } from '../UserDropdownMenu';
 import { Modal } from '../Modal';
+import LogoImg from '../../assets/logo.svg'
 import s from './Header.module.scss';
 
 export const Header = () => {
@@ -28,12 +29,12 @@ export const Header = () => {
   const handleOpenAuthMenu = () => {
     setIsDropdownMenuOpen(!isDropdownMenuOpen);
   };
-
+ 
   return (
     <header className={s.header}>
       <div className={`container ${s.header_container}`}>
         <Link to='/' className={s.header_logo}>
-          Logo
+          <img src={LogoImg} alt='logo' />
         </Link>
         <ul className={s.header_categories}>
           <li>на голову</li>
@@ -41,23 +42,30 @@ export const Header = () => {
           <li>на шию</li>
         </ul>
         <div className={s.header_buttons}>
+          <button>
+            <Icon icon='solar:magnifer-outline' />
+          </button>
+          
           <button onClick={handleOpenAuthMenu}>
             <Icon icon='solar:user-outline' />
             <Icon icon='solar:alt-arrow-down-outline' />
           </button>
 
-          <button>
-            <Icon icon='solar:heart-outline' />
-          </button>
+          <div style={{ position: 'relative' }}>
+            <button>
+              <Icon icon='solar:heart-outline' />
+            </button>
+
+            {isDropdownMenuOpen && (
+              <UserDropdownMenu handleOpenModal={handleOpenModal} />
+            )}
+          </div>
+
           <button>
             <Icon icon='solar:bag-5-outline' />
           </button>
         </div>
       </div>
-
-      {isDropdownMenuOpen && (
-        <UserDropdownMenu handleOpenModal={handleOpenModal} />
-      )}
 
       {isModalOpen && (
         <Modal modalId='auth'>

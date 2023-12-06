@@ -1,27 +1,53 @@
-.header {
-  position: relative;
+@import '@/styles/index.scss';
 
+.header {
   &_container {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: 'logo links buttons';
+    justify-items: center;
     align-items: center;
-    justify-content: space-between;
+    height: 7rem;
+
+    @media screen and (max-width: $tablet) {
+      grid-template-areas: 'links logo buttons';
+    }
+
+    @media screen and (min-width: $tablet) {
+      & > :nth-child(1){
+        justify-self: start;
+      }
+      & > :nth-child(2){
+        justify-self: center;
+      }
+      & > :nth-child(3){
+        justify-self: end;
+      }
+    }
+  }
+
+  //todo delete
+  & > * > * {
+    //outline: red dashed;
+  }
+
+  &_logo {
+    grid-area: logo;
   }
 
   &_categories {
+    grid-area: links;
     display: flex;
     gap: 1rem;
   }
 
   &_buttons {
+    grid-area: buttons;
     display: flex;
-    align-items: center;
-    justify-content: center;
     gap: 1rem;
 
     button {
       display: flex;
-      align-items: center;
     }
 
     svg {
