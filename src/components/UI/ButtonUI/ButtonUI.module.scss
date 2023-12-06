@@ -5,18 +5,18 @@
   align-items: center;
   justify-content: center;
   font-family: 'Craftwork Grotesk', sans-serif;
-  @include adaptiveValue('font-size', 16, 12, 0, 1440, 360);
+  @include adaptiveValue('font-size', 16, 14, 0, 1440, 360);
   font-style: normal;
   font-weight: 700;
   line-height: 24px;
   letter-spacing: 0.48px;
   border-radius: 4px;
-  padding: 15px;
+  padding: 15px 10px;
   max-height: 54px;
   width: 100%;
 
   @media (max-width: $mobile) {
-    letter-spacing: 0.36px;
+    letter-spacing: 0.42px;
     max-height: 48px;
   }
 

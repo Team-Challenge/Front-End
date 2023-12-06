@@ -41,6 +41,7 @@ export interface AuthResponse {
 export interface OrnamentalTitleProps {
   tag: keyof JSX.IntrinsicElements;
   text: string;
+  className?: string;
 }
 
 export interface ButtonUIProps {

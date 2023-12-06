@@ -50,22 +50,24 @@ export const LoginForm = ({
         className={s.form}
         onSubmit={methods.handleSubmit(onSubmit as SubmitHandler<FieldValues>)}
       >
-        <Email
-          isLogin
-          isLoginError={hasError}
-          onClick={() => methods.clearErrors('loginError')}
-        />
-        <PasswordInput
-          id='password'
-          placeholder='Пароль'
-          required
-          isLogin
-          isLoginError={hasError}
-          onClick={() => methods.clearErrors('loginError')}
-        />
+        <div className={s.form_inputs}>
+          <Email
+            isLogin
+            isLoginError={hasError}
+            onClick={() => methods.clearErrors('loginError')}
+          />
+          <PasswordInput
+            id='password'
+            placeholder='Пароль'
+            required
+            isLogin
+            isLoginError={hasError}
+            onClick={() => methods.clearErrors('loginError')}
+          />
+        </div>
 
         {hasError && (
-          <p className={`error-text ${s.error}`}>
+          <p className={`error-text ${s.login_error}`}>
             {errors?.loginError?.message as string}
           </p>
         )}
