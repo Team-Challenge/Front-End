@@ -68,3 +68,37 @@
     }
   }
 }
+
+
+//міксин для зміни декоративних елементів в модалці при мобільній версії
+@mixin mobileTitleDecorationOverride {
+  @media (max-width: $mobile) {
+    h4 {
+      &::before,
+      &::after {
+        content: '';
+        display: none;
+      }
+    }
+
+    &::before {
+      content: '';
+      background: url('@assets/small-decorative-element.svg') no-repeat;
+      display: inline-block;
+      width: toRem(40);
+      height: toRem(25);
+      transform: rotate(90deg);
+      margin-bottom: toRem(20);
+    }
+  
+    &::after {
+      content: '';
+      background: url('@assets/small-decorative-element.svg') no-repeat;
+      display: inline-block;
+      width: toRem(40);
+      height: toRem(25);
+      transform: rotate(-90deg);
+      margin-top: toRem(20);
+    }
+  }
+}
