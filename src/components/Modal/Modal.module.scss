@@ -20,12 +20,11 @@
   &_block {
     max-height: 99vh;
     @include adaptiveValue('width', 648, 320, 0, 1440, 360);
+    padding: toRem(80) toRem(20);
     @include adaptiveValue('padding-top', 80, 48, 0, 1440, 360);
-    @include adaptiveValue('padding-right', 52, 20, 0, 1440, 360);
     @include adaptiveValue('padding-bottom', 80, 48, 0, 1440, 360);
-    @include adaptiveValue('padding-left', 52, 20, 0, 1440, 360);
     background-color: $white;
-    border-radius: 20px;
+    border-radius: toRem(20);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -36,7 +35,7 @@
     position: absolute;
     @include adaptiveValue('top', 22, 6, 0, 1440, 360);
     @include adaptiveValue('right', 26, 10, 0, 1440, 360);
-    padding: 10px;
+    padding: toRem(10);
     color: $light-grey;
 
     svg {

@@ -5,7 +5,7 @@ import { Icon } from '@iconify/react';
 import { ModalProps } from '@/types';
 import s from './Modal.module.scss';
 
-export const Modal = ({ children, modalId }: ModalProps) => {
+export const Modal = ({ children, modalId, className }: ModalProps) => {
   const dispatch = useAppDispatch();
 
   const handleCloseModal = () => {
@@ -21,7 +21,7 @@ export const Modal = ({ children, modalId }: ModalProps) => {
   }, []);
 
   return (
-    <div className={s.modal}>
+    <div className={`${s.modal} ${className}`}>
       <div className={s.modal_wrap}>
         <div className={s.modal_block}>{children}</div>
         <button className={s.modal_close} onClick={handleCloseModal}>
