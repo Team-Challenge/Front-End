@@ -5,7 +5,7 @@
   display: grid;
   justify-items: center;
   margin-top: 80px;
-  @include adaptiveValue('margin-left', 204, 20, 0, 1440, 991.98);
+  @include adaptiveValue('margin-left', 116, 0, 0, 1440, 900);
 
   @media (max-width: $tablet) {
     margin: 72px auto 0;
@@ -17,7 +17,7 @@
     letter-spacing: 0.32px;
     margin: 16px 0 24px;
 
-    @media (max-width: $mobile) {
+    @media (max-width: $mobileSmall) {
       color: $text-color;
       font-size: 14px;
       line-height: 150%;
