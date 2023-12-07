@@ -1,9 +1,4 @@
-import {
-  useForm,
-  SubmitHandler,
-  FormProvider,
-  FieldValues,
-} from 'react-hook-form';
+import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
 import { useAppDispatch } from '@/hooks/reduxHook';
 import { login } from '@/store/auth/authThunks';
 import { IUserAuth, LoginFormProps } from '@/types';
@@ -25,6 +20,7 @@ export const LoginForm = ({
 
   const {
     setError,
+    handleSubmit,
     formState: { errors, isValid },
   } = methods;
 
@@ -43,13 +39,13 @@ export const LoginForm = ({
     }
   };
 
+  const handleFormSubmit = () => {
+    handleSubmit(() => onSubmit)();
+  };
+
   return (
     <FormProvider {...methods}>
-      <form
-        id='login'
-        className={s.form}
-        onSubmit={methods.handleSubmit(onSubmit as SubmitHandler<FieldValues>)}
-      >
+      <form id='login' className={s.form} onSubmit={(e) => e.preventDefault()}>
         <div className={s.form_inputs}>
           <Email
             isLogin
@@ -81,7 +77,13 @@ export const LoginForm = ({
         </button>
 
         <div className={s.form_buttons}>
-          <ButtonUI label='Увійти' variant='main' disabled={!isValid} />
+          <ButtonUI
+            type='submit'
+            label='Увійти'
+            variant='main'
+            disabled={!isValid}
+            onClick={handleFormSubmit}
+          />
           <span className={s.decorative_line}>або</span>
           <ButtonUI
             type='button'
