@@ -39,7 +39,7 @@ export const Profile = () => {
         >
           <label className={s.form_label}>
             Ім’я та Прізвище
-            <FullName placeholder={fullName} />
+            <FullName value={fullName as string} editModeIcon />
           </label>
           <ButtonUI
             label='Зберігти'
