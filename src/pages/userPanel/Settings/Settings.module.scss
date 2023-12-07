@@ -3,44 +3,94 @@
 .settings {
   display: grid;
 
+  @media (max-width: $tablet) {
+    justify-items: center;
+  }
+
   &_title {
-    margin-bottom: 24px;
+    margin-bottom: 1.5rem;
+
+    @media (max-width: $mobileSmall) {
+      justify-self: start;
+      margin-bottom: 14px;
+    }
   }
 }
 
 .form {
-  max-width: 424px;
+  max-width: toRem(424);
   display: grid;
-  gap: 32px;
+  gap: 2rem;
 
-  &_label {
+  @media (max-width: $tablet) {
+    max-width: 100%;
+    width: calc(75% - 20px);
+    gap: toRem(24);
+  }
+
+  @media (max-width: $mobileSmall) {
+    width: calc(100% - 20px);
+    gap: toRem(18);
+  }
+
+  &_wrap {
     display: grid;
     gap: 1rem;
-    font-family: Craftwork Grotesk;
-    font-size: 16px;
-    font-weight: 600;
+
+    @media (max-width: $mobile) {
+      gap: toRem(10);
+    }
+  }
+
+  &_subtitle {
+    font-weight: 500;
     line-height: 110%;
+
+    @media (max-width: $mobile) {
+      margin-bottom: toRem(2);
+    }
   }
 
   &_hints {
     color: $grey;
-    font-size: 12px;
+    font-size: toRem(12);
     font-weight: 300;
-    line-height: 16px;
+    line-height: 1rem;
+    margin: toRem(-5) 0 toRem(-8);
+
+    @media (max-width: $mobile) {
+      margin: 0 0 toRem(-5);
+    }
+  }
+
+  &_btn {
+    &_delete {
+      max-width: toRem(424);
+      margin-top: 1rem;
+
+      @media (max-width: $tablet) {
+        max-width: 100%;
+        width: calc(75% - 20px);
+      }
+
+      @media (max-width: $mobileSmall) {
+        width: calc(100% - 20px);
+      }
+    }
   }
 }
 
 .modal {
   &_text {
-    max-width: 424px;
-    margin-bottom: 32px;
+    max-width: toRem(424);
+    margin-bottom: 2rem;
     text-align: center;
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 400;
     line-height: 150%;
   }
 
   &_button {
-    max-width: 424px;
+    max-width: toRem(424);
   }
 }

@@ -15,8 +15,8 @@ export const UserPassword = () => {
   );
 
   return (
-    <label className={s.form_label}>
-      Налаштування паролю
+    <div className={s.form_wrap}>
+      <p className={s.form_subtitle}>Налаштування паролю</p>
       <PasswordInput
         id='current_password'
         placeholder='Старий пароль'
@@ -36,6 +36,6 @@ export const UserPassword = () => {
         }
         isRepeatPassword
       />
-    </label>
+    </div>
   );
 };

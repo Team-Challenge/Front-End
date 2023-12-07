@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {
   FieldValues,
   FormProvider,
@@ -11,7 +11,7 @@ import {
 } from '@/store/userProfile/userProfileThunks';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
 import { closeModal, openModal } from '@/store/modalSlice';
-import { SettingsFromData } from '@/types';
+import { SettingsFormData } from '@/types';
 import { UserPassword } from './UserPassword';
 import { UserPhoneNumber } from './UserPhoneNumber';
 import { UserDeliveryData } from './UserDeliveryData';
@@ -25,7 +25,7 @@ export const Settings = () => {
   const dispatch = useAppDispatch();
   const isModalOpen = useAppSelector((state) => state.modal.settings);
 
-  const methods = useForm<SettingsFromData>({
+  const methods = useForm<SettingsFormData>({
     mode: 'onChange',
   });
 
@@ -36,7 +36,7 @@ export const Settings = () => {
     dispatch(closeModal('settings'));
   };
 
-  const onSubmit = (data: SettingsFromData) => {
+  const onSubmit = (data: SettingsFormData) => {
     if (phoneNumber) {
       dispatch(changePhoneNumber(data.phoneNumber)).then((response) => {
         if (response.payload) {
@@ -85,10 +85,12 @@ export const Settings = () => {
         </form>
       </FormProvider>
 
-      {/* <ButtonUI
-        label='Видалити профіль'
+      <ButtonUI
+        label='Видалити свій профіль'
         variant='secondary'
-      /> */}
+        className={s.form_btn_delete}
+        disabled
+      />
 
       {isModalOpen && (
         <Modal modalId='settings'>
