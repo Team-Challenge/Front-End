@@ -36,13 +36,23 @@ export const Header = () => {
         <Link to='/' className={s.header_logo}>
           <img src={LogoImg} alt='logo' />
         </Link>
-        <ul className={s.header_categories}>
-          <li>на голову</li>
-          <li>на вуха</li>
-          <li>на шию</li>
-        </ul>
+        <div>
+          <ul className={s.header_categories}>
+            <li>на голову</li>
+            <li>на вуха</li>
+            <li>на шию</li>
+          </ul>
+          <div className={s.header_burger}>
+            <button>
+              <Icon icon='solar:hamburger-menu-outline'/>
+            </button>
+            <button>
+              <Icon icon='solar:magnifer-outline' />
+            </button>
+          </div>
+        </div>
         <div className={s.header_buttons}>
-          <button>
+          <button className={s.search_icon}>
             <Icon icon='solar:magnifer-outline' />
           </button>
           

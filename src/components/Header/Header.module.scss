@@ -1,6 +1,11 @@
 @import '@/styles/index.scss';
 
 .header {
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+  
   &_container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -9,18 +14,30 @@
     align-items: center;
     height: 7rem;
 
+    // tablet and less
     @media screen and (max-width: $tablet) {
       grid-template-areas: 'links logo buttons';
-    }
 
-    @media screen and (min-width: $tablet) {
-      & > :nth-child(1){
-        justify-self: start;
-      }
-      & > :nth-child(2){
+      & > :first-child {
         justify-self: center;
       }
-      & > :nth-child(3){
+      & > :nth-child(2) {
+        justify-self: start;
+      }
+      & > :last-child {
+        justify-self: end;
+      }
+    }
+    
+    // more then tablet
+    @media screen and (min-width: $tablet) {
+      & > :first-child {
+        justify-self: start;
+      }
+      & > :nth-child(2) {
+        justify-self: center;
+      }
+      & > :last-child {
         justify-self: end;
       }
     }
@@ -34,6 +51,21 @@
     grid-area: links;
     display: flex;
     gap: 1rem;
+
+    @media screen and (max-width: $tablet) {
+      display: none;
+    }
+  }
+
+  &_burger {
+    grid-area: links;
+    display: flex;
+    justify-self: start;
+    gap: 1rem;
+
+    @media screen and (min-width: $tablet) {
+      display: none;
+    }
   }
 
   &_buttons {
@@ -45,9 +77,11 @@
       display: flex;
     }
 
-    svg {
-      width: 24px;
-      height: 24px;
+    .search_icon {
+      display: initial;
+      @media screen and (max-width: $tablet) {
+        display: none;
+      }
     }
   }
 }
