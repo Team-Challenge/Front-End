@@ -1,12 +1,6 @@
 import { EMAIL_REGEX } from '@/constants/RegExp';
+import { EmailProps } from '@/types';
 import { TextInput } from '../UI/TextInput';
-
-interface EmailProps {
-  required?: boolean;
-  onClick?: () => void;
-  isLogin?: boolean;
-  isLoginError?: boolean;
-}
 
 export const Email = ({
   required = true,
