@@ -4,20 +4,116 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 872px;
-  max-height: 256px;
-  padding: 36px 115px;
+  max-width: toRem(872);
   background: $azure;
-  border-radius: 16px;
+  border-radius: 1rem;
+  padding: toRem(36) toRem(115);
+  @include adaptiveValue('padding-left', 36, 15, 0, 1440, 991.98);
+  @include adaptiveValue('padding-right', 36, 15, 0, 1440, 991.98);
+
+  @media (max-width: $tablet) {
+    background: transparent;
+    padding: 0;
+    margin: toRem(72) toRem(20) 0;
+  }
+
+  @media (max-width: $mobile) {
+  }
+
+  &_title {
+    text-align: center;
+  }
 
   &_text {
     color: $grey;
     text-align: center;
     letter-spacing: 0.32px;
-    margin: 16px 0 32px;
+    margin: 1rem 0 2rem;
+
+    @media (max-width: $tablet) {
+      max-width: toRem(648);
+    }
+
+    @media (max-width: $mobileSmall) {
+      color: $text-color;
+      font-size: toRem(14);
+      line-height: 150%;
+      letter-spacing: 0.14px;
+    }
   }
 
   &_button {
-    max-width: 424px;
+    max-width: toRem(424);
+  }
+}
+
+.modal {
+  > div > :first-child {
+    @include mobileTitleDecorationOverride;
+  }
+
+  &_subtitle {
+    max-width: toRem(424);
+    text-align: center;
+    letter-spacing: 0.32px;
+    margin-bottom: 1.5rem;
+
+    @media (max-width: $mobileSmall) {
+      font-size: toRem(14);
+      line-height: 150%;
+      letter-spacing: 0.14px;
+      margin-bottom: toRem(20);
+    }
+  }
+
+  &_form {
+    max-width: toRem(424);
+  }
+
+  &_hint {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 2rem;
+
+    @media (max-width: $mobileSmall) {
+      margin-top: toRem(4);
+      margin-bottom: toRem(20);
+    }
+
+    i {
+      display: flex;
+      width: 1rem;
+      height: 1rem;
+      color: $green;
+    }
+
+    p {
+      color: $text-color;
+      font-size: toRem(12);
+      font-weight: 300;
+      line-height: 1rem;
+
+      @media (max-width: $mobileSmall) {
+        max-width: toRem(257);
+        font-weight: 400;
+        line-height: toRem(17);
+      }
+    }
+
+    &_success {
+      align-self: center;
+      max-width: toRem(424);
+      width: 100%;
+      margin-top: 0;
+    }
+  }
+
+  &_btn {
+    max-width: toRem(424);
+
+    @media (max-width: $mobileSmall) {
+      max-width: toRem(280);
+    }
   }
 }
