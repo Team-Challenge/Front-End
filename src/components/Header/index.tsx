@@ -55,21 +55,20 @@ export const Header = () => {
           <button className={s.search_icon}>
             <Icon icon='solar:magnifer-outline' />
           </button>
-          
-          <button className={s.user_icon} onClick={handleOpenAuthMenu}>
-            <Icon icon='solar:user-outline' />
-            <Icon icon='solar:alt-arrow-down-outline' />
-          </button>
 
-          <div style={{ position: 'relative' }}>
-            <button>
-              <Icon icon='solar:heart-outline' />
+          <div className={s.user_icon} style={{ position: 'relative' }}>
+            <button onClick={handleOpenAuthMenu}>
+              <Icon icon='solar:user-outline' />
+              <Icon icon='solar:alt-arrow-down-outline' />
             </button>
-
             {isDropdownMenuOpen && (
               <UserDropdownMenu handleOpenModal={handleOpenModal} />
             )}
           </div>
+
+          <button>
+            <Icon icon='solar:heart-outline' />
+          </button>
 
           <button>
             <Icon icon='solar:bag-5-outline' />
