@@ -45,7 +45,7 @@ export const RegistrationForm = ({
       <form
         id='registration'
         className={s.form}
-        onSubmit={methods.handleSubmit(onSubmit as SubmitHandler<FieldValues>)}
+        onSubmit={(e) => e.preventDefault()}
       >
         <div className={s.form_inputs}>
           <FullName placeholder='Ім’я та Прізвище' />
@@ -83,6 +83,9 @@ export const RegistrationForm = ({
             label='Зареєструватися'
             variant='main'
             disabled={!isValid}
+            onClick={methods.handleSubmit(
+              onSubmit as SubmitHandler<FieldValues>,
+            )}
           />
           <span className={s.decorative_line}>або</span>
           <ButtonUI
