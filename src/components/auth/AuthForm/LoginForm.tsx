@@ -1,4 +1,9 @@
-import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
+import {
+  useForm,
+  SubmitHandler,
+  FormProvider,
+  FieldValues,
+} from 'react-hook-form';
 import { useAppDispatch } from '@/hooks/reduxHook';
 import { login } from '@/store/auth/authThunks';
 import { IUserAuth, LoginFormProps } from '@/types';
@@ -15,12 +20,10 @@ export const LoginForm = ({
 
   const methods = useForm({
     mode: 'onChange',
-    shouldUnregister: true,
   });
 
   const {
     setError,
-    handleSubmit,
     formState: { errors, isValid },
   } = methods;
 
@@ -37,10 +40,6 @@ export const LoginForm = ({
           'Неправильно введені дані. Будь ласка, перевірте та спробуйте ще раз',
       });
     }
-  };
-
-  const handleFormSubmit = () => {
-    handleSubmit(() => onSubmit)();
   };
 
   return (
@@ -82,7 +81,9 @@ export const LoginForm = ({
             label='Увійти'
             variant='main'
             disabled={!isValid}
-            onClick={handleFormSubmit}
+            onClick={methods.handleSubmit(
+              onSubmit as SubmitHandler<FieldValues>,
+            )}
           />
           <span className={s.decorative_line}>або</span>
           <ButtonUI
