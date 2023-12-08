@@ -56,7 +56,7 @@ export const Header = () => {
             <Icon icon='solar:magnifer-outline' />
           </button>
 
-          <div className={s.user_icon} style={{ position: 'relative' }}>
+          <div className={`${s.user_icon} ${s.header_dropdown}`}>
             <button onClick={handleOpenAuthMenu}>
               <Icon icon='solar:user-outline' />
               <Icon icon='solar:alt-arrow-down-outline' />

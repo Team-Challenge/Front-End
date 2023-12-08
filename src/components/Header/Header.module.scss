@@ -53,6 +53,10 @@
     }
   }
 
+  &_dropdown {
+    position: relative;
+  }
+
   &_logo {
     grid-area: logo;
   }
