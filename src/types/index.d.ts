@@ -73,8 +73,8 @@ export interface TextInputProps {
   value?: string;
   placeholder: string;
   required?: boolean;
-  isLogin?: boolean;
-  isLoginError?: boolean;
+  isAuth?: boolean;
+  isAuthError?: boolean;
   editModeIcon?: boolean;
   onClick?: () => void;
   regex?: RegExp;
@@ -90,8 +90,8 @@ export interface PasswordInputProps {
   id: string;
   placeholder: string;
   required: boolean;
-  isLogin?: boolean;
-  isLoginError?: boolean;
+  isAuth?: boolean;
+  isAuthError?: boolean;
   validate?: any;
   onClick?: () => void;
   isRepeatPassword?: boolean;
@@ -106,8 +106,8 @@ export interface FullNameProps {
 export interface EmailProps {
   required?: boolean;
   onClick?: () => void;
-  isLogin?: boolean;
-  isLoginError?: boolean;
+  isAuth?: boolean;
+  isAuthError?: boolean;
 }
 
 //user info types
