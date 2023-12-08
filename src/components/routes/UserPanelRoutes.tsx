@@ -8,12 +8,15 @@ import {
   Store,
   Settings,
 } from '@/pages';
+import { useWindowDimensions } from '@/hooks/useWindowDimensions';
 
 export const UserPanelRoutes = () => {
+  const { width } = useWindowDimensions();
+
   return (
     <main>
       <div className='container user-panel-page'>
-        <UserPanel />
+        {width >=991.98 && <UserPanel />}
         <Routes>
           <Route path='profile' element={<Profile />} />
           <Route path='purchases' element={<Purchases />} />

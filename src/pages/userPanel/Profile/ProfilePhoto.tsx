@@ -42,7 +42,7 @@ export const ProfilePhoto = () => {
   };
 
   return (
-    <div>
+    <div className={s.photo}>
       <div className={s.photo_block}>
         <div className={s.photo_img}>
           <img src={img} alt='user' />
@@ -51,13 +51,14 @@ export const ProfilePhoto = () => {
           <Icon icon='solar:pen-new-square-outline' />
         </button>
       </div>
+
       {isModalOpen && (
-        <Modal modalId='userPhoto'>
+        <Modal modalId='userPhoto' className={s.modal}>
           <OrnamentalTitle tag='h4' text='Фото профілю' />
-          <div className={s.photo_img}>
+          <div className={s.modal_photo}>
             <img src={img} alt='user' />
           </div>
-          <div className={s.photo_buttons}>
+          <div className={s.modal_buttons}>
             <label htmlFor='userPhoto'>
               <Icon icon='solar:add-circle-outline' />
               Додати нове

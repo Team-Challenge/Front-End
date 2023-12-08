@@ -29,13 +29,13 @@ export const PasswordInput = ({
   const hasError = errors[id];
   const isDirty = id in dirtyFields;
 
-  const inputClassName = `${s.input} ${className}
+  const inputClassName = `${s.input}
     ${(hasError && !isLogin) || isLoginError ? s.input_error : ''}
     ${!hasError && isDirty && !isLogin ? s.input_success : ''}`;
 
   return (
-    <>
-      <div className={s.wrap}>
+    <div className={className}>
+      <label className={s.label}>
         <input
           type={passwordShown ? 'text' : 'password'}
           placeholder={placeholder}
@@ -77,7 +77,7 @@ export const PasswordInput = ({
             )
           )}
         </div>
-      </div>
+      </label>
 
       {hasError && !isLogin && (
         <p className={`error-text ${s.error}`}>
@@ -86,6 +86,6 @@ export const PasswordInput = ({
             : (hasError.message as string)}
         </p>
       )}
-    </>
+    </div>
   );
 };

@@ -3,6 +3,23 @@ import $api from '@/http';
 import { setAuth } from '../auth/authSlice';
 import { setFullName, setPhoneNumber } from './userProfileSlice';
 
+export const getUserInfo = createAsyncThunk(
+  'userAccount/info',
+  async (_, { dispatch }) => {
+    try {
+      const response = await $api.get('/accounts/info');
+      if (response.status === 200) {
+        dispatch(setFullName(response.data.full_name));
+        dispatch(setPhoneNumber(response.data.phone_number));
+        console.log(response.data);
+      }
+    } catch (e) {
+      const error = e as Error;
+      throw error;
+    }
+  },
+);
+
 export const changeFullName = createAsyncThunk(
   'userSettings/changeFullName',
   async (newFullName: string, { dispatch }) => {

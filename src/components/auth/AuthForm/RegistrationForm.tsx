@@ -48,7 +48,7 @@ export const RegistrationForm = ({
         onSubmit={(e) => e.preventDefault()}
       >
         <div className={s.form_inputs}>
-          <FullName placeholder='Ім’я та Прізвище' />
+          <FullName />
           <Email />
           <PasswordInput id='password' placeholder='Пароль' required />
           <PasswordInput

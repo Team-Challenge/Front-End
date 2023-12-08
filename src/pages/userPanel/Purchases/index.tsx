@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { purchaseStatusList } from '@/constants/purchaseStatusList';
+import { Icon } from '@iconify/react';
 import s from './Purchases.module.scss';
+import { UserPanelEmptyPage } from '@/components/UserPanelEmptyPage';
 
 export const Purchases = () => {
   const [activeButtonId, setActiveButtonId] = useState<number>(1);
@@ -11,7 +13,12 @@ export const Purchases = () => {
 
   return (
     <section className={s.order}>
-      <h4 className={s.order_title}>Мої покупки</h4>
+      <UserPanelEmptyPage
+        title='Ой, тут поки пусто'
+        text='Схоже, ви ще нічого не купили на нашому маркетплейсі. Коли вам щось приглянеться, історія та статуси ваших покупок з’являться тут'
+        icon={<Icon icon='solar:bag-smile-outline' />}
+      />
+      {/* <h4 className={s.order_title}>Мої покупки</h4>
       <div className={s.order_buttons}>
         {purchaseStatusList.map((status) => (
           <button
@@ -22,7 +29,7 @@ export const Purchases = () => {
             {status.label}
           </button>
         ))}
-      </div>
+      </div> */}
     </section>
   );
 };

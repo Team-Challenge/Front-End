@@ -6,7 +6,7 @@ import {
 } from 'react-hook-form';
 import { ChangeFullNameFormData } from '@/types';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
-import { changeFullName } from '@/store/userProfile/userProfileThunks';
+import { changeFullName, getUserInfo } from '@/store/userProfile/userProfileThunks';
 import { FullName } from '@/components/FullName';
 import { ButtonUI } from '@/components/UI/ButtonUI';
 import { ProfilePhoto } from './ProfilePhoto';
@@ -23,6 +23,7 @@ export const Profile = () => {
   const onSubmit = (data: ChangeFullNameFormData) => {
     const newName = data.full_name;
     dispatch(changeFullName(newName));
+    dispatch(getUserInfo());
   };
 
   return (
@@ -39,7 +40,7 @@ export const Profile = () => {
         >
           <label className={s.form_label}>
             Ім’я та Прізвище
-            <FullName placeholder={fullName} />
+            <FullName value={fullName as string} editModeIcon />
           </label>
           <ButtonUI
             label='Зберігти'

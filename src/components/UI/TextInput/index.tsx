@@ -6,10 +6,12 @@ import s from './TextInput.module.scss';
 export const TextInput = ({
   type = 'text',
   id,
+  value,
   placeholder,
   required = false,
   isLogin,
   isLoginError,
+  editModeIcon,
   onClick,
   regex,
   errorMessage,
@@ -27,13 +29,13 @@ export const TextInput = ({
   const hasError = errors[id];
   const isDirty = id in dirtyFields;
 
-  const inputClassName = `${s.input} ${className}
+  const inputClassName = `${s.input}
     ${(hasError && !isLogin) || isLoginError ? s.input_error : ''}
     ${!hasError && isDirty && !isLogin ? s.input_success : ''}`;
 
   return (
-    <>
-      <div className={s.wrap}>
+    <div className={className}>
+      <label className={s.label}>
         <input
           type={type}
           placeholder={placeholder}
@@ -54,7 +56,14 @@ export const TextInput = ({
           })}
           className={inputClassName}
           onClick={onClick}
+          defaultValue={value}
         />
+
+        {editModeIcon && !isDirty && !isLogin && (
+          <i className={`${s.icon} ${s.icon_profile}`}>
+            <Icon icon='solar:pen-outline' />
+          </i>
+        )}
 
         {(hasError && !isLogin) || isLoginError ? (
           <i className={`${s.icon} ${s.icon_invalid}`}>
@@ -68,11 +77,11 @@ export const TextInput = ({
             </i>
           )
         )}
-      </div>
+      </label>
 
       {hasError && !isLogin && (
         <p className={`error-text ${s.error}`}>{hasError.message as string}</p>
       )}
-    </>
+    </div>
   );
 };

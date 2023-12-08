@@ -4,28 +4,28 @@ import { TextInput } from '@/components/UI/TextInput';
 import s from './Settings.module.scss';
 
 export const UserPhoneNumber = () => {
-  const userPhoneNumber = useAppSelector((state) => state.userProfile.phone_number);
+  const userPhoneNumber = useAppSelector(
+    (state) => state.userProfile.phone_number,
+  );
 
   return (
-    <label className={s.form_label}>
-      Особисті дані
+    <div className={s.form_wrap}>
+      <p className={s.form_subtitle}>Особисті дані</p>
       {userPhoneNumber && (
-        <>
-          <p className={s.form_hints}>
-            {userPhoneNumber
-              ? 'Змінити номер телефону'
-              : 'Додати номер телефону'}
-          </p>
-          <p>{userPhoneNumber}</p>
-        </>
+        <p className={s.form_hints}>
+          {userPhoneNumber ? 'Змінити номер телефону' : 'Додати номер телефону'}
+        </p>
       )}
       <TextInput
         type='text'
         id='phoneNumber'
         placeholder='Номер телефону'
+        value={userPhoneNumber}
+        required={false}
         regex={PHONE_NUMBER_REGEX}
         errorMessage='Будь ласка, введіть справний український номер телефону, який розпочинається з +380'
+        editModeIcon
       />
-    </label>
+    </div>
   );
 };

@@ -1,7 +1,9 @@
 @import '@/styles/index.scss';
 
-.wrap {
+.label {
   position: relative;
+  display: inline-block;
+  width: 100%;
 }
 
 .input {
@@ -41,8 +43,8 @@
       height: 18px;
     }
   }
-}
 
-.error {
-  margin-top: -0.5rem;
+  &_profile {
+    color: $success-color;
+  }
 }

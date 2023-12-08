@@ -4,11 +4,6 @@ import { Icon } from '@iconify/react';
 import { useAppDispatch } from '@/hooks/reduxHook';
 import { userLogout } from '@/store/userProfile/userProfileThunks';
 import { userPanelButtonsList } from '@/constants/userPanelButtonsList';
-import { getAccountsInfo } from '@/services/UserProfileInfo';
-import {
-  setFullName,
-  setPhoneNumber,
-} from '@/store/userProfile/userProfileSlice';
 
 export const UserPanel = () => {
   const dispatch = useAppDispatch();
@@ -16,18 +11,6 @@ export const UserPanel = () => {
   const logoutUser = () => {
     dispatch(userLogout());
   };
-
-  useEffect(() => {
-    getAccountsInfo()
-      .then((data) => {
-        dispatch(setFullName(data.full_name));
-        dispatch(setPhoneNumber(data.phone_number));
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-        return null;
-      });
-  }, []);
 
   return (
     <aside className='cabinet-sidebar-nav'>
