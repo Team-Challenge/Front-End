@@ -8,6 +8,7 @@ import {
 import {
   changePassword,
   changePhoneNumber,
+  getUserInfo,
 } from '@/store/userProfile/userProfileThunks';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
 import { closeModal, openModal } from '@/store/modalSlice';
@@ -47,6 +48,7 @@ export const Settings = () => {
           setIsSuccessfulChange(false);
         }
         dispatch(openModal('settingsMessage'));
+        dispatch(getUserInfo());
       });
     }
 
