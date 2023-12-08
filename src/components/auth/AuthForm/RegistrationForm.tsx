@@ -62,7 +62,7 @@ export const RegistrationForm = ({
           <div className={s.form_inputs}>
             <FullName />
             <Email
-              isAuth
+              isAuth={hasError}
               isAuthError={hasError}
               onClick={() => methods.clearErrors('registrationError')}
             />
