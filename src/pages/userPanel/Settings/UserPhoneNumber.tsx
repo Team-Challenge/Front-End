@@ -1,6 +1,5 @@
 import { useAppSelector } from '@/hooks/reduxHook';
 import { PHONE_NUMBER_REGEX } from '@/constants/RegExp';
-import { formatPhoneNumber } from '@/utils/formatPhoneNumber';
 import { TextInput } from '@/components/UI/TextInput';
 import s from './Settings.module.scss';
 
@@ -8,7 +7,6 @@ export const UserPhoneNumber = () => {
   const userPhoneNumber = useAppSelector(
     (state) => state.userProfile.phone_number,
   );
-  const formattedPhoneNumber = formatPhoneNumber(userPhoneNumber);
 
   return (
     <div className={s.form_wrap}>
@@ -22,7 +20,7 @@ export const UserPhoneNumber = () => {
         type='text'
         id='phoneNumber'
         placeholder='Номер телефону'
-        value={formattedPhoneNumber}
+        value={userPhoneNumber}
         required={false}
         regex={PHONE_NUMBER_REGEX}
         errorMessage='Будь ласка, введіть справний український номер телефону, який розпочинається з +380'
