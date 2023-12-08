@@ -56,7 +56,7 @@ export const Header = () => {
             <Icon icon='solar:magnifer-outline' />
           </button>
           
-          <button onClick={handleOpenAuthMenu}>
+          <button className={s.user_icon} onClick={handleOpenAuthMenu}>
             <Icon icon='solar:user-outline' />
             <Icon icon='solar:alt-arrow-down-outline' />
           </button>
