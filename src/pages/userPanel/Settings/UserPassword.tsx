@@ -16,7 +16,7 @@ export const UserPassword = () => {
 
   return (
     <div className={s.form_wrap}>
-      <p className={s.form_subtitle}>Налаштування паролю</p>
+      <p className={s.form_subtitle}>Зміна пароля</p>
       <PasswordInput
         id='current_password'
         placeholder='Старий пароль'
