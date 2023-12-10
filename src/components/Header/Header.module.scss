@@ -5,6 +5,7 @@
     width: 24px;
     height: 24px;
   }
+  box-shadow: 0px 6px 6px 0px rgba(221, 221, 221, 0.20);
 
   &_container {
     display: grid;
@@ -13,6 +14,7 @@
     justify-items: center;
     align-items: center;
     height: 7rem;
+
 
     // tablet and less
     @media screen and (max-width: $tablet) {
