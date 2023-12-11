@@ -62,7 +62,7 @@ export const Header = () => {
               <Icon icon='solar:alt-arrow-down-outline' />
             </button>
             {isDropdownMenuOpen && (
-              <UserDropdownMenu handleOpenModal={handleOpenModal} />
+              <UserDropdownMenu handleOpenModal={handleOpenModal} setDropdownOpen={setIsDropdownMenuOpen} />
             )}
           </div>
 
