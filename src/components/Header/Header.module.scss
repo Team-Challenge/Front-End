@@ -1,21 +1,19 @@
 @import '@/styles/index.scss';
 
 .header {
-  box-shadow: 0px 6px 6px 0px rgba(221, 221, 221, 0.20);
+  box-shadow: 0 toRem(6) toRem(6) 0 rgba(221, 221, 221, 0.20);
 
   svg {
-    width: 24px;
-    height: 24px;
+    width: toRem(20);
+    height: toRem(20);
   }
 
   &_container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
     grid-template-areas: 'logo links buttons';
     justify-items: center;
     align-items: center;
-    height: 7rem;
-    
+
     & > :first-child {
       justify-self: start;
     }
@@ -32,7 +30,7 @@
       grid-template-areas: 'links logo buttons';
 
       & > :first-child {
-        justify-self: center;
+        justify-self: end;
       }
 
       & > :nth-child(2) {
@@ -42,15 +40,11 @@
       & > :last-child {
         justify-self: end;
       }
-
-      .search_icon {
-        display: none;
-      }
     }
 
-    @media screen and (max-width: $mobile) {
-      .user_icon {
-        display: none;
+    @media (max-width: $mobileSmall) {
+      & > :first-child {
+        justify-self: center;
       }
     }
   }
@@ -61,14 +55,42 @@
 
   &_logo {
     grid-area: logo;
+    margin: toRem(20) 0;
+    width: toRem(72);
+    height: toRem(72);
+
+    @media (max-width: $tablet) {
+      margin-right: 3rem;
+    }
+
+    @media (max-width: $mobile) {
+      margin: toRem(12) 1.5rem toRem(12) 0;
+      width: toRem(64);
+      height: toRem(64);
+    }
+
+    @media (max-width: $mobileSmall) {
+      margin-right: 0;
+      margin: toRem(8) 0;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
   }
 
   &_categories {
     grid-area: links;
     display: flex;
-    gap: 1rem;
+    @include adaptiveValue('gap', 46, 20, 0, 1440, 991.98);
+    font-family: 'Craftwork Grotesk', sans-serif;
+    font-size: toRem(14);
+    font-weight: 700;
+    line-height: toRem(20);
+    letter-spacing: 0.28px;
 
-    @media screen and (max-width: $tablet) {
+    @media (max-width: $tablet) {
       display: none;
     }
   }
@@ -77,20 +99,55 @@
     grid-area: links;
     display: flex;
     justify-self: start;
-    gap: 1rem;
+    gap: toRem(28);
 
-    @media screen and (min-width: $tablet) {
-      display: none;
+    @media (max-width: $mobile) {
+      gap: toRem(18);
     }
   }
 
   &_buttons {
     grid-area: buttons;
     display: flex;
-    gap: 1rem;
+    align-items: center;
+  }
+}
+
+.icon {
+  &_user {
+    align-self: flex-start;
 
     button {
       display: flex;
+      align-items: center;
+      gap: toRem(4);
+    }
+  }
+
+  &_favorite {
+    margin: 0 toRem(28) 0 toRem(20);
+
+    @media (max-width: $mobile) {
+      margin-right: toRem(18);
+    }
+  }
+
+  &_search {
+    margin-right: toRem(20);
+
+    @media (max-width: $tablet) {
+      display: none;
+    }
+  }
+
+  &_shop {
+    align-self: flex-start;
+    margin: 0 toRem(20) 0 toRem(3);
+
+    button {
+      display: flex;
+      align-items: center;
+      gap: toRem(4);
     }
   }
 }
