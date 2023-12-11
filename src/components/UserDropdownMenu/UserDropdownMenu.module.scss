@@ -4,8 +4,7 @@
   width: 226px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 12px 15px;
+
   background: $white;
   z-index: 999;
   
@@ -17,19 +16,27 @@
   top: 48px;
   right: 0;
 
-  &_registration {
-    display: flex;
-    gap: 0.5rem;
-    font-size: 12px;
-    line-height: 16px;
+  &_auth {
+    display: inherit;
+    flex-direction: inherit;
+    gap: 12px;
+    padding: 12px 15px;
 
-    p {
-      font-weight: 300;
-    }
+    &_registration {
+      display: flex;
+      gap: 0.5rem;
+      font-size: 12px;
+      line-height: 16px;
 
-    button {
-      font-weight: 400;
-      text-decoration-line: underline;
+      p {
+        font-weight: 300;
+      }
+
+      button {
+        font-weight: 400;
+        text-decoration-line: underline;
+      }
     }
   }
+
 }
