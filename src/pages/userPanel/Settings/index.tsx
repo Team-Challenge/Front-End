@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {
   FieldValues,
   FormProvider,
@@ -8,10 +8,11 @@ import {
 import {
   changePassword,
   changePhoneNumber,
+  getUserInfo,
 } from '@/store/userProfile/userProfileThunks';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
 import { closeModal, openModal } from '@/store/modalSlice';
-import { SettingsFromData } from '@/types';
+import { SettingsFormData } from '@/types';
 import { UserPassword } from './UserPassword';
 import { UserPhoneNumber } from './UserPhoneNumber';
 import { UserDeliveryData } from './UserDeliveryData';
@@ -23,29 +24,31 @@ import s from './Settings.module.scss';
 export const Settings = () => {
   const [isSuccessfulChange, setIsSuccessfulChange] = useState<boolean>(false);
   const dispatch = useAppDispatch();
-  const isModalOpen = useAppSelector((state) => state.modal.settings);
+  const isModalOpen = useAppSelector((state) => state.modal.settingsMessage);
 
-  const methods = useForm<SettingsFromData>({
+  const methods = useForm<SettingsFormData>({
     mode: 'onChange',
   });
+  const { watch, reset } = methods;
 
-  const newPassword = methods.watch('new_password');
-  const phoneNumber = methods.watch('phoneNumber');
+  const newPassword = watch('new_password');
+  const phoneNumber = watch('phoneNumber');
 
   const closeModalWindow = () => {
-    dispatch(closeModal('settings'));
+    dispatch(closeModal('settingsMessage'));
   };
 
-  const onSubmit = (data: SettingsFromData) => {
+  const onSubmit = (data: SettingsFormData) => {
     if (phoneNumber) {
       dispatch(changePhoneNumber(data.phoneNumber)).then((response) => {
         if (response.payload) {
           setIsSuccessfulChange(true);
-          methods.reset();
+          reset();
         } else {
           setIsSuccessfulChange(false);
         }
-        dispatch(openModal('settings'));
+        dispatch(openModal('settingsMessage'));
+        dispatch(getUserInfo());
       });
     }
 
@@ -58,11 +61,11 @@ export const Settings = () => {
       ).then((response) => {
         if (response.payload) {
           setIsSuccessfulChange(true);
-          methods.reset();
+          reset();
         } else {
           setIsSuccessfulChange(false);
         }
-        dispatch(openModal('settings'));
+        dispatch(openModal('settingsMessage'));
       });
     }
   };
@@ -74,29 +77,36 @@ export const Settings = () => {
         <form
           id='settings'
           className={s.form}
-          onSubmit={methods.handleSubmit(
-            onSubmit as SubmitHandler<FieldValues>,
-          )}
+          onSubmit={(e) => e.preventDefault()}
         >
           <UserPassword />
           <UserPhoneNumber />
           <UserDeliveryData />
-          <ButtonUI label='Зберегти' className={s.form_btn} />
+          <ButtonUI
+            type='submit'
+            label='Зберегти'
+            className={s.form_btn}
+            onClick={methods.handleSubmit(
+              onSubmit as SubmitHandler<FieldValues>,
+            )}
+          />
         </form>
       </FormProvider>
 
-      {/* <ButtonUI
-        label='Видалити профіль'
+      <ButtonUI
+        label='Видалити свій профіль'
         variant='secondary'
-      /> */}
+        className={s.form_btn_delete}
+        disabled
+      />
 
       {isModalOpen && (
-        <Modal modalId='settings'>
+        <Modal modalId='settingsMessage' className={s.modal}>
           {isSuccessfulChange ? (
             <>
               <OrnamentalTitle tag='h4' text='Зміни збережено' />
               <p className={s.modal_text}>
-                Ваші нові дані успішно збережено. Приємного користування!
+                Ваші нові дані успішно збережено. <br /> Приємного користування!
               </p>
               <ButtonUI
                 label='Готово!'

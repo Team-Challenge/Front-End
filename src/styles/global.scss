@@ -35,7 +35,7 @@ h3 {
 }
 
 h4 {
-  @include adaptiveValue('font-size', 28, 20, 0, 1440, 360);
+  @include adaptiveValue('font-size', 28, 22, 0, 1440, 360);
   @include adaptiveValue('letter-spacing', 0.84, 0.6, 0, 1440, 360);
   line-height: 120%;
 }
@@ -53,23 +53,22 @@ h6 {
 
 input {
   width: 100%;
+  font-size: 14px;
+  line-height: 18px;
+  background: $white;
+  padding: 17px 16px;
   border-radius: 4px;
   border: 1px solid $border-color;
-  background: $white;
-  padding: 14px 16px;
 
   @media (max-width: $mobile) {
-    max-height: 48px;
-    border: none;
+    line-height: 19.6px;
+    padding: 13px 16px;
   }
 
   &::placeholder {
     color: $grey;
-    font-family: 'Montserrat', sans-serif;
-    @include adaptiveValue('font-size', 14, 12, 0, 1440, 360);
-    font-style: normal;
+    font-size: 14px;
     font-weight: 400;
-    line-height: 110%;
   }
 }
 
@@ -87,8 +86,12 @@ input {
   align-items: center;
   gap: 0.5rem;
   color: $text-color;
-  @include adaptiveValue('font-size', 12, 10, 0, 1440, 360);
+  font-size: 12px;
   line-height: 16px;
+
+  @media (max-width: $mobile) {
+    line-height: 17px;
+  }
 
   p {
     font-weight: 300;
@@ -104,48 +107,19 @@ input {
   display: grid;
   justify-items: center;
   align-items: center;
-
-  @media (max-width: $mobile) {
-    h4 {
-      &::before,
-      &::after {
-        content: '';
-        background: none;
-      }
-    }
-
-    &::before {
-      content: '';
-      background: url('@assets/small-decorative-element.svg') no-repeat;
-      display: inline-block;
-      width: 40px;
-      height: 25px;
-      transform: rotate(90deg);
-      margin-bottom: 20px;
-      filter: brightness(0.8);
-    }
-  
-    &::after {
-      content: '';
-      background: url('@assets/small-decorative-element.svg') no-repeat;
-      display: inline-block;
-      width: 40px;
-      height: 25px;
-      transform: rotate(-90deg);
-      margin-top: 20px;
-      filter: brightness(0.8);
-    }
-  }
+  @include mobileTitleDecorationOverride;
 
   p {
     text-align: center;
-    @include adaptiveValue('font-size', 16, 12, 0, 1440, 360);
+    @include adaptiveValue('font-size', 16, 14, 0, 1440, 360);
     font-weight: 400;
     line-height: 24px;
     margin-bottom: 32px;
+    letter-spacing: 0.32px;
 
     @media (max-width: $mobile) {
-      line-height: 18px;
+      letter-spacing: 0.14px;
+      margin-bottom: 20px;
     }
   }
 }
@@ -153,8 +127,17 @@ input {
 .user-panel-page {
   display: grid;
   grid-template-columns: 224px 1fr;
+  grid-template-rows: auto;
+  align-items: start;
   column-gap: 88px;
   margin-top: 60px;
+
+  @media (max-width: $tablet) {
+    grid-template-columns: 1fr;
+  }
+
+  @media (max-width: $mobile) {
+  }
 }
 
 .cabinet-sidebar-nav {

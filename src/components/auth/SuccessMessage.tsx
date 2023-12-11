@@ -16,7 +16,8 @@ export const SuccessMessage = () => {
       <OrnamentalTitle tag='h4' text='До речі, ласкаво просимо!' />
       <p>
         Раді нарешті представити наш навчальний проєкт, над яким ми так довго
-        працювали. Приємного вивчення!
+        працювали.
+        <span>Приємного вивчення!</span>
       </p>
       <ButtonUI label='Готово' onClick={handleCloseModal} />
     </div>

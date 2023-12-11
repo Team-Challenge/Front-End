@@ -6,10 +6,12 @@ import s from './TextInput.module.scss';
 export const TextInput = ({
   type = 'text',
   id,
+  value,
   placeholder,
   required = false,
-  isLogin,
-  isLoginError,
+  isAuth,
+  isAuthError,
+  editModeIcon,
   onClick,
   regex,
   errorMessage,
@@ -27,13 +29,13 @@ export const TextInput = ({
   const hasError = errors[id];
   const isDirty = id in dirtyFields;
 
-  const inputClassName = `${s.input} ${className}
-    ${(hasError && !isLogin) || isLoginError ? s.input_error : ''}
-    ${!hasError && isDirty && !isLogin ? s.input_success : ''}`;
+  const inputClassName = `${s.input}
+    ${(hasError && !isAuth) || isAuthError ? s.input_error : ''}
+    ${!hasError && isDirty && !isAuth ? s.input_success : ''}`;
 
   return (
-    <>
-      <div className={s.wrap}>
+    <div className={className}>
+      <label className={s.label}>
         <input
           type={type}
           placeholder={placeholder}
@@ -54,25 +56,32 @@ export const TextInput = ({
           })}
           className={inputClassName}
           onClick={onClick}
+          defaultValue={value}
         />
 
-        {(hasError && !isLogin) || isLoginError ? (
+        {editModeIcon && !isDirty && !isAuthError && (
+          <i className={`${s.icon} ${s.icon_profile}`}>
+            <Icon icon='solar:pen-outline' />
+          </i>
+        )}
+
+        {(hasError && !isAuth) || isAuthError ? (
           <i className={`${s.icon} ${s.icon_invalid}`}>
             <Icon icon='solar:danger-circle-outline' />
           </i>
         ) : (
           isDirty &&
-          !isLogin && (
+          !isAuth && (
             <i className={`${s.icon} ${s.icon_valid}`}>
               <Icon icon='solar:unread-outline' />
             </i>
           )
         )}
-      </div>
+      </label>
 
-      {hasError && !isLogin && (
+      {hasError && !isAuth && (
         <p className={`error-text ${s.error}`}>{hasError.message as string}</p>
       )}
-    </>
+    </div>
   );
 };

@@ -20,8 +20,7 @@ export const login = createAsyncThunk(
 
       return response.data;
     } catch (error: any) {
-      const errorMessage =
-        error.response?.data?.message || 'Помилка авторизації';
+      const errorMessage = error.response?.data?.message || 'Помилка авторизації';
       return rejectWithValue(errorMessage);
     }
   },
@@ -35,18 +34,25 @@ export const registration = createAsyncThunk(
       email: string;
       password: string;
     },
-    { dispatch },
+    { dispatch, rejectWithValue },
   ) => {
-    const response = await AuthService.registration(
-      credentials.full_name,
-      credentials.email,
-      credentials.password,
-    );
-    if (response.status === 200 && response.data.user) {
-      dispatch(
-        login({ email: credentials.email, password: credentials.password }),
+    try {
+      const response = await AuthService.registration(
+        credentials.full_name,
+        credentials.email,
+        credentials.password,
       );
+
+      if (response.status === 200 && response.data.user) {
+        dispatch(
+          login({ email: credentials.email, password: credentials.password }),
+        );
+      }
+
+      return response.data;
+    } catch (error: any) {
+      const errorMessage = error.response.data.email || 'Помилка реєстрації';
+      return rejectWithValue(errorMessage);
     }
-    return response.data;
   },
 );

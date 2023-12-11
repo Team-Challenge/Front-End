@@ -20,7 +20,6 @@ export const LoginForm = ({
 
   const methods = useForm({
     mode: 'onChange',
-    shouldUnregister: true,
   });
 
   const {
@@ -45,27 +44,25 @@ export const LoginForm = ({
 
   return (
     <FormProvider {...methods}>
-      <form
-        id='login'
-        className={s.form}
-        onSubmit={methods.handleSubmit(onSubmit as SubmitHandler<FieldValues>)}
-      >
-        <Email
-          isLogin
-          isLoginError={hasError}
-          onClick={() => methods.clearErrors('loginError')}
-        />
-        <PasswordInput
-          id='password'
-          placeholder='Пароль'
-          required
-          isLogin
-          isLoginError={hasError}
-          onClick={() => methods.clearErrors('loginError')}
-        />
+      <form id='login' className={s.form} onSubmit={(e) => e.preventDefault()}>
+        <div className={s.form_inputs}>
+          <Email
+            isAuth
+            isAuthError={hasError}
+            onClick={() => methods.clearErrors('loginError')}
+          />
+          <PasswordInput
+            id='password'
+            placeholder='Пароль'
+            required
+            isAuth
+            isAuthError={hasError}
+            onClick={() => methods.clearErrors('loginError')}
+          />
+        </div>
 
         {hasError && (
-          <p className={`error-text ${s.error}`}>
+          <p className={`error-text ${s.login_error}`}>
             {errors?.loginError?.message as string}
           </p>
         )}
@@ -79,7 +76,15 @@ export const LoginForm = ({
         </button>
 
         <div className={s.form_buttons}>
-          <ButtonUI label='Увійти' variant='main' disabled={!isValid} />
+          <ButtonUI
+            type='submit'
+            label='Увійти'
+            variant='main'
+            disabled={!isValid}
+            onClick={methods.handleSubmit(
+              onSubmit as SubmitHandler<FieldValues>,
+            )}
+          />
           <span className={s.decorative_line}>або</span>
           <ButtonUI
             type='button'

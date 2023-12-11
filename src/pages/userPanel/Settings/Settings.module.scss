@@ -1,0 +1,107 @@
+@import '@/styles/index.scss';
+
+.settings {
+  display: grid;
+
+  @media (max-width: $tablet) {
+    justify-items: center;
+  }
+
+  &_title {
+    margin-bottom: 1.5rem;
+
+    @media (max-width: $mobileSmall) {
+      justify-self: start;
+      margin-bottom: 14px;
+    }
+  }
+}
+
+.form {
+  max-width: toRem(424);
+  display: grid;
+  gap: 2rem;
+
+  @media (max-width: $tablet) {
+    max-width: 100%;
+    width: calc(75% - 20px);
+    gap: toRem(24);
+  }
+
+  @media (max-width: $mobileSmall) {
+    width: calc(100% - 20px);
+    gap: toRem(18);
+  }
+
+  &_wrap {
+    display: grid;
+    gap: 1rem;
+
+    @media (max-width: $mobile) {
+      gap: toRem(10);
+    }
+  }
+
+  &_subtitle {
+    font-weight: 500;
+    line-height: 110%;
+
+    @media (max-width: $mobile) {
+      margin-bottom: toRem(2);
+    }
+  }
+
+  &_hints {
+    color: $grey;
+    font-size: toRem(12);
+    font-weight: 300;
+    line-height: 1rem;
+    margin: toRem(-5) 0 toRem(-8);
+
+    @media (max-width: $mobile) {
+      margin: 0 0 toRem(-5);
+    }
+  }
+
+  &_btn {
+    &_delete {
+      max-width: toRem(424);
+      margin-top: 1rem;
+
+      @media (max-width: $tablet) {
+        max-width: 100%;
+        width: calc(75% - 20px);
+      }
+
+      @media (max-width: $mobileSmall) {
+        width: calc(100% - 20px);
+      }
+    }
+  }
+}
+
+.modal {
+  > div > :first-child {
+    @include mobileTitleDecorationOverride;
+  }
+
+  &_text {
+    max-width: toRem(424);
+    margin-bottom: 2rem;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 150%;
+    letter-spacing: 0.32px;
+
+    @media (max-width: $mobile) {
+      font-size: toRem(14);
+      letter-spacing: 0.14px;
+      margin-bottom: 20px;
+    }
+  }
+
+  &_button {
+    max-width: toRem(424);
+  }
+}
