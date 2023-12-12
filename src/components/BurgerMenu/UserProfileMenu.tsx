@@ -48,7 +48,7 @@ export const UserProfileMenu = ({
           </Link>
         ))}
       </ul>
-      <div className={s.button_logout}>
+      <div className={`${s.button_logout} ${s.profile_logout}`}>
         <Link to='/' className={s.profile_item} onClick={handleLogoutClick}>
           <Icon icon='solar:logout-2-outline' className={s.menu_icon}/>
           Вийти
