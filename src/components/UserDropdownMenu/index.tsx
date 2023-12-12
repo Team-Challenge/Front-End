@@ -9,14 +9,13 @@ export const UserDropdownMenu = ({ handleOpenModal, setDropdownOpen }: UserDropd
   const { isAuth } = useAppSelector((state) => state.auth);
 
   return (
-    <div className={s.dropdownMenu}>
+    <div className={s.dropdownMenu} onClick={() => setDropdownOpen(false)}>
       {isAuth ? (
         <div>
           {userPanelButtonsList.map((button) => (
             <NavLink
               to={`account/${button.pathToPage}`}
               key={button.id}
-              onClick={() => setDropdownOpen(false)}
               className={({ isActive }) =>
               isActive
                 ? `cabinet-sidebar-nav_btn cabinet-sidebar-nav_active`
