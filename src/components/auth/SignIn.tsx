@@ -1,12 +1,14 @@
 import { useState } from 'react';
-import { UserAuthProps } from '@/types';
+import { useAppDispatch } from '@/hooks/reduxHook';
+import { closeModal, openModal } from '@/store/modalSlice';
 import { LoginForm } from './AuthForm/LoginForm';
 import { OrnamentalTitle } from '@/components/OrnamentalTitle';
 import { PasswordRecoveryForm } from './PasswordRecoveryForm';
 import { SuccessMessage } from './SuccessMessage';
 import s from './Auth.module.scss';
 
-export const SignIn = ({ toggleForm }: UserAuthProps) => {
+export const SignIn = () => {
+  const dispatch = useAppDispatch();
   const [isPasswordRecovery, setIsPasswordRecovery] = useState<boolean>(false);
   const [isSuccessMessage, setIsSuccessMessage] = useState<boolean>(false);
 
@@ -16,6 +18,11 @@ export const SignIn = ({ toggleForm }: UserAuthProps) => {
 
   const isSuccessLogin = () => {
     setIsSuccessMessage(!isSuccessMessage);
+  };
+
+  const handleOpenRegistration = () => {
+    dispatch(closeModal('login'));
+    dispatch(openModal('registration'));
   };
 
   return (
@@ -29,7 +36,7 @@ export const SignIn = ({ toggleForm }: UserAuthProps) => {
           />
           <div className={`account-promt ${s.login_promt}`}>
             <p>Ще немає облікового запису?</p>
-            <button onClick={toggleForm}>Зареєструватися</button>
+            <button onClick={handleOpenRegistration}>Зареєструватися</button>
           </div>
         </>
       )}
