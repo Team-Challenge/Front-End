@@ -3,7 +3,10 @@ import { Route, Routes } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from './hooks/reduxHook';
 import { checkAuth } from './store/auth/authActions';
 import { setAuth } from './store/auth/authSlice';
-import { getUserInfo } from './store/userProfile/userProfileThunks';
+import {
+  getProfilePhoto,
+  getUserInfo,
+} from './store/userProfile/userProfileThunks';
 import { PageNotFound, Home } from './pages';
 import { Header } from './components/Header';
 import { UserPanelRoutes } from './components/routes/UserPanelRoutes';
@@ -18,6 +21,7 @@ export const App = () => {
       checkAuth();
       dispatch(setAuth(true));
       dispatch(getUserInfo());
+      dispatch(getProfilePhoto());
     }
   }, []);
 
