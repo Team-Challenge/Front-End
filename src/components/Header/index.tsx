@@ -54,8 +54,15 @@ export const Header = () => {
 
         {width <= 991.98 && (
           <div className={s.header_burger}>
-            <button onClick={toggleBurgerMenu}>
-              <Icon icon='solar:hamburger-menu-outline' />
+            <button
+              onClick={toggleBurgerMenu}
+              className={`${s.icon_burger} ${
+                isBurgerMenuOpen ? s.open : s.closed
+              }`}
+            >
+              <span className={s.icon_bar} />
+              <span className={s.icon_bar} />
+              <span className={s.icon_bar} />
             </button>
             <button>
               <Icon icon='solar:magnifer-outline' />
