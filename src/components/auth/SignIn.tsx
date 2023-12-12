@@ -29,7 +29,7 @@ export const SignIn = () => {
     <>
       {!isPasswordRecovery && !isSuccessMessage && (
         <>
-          <OrnamentalTitle tag='h4' text='Вхід' className={s.login_title}/>
+          <OrnamentalTitle tag='h4' text='Вхід' className={s.login_title} />
           <LoginForm
             isForgotPassword={isForgotPassword}
             isSuccessLogin={isSuccessLogin}
@@ -43,7 +43,7 @@ export const SignIn = () => {
       {isPasswordRecovery && (
         <PasswordRecoveryForm isForgotPassword={isForgotPassword} />
       )}
-      {isSuccessMessage && <SuccessMessage />}
+      {isSuccessMessage && <SuccessMessage id='login' />}
     </>
   );
 };

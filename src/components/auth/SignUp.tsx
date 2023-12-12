@@ -35,7 +35,7 @@ export const SignUp = () => {
           </div>
         </>
       ) : (
-        <SuccessMessage />
+        <SuccessMessage id='registration' />
       )}
     </>
   );
