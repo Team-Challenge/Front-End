@@ -8,9 +8,11 @@ import { PageNotFound, Home } from './pages';
 import { Header } from './components/Header';
 import { UserPanelRoutes } from './components/routes/UserPanelRoutes';
 import { StorePanelRoutes } from './components/routes/StorePanelRoutes';
+import { BurgerMenu } from './components/BurgerMenu';
 
 export const App = () => {
   const { isAuth } = useAppSelector((state) => state.auth);
+  const isBurgerMenuOpen = useAppSelector((state) => state.modal.burgerMenu);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -24,6 +26,7 @@ export const App = () => {
   return (
     <div>
       <Header />
+      {isBurgerMenuOpen && <BurgerMenu />}
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='*' element={<PageNotFound />} />
