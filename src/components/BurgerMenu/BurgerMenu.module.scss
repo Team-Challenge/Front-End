@@ -1,0 +1,156 @@
+@import '@/styles/index.scss';
+
+.menu {
+  width: 100%;
+  height: calc(100% - 80px);
+  position: fixed;
+  left: 0;
+  z-index: 25;
+  background: $white;
+  padding: toRem(18) toRem(20);
+
+  &_wrap {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: toRem(230) 1fr;
+    justify-items: start;
+    align-items: stretch;
+  }
+
+  &_list {
+    width: 100%;
+    display: grid;
+    gap: toRem(22);
+  }
+
+  &_item {
+    display: grid;
+    grid-template-columns: toRem(20) 1fr auto;
+    column-gap: toRem(12);
+    align-items: center;
+    cursor: pointer;
+
+    p {
+      font-size: toRem(14);
+      font-weight: 500;
+      line-height: 1rem;
+      letter-spacing: 0.14px;
+    }
+  }
+
+  &_icon {
+    width: toRem(20);
+    height: toRem(20);
+    color: $green;
+  }
+
+  &_arrow {
+    width: toRem(20);
+    height: toRem(20);
+    color: $grey;
+  }
+
+  &_buttons {
+    width: 100%;
+    display: grid;
+
+    &_auth {
+      align-content: stretch;
+      align-items: end;
+    }
+    
+    &_account {
+      align-items: stretch;
+      align-content: space-between;
+    }
+  }
+}
+
+.buttons {
+    &_auth {
+      display: grid;
+      gap: 1rem;
+      margin-top: toRem(18);
+      @include decorativeElementsBurgerMenu;
+    }
+
+    &_account {
+      @include decorativeElementsBurgerMenu;
+    }
+  }
+
+.account {
+  &_list {
+    margin-top: toRem(6);
+    display: grid;
+    gap: toRem(22);
+  }
+
+  &_item {
+    display: grid;
+    grid-template-columns: toRem(20) 1fr auto;
+    column-gap: toRem(12);
+    align-items: center;
+    font-size: toRem(14);
+    font-weight: 500;
+    line-height: 1rem;
+    letter-spacing: 0.14px;
+    cursor: pointer;
+  }
+}
+
+.profile {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: toRem(52) 1fr auto;
+  row-gap: toRem(18);
+  align-items: start;
+  justify-items: start;
+
+  &_return {
+    width: 100%;
+    background: $white-grey;
+    padding: 1rem 0;
+
+    svg {
+      transform: rotate(180deg);
+    }
+  }
+
+  &_list {
+    width: 100%;
+    display: grid;
+    gap: toRem(22);
+  }
+
+  &_item {
+    display: flex;
+    align-items: center;
+    gap: toRem(12);
+
+    font-size: toRem(14);
+    font-weight: 500;
+    line-height: 1rem;
+    letter-spacing: 0.14px;
+
+    svg {
+      color: $green;
+      width: toRem(20);
+      height: toRem(20);
+    }
+  }
+}
+
+.button {
+  &_logout {
+    width: 100%;
+    @include decorativeElementsBurgerMenu;
+
+    a {
+      margin: toRem(10) 0;
+    }
+  }
+}
