@@ -2,6 +2,6 @@
 @import '@/styles/index.scss';
 
 .shopDropdownMenu {
-    @extend .dropdownMenu;
+    @extend .dropdown-menu;
     width: 244px;
 }

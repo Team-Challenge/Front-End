@@ -26,15 +26,15 @@ export const UserDropdownMenu = ({ handleOpenModal, setDropdownOpen }: UserDropd
               key={button.id}
               className={({ isActive }) =>
                 isActive
-                  ? `dropdownMenu_btn dropdownMenu_active`
-                  : 'dropdownMenu_btn'
+                  ? `dropdown-menu_btn dropdown-menu_active`
+                  : 'dropdown-menu_btn'
               }
             >
               {button.icon}
               {button.title}
             </NavLink>
           ))}
-          <Link to='/' className='dropdownMenu_btn' onClick={logoutUser}>
+          <Link to='/' className='dropdown-menu_btn' onClick={logoutUser}>
             <Icon icon='solar:logout-2-outline' />
             Вийти
           </Link>

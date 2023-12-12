@@ -14,15 +14,15 @@ export const ShopDropdownMenu = ({ setDropdownOpen }: ShopDropdownMenuProps) => 
             key={button.id}
             className={({ isActive }) =>
               isActive
-                ? `dropdownMenu_btn dropdownMenu_active`
-                : 'dropdownMenu_btn'
+                ? `dropdown-menu_btn dropdown-menu_active`
+                : 'dropdown-menu_btn'
             }
           >
             {button.icon}
             {button.title}
           </NavLink>
         ))}
-        <Link to='/account/store' className='dropdownMenu_btn'>
+        <Link to='/account/store' className='dropdown-menu_btn'>
           <Icon icon='solar:square-top-down-outline' />
           Мій магазин
         </Link>

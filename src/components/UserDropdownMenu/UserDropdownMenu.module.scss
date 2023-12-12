@@ -2,7 +2,7 @@
 @import '@/styles/global.scss';
 
 .userDropdownMenu {
-  @extend .dropdownMenu;
+  @extend .dropdown-menu;
   width: 204px;
 
   &_auth {
