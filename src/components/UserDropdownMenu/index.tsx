@@ -34,7 +34,7 @@ export const UserDropdownMenu = ({ handleOpenModal, setDropdownOpen }: UserDropd
               {button.title}
             </NavLink>
           ))}
-          <span className='cabinet-sidebar-nav_line' />
+          <div className='cabinet-sidebar-nav_line' />
           <Link to='/' className='cabinet-sidebar-nav_btn' onClick={logoutUser}>
             <Icon icon='solar:logout-2-outline' />
             Вийти
