@@ -15,7 +15,7 @@ export const App = () => {
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
-      checkAuth();
+      dispatch(checkAuth());
       dispatch(setAuth(true));
       dispatch(getUserInfo());
     }
