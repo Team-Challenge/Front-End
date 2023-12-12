@@ -144,3 +144,11 @@ export interface UserPanelEmptyPageProps {
   text: string;
   icon: React.ReactNode;
 }
+
+export interface UserProfileMenuProps {
+  closeUserMenu: () => void;
+}
+
+export interface StoreProfileMenuProps {
+  closeStoreMenu: () => void;
+}
