@@ -6,10 +6,6 @@ export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
 //auth types
-export interface UserAuthProps {
-  toggleForm: () => void;
-}
-
 export interface LoginFormProps {
   isForgotPassword: () => void;
   isSuccessLogin: () => void;
@@ -139,7 +135,7 @@ export interface ChangeFullNameFormData {
 }
 
 export interface UserDropdownMenuProps {
-  handleOpenModal: (arg0: boolean) => void;
+  handleOpenModal: (arg0: string) => void;
   setDropdownOpen: (arg0: boolean) => void;
 }
 
