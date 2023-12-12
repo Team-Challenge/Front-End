@@ -32,6 +32,10 @@
 
 .registration_error {
   margin-top: -1rem;
+
+  @media (max-width: $mobile) {
+    margin-top: -0.6rem;
+  }
 }
 
 .checkbox {
