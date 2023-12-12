@@ -1,20 +1,9 @@
 @import '@/styles/index.scss';
+@import '@/styles/global.scss';
 
-.dropdownMenu {
-  width: 226px;
-  display: flex;
-  flex-direction: column;
-
-  background: $white;
-  z-index: 999;
-  
-  border-radius: 4px;
-  border: 1px solid $light-grey;
-  box-shadow: 0px 4px 8px 0px rgba(18, 17, 50, 0.08);
-
-  position: absolute;
-  top: 48px;
-  right: 0;
+.userDropdownMenu {
+  @extend .dropdownMenu;
+  width: 204px;
 
   &_auth {
     display: inherit;

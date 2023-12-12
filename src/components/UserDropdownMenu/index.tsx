@@ -17,7 +17,7 @@ export const UserDropdownMenu = ({ handleOpenModal, setDropdownOpen }: UserDropd
   };
 
   return (
-    <div className={s.dropdownMenu} onClick={() => setDropdownOpen(false)}>
+    <div className={s.userDropdownMenu} onClick={() => setDropdownOpen(false)}>
       {isAuth ? (
         <div>
           {userPanelButtonsList.map((button) => (
@@ -26,22 +26,21 @@ export const UserDropdownMenu = ({ handleOpenModal, setDropdownOpen }: UserDropd
               key={button.id}
               className={({ isActive }) =>
                 isActive
-                  ? `cabinet-sidebar-nav_btn cabinet-sidebar-nav_active`
-                  : 'cabinet-sidebar-nav_btn'
+                  ? `dropdownMenu_btn dropdownMenu_active`
+                  : 'dropdownMenu_btn'
               }
             >
               {button.icon}
               {button.title}
             </NavLink>
           ))}
-          <div className='cabinet-sidebar-nav_line' />
-          <Link to='/' className='cabinet-sidebar-nav_btn' onClick={logoutUser}>
+          <Link to='/' className='dropdownMenu_btn' onClick={logoutUser}>
             <Icon icon='solar:logout-2-outline' />
             Вийти
           </Link>
         </div>
       ) : (
-        <div className={s.dropdownMenu_auth}>
+        <div className={s.userDropdownMenu_auth}>
           <ButtonUI label='Увійти' onClick={() => handleOpenModal(true)} />
           <div className={s.dropdownMenu_auth_registration}>
             <p>Вперше тут?</p>
