@@ -134,10 +134,6 @@ export interface ChangeFullNameFormData {
   full_name: string;
 }
 
-export interface UserDropdownMenuProps {
-  handleOpenModal: (arg0: string) => void;
-}
-
 export interface UserPanelEmptyPageProps {
   title: string;
   text: string;
