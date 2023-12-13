@@ -106,6 +106,10 @@ export interface EmailProps {
   isAuthError?: boolean;
 }
 
+export interface PhoneNumberProps {
+  userPhoneNumber?: string;
+}
+
 //user info types
 export interface UserInfo {
   email: string;
