@@ -1,7 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import $api from '@/http';
 import { setAuth } from '../auth/authSlice';
-import { setFullName, setPhoneNumber } from './userProfileSlice';
+import {
+  setFullName,
+  setPhoneNumber,
+  setProfilePhoto,
+} from './userProfileSlice';
 
 export const getUserInfo = createAsyncThunk(
   'userAccount/info',
@@ -11,7 +15,7 @@ export const getUserInfo = createAsyncThunk(
       if (response.status === 200) {
         dispatch(setFullName(response.data.full_name));
         dispatch(setPhoneNumber(response.data.phone_number));
-        console.log(response.data);
+        dispatch(setProfilePhoto(response.data.profile_picture));
       }
     } catch (e) {
       const error = e as Error;
@@ -92,6 +96,36 @@ export const userLogout = createAsyncThunk(
       }
     } catch (e) {
       const error = e as Error;
+      throw error;
+    }
+  },
+);
+
+export const uploadProfilePhoto = createAsyncThunk(
+  'userSettings/uploadProfilePhoto',
+  async (formData: FormData) => {
+    try {
+      const response = await $api.post('/accounts/profile_photo', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+);
+
+export const deleteProfilePhoto = createAsyncThunk(
+  'userSettings/deleteProfilePhoto',
+  async () => {
+    try {
+      const response = await $api.delete('/accounts/profile_photo');
+      if (response.status === 200) {
+        return response.data;
+      }
+    } catch (error) {
       throw error;
     }
   },
