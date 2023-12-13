@@ -134,14 +134,8 @@ export interface ChangeFullNameFormData {
   full_name: string;
 }
 
-export interface ShopDropdownMenuProps {
-  setDropdownOpen: (arg0: boolean) => void;
-}
-
-
 export interface UserDropdownMenuProps {
   handleOpenModal: (arg0: string) => void;
-  setDropdownOpen: (arg0: boolean) => void;
 }
 
 export interface UserPanelEmptyPageProps {
