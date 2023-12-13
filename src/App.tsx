@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from './hooks/reduxHook';
 import { checkAuth } from './store/auth/authActions';
-import { setAuth } from './store/auth/authSlice';
 import { getUserInfo } from './store/userProfile/userProfileThunks';
 import { PageNotFound, Home } from './pages';
 import { Header } from './components/Header';
@@ -16,7 +15,6 @@ export const App = () => {
   useEffect(() => {
     if (localStorage.getItem('token')) {
       dispatch(checkAuth());
-      dispatch(setAuth(true));
       dispatch(getUserInfo());
     }
   }, []);
