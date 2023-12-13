@@ -3,19 +3,23 @@ import { Link, NavLink } from 'react-router-dom';
 import { useClickOutside } from '@/hooks/useClickOutside';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
 import { userLogout } from '@/store/userProfile/userProfileThunks';
+import { openModal } from '@/store/modalSlice';
 import { closeComponent } from '@/store/overlayStateSlice';
-import { UserDropdownMenuProps } from '@/types';
 import { userPanelButtonsList } from '@/constants/userPanelButtonsList';
 import { ButtonUI } from '../UI/ButtonUI';
 import { Icon } from '@iconify/react';
 import s from './UserDropdownMenu.module.scss';
 
-export const UserDropdownMenu = ({
-  handleOpenModal,
-}: UserDropdownMenuProps) => {
+export const UserDropdownMenu = () => {
   const dropdownRef = useRef(null);
   const dispatch = useAppDispatch();
   const { isAuth } = useAppSelector((state) => state.auth);
+
+  const handleOpenModal = (id: string) => {
+    dispatch(openModal(id));
+    dispatch(closeComponent('isUserDropdown'));
+    dispatch(closeComponent('isShopDropdown'));
+  };
 
   const logoutUser = () => {
     dispatch(userLogout());
