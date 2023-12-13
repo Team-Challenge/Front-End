@@ -151,3 +151,27 @@
     }
   }
 }
+
+.icon_bar {
+  display: block;
+  width: toRem(18);
+  height: toRem(1.5);
+  background: $black;
+  margin: toRem(3) 0;
+  transition: transform 0.4s;
+  border-radius: toRem(5);
+}
+
+.open .icon_bar {
+  &:first-child {
+    transform: rotate(-45deg) translate(-0.1px, 5px);
+  }
+
+  &:nth-child(2) {
+    opacity: 0;
+  }
+
+  &:last-child {
+    transform: rotate(45deg) translate(-1.7px, -7.1px);
+  }
+}

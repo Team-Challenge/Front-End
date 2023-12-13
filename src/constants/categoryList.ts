@@ -8,32 +8,32 @@ import sets from '@/assets/category-icons/sets.svg';
 export const categoryList = [
   {
     id: 1,
-    label: 'на голову',
+    label: 'На голову',
     icon: head,
   },
   {
     id: 2,
-    label: 'на вуха',
+    label: 'На вуха',
     icon: ears,
   },
   {
     id: 3,
-    label: 'на шию',
+    label: 'На шию',
     icon: neck,
   },
   {
     id: 4,
-    label: 'на руки',
+    label: 'На руки',
     icon: hands,
   },
   {
     id: 5,
-    label: 'аксесуари',
+    label: 'Аксесуари',
     icon: accessories,
   },
   {
     id: 6,
-    label: 'набори',
+    label: 'Набори',
     icon: sets,
   }
 ];

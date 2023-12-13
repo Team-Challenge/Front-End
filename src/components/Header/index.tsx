@@ -1,36 +1,42 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Icon } from '@iconify/react';
-import { openModal } from '@/store/modalSlice';
+import { closeModal, openModal } from '@/store/modalSlice';
 import { useAppSelector, useAppDispatch } from '@/hooks/reduxHook';
+import { useWindowDimensions } from '@/hooks/useWindowDimensions';
+import { categoryList } from '@/constants/categoryList';
 import { SignIn } from '../auth/SignIn';
 import { SignUp } from '../auth/SignUp';
 import { UserDropdownMenu } from '../UserDropdownMenu';
 import { Modal } from '../Modal';
 import LogoImg from '../../assets/logo.svg';
+import { Icon } from '@iconify/react';
 import s from './Header.module.scss';
-import { categoryList } from '@/constants/categoryList';
-import { useWindowDimensions } from '@/hooks/useWindowDimensions';
 
 export const Header = () => {
-  const [isSignIn, setIsSignIn] = useState<boolean>(true);
-  const [isDropdownMenuOpen, setIsDropdownMenuOpen] = useState<boolean>(false);
-  const isModalOpen = useAppSelector((state) => state.modal.auth);
   const dispatch = useAppDispatch();
+  const isLoginModalOpen = useAppSelector((state) => state.modal.login);
+  const isRegistrationModalOpen = useAppSelector(
+    (state) => state.modal.registration,
+  );
+  const isBurgerMenuOpen = useAppSelector((state) => state.modal.burgerMenu);
   const { width } = useWindowDimensions();
+  const [isDropdownMenuOpen, setIsDropdownMenuOpen] = useState<boolean>(false);
 
-  const handleOpenModal = (isLogin: boolean) => {
-    dispatch(openModal('auth'));
+  const handleOpenModal = (id: string) => {
+    dispatch(openModal(id));
     setIsDropdownMenuOpen(false);
-    setIsSignIn(isLogin);
-  };
-
-  const toggleForm = () => {
-    setIsSignIn(!isSignIn);
   };
 
   const handleOpenAuthMenu = () => {
     setIsDropdownMenuOpen(!isDropdownMenuOpen);
+  };
+
+  const toggleBurgerMenu = () => {
+    if (isBurgerMenuOpen) {
+      dispatch(closeModal('burgerMenu'));
+    } else {
+      dispatch(openModal('burgerMenu'));
+    }
   };
 
   return (
@@ -48,8 +54,15 @@ export const Header = () => {
 
         {width <= 991.98 && (
           <div className={s.header_burger}>
-            <button>
-              <Icon icon='solar:hamburger-menu-outline' />
+            <button
+              onClick={toggleBurgerMenu}
+              className={`${s.icon_burger} ${
+                isBurgerMenuOpen ? s.open : s.closed
+              }`}
+            >
+              <span className={s.icon_bar} />
+              <span className={s.icon_bar} />
+              <span className={s.icon_bar} />
             </button>
             <button>
               <Icon icon='solar:magnifer-outline' />
@@ -95,13 +108,14 @@ export const Header = () => {
         </div>
       </div>
 
-      {isModalOpen && (
-        <Modal modalId='auth'>
-          {isSignIn ? (
-            <SignIn toggleForm={toggleForm} />
-          ) : (
-            <SignUp toggleForm={toggleForm} />
-          )}
+      {isLoginModalOpen && (
+        <Modal modalId='login'>
+          <SignIn />
+        </Modal>
+      )}
+      {isRegistrationModalOpen && (
+        <Modal modalId='registration'>
+          <SignUp />
         </Modal>
       )}
     </header>
