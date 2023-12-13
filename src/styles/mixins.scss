@@ -102,3 +102,13 @@
     }
   }
 }
+
+@mixin decorativeElementsBurgerMenu {
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 100%;
+    height: 2px;
+    background: $azure;
+  }
+}
