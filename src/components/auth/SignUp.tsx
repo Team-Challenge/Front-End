@@ -15,8 +15,8 @@ export const SignUp = () => {
   };
 
   const handleOpenLogin = () => {
-    dispatch(closeModal('registration'));
-    dispatch(openModal('login'));
+    dispatch(closeModal('isRegistration'));
+    dispatch(openModal('isLogin'));
   };
 
   return (
@@ -35,7 +35,7 @@ export const SignUp = () => {
           </div>
         </>
       ) : (
-        <SuccessMessage id='registration' />
+        <SuccessMessage id='isRegistration' />
       )}
     </>
   );

@@ -23,12 +23,12 @@ export const BurgerMenu = () => {
 
   const handleOpenModal = (id: string) => {
     dispatch(openModal(id));
-    dispatch(closeComponent('burgerMenu'));
+    dispatch(closeComponent('isBurgerMenu'));
   };
 
   const logoutUser = () => {
     dispatch(userLogout());
-    dispatch(closeComponent('burgerMenu'));
+    dispatch(closeComponent('isBurgerMenu'));
   };
 
   useEffect(() => {
@@ -66,12 +66,12 @@ export const BurgerMenu = () => {
                 <div className={s.buttons_auth}>
                   <ButtonUI
                     label='Увійти'
-                    onClick={() => handleOpenModal('login')}
+                    onClick={() => handleOpenModal('isLogin')}
                   />
                   <ButtonUI
                     label='Зареєструватися'
                     variant='secondary'
-                    onClick={() => handleOpenModal('registration')}
+                    onClick={() => handleOpenModal('isRegistration')}
                   />
                 </div>
               ) : (

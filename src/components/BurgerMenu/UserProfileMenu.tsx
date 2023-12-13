@@ -14,11 +14,11 @@ export const UserProfileMenu = ({
 
   const logoutUser = () => {
     dispatch(userLogout());
-    dispatch(closeComponent('burgerMenu'));
+    dispatch(closeComponent('isBurgerMenu'));
   };
 
   const closeBurgerMenu = () => {
-    dispatch(closeComponent('burgerMenu'));
+    dispatch(closeComponent('isBurgerMenu'));
   };
 
   const handleLogoutClick = () => {

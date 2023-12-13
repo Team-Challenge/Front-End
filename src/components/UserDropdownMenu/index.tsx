@@ -61,10 +61,10 @@ export const UserDropdownMenu = () => {
         </div>
       ) : (
         <div className={s.userDropdownMenu_auth}>
-          <ButtonUI label='Увійти' onClick={() => handleOpenModal('login')} />
+          <ButtonUI label='Увійти' onClick={() => handleOpenModal('isLogin')} />
           <div className={s.dropdownMenu_auth_registration}>
             <p>Вперше тут?</p>
-            <button onClick={() => handleOpenModal('registration')}>
+            <button onClick={() => handleOpenModal('isRegistration')}>
               Зареєструватися
             </button>
           </div>

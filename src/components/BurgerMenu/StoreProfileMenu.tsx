@@ -10,7 +10,7 @@ export const StoreProfileMenu = ({ closeStoreMenu }: StoreProfileMenuProps) => {
   const dispatch = useAppDispatch();
 
   const closeBurgerMenu = () => {
-    dispatch(closeComponent('burgerMenu'));
+    dispatch(closeComponent('isBurgerMenu'));
   };
 
   return (

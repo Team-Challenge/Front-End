@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { openModal } from '@/store/modalSlice';
 import { openComponent, closeComponent } from '@/store/overlayStateSlice';
 import { useAppSelector, useAppDispatch } from '@/hooks/reduxHook';
 import { useWindowDimensions } from '@/hooks/useWindowDimensions';
@@ -24,32 +23,32 @@ export const Header = () => {
     (state) => state.overlayState.isUserDropdown,
   );
 
-  const isLoginModalOpen = useAppSelector((state) => state.modal.login);
+  const isLoginModalOpen = useAppSelector((state) => state.modal.isLogin);
   const isRegistrationModalOpen = useAppSelector(
-    (state) => state.modal.registration,
+    (state) => state.modal.isRegistration,
   );
 
   const isBurgerMenuOpen = useAppSelector(
-    (state) => state.overlayState.burgerMenu,
+    (state) => state.overlayState.isBurgerMenu,
   );
 
   const handleOpenShopMenu = () => {
     dispatch(openComponent('isShopDropdown'));
     dispatch(closeComponent('isUserDropdown'));
-    dispatch(closeComponent('burgerMenu'));
+    dispatch(closeComponent('isBurgerMenu'));
   };
 
   const handleOpenAuthMenu = () => {
     dispatch(openComponent('isUserDropdown'));
     dispatch(closeComponent('isShopDropdown'));
-    dispatch(closeComponent('burgerMenu'));
+    dispatch(closeComponent('isBurgerMenu'));
   };
 
   const toggleBurgerMenu = () => {
     if (isBurgerMenuOpen) {
-      dispatch(closeComponent('burgerMenu'));
+      dispatch(closeComponent('isBurgerMenu'));
     } else {
-      dispatch(openComponent('burgerMenu'));
+      dispatch(openComponent('isBurgerMenu'));
       dispatch(closeComponent('isUserDropdown'));
       dispatch(closeComponent('isShopDropdown'));
     }
@@ -121,12 +120,12 @@ export const Header = () => {
       </div>
 
       {isLoginModalOpen && (
-        <Modal modalId='login'>
+        <Modal modalId='isLogin'>
           <SignIn />
         </Modal>
       )}
       {isRegistrationModalOpen && (
-        <Modal modalId='registration'>
+        <Modal modalId='isRegistration'>
           <SignUp />
         </Modal>
       )}

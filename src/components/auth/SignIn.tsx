@@ -21,8 +21,8 @@ export const SignIn = () => {
   };
 
   const handleOpenRegistration = () => {
-    dispatch(closeModal('login'));
-    dispatch(openModal('registration'));
+    dispatch(closeModal('isLogin'));
+    dispatch(openModal('isRegistration'));
   };
 
   return (
@@ -43,7 +43,7 @@ export const SignIn = () => {
       {isPasswordRecovery && (
         <PasswordRecoveryForm isForgotPassword={isForgotPassword} />
       )}
-      {isSuccessMessage && <SuccessMessage id='login' />}
+      {isSuccessMessage && <SuccessMessage id='isLogin' />}
     </>
   );
 };
