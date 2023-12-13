@@ -12,7 +12,7 @@ import { BurgerMenu } from './components/BurgerMenu';
 
 export const App = () => {
   const { isAuth } = useAppSelector((state) => state.auth);
-  const isBurgerMenuOpen = useAppSelector((state) => state.modal.burgerMenu);
+  const isBurgerMenuOpen = useAppSelector((state) => state.overlayState.burgerMenu);
   const dispatch = useAppDispatch();
 
   useEffect(() => {

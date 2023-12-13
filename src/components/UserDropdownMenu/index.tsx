@@ -1,23 +1,39 @@
-import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
+import { useRef } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { useClickOutside } from '@/hooks/useClickOutside';
+import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
+import { userLogout } from '@/store/userProfile/userProfileThunks';
+import { closeComponent } from '@/store/overlayStateSlice';
 import { UserDropdownMenuProps } from '@/types';
 import { userPanelButtonsList } from '@/constants/userPanelButtonsList';
 import { ButtonUI } from '../UI/ButtonUI';
-import s from './UserDropdownMenu.module.scss';
 import { Icon } from '@iconify/react';
-import { userLogout } from '@/store/userProfile/userProfileThunks';
+import s from './UserDropdownMenu.module.scss';
 
-export const UserDropdownMenu = ({ handleOpenModal, setDropdownOpen }: UserDropdownMenuProps) => {
-  const { isAuth } = useAppSelector((state) => state.auth);
-
+export const UserDropdownMenu = ({
+  handleOpenModal,
+}: UserDropdownMenuProps) => {
+  const dropdownRef = useRef(null);
   const dispatch = useAppDispatch();
+  const { isAuth } = useAppSelector((state) => state.auth);
 
   const logoutUser = () => {
     dispatch(userLogout());
+    dispatch(closeComponent('isUserDropdown'));
   };
 
+  const handleCloseDropdown = () => {
+    dispatch(closeComponent('isUserDropdown'));
+  };
+
+  useClickOutside(dropdownRef, handleCloseDropdown);
+
   return (
-    <div className={s.userDropdownMenu} onClick={() => setDropdownOpen(false)}>
+    <div
+      ref={dropdownRef}
+      className={s.userDropdownMenu}
+      onClick={handleCloseDropdown}
+    >
       {isAuth ? (
         <div>
           {userPanelButtonsList.map((button) => (

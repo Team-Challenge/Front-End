@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { userLogout } from '@/store/userProfile/userProfileThunks';
-import { closeModal, openModal } from '@/store/modalSlice';
+import { closeComponent } from '@/store/overlayStateSlice';
+import { openModal } from '@/store/modalSlice';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
 import { useWindowDimensions } from '@/hooks/useWindowDimensions';
 import { useMenuHandler } from '@/hooks/useMenuHandler';
@@ -22,12 +23,12 @@ export const BurgerMenu = () => {
 
   const handleOpenModal = (id: string) => {
     dispatch(openModal(id));
-    dispatch(closeModal('burgerMenu'));
+    dispatch(closeComponent('burgerMenu'));
   };
 
   const logoutUser = () => {
     dispatch(userLogout());
-    dispatch(closeModal('burgerMenu'));
+    dispatch(closeComponent('burgerMenu'));
   };
 
   useEffect(() => {
