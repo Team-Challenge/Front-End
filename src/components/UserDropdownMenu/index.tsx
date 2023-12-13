@@ -1,9 +1,9 @@
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
+import { Link, NavLink } from 'react-router-dom';
 import { UserDropdownMenuProps } from '@/types';
+import { userPanelButtonsList } from '@/constants/userPanelButtonsList';
 import { ButtonUI } from '../UI/ButtonUI';
 import s from './UserDropdownMenu.module.scss';
-import { userPanelButtonsList } from '@/constants/userPanelButtonsList';
-import { Link, NavLink } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import { userLogout } from '@/store/userProfile/userProfileThunks';
 
@@ -41,10 +41,10 @@ export const UserDropdownMenu = ({ handleOpenModal, setDropdownOpen }: UserDropd
         </div>
       ) : (
         <div className={s.userDropdownMenu_auth}>
-          <ButtonUI label='Увійти' onClick={() => handleOpenModal(true)} />
+          <ButtonUI label='Увійти' onClick={() => handleOpenModal('login')} />
           <div className={s.dropdownMenu_auth_registration}>
             <p>Вперше тут?</p>
-            <button onClick={() => handleOpenModal(false)}>
+            <button onClick={() => handleOpenModal('registration')}>
               Зареєструватися
             </button>
           </div>
