@@ -8,9 +8,6 @@ export const API_URL = import.meta.env.VITE_APP_API_URL
   : 'http://207.154.197.128:8080/';
 
 const $api = axios.create({
-  headers: {
-    Authorization: `Bearer ${localStorage.getItem('token')}`,
-  },
   withCredentials: true,
   baseURL: API_URL,
 });
@@ -33,8 +30,8 @@ $api.interceptors.request.use(
     ) {
       originalRequest._isRetry = true;
       try {
-        const response = await $api.get<AuthResponse>('/accounts/refresh');
-        localStorage.setItem('refresh', response.data.refresh_token);
+        const response = await axios.post(`${API_URL}/accounts/refresh`);
+        localStorage.setItem('refresh', response.data[1].refresh_token);
         return await $api.request(originalRequest);
       } catch (e) {
         console.log('not auth');
