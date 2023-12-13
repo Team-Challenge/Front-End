@@ -11,8 +11,13 @@ import { Modal } from '../Modal';
 import LogoImg from '../../assets/logo.svg';
 import { Icon } from '@iconify/react';
 import s from './Header.module.scss';
+import { ShopDropdownMenu } from '../ShopDropdownMenu';
 
 export const Header = () => {
+  const [isSignIn, setIsSignIn] = useState<boolean>(true);
+  const [isDropdownMenuOpen, setIsDropdownMenuOpen] = useState<boolean>(false);
+  const [isShopDropdownOpen, setIsShopDropdownOpen] = useState<boolean>(false);
+  const isModalOpen = useAppSelector((state) => state.modal.auth);
   const dispatch = useAppDispatch();
   const isLoginModalOpen = useAppSelector((state) => state.modal.login);
   const isRegistrationModalOpen = useAppSelector(
@@ -20,15 +25,21 @@ export const Header = () => {
   );
   const isBurgerMenuOpen = useAppSelector((state) => state.modal.burgerMenu);
   const { width } = useWindowDimensions();
-  const [isDropdownMenuOpen, setIsDropdownMenuOpen] = useState<boolean>(false);
 
   const handleOpenModal = (id: string) => {
     dispatch(openModal(id));
     setIsDropdownMenuOpen(false);
   };
 
+  const handleOpenShopMenu = () => {
+    setIsShopDropdownOpen(!isShopDropdownOpen)
+    setIsDropdownMenuOpen(false);
+
+  }
+
   const handleOpenAuthMenu = () => {
     setIsDropdownMenuOpen(!isDropdownMenuOpen);
+    setIsShopDropdownOpen(false)
   };
 
   const toggleBurgerMenu = () => {
@@ -77,11 +88,15 @@ export const Header = () => {
 
           {width >= 479.98 && (
             <>
-              <div className={s.icon_shop}>
-                <button>
+              <div className={`${s.icon_shop} ${s.header_dropdown}`}>
+                <button onClick={handleOpenShopMenu}>
                   <Icon icon='solar:shop-2-outline' />
                   <Icon icon='solar:alt-arrow-down-outline' />
                 </button>
+                {isShopDropdownOpen && (
+                    <ShopDropdownMenu setDropdownOpen={setIsShopDropdownOpen}/>
+                  )
+                }
               </div>
 
               <div className={`${s.icon_user} ${s.header_dropdown}`}>

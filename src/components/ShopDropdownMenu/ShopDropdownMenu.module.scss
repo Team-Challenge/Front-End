@@ -1,0 +1,7 @@
+@import '@/styles/global.scss';
+@import '@/styles/index.scss';
+
+.shopDropdownMenu {
+    @extend .dropdown-menu;
+    width: 244px;
+}
