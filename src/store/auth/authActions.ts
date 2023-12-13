@@ -13,11 +13,15 @@ export const checkAuth = () => {
       const headers = {
         Authorization: `Bearer ${localStorage.getItem('refresh')}`,
       };
-      const response = await axios.post(`${API_URL}/accounts/refresh`, null, {
-        headers,
-      });
-      localStorage.setItem('token', response.data[0].access_token);
-      localStorage.setItem('refresh', response.data[1].refresh_token);
+      const response = await axios.post<AuthResponse>(
+        `${API_URL}/accounts/refresh`,
+        null,
+        {
+          headers,
+        },
+      );
+      localStorage.setItem('token', response.data.access_token);
+      localStorage.setItem('refresh', response.data.refresh_token);
       dispatch(setAuth(true));
     } catch (e) {
       const error = e as ErrorMessage;
