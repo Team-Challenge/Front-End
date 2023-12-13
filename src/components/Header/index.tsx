@@ -29,13 +29,9 @@ export const Header = () => {
     (state) => state.modal.registration,
   );
 
-  const isBurgerMenuOpen = useAppSelector((state) => state.overlayState.burgerMenu);
-
-  const handleOpenModal = (id: string) => {
-    dispatch(openModal(id));
-    dispatch(closeComponent('isUserDropdown'));
-    dispatch(closeComponent('isShopDropdown'));
-  };
+  const isBurgerMenuOpen = useAppSelector(
+    (state) => state.overlayState.burgerMenu,
+  );
 
   const handleOpenShopMenu = () => {
     dispatch(openComponent('isShopDropdown'));
@@ -110,9 +106,7 @@ export const Header = () => {
                   <Icon icon='solar:user-outline' />
                   <Icon icon='solar:alt-arrow-down-outline' />
                 </button>
-                {isUserDropdownOpen && (
-                  <UserDropdownMenu handleOpenModal={handleOpenModal} />
-                )}
+                {isUserDropdownOpen && <UserDropdownMenu />}
               </div>
             </>
           )}
