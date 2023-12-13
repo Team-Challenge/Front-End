@@ -15,26 +15,10 @@ export const getUserInfo = createAsyncThunk(
       if (response.status === 200) {
         dispatch(setFullName(response.data.full_name));
         dispatch(setPhoneNumber(response.data.phone_number));
-        dispatch(setProfilePhoto(response.data.profile_photo));
-        console.log(response.data);
+        dispatch(setProfilePhoto(response.data.profile_picture));
       }
     } catch (e) {
       const error = e as Error;
-      throw error;
-    }
-  },
-);
-
-export const getProfilePhoto = createAsyncThunk(
-  'userSettings/getProfilePhoto',
-  async (_, { dispatch }) => {
-    try {
-      const response = await $api.get('/accounts/profile_photo');
-      if (response.status === 200) {
-        dispatch(setProfilePhoto(response.data));
-        // console.log(response.data);
-      }
-    } catch (error) {
       throw error;
     }
   },
