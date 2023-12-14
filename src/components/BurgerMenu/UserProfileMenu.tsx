@@ -3,7 +3,7 @@ import { useAppDispatch } from '@/hooks/reduxHook';
 import { userLogout } from '@/store/userProfile/userProfileThunks';
 import { closeComponent } from '@/store/overlayStateSlice';
 import { UserProfileMenuProps } from '@/types';
-import { userPanelButtonsList } from '@/constants/userPanelButtonsList';
+import { getUserPanelButtonsList } from '@/constants/userPanelButtonsList';
 import { Icon } from '@iconify/react';
 import s from './BurgerMenu.module.scss';
 
@@ -11,6 +11,7 @@ export const UserProfileMenu = ({
   closeUserMenu,
 }: UserProfileMenuProps) => {
   const dispatch = useAppDispatch();
+  const userPanelButtonsList = getUserPanelButtonsList();
 
   const logoutUser = () => {
     dispatch(userLogout());

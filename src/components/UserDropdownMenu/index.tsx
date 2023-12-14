@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
 import { userLogout } from '@/store/userProfile/userProfileThunks';
 import { openModal } from '@/store/modalSlice';
 import { closeComponent } from '@/store/overlayStateSlice';
-import { userPanelButtonsList } from '@/constants/userPanelButtonsList';
+import { getUserPanelButtonsList } from '@/constants/userPanelButtonsList';
 import { ButtonUI } from '../UI/ButtonUI';
 import { Icon } from '@iconify/react';
 import s from './UserDropdownMenu.module.scss';
@@ -11,6 +11,7 @@ import s from './UserDropdownMenu.module.scss';
 export const UserDropdownMenu = () => {
   const dispatch = useAppDispatch();
   const { isAuth } = useAppSelector((state) => state.auth);
+  const userPanelButtonsList = getUserPanelButtonsList();
 
   const handleOpenModal = (id: string) => {
     dispatch(openModal(id));
