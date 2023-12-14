@@ -40,7 +40,6 @@ export const Settings = () => {
   };
 
   const onSubmit = (data: SettingsFormData) => {
-    debugger
     if (phoneNumber) {
       dispatch(changePhoneNumber(data.phoneNumber)).then((response) => {
         if (response.payload) {
