@@ -65,7 +65,10 @@ export const Header = () => {
               <div className={`${s.icon_shop} ${s.header_dropdown}`}>
                 <button onClick={() => toggleShopMenu()}>
                   <Icon icon='solar:shop-2-outline' />
-                  <Icon icon='solar:alt-arrow-down-outline' />
+                  <Icon
+                    icon='solar:alt-arrow-down-outline'
+                    className={isShopDropdownOpen ? s.icon_open : s.icon_close}
+                  />
                 </button>
                 {isShopDropdownOpen && <ShopDropdownMenu />}
               </div>
@@ -73,7 +76,10 @@ export const Header = () => {
               <div className={`${s.icon_user} ${s.header_dropdown}`}>
                 <button onClick={() => toggleUserMenu()}>
                   <Icon icon='solar:user-outline' />
-                  <Icon icon='solar:alt-arrow-down-outline' />
+                  <Icon
+                    icon='solar:alt-arrow-down-outline'
+                    className={isUserDropdownOpen ? s.icon_open : s.icon_close}
+                  />
                 </button>
                 {isUserDropdownOpen && <UserDropdownMenu />}
               </div>
