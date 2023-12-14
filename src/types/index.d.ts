@@ -124,6 +124,7 @@ export interface SettingsFormData {
   new_password_repeat?: string;
   email?: string;
   phoneNumber?: string;
+  deliveryInfo?: string;
 }
 
 export interface CreateNewStoreProps {

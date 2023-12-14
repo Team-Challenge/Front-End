@@ -33,12 +33,14 @@ export const Settings = () => {
 
   const newPassword = watch('new_password');
   const phoneNumber = watch('phoneNumber');
+  const delivetyInfo = watch('deliveryInfo')
 
   const closeModalWindow = () => {
     dispatch(closeModal('settingsMessage'));
   };
 
   const onSubmit = (data: SettingsFormData) => {
+    debugger
     if (phoneNumber) {
       dispatch(changePhoneNumber(data.phoneNumber)).then((response) => {
         if (response.payload) {

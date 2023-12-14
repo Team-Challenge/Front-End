@@ -105,3 +105,13 @@
     max-width: toRem(424);
   }
 }
+
+.addButton {
+  display: flex;
+  align-items: center;
+  margin: -6px 0;
+
+  & > svg {
+    margin-right: 8px;
+  }
+}
