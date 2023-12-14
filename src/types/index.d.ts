@@ -126,12 +126,9 @@ export interface SettingsFormData {
   phoneNumber?: string;
 }
 
-export interface CreateNewStoreProps {
-  onSubmit: SubmitHandler<FormData>;
-}
-
-export interface NewStoreFormData {
+export interface CreateNewStoreFormData {
   name: string;
+  phoneNumber: string;
 }
 
 export interface ChangeFullNameFormData {
