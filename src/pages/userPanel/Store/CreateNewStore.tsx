@@ -10,7 +10,7 @@ import {
   getStoreInfo,
 } from '@/store/storeProfile/storeProfileThunks';
 import { openModal, closeModal } from '@/store/modalSlice';
-import { NewStoreFormData } from '@/types';
+import { CreateNewStoreFormData } from '@/types';
 import { OrnamentalTitle } from '@/components/OrnamentalTitle';
 import { PhoneNumber } from '@/components/PhoneNumber';
 import { TextInput } from '@/components/UI/TextInput';
@@ -29,7 +29,7 @@ export const CreateNewStore = () => {
     formState: { isValid },
   } = methods;
 
-  const onSubmit = async (data: NewStoreFormData) => {
+  const onSubmit = async (data: CreateNewStoreFormData) => {
     try {
       await dispatch(
         changeStoreInfo({
