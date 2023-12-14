@@ -39,7 +39,7 @@ export const UserDropdownMenu = () => {
       onClick={handleCloseDropdown}
     >
       {isAuth ? (
-        <div>
+        <div className={s.dropdown_menu}>
           {userPanelButtonsList.map((button) => (
             <NavLink
               to={`account/${button.pathToPage}`}
@@ -60,9 +60,9 @@ export const UserDropdownMenu = () => {
           </Link>
         </div>
       ) : (
-        <div className={s.userDropdownMenu_auth}>
+        <div className={s.dropdown_auth}>
           <ButtonUI label='Увійти' onClick={() => handleOpenModal('isLogin')} />
-          <div className={s.dropdownMenu_auth_registration}>
+          <div className={s.dropdown_auth_registration}>
             <p>Вперше тут?</p>
             <button onClick={() => handleOpenModal('isRegistration')}>
               Зареєструватися
