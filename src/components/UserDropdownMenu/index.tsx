@@ -35,7 +35,7 @@ export const UserDropdownMenu = () => {
   return (
     <div
       ref={dropdownRef}
-      className={s.userDropdownMenu}
+      className={s.dropdown}
       onClick={handleCloseDropdown}
     >
       {isAuth ? (
