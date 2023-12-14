@@ -4,14 +4,23 @@ import {
   FieldValues,
   useForm,
 } from 'react-hook-form';
-import { CreateNewStoreProps } from '@/types';
+import { useAppDispatch } from '@/hooks/reduxHook';
+import {
+  changeStoreInfo,
+  getStoreInfo,
+} from '@/store/storeProfile/storeProfileThunks';
+import { openModal, closeModal } from '@/store/modalSlice';
+import { NewStoreFormData } from '@/types';
 import { OrnamentalTitle } from '@/components/OrnamentalTitle';
+import { PhoneNumber } from '@/components/PhoneNumber';
 import { TextInput } from '@/components/UI/TextInput';
 import { ButtonUI } from '@/components/UI/ButtonUI';
 import { Icon } from '@iconify/react';
 import s from './Store.module.scss';
 
-export const CreateNewStore = ({ onSubmit }: CreateNewStoreProps) => {
+export const CreateNewStore = () => {
+  const dispatch = useAppDispatch();
+
   const methods = useForm({
     mode: 'onChange',
   });
@@ -20,21 +29,37 @@ export const CreateNewStore = ({ onSubmit }: CreateNewStoreProps) => {
     formState: { isValid },
   } = methods;
 
+  const onSubmit = async (data: NewStoreFormData) => {
+    try {
+      await dispatch(
+        changeStoreInfo({
+          name: data.name,
+          phone_number: data.phoneNumber,
+        }),
+      );
+
+      dispatch(getStoreInfo());
+      dispatch(closeModal('createNewStore'));
+      dispatch(openModal('successfulCreateStore'));
+    } catch (error) {
+      console.error('Error create store:', error);
+    }
+  };
+
   return (
     <>
-      <OrnamentalTitle tag='h4' text='Назвіть свій магазин' />
+      <OrnamentalTitle tag='h4' text='Створіть свій магазин' />
       <p className={s.modal_subtitle}>
-        Оберіть унікальну назву для вашого магазину. Не хвилюйтеся, ви завжди
-        зможете змінити її пізніше
+        Введіть номер телефону, який буде відображатися для покупців та
+        придумайте унікальну назву для вашого магазину
       </p>
       <FormProvider {...methods}>
         <form
           id='newStore'
           className={s.modal_form}
-          onSubmit={methods.handleSubmit(
-            onSubmit as SubmitHandler<FieldValues>,
-          )}
+          onSubmit={(e) => e.preventDefault()}
         >
+          <PhoneNumber />
           <TextInput
             type='text'
             id='name'
@@ -51,13 +76,17 @@ export const CreateNewStore = ({ onSubmit }: CreateNewStoreProps) => {
             </i>
             <p>
               Часто назву можна обрати на основі того, що ви продаєте, вашого
-              унікального стилю. Просто дайте волю вашій фантазії!
+              унікального стилю. Просто дайте волю вашій фантазії! Не
+              хвилюйтеся, ви завжди зможете змінити її пізніше
             </p>
           </div>
           <ButtonUI
             label='Почати продавати'
             className={s.modal_btn}
             disabled={!isValid}
+            onClick={methods.handleSubmit(
+              onSubmit as SubmitHandler<FieldValues>,
+            )}
           />
         </form>
       </FormProvider>

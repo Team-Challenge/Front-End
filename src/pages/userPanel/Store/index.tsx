@@ -1,27 +1,28 @@
-import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '@/hooks/reduxHook';
-import { openModal } from '@/store/modalSlice';
-import { NewStoreFormData } from '@/types';
+import { closeModal, openModal } from '@/store/modalSlice';
 import { Modal } from '@/components/Modal';
 import { OrnamentalTitle } from '@/components/OrnamentalTitle';
-import { CreateNewStore } from './CreateNewStore';
 import { ButtonUI } from '@/components/UI/ButtonUI';
+import { CreateNewStore } from './CreateNewStore';
 import { Icon } from '@iconify/react';
 import s from './Store.module.scss';
 
 export const Store = () => {
-  const [isSuccessfulCreateStore, setIsSuccessfulCreateStore] =
-    useState<boolean>(false);
-  const isModalOpen = useAppSelector((state) => state.modal.createNewStore);
   const dispatch = useAppDispatch();
+  const isCreateStoreModalOpen = useAppSelector(
+    (state) => state.modal.createNewStore,
+  );
+  const isSuccessfulMessageModalOpen = useAppSelector(
+    (state) => state.modal.successfulCreateStore,
+  );
 
-  const handleOpenModal = () => {
+  const handleOpenCreateStoreModal = () => {
     dispatch(openModal('createNewStore'));
   };
 
-  const onSubmit = (data: NewStoreFormData) => {
-    console.log(`Create new store: ${data.name}`);
-    setIsSuccessfulCreateStore(true);
+  const handleCloseSuccessfulMessageModal = () => {
+    dispatch(closeModal('successfulCreateStore'));
   };
 
   return (
@@ -34,30 +35,38 @@ export const Store = () => {
       <ButtonUI
         label='Почати продавати'
         className={s.store_button}
-        onClick={handleOpenModal}
+        onClick={handleOpenCreateStoreModal}
       />
 
-      {isModalOpen && (
+      {isCreateStoreModalOpen && (
         <Modal modalId='createNewStore' className={s.modal}>
-          {!isSuccessfulCreateStore && <CreateNewStore onSubmit={onSubmit} />}
+          <CreateNewStore />
+        </Modal>
+      )}
 
-          {isSuccessfulCreateStore && (
-            <>
-              <OrnamentalTitle tag='h4' text='Магазин успішно створено!' />
-              <p className={s.modal_subtitle}>
-                Тепер час почати його наповнювати. <br />
-                Розкажіть більше про себе, додайте ваші унікальні товари,
-                яскраві фото, опис
-              </p>
-              <div className={`${s.modal_hint} ${s.modal_hint_success}`}>
-                <i>
-                  <Icon icon='solar:info-circle-outline' />
-                </i>
-                <p>Пам’ятайте, чим більше деталей, тим краще!</p>
-              </div>
-              <ButtonUI label='Гаразд' className={s.modal_btn} />
-            </>
-          )}
+      {isSuccessfulMessageModalOpen && (
+        <Modal modalId='successfulCreateStore' className={s.modal}>
+          <>
+            <OrnamentalTitle tag='h4' text='Магазин успішно створено!' />
+            <p className={s.modal_subtitle}>
+              Тепер час почати його наповнювати. <br />
+              Розкажіть більше про себе, додайте ваші унікальні товари, яскраві
+              фото, опис
+            </p>
+            <div className={`${s.modal_hint} ${s.modal_hint_success}`}>
+              <i>
+                <Icon icon='solar:info-circle-outline' />
+              </i>
+              <p>Пам’ятайте, чим більше деталей, тим краще!</p>
+            </div>
+            <Link
+              to='/account/store/settings'
+              onClick={handleCloseSuccessfulMessageModal}
+              className={s.modal_btn}
+            >
+              Гаразд
+            </Link>
+          </>
         </Modal>
       )}
     </section>
