@@ -17,9 +17,6 @@
     margin: toRem(72) toRem(20) 0;
   }
 
-  @media (max-width: $mobile) {
-  }
-
   &_title {
     text-align: center;
   }
@@ -68,6 +65,14 @@
 
   &_form {
     max-width: toRem(424);
+
+    & div:first-child {
+      margin-bottom: 1rem;
+
+      @media (max-width: $mobileSmall) {
+        margin-bottom: toRem(10);
+      }
+    }
   }
 
   &_hint {
@@ -93,12 +98,6 @@
       font-size: toRem(12);
       font-weight: 300;
       line-height: 1rem;
-
-      @media (max-width: $mobileSmall) {
-        max-width: toRem(257);
-        font-weight: 400;
-        line-height: toRem(17);
-      }
     }
 
     &_success {
@@ -111,9 +110,39 @@
 
   &_btn {
     max-width: toRem(424);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Craftwork Grotesk', sans-serif;
+    @include adaptiveValue('font-size', 16, 14, 0, 1440, 360);
+    font-style: normal;
+    font-weight: 700;
+    line-height: toRem(24);
+    letter-spacing: 0.48px;
+    padding: toRem(15) toRem(10);
+    border-radius: toRem(4);
+
+    color: $white;
+    background: $main-btn-color;
+
+    @media (max-width: $mobile) {
+      padding: toRem(14) toRem(10);
+      line-height: 20px;
+      letter-spacing: 0.28px;
+    }
 
     @media (max-width: $mobileSmall) {
       max-width: toRem(280);
+    }
+
+    &:hover {
+      background: $hover-main-btn;
+      transition: background 0.3s ease;
+    }
+  
+    &:active {
+      background: $pressed-main-bg;
     }
   }
 }
