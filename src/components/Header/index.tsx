@@ -1,52 +1,56 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { closeModal, openModal } from '@/store/modalSlice';
+import { openComponent, closeComponent } from '@/store/overlayStateSlice';
 import { useAppSelector, useAppDispatch } from '@/hooks/reduxHook';
 import { useWindowDimensions } from '@/hooks/useWindowDimensions';
 import { categoryList } from '@/constants/categoryList';
 import { SignIn } from '../auth/SignIn';
 import { SignUp } from '../auth/SignUp';
 import { UserDropdownMenu } from '../UserDropdownMenu';
+import { ShopDropdownMenu } from '../ShopDropdownMenu';
 import { Modal } from '../Modal';
 import LogoImg from '../../assets/logo.svg';
 import { Icon } from '@iconify/react';
 import s from './Header.module.scss';
-import { ShopDropdownMenu } from '../ShopDropdownMenu';
 
 export const Header = () => {
-  const [isSignIn, setIsSignIn] = useState<boolean>(true);
-  const [isDropdownMenuOpen, setIsDropdownMenuOpen] = useState<boolean>(false);
-  const [isShopDropdownOpen, setIsShopDropdownOpen] = useState<boolean>(false);
-  const isModalOpen = useAppSelector((state) => state.modal.auth);
   const dispatch = useAppDispatch();
-  const isLoginModalOpen = useAppSelector((state) => state.modal.login);
-  const isRegistrationModalOpen = useAppSelector(
-    (state) => state.modal.registration,
-  );
-  const isBurgerMenuOpen = useAppSelector((state) => state.modal.burgerMenu);
   const { width } = useWindowDimensions();
 
-  const handleOpenModal = (id: string) => {
-    dispatch(openModal(id));
-    setIsDropdownMenuOpen(false);
-  };
+  const isShopDropdownOpen = useAppSelector(
+    (state) => state.overlayState.isShopDropdown,
+  );
+  const isUserDropdownOpen = useAppSelector(
+    (state) => state.overlayState.isUserDropdown,
+  );
+
+  const isLoginModalOpen = useAppSelector((state) => state.modal.isLogin);
+  const isRegistrationModalOpen = useAppSelector(
+    (state) => state.modal.isRegistration,
+  );
+
+  const isBurgerMenuOpen = useAppSelector(
+    (state) => state.overlayState.isBurgerMenu,
+  );
 
   const handleOpenShopMenu = () => {
-    setIsShopDropdownOpen(!isShopDropdownOpen)
-    setIsDropdownMenuOpen(false);
-
-  }
+    dispatch(openComponent('isShopDropdown'));
+    dispatch(closeComponent('isUserDropdown'));
+    dispatch(closeComponent('isBurgerMenu'));
+  };
 
   const handleOpenAuthMenu = () => {
-    setIsDropdownMenuOpen(!isDropdownMenuOpen);
-    setIsShopDropdownOpen(false)
+    dispatch(openComponent('isUserDropdown'));
+    dispatch(closeComponent('isShopDropdown'));
+    dispatch(closeComponent('isBurgerMenu'));
   };
 
   const toggleBurgerMenu = () => {
     if (isBurgerMenuOpen) {
-      dispatch(closeModal('burgerMenu'));
+      dispatch(closeComponent('isBurgerMenu'));
     } else {
-      dispatch(openModal('burgerMenu'));
+      dispatch(openComponent('isBurgerMenu'));
+      dispatch(closeComponent('isUserDropdown'));
+      dispatch(closeComponent('isShopDropdown'));
     }
   };
 
@@ -93,10 +97,7 @@ export const Header = () => {
                   <Icon icon='solar:shop-2-outline' />
                   <Icon icon='solar:alt-arrow-down-outline' />
                 </button>
-                {isShopDropdownOpen && (
-                    <ShopDropdownMenu setDropdownOpen={setIsShopDropdownOpen}/>
-                  )
-                }
+                {isShopDropdownOpen && <ShopDropdownMenu />}
               </div>
 
               <div className={`${s.icon_user} ${s.header_dropdown}`}>
@@ -104,12 +105,7 @@ export const Header = () => {
                   <Icon icon='solar:user-outline' />
                   <Icon icon='solar:alt-arrow-down-outline' />
                 </button>
-                {isDropdownMenuOpen && (
-                  <UserDropdownMenu
-                    handleOpenModal={handleOpenModal}
-                    setDropdownOpen={setIsDropdownMenuOpen}
-                  />
-                )}
+                {isUserDropdownOpen && <UserDropdownMenu />}
               </div>
             </>
           )}
@@ -124,12 +120,12 @@ export const Header = () => {
       </div>
 
       {isLoginModalOpen && (
-        <Modal modalId='login'>
+        <Modal modalId='isLogin'>
           <SignIn />
         </Modal>
       )}
       {isRegistrationModalOpen && (
-        <Modal modalId='registration'>
+        <Modal modalId='isRegistration'>
           <SignUp />
         </Modal>
       )}

@@ -89,6 +89,7 @@
     font-weight: 700;
     line-height: toRem(20);
     letter-spacing: 0.28px;
+    text-transform: lowercase;
 
     @media (max-width: $tablet) {
       display: none;

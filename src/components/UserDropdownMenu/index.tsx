@@ -1,23 +1,43 @@
-import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
+import { useRef } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { UserDropdownMenuProps } from '@/types';
+import { useClickOutside } from '@/hooks/useClickOutside';
+import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
+import { userLogout } from '@/store/userProfile/userProfileThunks';
+import { openModal } from '@/store/modalSlice';
+import { closeComponent } from '@/store/overlayStateSlice';
 import { userPanelButtonsList } from '@/constants/userPanelButtonsList';
 import { ButtonUI } from '../UI/ButtonUI';
-import s from './UserDropdownMenu.module.scss';
 import { Icon } from '@iconify/react';
-import { userLogout } from '@/store/userProfile/userProfileThunks';
+import s from './UserDropdownMenu.module.scss';
 
-export const UserDropdownMenu = ({ handleOpenModal, setDropdownOpen }: UserDropdownMenuProps) => {
+export const UserDropdownMenu = () => {
+  const dropdownRef = useRef(null);
+  const dispatch = useAppDispatch();
   const { isAuth } = useAppSelector((state) => state.auth);
 
-  const dispatch = useAppDispatch();
+  const handleOpenModal = (id: string) => {
+    dispatch(openModal(id));
+    dispatch(closeComponent('isUserDropdown'));
+    dispatch(closeComponent('isShopDropdown'));
+  };
 
   const logoutUser = () => {
     dispatch(userLogout());
+    dispatch(closeComponent('isUserDropdown'));
   };
 
+  const handleCloseDropdown = () => {
+    dispatch(closeComponent('isUserDropdown'));
+  };
+
+  useClickOutside(dropdownRef, handleCloseDropdown);
+
   return (
-    <div className={s.dropdown} onClick={() => setDropdownOpen(false)}>
+    <div
+      ref={dropdownRef}
+      className={s.userDropdownMenu}
+      onClick={handleCloseDropdown}
+    >
       {isAuth ? (
         <div className={s.dropdown_menu}>
           {userPanelButtonsList.map((button) => (
@@ -41,10 +61,10 @@ export const UserDropdownMenu = ({ handleOpenModal, setDropdownOpen }: UserDropd
         </div>
       ) : (
         <div className={s.dropdown_auth}>
-          <ButtonUI label='Увійти' onClick={() => handleOpenModal('login')} />
+          <ButtonUI label='Увійти' onClick={() => handleOpenModal('isLogin')} />
           <div className={s.dropdown_auth_registration}>
             <p>Вперше тут?</p>
-            <button onClick={() => handleOpenModal('registration')}>
+            <button onClick={() => handleOpenModal('isRegistration')}>
               Зареєструватися
             </button>
           </div>

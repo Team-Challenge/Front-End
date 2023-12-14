@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useAppDispatch } from '@/hooks/reduxHook';
 import { userLogout } from '@/store/userProfile/userProfileThunks';
-import { closeModal } from '@/store/modalSlice';
+import { closeComponent } from '@/store/overlayStateSlice';
 import { UserProfileMenuProps } from '@/types';
 import { userPanelButtonsList } from '@/constants/userPanelButtonsList';
 import { Icon } from '@iconify/react';
@@ -14,11 +14,11 @@ export const UserProfileMenu = ({
 
   const logoutUser = () => {
     dispatch(userLogout());
-    dispatch(closeModal('burgerMenu'));
+    dispatch(closeComponent('isBurgerMenu'));
   };
 
   const closeBurgerMenu = () => {
-    dispatch(closeModal('burgerMenu'));
+    dispatch(closeComponent('isBurgerMenu'));
   };
 
   const handleLogoutClick = () => {
