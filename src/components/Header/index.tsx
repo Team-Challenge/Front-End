@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import { openComponent, closeComponent } from '@/store/overlayStateSlice';
-import { useAppSelector, useAppDispatch } from '@/hooks/reduxHook';
+import { useAppSelector } from '@/hooks/reduxHook';
 import { useWindowDimensions } from '@/hooks/useWindowDimensions';
+import { useToggleMenu } from '@/hooks/useToggleMenu';
 import { categoryList } from '@/constants/categoryList';
 import { SignIn } from '../auth/SignIn';
 import { SignUp } from '../auth/SignUp';
@@ -13,46 +13,16 @@ import { Icon } from '@iconify/react';
 import s from './Header.module.scss';
 
 export const Header = () => {
-  const dispatch = useAppDispatch();
   const { width } = useWindowDimensions();
 
-  const isShopDropdownOpen = useAppSelector(
-    (state) => state.overlayState.isShopDropdown,
-  );
-  const isUserDropdownOpen = useAppSelector(
-    (state) => state.overlayState.isUserDropdown,
-  );
+  const [isShopDropdownOpen, toggleShopMenu] = useToggleMenu('isShopDropdown');
+  const [isUserDropdownOpen, toggleUserMenu] = useToggleMenu('isUserDropdown');
+  const [isBurgerMenuOpen, toggleBurgerMenu] = useToggleMenu('isBurgerMenu');
 
   const isLoginModalOpen = useAppSelector((state) => state.modal.isLogin);
   const isRegistrationModalOpen = useAppSelector(
     (state) => state.modal.isRegistration,
   );
-
-  const isBurgerMenuOpen = useAppSelector(
-    (state) => state.overlayState.isBurgerMenu,
-  );
-
-  const handleOpenShopMenu = () => {
-    dispatch(openComponent('isShopDropdown'));
-    dispatch(closeComponent('isUserDropdown'));
-    dispatch(closeComponent('isBurgerMenu'));
-  };
-
-  const handleOpenAuthMenu = () => {
-    dispatch(openComponent('isUserDropdown'));
-    dispatch(closeComponent('isShopDropdown'));
-    dispatch(closeComponent('isBurgerMenu'));
-  };
-
-  const toggleBurgerMenu = () => {
-    if (isBurgerMenuOpen) {
-      dispatch(closeComponent('isBurgerMenu'));
-    } else {
-      dispatch(openComponent('isBurgerMenu'));
-      dispatch(closeComponent('isUserDropdown'));
-      dispatch(closeComponent('isShopDropdown'));
-    }
-  };
 
   return (
     <header className={s.header}>
@@ -70,7 +40,7 @@ export const Header = () => {
         {width <= 991.98 && (
           <div className={s.header_burger}>
             <button
-              onClick={toggleBurgerMenu}
+              onClick={() => toggleBurgerMenu()}
               className={`${s.icon_burger} ${
                 isBurgerMenuOpen ? s.open : s.closed
               }`}
@@ -93,7 +63,7 @@ export const Header = () => {
           {width >= 479.98 && (
             <>
               <div className={`${s.icon_shop} ${s.header_dropdown}`}>
-                <button onClick={handleOpenShopMenu}>
+                <button onClick={() => toggleShopMenu()}>
                   <Icon icon='solar:shop-2-outline' />
                   <Icon icon='solar:alt-arrow-down-outline' />
                 </button>
@@ -101,7 +71,7 @@ export const Header = () => {
               </div>
 
               <div className={`${s.icon_user} ${s.header_dropdown}`}>
-                <button onClick={handleOpenAuthMenu}>
+                <button onClick={() => toggleUserMenu()}>
                   <Icon icon='solar:user-outline' />
                   <Icon icon='solar:alt-arrow-down-outline' />
                 </button>
