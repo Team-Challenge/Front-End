@@ -17,8 +17,6 @@ export const UserDropdownMenu = () => {
 
   const handleOpenModal = (id: string) => {
     dispatch(openModal(id));
-    dispatch(closeComponent('isUserDropdown'));
-    dispatch(closeComponent('isShopDropdown'));
   };
 
   const logoutUser = () => {
