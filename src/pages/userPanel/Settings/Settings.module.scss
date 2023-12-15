@@ -85,6 +85,10 @@
     @include mobileTitleDecorationOverride;
   }
 
+  &_form {
+    width: 100%;
+  }
+
   &_text {
     max-width: toRem(424);
     margin-bottom: 2rem;

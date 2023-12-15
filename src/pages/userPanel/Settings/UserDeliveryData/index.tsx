@@ -54,7 +54,7 @@ export const UserDeliveryData = () => {
           <FormProvider {...methods}>
             <form
               id='delivery'
-              className={s.form}
+              className={`${s.form} ${s.modal_form}`}
               onSubmit={(e) => e.preventDefault()}
             >
               <div className={s.form_wrap}>
