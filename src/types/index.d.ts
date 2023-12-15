@@ -126,6 +126,14 @@ export interface SettingsFormData {
   phoneNumber?: string;
 }
 
+export interface DeliveryFormData {
+  full_name: string;
+  phone_number: string | null;
+  branch_name: string;
+  city_name: string;
+  post_service: string;
+}
+
 export interface CreateNewStoreProps {
   onSubmit: SubmitHandler<FormData>;
 }

@@ -10,6 +10,8 @@ import { DeliveryFormData } from '@/types';
 import { UserPhoneNumber } from '../UserPhoneNumber';
 import { FullName } from '@/components/FullName';
 import { PhoneNumber } from '@/components/PhoneNumber';
+import { ButtonUI } from '@/components/UI/ButtonUI';
+import { TextInput } from '@/components/UI/TextInput';
 
 export const UserDeliveryData = () => {
   const isModalOpen = useAppSelector((state) => state.modal.deliveryInfo);
@@ -23,6 +25,10 @@ export const UserDeliveryData = () => {
     mode: 'onChange',
   });
   const { watch, reset } = methods;
+
+  const onSubmit = (data: DeliveryFormData) => {
+    console.log(data);
+  };
 
   const hanldeOpenModal = () => {
     dispatch(openModal('deliveryInfo'));
@@ -46,9 +52,13 @@ export const UserDeliveryData = () => {
         <Modal modalId='deliveryInfo' className={s.modal}>
           <OrnamentalTitle tag='h4' text='Введіть адресу' />
           <FormProvider {...methods}>
-            <form id='delivery' onSubmit={(e) => e.preventDefault()}>
+            <form
+              id='delivery'
+              className={s.form}
+              onSubmit={(e) => e.preventDefault()}
+            >
               <div className={s.form_wrap}>
-                <p className={s.form_hints}>Ім’я та Прізвище од ержувача</p>
+                <p className={s.form_hints}>Ім’я та Прізвище одержувача</p>
                 <FullName value={fullName as string} />
                 <p className={s.form_hints}>
                   {userPhoneNumber
@@ -57,7 +67,31 @@ export const UserDeliveryData = () => {
                 </p>
                 <PhoneNumber userPhoneNumber={userPhoneNumber} />
                 <DeliverySelect />
+                <p className={s.form_hints}>Спосіб доставки</p>
+                {/* todo Change inputs below into dropdown selects */}
+                <TextInput
+                  id='post_service'
+                  type='text'
+                  placeholder='placeholder'
+                />
+                <p className={s.form_hints}>Місто</p>
+                <TextInput
+                  id='city_name'
+                  type='text'
+                  placeholder='placeholder'
+                />
+                <p className={s.form_hints}>Відділення</p>
+                <TextInput
+                  id='branch_name'
+                  type='text'
+                  placeholder='placeholder'
+                />
               </div>
+              <ButtonUI
+                type='submit'
+                label='Зберегти'
+                onClick={methods.handleSubmit(onSubmit)}
+              />
             </form>
           </FormProvider>
         </Modal>
