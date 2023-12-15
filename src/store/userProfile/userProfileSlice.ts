@@ -34,7 +34,7 @@ const userProfileSlice = createSlice({
   },
 });
 
-export const { setFullName, setPhoneNumber, setProfilePhoto } =
+export const { setFullName, setPhoneNumber, setProfilePhoto, setDelivetyInfo } =
   userProfileSlice.actions;
 
 export default userProfileSlice.reducer;
