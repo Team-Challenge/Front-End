@@ -7,11 +7,12 @@ import { getUserPanelButtonsList } from '@/constants/userPanelButtonsList';
 import { Icon } from '@iconify/react';
 import s from './BurgerMenu.module.scss';
 
-export const UserProfileMenu = ({
-  closeUserMenu,
-}: UserProfileMenuProps) => {
+export const UserProfileMenu = ({ closeUserMenu }: UserProfileMenuProps) => {
   const dispatch = useAppDispatch();
   const userPanelButtonsList = getUserPanelButtonsList();
+  const filteredButtonsList = userPanelButtonsList.filter(
+    (item) => item.title !== 'Мій магазин',
+  );
 
   const logoutUser = () => {
     dispatch(userLogout());
@@ -37,7 +38,7 @@ export const UserProfileMenu = ({
         Мій профіль
       </button>
       <ul className={s.profile_list}>
-        {userPanelButtonsList.map((item) => (
+        {filteredButtonsList.map((item) => (
           <Link
             key={item.id}
             to={`account/${item.pathToPage}`}
@@ -51,7 +52,7 @@ export const UserProfileMenu = ({
       </ul>
       <div className={`${s.button_logout} ${s.profile_logout}`}>
         <Link to='/' className={s.profile_item} onClick={handleLogoutClick}>
-          <Icon icon='solar:logout-2-outline' className={s.menu_icon}/>
+          <Icon icon='solar:logout-2-outline' className={s.menu_icon} />
           Вийти
         </Link>
       </div>

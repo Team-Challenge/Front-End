@@ -15,20 +15,24 @@ import s from './BurgerMenu.module.scss';
 
 export const BurgerMenu = () => {
   const dispatch = useAppDispatch();
-  const { isAuth } = useAppSelector((state) => state.auth);
-
   const { width } = useWindowDimensions();
+  const { isAuth } = useAppSelector((state) => state.auth);
+  const { hasStore } = useAppSelector((state) => state.storeProfile);
+
   const [isUserMenuOpen, openUserMenu, closeUserMenu] = useMenuHandler();
   const [isStoreMenuOpen, openStoreMenu, closeStoreMenu] = useMenuHandler();
 
+  const handleCloseMenu = () => {
+    dispatch(closeComponent('isBurgerMenu'));
+  };
+
   const handleOpenModal = (id: string) => {
     dispatch(openModal(id));
-    dispatch(closeComponent('isBurgerMenu'));
+    handleCloseMenu();
   };
 
   const logoutUser = () => {
     dispatch(userLogout());
-    dispatch(closeComponent('isBurgerMenu'));
   };
 
   useEffect(() => {
@@ -89,13 +93,33 @@ export const BurgerMenu = () => {
                           className={s.menu_arrow}
                         />
                       </li>
-                      <li className={s.account_item} onClick={openStoreMenu}>
-                        <Icon
-                          icon='solar:shop-2-outline'
-                          className={s.menu_icon}
-                        />
-                        Мій магазин
-                      </li>
+
+                      {hasStore ? (
+                        <li className={s.account_item} onClick={openStoreMenu}>
+                          <Icon
+                            icon='solar:shop-2-outline'
+                            className={s.menu_icon}
+                          />
+                          Мій магазин
+                          <Icon
+                            icon='solar:alt-arrow-right-outline'
+                            className={s.menu_arrow}
+                          />
+                        </li>
+                      ) : (
+                        <Link
+                          className={s.account_item}
+                          to={'/account/create-store'}
+                          onClick={handleCloseMenu}
+                        >
+                          <Icon
+                            icon='solar:shop-2-outline'
+                            className={s.menu_icon}
+                          />
+                          Мій магазин
+                        </Link>
+                      )}
+
                     </ul>
                   </div>
                   <div className={s.button_logout}>
