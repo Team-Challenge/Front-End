@@ -110,12 +110,23 @@
   }
 }
 
-.addButton {
+.smallButton {
   display: flex;
   align-items: center;
   margin: -6px 0;
 
   & > svg {
     margin-right: 8px;
+  }
+
+  & > button {
+    color: var(--Green-900, #1a7171);
+    /* Buttons/Small */
+    font-family: Craftwork Grotesk;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 16px; /* 133.333% */
+    letter-spacing: 0.36px;
   }
 }
