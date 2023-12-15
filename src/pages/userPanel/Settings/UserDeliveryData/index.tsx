@@ -1,22 +1,13 @@
-import { useEffect, useState } from 'react';
 import s from '../Settings.module.scss'
-import { getDeliveryData } from './api';
 import { Icon } from '@iconify/react';
 import { Modal } from '@/components/Modal';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
 import { openModal } from '@/store/modalSlice';
+import { DeliverySelect } from './DeliverySelect';
 
 export const UserDeliveryData = () => {
-  const [novaPostDelivery, setNovaPostDelivery] = useState([]);
   const isModalOpen = useAppSelector(state => state.modal.deliveryInfo)
   const dispatch = useAppDispatch()
-
-  useEffect(() => {
-    getDeliveryData().then((res) => {
-      setNovaPostDelivery(res.data);
-      console.log(res.data);
-    });
-  }, []);
 
   const hanldeOpenModal = () => {
     dispatch(openModal('deliveryInfo'))
@@ -39,6 +30,7 @@ export const UserDeliveryData = () => {
       {isModalOpen && (
         <Modal modalId='deliveryInfo' className={s.modal} >
           <>delivery</>
+          <DeliverySelect />
         </Modal>
       )}
     </div>
