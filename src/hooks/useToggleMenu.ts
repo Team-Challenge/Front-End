@@ -7,7 +7,9 @@ export const useToggleMenu = (menuType: string) => {
     (state) => state.overlayState[menuType],
   );
 
-  const toggleMenu = () => {
+  const toggleMenu = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    event.stopPropagation();
+
     if (isOpen) {
       dispatch(closeComponent(menuType));
     } else {
