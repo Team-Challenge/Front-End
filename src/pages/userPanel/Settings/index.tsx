@@ -32,7 +32,7 @@ export const Settings = () => {
   const { watch, reset } = methods;
 
   const newPassword = watch('new_password');
-  const phoneNumber = watch('phoneNumber');
+  const phoneNumber = watch('phone_number');
 
   const closeModalWindow = () => {
     dispatch(closeModal('settingsMessage'));
@@ -40,7 +40,7 @@ export const Settings = () => {
 
   const onSubmit = (data: SettingsFormData) => {
     if (phoneNumber) {
-      dispatch(changePhoneNumber(data.phoneNumber)).then((response) => {
+      dispatch(changePhoneNumber(data.phone_number)).then((response) => {
         if (response.payload) {
           setIsSuccessfulChange(true);
           reset();
