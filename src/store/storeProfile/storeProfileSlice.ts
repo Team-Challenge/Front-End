@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface StoreProfileState {
+  hasStore: boolean,
   name: string,
   description: string,
   shop_photo: string,
@@ -10,6 +11,7 @@ interface StoreProfileState {
 }
 
 const initialState: StoreProfileState = {
+  hasStore: false,
   name: '',
   description: '',
   shop_photo: '',
@@ -22,6 +24,9 @@ const storeProfileSlice = createSlice({
   name: 'store',
   initialState,
   reducers: {
+    setStore: (state, action: PayloadAction<boolean>) => {
+      state.hasStore = action.payload;
+    },
     setName: (state, action: PayloadAction<string>) => {
       state.name = action.payload;
     },
@@ -43,7 +48,7 @@ const storeProfileSlice = createSlice({
   },
 });
 
-export const { setName, setDescription, setShopPhoto, setBannerPhoto, setStorePhoneNumber, setLink } =
+export const { setStore, setName, setDescription, setShopPhoto, setBannerPhoto, setStorePhoneNumber, setLink } =
 storeProfileSlice.actions;
 
 export default storeProfileSlice.reducer;

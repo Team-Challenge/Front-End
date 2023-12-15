@@ -1,6 +1,6 @@
 import $api from '@/http';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { setName, setDescription, setShopPhoto, setBannerPhoto, setStorePhoneNumber, setLink } from './storeProfileSlice';
+import { setStore, setName, setDescription, setShopPhoto, setBannerPhoto, setStorePhoneNumber, setLink } from './storeProfileSlice';
 
 export const getStoreInfo = createAsyncThunk(
   'shops/info',
@@ -8,6 +8,7 @@ export const getStoreInfo = createAsyncThunk(
     try {
       const response = await $api.get('/shops/shop_info');
       if (response.status === 200) {
+        dispatch(setStore(true));
         dispatch(setName(response.data.name));
         dispatch(setDescription(response.data.description));
         dispatch(setShopPhoto(response.data.shop_photo));
