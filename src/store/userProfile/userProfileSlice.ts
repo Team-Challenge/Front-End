@@ -1,9 +1,12 @@
+import { DeliveryInfo } from '@/types';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { act } from 'react-dom/test-utils';
 
 interface UserProfileState {
   full_name: string;
   phone_number: string;
   profile_picture: string;
+  delivery_info?: DeliveryInfo;
 }
 
 const initialState: UserProfileState = {
@@ -25,6 +28,9 @@ const userProfileSlice = createSlice({
     setProfilePhoto: (state, action: PayloadAction<string>) => {
       state.profile_picture = action.payload;
     },
+    setDelivetyInfo: (state, action: PayloadAction<DeliveryInfo>) => {
+      state.delivery_info = action.payload;
+    }
   },
 });
 

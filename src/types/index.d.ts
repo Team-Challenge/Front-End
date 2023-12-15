@@ -126,12 +126,16 @@ export interface SettingsFormData {
   phoneNumber?: string;
 }
 
-export interface DeliveryFormData {
-  full_name: string;
-  phone_number: string | null;
+
+export interface DeliveryInfo {
   branch_name: string;
   city_name: string;
   post_service: string;
+}
+
+export interface DeliveryFormData extends DeliveryInfo {
+  full_name: string;
+  phone_number: string | null;
 }
 
 export interface CreateNewStoreProps {

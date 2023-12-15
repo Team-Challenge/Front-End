@@ -6,6 +6,7 @@ import {
   setPhoneNumber,
   setProfilePhoto,
 } from './userProfileSlice';
+import { DeliveryInfo } from '@/types';
 
 export const getUserInfo = createAsyncThunk(
   'userAccount/info',
@@ -16,6 +17,7 @@ export const getUserInfo = createAsyncThunk(
         dispatch(setFullName(response.data.full_name));
         dispatch(setPhoneNumber(response.data.phone_number));
         dispatch(setProfilePhoto(response.data.profile_picture));
+        // todo add delivery info from backend
       }
     } catch (e) {
       const error = e as Error;
@@ -23,6 +25,14 @@ export const getUserInfo = createAsyncThunk(
     }
   },
 );
+
+export const updateDelivetyInfo = createAsyncThunk(
+  'userSettings/updateDeliveryInfo',
+  async (newDeliveryInfo: DeliveryInfo, { dispatch }) => {
+    // todo
+    console.log('new delivery info in Redux: ', newDeliveryInfo)
+  }
+)
 
 export const changeFullName = createAsyncThunk(
   'userSettings/changeFullName',

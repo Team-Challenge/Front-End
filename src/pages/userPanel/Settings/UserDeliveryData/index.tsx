@@ -12,6 +12,7 @@ import { FullName } from '@/components/FullName';
 import { PhoneNumber } from '@/components/PhoneNumber';
 import { ButtonUI } from '@/components/UI/ButtonUI';
 import { TextInput } from '@/components/UI/TextInput';
+import { updateDelivetyInfo } from '@/store/userProfile/userProfileThunks';
 
 export const UserDeliveryData = () => {
   const isModalOpen = useAppSelector((state) => state.modal.deliveryInfo);
@@ -28,6 +29,12 @@ export const UserDeliveryData = () => {
 
   const onSubmit = (data: DeliveryFormData) => {
     console.log(data);
+    if (!data) return null;
+
+    dispatch(updateDelivetyInfo(data)).then(() => {
+      // todo
+      console.log('ur delivery info in Redux was changed');
+    });
   };
 
   const hanldeOpenModal = () => {
