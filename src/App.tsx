@@ -15,8 +15,10 @@ export const App = () => {
   const dispatch = useAppDispatch();
   const { width } = useWindowDimensions();
   const { isAuth } = useAppSelector((state) => state.auth);
-  const isBurgerMenuOpen = useAppSelector((state) => state.overlayState.isBurgerMenu);
-  const hasStore = useAppSelector((state) => state.storeProfile.name);
+  const { hasStore } = useAppSelector((state) => state.storeProfile);
+  const isBurgerMenuOpen = useAppSelector(
+    (state) => state.overlayState.isBurgerMenu,
+  );
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
@@ -24,17 +26,19 @@ export const App = () => {
       dispatch(getUserInfo());
       dispatch(getStoreInfo());
     }
-  }, []);
+  }, [isAuth]);
 
   return (
     <div>
       <Header />
-      {width <=991.98 && isBurgerMenuOpen && <BurgerMenu />}
+      {width <= 991.98 && isBurgerMenuOpen && <BurgerMenu />}
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='*' element={<PageNotFound />} />
         {isAuth && <Route path='/account/*' element={<UserPanelRoutes />} />}
-        {isAuth && hasStore && <Route path='/account/store/*' element={<StorePanelRoutes />} />}
+        {isAuth && hasStore && (
+          <Route path='/account/store/*' element={<StorePanelRoutes />} />
+        )}
       </Routes>
     </div>
   );
