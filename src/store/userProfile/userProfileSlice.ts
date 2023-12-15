@@ -28,13 +28,13 @@ const userProfileSlice = createSlice({
     setProfilePhoto: (state, action: PayloadAction<string>) => {
       state.profile_picture = action.payload;
     },
-    setDelivetyInfo: (state, action: PayloadAction<DeliveryInfo>) => {
+    setDeliveryInfo: (state, action: PayloadAction<DeliveryInfo>) => {
       state.delivery_info = action.payload;
-    }
+    },
   },
 });
 
-export const { setFullName, setPhoneNumber, setProfilePhoto, setDelivetyInfo } =
+export const { setFullName, setPhoneNumber, setProfilePhoto, setDeliveryInfo } =
   userProfileSlice.actions;
 
 export default userProfileSlice.reducer;

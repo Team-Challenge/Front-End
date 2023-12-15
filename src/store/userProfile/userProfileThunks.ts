@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import $api from '@/http';
 import { setAuth } from '../auth/authSlice';
 import {
-  setDelivetyInfo,
+  setDeliveryInfo,
   setFullName,
   setPhoneNumber,
   setProfilePhoto,
@@ -31,7 +31,7 @@ export const updateDelivetyInfo = createAsyncThunk(
   'userSettings/updateDeliveryInfo',
   async (newDeliveryInfo: DeliveryInfo, { dispatch }) => {
     // todo
-    dispatch(setDelivetyInfo(newDeliveryInfo))
+    dispatch(setDeliveryInfo(newDeliveryInfo))
   }
 )
 

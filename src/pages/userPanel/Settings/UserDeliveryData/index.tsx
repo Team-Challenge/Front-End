@@ -23,7 +23,6 @@ export const UserDeliveryData = () => {
   const methods = useForm<DeliveryFormData>({
     mode: 'onChange',
   });
-  const { watch, reset } = methods;
 
   const onSubmit = (data: DeliveryFormData) => {
     console.log(data);
