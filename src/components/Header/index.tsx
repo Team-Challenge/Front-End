@@ -40,7 +40,7 @@ export const Header = () => {
         {width <= 991.98 && (
           <div className={s.header_burger}>
             <button
-              onClick={() => toggleBurgerMenu()}
+              onClick={(event) => toggleBurgerMenu(event)}
               className={`${s.icon_burger} ${
                 isBurgerMenuOpen ? s.open : s.closed
               }`}
@@ -63,7 +63,7 @@ export const Header = () => {
           {width >= 479.98 && (
             <>
               <div className={`${s.icon_shop} ${s.header_dropdown}`}>
-                <button onClick={() => toggleShopMenu()}>
+                <button onClick={(event) => toggleShopMenu(event)}>
                   <Icon icon='solar:shop-2-outline' />
                   <Icon
                     icon='solar:alt-arrow-down-outline'
@@ -74,7 +74,7 @@ export const Header = () => {
               </div>
 
               <div className={`${s.icon_user} ${s.header_dropdown}`}>
-                <button onClick={() => toggleUserMenu()}>
+                <button onClick={(event) => toggleUserMenu(event)}>
                   <Icon icon='solar:user-outline' />
                   <Icon
                     icon='solar:alt-arrow-down-outline'
