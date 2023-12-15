@@ -126,7 +126,6 @@ export interface SettingsFormData {
   phoneNumber?: string;
 }
 
-
 export interface DeliveryInfo {
   full_name: string;
   phone_number: string | null;
