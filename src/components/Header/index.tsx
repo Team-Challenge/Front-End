@@ -14,7 +14,8 @@ import s from './Header.module.scss';
 
 export const Header = () => {
   const { width } = useWindowDimensions();
-  const hasStore = useAppSelector((state) => state.storeProfile.name);
+  const { isAuth } = useAppSelector((state) => state.auth);
+  const { hasStore } = useAppSelector((state) => state.storeProfile);
 
   const [isShopDropdownOpen, toggleShopMenu] = useToggleMenu('isShopDropdown');
   const [isUserDropdownOpen, toggleUserMenu] = useToggleMenu('isUserDropdown');
@@ -63,7 +64,7 @@ export const Header = () => {
 
           {width >= 479.98 && (
             <>
-              {hasStore && (
+              {isAuth && hasStore && (
                 <div className={`${s.icon_shop} ${s.header_dropdown}`}>
                   <button onClick={() => toggleShopMenu()}>
                     <Icon icon='solar:shop-2-outline' />
