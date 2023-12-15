@@ -123,7 +123,7 @@ export interface SettingsFormData {
   new_password?: string;
   new_password_repeat?: string;
   email?: string;
-  phoneNumber?: string;
+  phone_number?: string;
 }
 
 export interface DeliveryInfo {
