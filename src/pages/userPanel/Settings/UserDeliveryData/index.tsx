@@ -17,9 +17,7 @@ import { updateDelivetyInfo } from '@/store/userProfile/userProfileThunks';
 export const UserDeliveryData = () => {
   const isModalOpen = useAppSelector((state) => state.modal.deliveryInfo);
   const dispatch = useAppDispatch();
-  const userPhoneNumber = useAppSelector(
-    (state) => state.userProfile.phone_number,
-  );
+  const userPhoneNumber = useAppSelector((state) => state.userProfile.phone_number);
   const fullName = useAppSelector((state) => state.userProfile.full_name);
 
   const methods = useForm<DeliveryFormData>({

@@ -128,15 +128,14 @@ export interface SettingsFormData {
 
 
 export interface DeliveryInfo {
+  full_name: string;
+  phone_number: string | null;
   branch_name: string;
   city_name: string;
   post_service: string;
 }
 
-export interface DeliveryFormData extends DeliveryInfo {
-  full_name: string;
-  phone_number: string | null;
-}
+export interface DeliveryFormData extends DeliveryInfo {}
 
 export interface CreateNewStoreProps {
   onSubmit: SubmitHandler<FormData>;
