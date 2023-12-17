@@ -1,4 +1,6 @@
+import { useRef } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { useClickOutside } from '@/hooks/useClickOutside';
 import { useAppDispatch } from '@/hooks/reduxHook';
 import { closeComponent } from '@/store/overlayStateSlice';
 import { storePanelButtonsList } from '@/constants/storePanelButtonsList';
@@ -7,13 +9,20 @@ import s from './ShopDropdownMenu.module.scss';
 
 export const ShopDropdownMenu = () => {
   const dispatch = useAppDispatch();
+  const dropdownRef = useRef(null);
 
   const handleCloseDropdown = () => {
     dispatch(closeComponent('isShopDropdown'));
   };
 
+  useClickOutside(dropdownRef, handleCloseDropdown);
+
   return (
-    <div className={s.shopDropdownMenu} onClick={handleCloseDropdown}>
+    <div
+      ref={dropdownRef}
+      className={s.shopDropdownMenu}
+      onClick={handleCloseDropdown}
+    >
       <div>
         {storePanelButtonsList.map((button) => (
           <NavLink

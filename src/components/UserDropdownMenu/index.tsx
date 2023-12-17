@@ -1,4 +1,6 @@
+import { useRef } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { useClickOutside } from '@/hooks/useClickOutside';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
 import { userLogout } from '@/store/userProfile/userProfileThunks';
 import { openModal } from '@/store/modalSlice';
@@ -9,14 +11,13 @@ import { Icon } from '@iconify/react';
 import s from './UserDropdownMenu.module.scss';
 
 export const UserDropdownMenu = () => {
-  const dispatch = useAppDispatch();
-  const { isAuth } = useAppSelector((state) => state.auth);
   const userPanelButtonsList = getUserPanelButtonsList();
+  const { isAuth } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
+  const dropdownRef = useRef(null);
 
   const handleOpenModal = (id: string) => {
     dispatch(openModal(id));
-    dispatch(closeComponent('isUserDropdown'));
-    dispatch(closeComponent('isShopDropdown'));
   };
 
   const logoutUser = () => {
@@ -28,8 +29,10 @@ export const UserDropdownMenu = () => {
     dispatch(closeComponent('isUserDropdown'));
   };
 
+  useClickOutside(dropdownRef, handleCloseDropdown);
+
   return (
-    <div className={s.dropdown} onClick={handleCloseDropdown}>
+    <div ref={dropdownRef} className={s.dropdown} onClick={handleCloseDropdown}>
       {isAuth ? (
         <div className={s.dropdown_menu}>
           {userPanelButtonsList.map((button) => (

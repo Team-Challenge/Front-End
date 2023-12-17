@@ -84,7 +84,7 @@ export const BurgerMenu = () => {
                     <ul className={s.account_list}>
                       <li className={s.account_item} onClick={openUserMenu}>
                         <Icon
-                          icon='solar:user-circle-outline'
+                          icon='solar:user-outline'
                           className={s.menu_icon}
                         />
                         Мій профіль
