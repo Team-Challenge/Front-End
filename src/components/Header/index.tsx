@@ -66,7 +66,7 @@ export const Header = () => {
             <>
               {isAuth && hasStore && (
                 <div className={`${s.icon_shop} ${s.header_dropdown}`}>
-                  <button onClick={() => toggleShopMenu()}>
+                  <button onClick={(event) => toggleShopMenu(event)}>
                     <Icon icon='solar:shop-2-outline' />
                     <Icon
                       icon='solar:alt-arrow-down-outline'
