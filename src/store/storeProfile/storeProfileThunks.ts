@@ -17,8 +17,9 @@ export const getStoreInfo = createAsyncThunk(
         dispatch(setLink(response.data.link));
       }
     } catch (e) {
-      const error = e as Error;
-      throw error;
+      console.warn('Ой, здається, у вас ще немає створеного магазину.');
+      // const error = e as Error;
+      // throw error;
     }
   },
 );
