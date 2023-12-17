@@ -26,8 +26,11 @@ export const CreateNewStore = () => {
   });
 
   const {
-    formState: { isValid },
+    setError,
+    formState: { errors, isValid },
   } = methods;
+
+  const hasError = Boolean(errors.createNewStoreError);
 
   const onSubmit = async (data: CreateNewStoreFormData) => {
     try {
@@ -36,13 +39,17 @@ export const CreateNewStore = () => {
           name: data.name,
           phone_number: data.phoneNumber,
         }),
-      );
+      ).unwrap();
 
       dispatch(getStoreInfo());
       dispatch(closeModal('createNewStore'));
       dispatch(openModal('successfulCreateStore'));
     } catch (error) {
-      console.error('Error create store:', error);
+      setError('createNewStoreError', {
+        type: 'manual',
+        message:
+          'На жаль, вже існує магазин з такою назвою. Будь ласка, введіть іншу назву, яка буде унікальною',
+      });
     }
   };
 
@@ -69,7 +76,17 @@ export const CreateNewStore = () => {
             maxLength={30}
             maxLengthMessage={`Будь ласка, введіть назву магазину, що не перевищує 30 символів`}
             className={s.modal_input}
+            isServerValidation={hasError}
+            isServerError={hasError}
+            onClick={() => methods.clearErrors('createNewStoreError')}
           />
+
+          {hasError && (
+            <p className={`error-text ${s.modal_error}`}>
+              {errors?.createNewStoreError?.message as string}
+            </p>
+          )}
+
           <div className={s.modal_hint}>
             <i>
               <Icon icon='solar:info-circle-outline' />
