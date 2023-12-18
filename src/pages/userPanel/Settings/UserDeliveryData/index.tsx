@@ -13,7 +13,7 @@ export const UserDeliveryData = () => {
     <div className={s.form_wrap}>
       <p className={s.form_hints}>Дані про доставку</p>
       {deliveryInfo ? (
-        <DeliveryInfo />
+        <DeliveryInfo deliveryInfo={deliveryInfo}/>
       ) : (
         <>
           {/* todo Change inputs below into dropdown selects */}
