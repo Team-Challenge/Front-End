@@ -5,10 +5,11 @@ import { Icon } from '@iconify/react';
 import settings from '../Settings.module.scss';
 import styles from './DeliveryInfo.module.scss';
 
-export const DeliveryInfo = () => {
-  const deliveryInfo: TDelivery | undefined = useAppSelector(
-    (state) => state.userProfile.delivery_info,
-  );
+type TProps = {
+  deliveryInfo: TDelivery | undefined;
+}
+
+export const DeliveryInfo = ({ deliveryInfo }: TProps) => {
 
   if (deliveryInfo)
     return (
