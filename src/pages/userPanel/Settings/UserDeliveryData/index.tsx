@@ -11,12 +11,17 @@ export const UserDeliveryData = () => {
 
   return (
     <div className={s.form_wrap}>
-      <DeliveryInfo />
       <p className={s.form_hints}>Дані про доставку</p>
-      {/* todo Change inputs below into dropdown selects */}
-      <TextInput id='post_service' type='text' placeholder='placeholder' />
-      <TextInput id='city_name' type='text' placeholder='placeholder' />
-      <TextInput id='branch_name' type='text' placeholder='placeholder' />
+      {deliveryInfo ? (
+        <DeliveryInfo />
+      ) : (
+        <>
+          {/* todo Change inputs below into dropdown selects */}
+          <TextInput id='post_service' type='text' placeholder='placeholder' />
+          <TextInput id='city_name' type='text' placeholder='placeholder' />
+          <TextInput id='branch_name' type='text' placeholder='placeholder' />
+        </>
+      )}
     </div>
   );
 };
