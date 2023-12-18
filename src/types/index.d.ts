@@ -69,8 +69,8 @@ export interface TextInputProps {
   value?: string;
   placeholder: string;
   required?: boolean;
-  isAuth?: boolean;
-  isAuthError?: boolean;
+  isServerValidation?: boolean;
+  isServerError?: boolean;
   editModeIcon?: boolean;
   onClick?: () => void;
   regex?: RegExp;
@@ -86,8 +86,8 @@ export interface PasswordInputProps {
   id: string;
   placeholder: string;
   required: boolean;
-  isAuth?: boolean;
-  isAuthError?: boolean;
+  isServerValidation?: boolean;
+  isServerError?: boolean;
   validate?: any;
   onClick?: () => void;
   isRepeatPassword?: boolean;
@@ -102,8 +102,8 @@ export interface FullNameProps {
 export interface EmailProps {
   required?: boolean;
   onClick?: () => void;
-  isAuth?: boolean;
-  isAuthError?: boolean;
+  isServerValidation?: boolean;
+  isServerError?: boolean;
 }
 
 export interface PhoneNumberProps {
@@ -126,12 +126,9 @@ export interface SettingsFormData {
   phoneNumber?: string;
 }
 
-export interface CreateNewStoreProps {
-  onSubmit: SubmitHandler<FormData>;
-}
-
-export interface NewStoreFormData {
+export interface CreateNewStoreFormData {
   name: string;
+  phoneNumber: string;
 }
 
 export interface ChangeFullNameFormData {

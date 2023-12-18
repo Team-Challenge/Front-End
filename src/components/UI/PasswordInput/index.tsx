@@ -10,8 +10,8 @@ export const PasswordInput = ({
   placeholder,
   validate,
   required,
-  isAuth,
-  isAuthError,
+  isServerValidation,
+  isServerError,
   onClick,
   isRepeatPassword = false,
   className,
@@ -30,8 +30,8 @@ export const PasswordInput = ({
   const isDirty = id in dirtyFields;
 
   const inputClassName = `${s.input}
-    ${(hasError && !isAuth) || isAuthError ? s.input_error : ''}
-    ${!hasError && isDirty && !isAuth ? s.input_success : ''}`;
+    ${(hasError && !isServerValidation) || isServerError ? s.input_error : ''}
+    ${!hasError && isDirty && !isServerValidation ? s.input_success : ''}`;
 
   return (
     <div className={className}>
@@ -64,13 +64,13 @@ export const PasswordInput = ({
               <Icon icon='solar:eye-closed-outline' />
             )}
           </button>
-          {(hasError && !isAuth) || isAuthError ? (
+          {(hasError && !isServerValidation) || isServerError ? (
             <i className={s.icon_invalid}>
               <Icon icon='solar:danger-circle-outline' />
             </i>
           ) : (
             isDirty &&
-            !isAuth && (
+            !isServerValidation && (
               <i className={s.icon_valid}>
                 <Icon icon='solar:unread-outline' />
               </i>
@@ -79,7 +79,7 @@ export const PasswordInput = ({
         </div>
       </label>
 
-      {hasError && !isAuth && (
+      {hasError && !isServerValidation && (
         <p className={`error-text ${s.error}`}>
           {isRepeatPassword
             ? 'Введені паролі не співпадають. Будь ласка, перевірте і спробуйте ще раз'
