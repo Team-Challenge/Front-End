@@ -1,7 +1,5 @@
 import s from '../Settings.module.scss';
 import { useAppSelector } from '@/hooks/reduxHook';
-import { TextInput } from '@/components/UI/TextInput';
-import { DeliveryInfo } from './DeliveryInfo';
 import { DeliveryInfo as TDelivery } from '@/types';
 import { Select } from 'antd';
 import { useEffect, useState } from 'react';
