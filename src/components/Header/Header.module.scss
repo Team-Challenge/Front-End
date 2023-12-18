@@ -151,21 +151,44 @@
       gap: toRem(4);
     }
   }
+
+  &_close {
+    transform: rotate(0);
+    transition: transform 0.3s;
+  }
+
+  &_open {
+    transform: rotate(180deg);
+    transition: transform 0.3s;
+  }
+}
+
+.icon_burger {
+  max-width: toRem(20);
+  max-height: toRem(20);
+  display: grid;
+  gap: toRem(3.89);
+  justify-items: stretch;
+  align-items: stretch;
+  justify-content: center;
+  align-content: center;
+  margin: toRem(1.5) 0px;
 }
 
 .icon_bar {
   display: block;
-  width: toRem(18);
+  width: toRem(17.8);
   height: toRem(1.5);
   background: $black;
-  margin: toRem(3) 0;
   transition: transform 0.4s;
   border-radius: toRem(5);
 }
 
 .open .icon_bar {
+  margin: 0;
+
   &:first-child {
-    transform: rotate(-45deg) translate(-0.1px, 5px);
+    transform: translateY(6px) rotate(-45deg);
   }
 
   &:nth-child(2) {
@@ -173,6 +196,6 @@
   }
 
   &:last-child {
-    transform: rotate(45deg) translate(-1.7px, -7.1px);
+    transform: translateY(-5px) rotate(45deg);
   }
 }

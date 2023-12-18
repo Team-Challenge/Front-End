@@ -11,14 +11,12 @@ import { Icon } from '@iconify/react';
 import s from './UserDropdownMenu.module.scss';
 
 export const UserDropdownMenu = () => {
-  const dropdownRef = useRef(null);
   const dispatch = useAppDispatch();
   const { isAuth } = useAppSelector((state) => state.auth);
+  const dropdownRef = useRef(null);
 
   const handleOpenModal = (id: string) => {
     dispatch(openModal(id));
-    dispatch(closeComponent('isUserDropdown'));
-    dispatch(closeComponent('isShopDropdown'));
   };
 
   const logoutUser = () => {
@@ -33,11 +31,7 @@ export const UserDropdownMenu = () => {
   useClickOutside(dropdownRef, handleCloseDropdown);
 
   return (
-    <div
-      ref={dropdownRef}
-      className={s.dropdown}
-      onClick={handleCloseDropdown}
-    >
+    <div ref={dropdownRef} className={s.dropdown} onClick={handleCloseDropdown}>
       {isAuth ? (
         <div className={s.dropdown_menu}>
           {userPanelButtonsList.map((button) => (

@@ -8,8 +8,8 @@ import { Icon } from '@iconify/react';
 import s from './ShopDropdownMenu.module.scss';
 
 export const ShopDropdownMenu = () => {
-  const dropdownRef = useRef(null);
   const dispatch = useAppDispatch();
+  const dropdownRef = useRef(null);
 
   const handleCloseDropdown = () => {
     dispatch(closeComponent('isShopDropdown'));

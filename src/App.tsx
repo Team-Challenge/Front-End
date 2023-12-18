@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { useWindowDimensions } from './hooks/useWindowDimensions';
 import { useAppDispatch, useAppSelector } from './hooks/reduxHook';
 import { checkAuth } from './store/auth/authActions';
 import { getUserInfo } from './store/userProfile/userProfileThunks';
@@ -10,6 +11,7 @@ import { StorePanelRoutes } from './components/routes/StorePanelRoutes';
 import { BurgerMenu } from './components/BurgerMenu';
 
 export const App = () => {
+  const { width } = useWindowDimensions();
   const { isAuth } = useAppSelector((state) => state.auth);
   const isBurgerMenuOpen = useAppSelector((state) => state.overlayState.isBurgerMenu);
   const dispatch = useAppDispatch();
@@ -24,7 +26,7 @@ export const App = () => {
   return (
     <div>
       <Header />
-      {isBurgerMenuOpen && <BurgerMenu />}
+      {width <=991.98 && isBurgerMenuOpen && <BurgerMenu />}
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='*' element={<PageNotFound />} />

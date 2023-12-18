@@ -20,9 +20,11 @@ export const checkAuth = () => {
           headers,
         },
       );
-      localStorage.setItem('token', response.data.access_token);
-      localStorage.setItem('refresh', response.data.refresh_token);
-      dispatch(setAuth(true));
+      if (response.status === 200) {
+        localStorage.setItem('token', response.data.access_token);
+        localStorage.setItem('refresh', response.data.refresh_token);
+        dispatch(setAuth(true));
+      }
     } catch (e) {
       const error = e as ErrorMessage;
       throw error;
