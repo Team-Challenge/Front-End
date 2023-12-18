@@ -20,11 +20,7 @@ export const DeliveryInfo = ({ deliveryInfo }: TProps) => {
         </div>
         <div className={styles.delivery_buttons}>
           <span className={settings.smallButton}>
-            <Icon icon='solar:trash-bin' />
-            <button>Змінити</button>
-          </span>
-          <span className={settings.smallButton}>
-            <Icon icon='solar:trash-bin' />
+            <Icon icon='solar:trash-bin-minimalistic-outline' />
             <button>Видалити</button>
           </span>
         </div>
