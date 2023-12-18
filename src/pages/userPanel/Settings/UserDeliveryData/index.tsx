@@ -79,9 +79,6 @@ export const UserDeliveryData = () => {
         value={selectedBranch}
         disabled={selectedCity == undefined}
       />
-      <TextInput id='post_service' type='text' placeholder='placeholder' />
-      <TextInput id='city_name' type='text' placeholder='placeholder' />
-      <TextInput id='branch_name' type='text' placeholder='placeholder' />
     </div>
   );
 };

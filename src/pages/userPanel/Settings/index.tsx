@@ -34,7 +34,6 @@ export const Settings = () => {
 
   const newPassword = watch('new_password');
   const phoneNumber = watch('phone_number');
-  const deliveryInfo = watch('branch_name');
 
   const closeModalWindow = () => {
     dispatch(closeModal('settingsMessage'));
@@ -69,14 +68,6 @@ export const Settings = () => {
         }
         dispatch(openModal('settingsMessage'));
       });
-    }
-
-    if (deliveryInfo) {
-      dispatch(updateDelivetyInfo(data)).then(() => {
-        // todo
-        console.log('ur delivery info in Redux was changed');
-      });
-      debugger
     }
   };
 
