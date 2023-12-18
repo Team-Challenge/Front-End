@@ -67,6 +67,7 @@ export const UserDeliveryData = () => {
         placeholder='-Оберіть місто-'
         onChange={handleChangeCity}
         value={selectedCity}
+        disabled={!deliveryOptions}
       />
       <Select
         options={selectedCity == undefined || !deliveryOptions ? [] : deliveryOptions[selectedCity].branches.map((branch, index) => ({
@@ -76,6 +77,7 @@ export const UserDeliveryData = () => {
         placeholder='-Оберіть відділення-'
         onChange={handleChangeBranch}
         value={selectedBranch}
+        disabled={selectedCity == undefined}
       />
       <TextInput id='post_service' type='text' placeholder='placeholder' />
       <TextInput id='city_name' type='text' placeholder='placeholder' />
