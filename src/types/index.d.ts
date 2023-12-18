@@ -124,11 +124,12 @@ export interface SettingsFormData {
   new_password_repeat?: string;
   email?: string;
   phone_number?: string;
+  branch_name: string;
+  city_name: string;
+  post_service: string;
 }
 
 export interface DeliveryInfo {
-  full_name: string;
-  phone_number: string | null;
   branch_name: string;
   city_name: string;
   post_service: string;

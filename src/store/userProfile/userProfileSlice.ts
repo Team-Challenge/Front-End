@@ -30,7 +30,7 @@ const userProfileSlice = createSlice({
     },
     setDeliveryInfo: (state, action: PayloadAction<DeliveryInfo>) => {
       state.delivery_info = action.payload;
-    },
+    }
   },
 });
 
