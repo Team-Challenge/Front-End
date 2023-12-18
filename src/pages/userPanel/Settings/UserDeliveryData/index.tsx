@@ -1,91 +1,22 @@
 import s from '../Settings.module.scss';
-import { Modal } from '@/components/Modal';
-import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
-import { DeliverySelect } from './DeliverySelect';
-import { OrnamentalTitle } from '@/components/OrnamentalTitle';
-import { FormProvider, useForm } from 'react-hook-form';
-import { DeliveryFormData } from '@/types';
-import { FullName } from '@/components/FullName';
-import { PhoneNumber } from '@/components/PhoneNumber';
-import { ButtonUI } from '@/components/UI/ButtonUI';
+import { useAppSelector } from '@/hooks/reduxHook';
 import { TextInput } from '@/components/UI/TextInput';
-import { updateDelivetyInfo } from '@/store/userProfile/userProfileThunks';
 import { DeliveryInfo } from './DeliveryInfo';
+import { DeliveryInfo as TDelivery } from '@/types';
 
 export const UserDeliveryData = () => {
-  const isModalOpen = useAppSelector((state) => state.modal.deliveryInfo);
-  const dispatch = useAppDispatch();
-  const userPhoneNumber = useAppSelector(
-    (state) => state.userProfile.phone_number,
+  const deliveryInfo: TDelivery | undefined = useAppSelector(
+    (state) => state.userProfile.delivery_info,
   );
-  const fullName = useAppSelector((state) => state.userProfile.full_name);
-
-  const methods = useForm<DeliveryFormData>({
-    mode: 'onChange',
-  });
-
-  const onSubmit = (data: DeliveryFormData) => {
-    console.log(data);
-    if (!data) return null;
-
-    dispatch(updateDelivetyInfo(data)).then(() => {
-      // todo
-      console.log('ur delivery info in Redux was changed');
-    });
-  };
 
   return (
     <div className={s.form_wrap}>
-      <p className={s.form_subtitle}>Дані про доставку</p>
       <DeliveryInfo />
-      {isModalOpen && (
-        <Modal modalId='deliveryInfo' className={s.modal}>
-          <OrnamentalTitle tag='h4' text='Введіть адресу' />
-          <FormProvider {...methods}>
-            <form
-              id='delivery'
-              className={`${s.form} ${s.modal_form}`}
-              onSubmit={(e) => e.preventDefault()}
-            >
-              <div className={s.form_wrap}>
-                <p className={s.form_hints}>Ім’я та Прізвище одержувача</p>
-                <FullName value={fullName as string} />
-                <p className={s.form_hints}>
-                  {userPhoneNumber
-                    ? 'Змінити номер телефону'
-                    : 'Додати номер телефону'}
-                </p>
-                <PhoneNumber userPhoneNumber={userPhoneNumber} />
-                <DeliverySelect />
-                <p className={s.form_hints}>Спосіб доставки</p>
-                {/* todo Change inputs below into dropdown selects */}
-                <TextInput
-                  id='post_service'
-                  type='text'
-                  placeholder='placeholder'
-                />
-                <p className={s.form_hints}>Місто</p>
-                <TextInput
-                  id='city_name'
-                  type='text'
-                  placeholder='placeholder'
-                />
-                <p className={s.form_hints}>Відділення</p>
-                <TextInput
-                  id='branch_name'
-                  type='text'
-                  placeholder='placeholder'
-                />
-              </div>
-              <ButtonUI
-                type='submit'
-                label='Зберегти'
-                onClick={methods.handleSubmit(onSubmit)}
-              />
-            </form>
-          </FormProvider>
-        </Modal>
-      )}
+      <p className={s.form_hints}>Дані про доставку</p>
+      {/* todo Change inputs below into dropdown selects */}
+      <TextInput id='post_service' type='text' placeholder='placeholder' />
+      <TextInput id='city_name' type='text' placeholder='placeholder' />
+      <TextInput id='branch_name' type='text' placeholder='placeholder' />
     </div>
   );
 };
