@@ -8,6 +8,7 @@ import defaultUserPic from '@assets/default-user-pic.svg';
 import s from './Profile.module.scss';
 import {
   deleteProfilePhoto,
+  getUserInfo,
   uploadProfilePhoto,
 } from '@/store/userProfile/userProfileThunks';
 
@@ -44,6 +45,7 @@ export const ProfilePhoto = () => {
       const formData = new FormData();
       formData.append('image', file);
       await dispatch(uploadProfilePhoto(formData));
+      dispatch(getUserInfo());
       setImg(URL.createObjectURL(file));
     } catch (error) {
       throw error;
@@ -52,6 +54,7 @@ export const ProfilePhoto = () => {
 
   const handleDeletePhoto = () => {
     dispatch(deleteProfilePhoto());
+    dispatch(getUserInfo());
     setImg(defaultUserPic);
   };
 
