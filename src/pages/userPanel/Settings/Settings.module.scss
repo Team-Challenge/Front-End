@@ -33,7 +33,7 @@
     gap: toRem(18);
   }
 
-  &_wrap {
+  &_block {
     display: grid;
     gap: 1rem;
 
@@ -45,10 +45,7 @@
   &_subtitle {
     font-weight: 500;
     line-height: 110%;
-
-    @media (max-width: $mobile) {
-      margin-bottom: toRem(2);
-    }
+    margin-bottom: -0.5rem;
   }
 
   &_hints {
@@ -56,11 +53,7 @@
     font-size: toRem(12);
     font-weight: 300;
     line-height: 1rem;
-    margin: toRem(-5) 0 toRem(-8);
-
-    @media (max-width: $mobile) {
-      margin: 0 0 toRem(-5);
-    }
+    margin-bottom: -8px;
   }
 
   &_btn {
@@ -77,6 +70,11 @@
         width: calc(100% - 20px);
       }
     }
+  }
+
+  &_wrap {
+    display: grid;
+    gap: 20px;
   }
 }
 
@@ -110,23 +108,20 @@
   }
 }
 
-.smallButton {
+.button_delivery {
+  color: $red;
+  font-family: 'Craftwork Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0.36px;
   display: flex;
   align-items: center;
-  margin: -6px 0;
+  justify-content: flex-end;
+  gap: 0.5rem;
 
-  & > svg {
-    margin-right: 8px;
-  }
-
-  & > button {
-    color: var(--Green-900, #1a7171);
-    /* Buttons/Small */
-    font-family: Craftwork Grotesk;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 16px; /* 133.333% */
-    letter-spacing: 0.36px;
+  svg {
+    width: 16px;
+    height: 16px;
   }
 }

@@ -9,7 +9,6 @@ import {
   changePassword,
   changePhoneNumber,
   getUserInfo,
-  updateDelivetyInfo,
 } from '@/store/userProfile/userProfileThunks';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
 import { closeModal, openModal } from '@/store/modalSlice';
@@ -80,9 +79,17 @@ export const Settings = () => {
           className={s.form}
           onSubmit={(e) => e.preventDefault()}
         >
-          <UserPassword />
-          <UserPhoneNumber />
-          <UserDeliveryData />
+          <div className={s.form_wrap}>
+            <p className={s.form_subtitle}>Зміна пароля</p>
+            <UserPassword />
+          </div>
+
+          <div className={s.form_wrap}>
+            <p className={s.form_subtitle}>Особисті дані</p>
+            <UserPhoneNumber />
+            <UserDeliveryData />
+          </div>
+
           <ButtonUI
             type='submit'
             label='Зберегти'

@@ -8,8 +8,7 @@ export const UserPhoneNumber = () => {
   );
 
   return (
-    <div className={s.form_wrap}>
-      <p className={s.form_subtitle}>Особисті дані</p>
+    <div className={s.form_block}>
       {userPhoneNumber && (
         <p className={s.form_hints}>
           {userPhoneNumber ? 'Змінити номер телефону' : 'Додати номер телефону'}
