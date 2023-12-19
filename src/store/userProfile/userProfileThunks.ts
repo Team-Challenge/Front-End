@@ -2,12 +2,10 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import $api from '@/http';
 import { setAuth } from '../auth/authSlice';
 import {
-  setDeliveryInfo,
   setFullName,
   setPhoneNumber,
   setProfilePhoto,
 } from './userProfileSlice';
-import { DeliveryInfo } from '@/types';
 
 export const getUserInfo = createAsyncThunk(
   'userAccount/info',
@@ -18,7 +16,7 @@ export const getUserInfo = createAsyncThunk(
         dispatch(setFullName(response.data.full_name));
         dispatch(setPhoneNumber(response.data.phone_number));
         dispatch(setProfilePhoto(response.data.profile_picture));
-        // todo add delivery info from backend
+        console.log(response.data);
       }
     } catch (e) {
       const error = e as Error;
@@ -26,14 +24,6 @@ export const getUserInfo = createAsyncThunk(
     }
   },
 );
-
-export const updateDelivetyInfo = createAsyncThunk(
-  'userSettings/updateDeliveryInfo',
-  async (newDeliveryInfo: DeliveryInfo, { dispatch }) => {
-    // todo
-    dispatch(setDeliveryInfo(newDeliveryInfo))
-  }
-)
 
 export const changeFullName = createAsyncThunk(
   'userSettings/changeFullName',
@@ -78,7 +68,6 @@ export const changePassword = createAsyncThunk(
       currentPassword: string | undefined;
       newPassword: string | undefined;
     },
-    { dispatch },
   ) => {
     try {
       const response = await $api.post('/accounts/change_password', {

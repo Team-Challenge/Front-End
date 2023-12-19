@@ -1,6 +1,5 @@
 import { DeliveryInfo } from '@/types';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { act } from 'react-dom/test-utils';
 
 interface UserProfileState {
   full_name: string;
