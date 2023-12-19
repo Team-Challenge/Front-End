@@ -2,6 +2,7 @@
 
 .settings {
   display: grid;
+  padding-bottom: 1.5rem;
 
   @media (max-width: $tablet) {
     justify-items: center;
@@ -12,7 +13,7 @@
 
     @media (max-width: $mobileSmall) {
       justify-self: start;
-      margin-bottom: 14px;
+      margin-bottom: toRem(14);
     }
   }
 }
@@ -25,23 +26,31 @@
   @media (max-width: $tablet) {
     max-width: 100%;
     width: calc(75% - 20px);
-    gap: toRem(24);
+    gap: 1.5rem;
   }
 
   @media (max-width: $mobileSmall) {
     width: calc(100% - 20px);
-    gap: toRem(18);
+    gap: 1rem
   }
 
-    &_wrap {
-      display: grid;
-      gap: toRem(20);
+  &_wrap {
+    display: grid;
+    gap: toRem(20);
+
+    @media (max-width: $mobileSmall) {
+      gap: 1rem;
     }
+  }
 
   &_subtitle {
     font-weight: 500;
     line-height: 110%;
     margin-bottom: -0.5rem;
+
+    @media (max-width: $mobileSmall) {
+      margin-bottom: -4px;
+    }
   }
 }
 

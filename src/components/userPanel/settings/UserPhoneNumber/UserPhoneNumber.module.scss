@@ -15,4 +15,8 @@
   font-weight: 300;
   line-height: 1rem;
   margin-bottom: -8px;
+
+  @media (max-width: $mobileSmall) {
+    margin-bottom: -4px;
+  }
 }
