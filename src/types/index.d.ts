@@ -94,6 +94,20 @@ export interface PasswordInputProps {
   className?: string;
 }
 
+export interface SelectInputProps {
+  field: {
+    onChange: (value: string) => void;
+    onBlur: () => void;
+    value: string;
+    ref: React.Ref<any>;
+  };
+  options: SelectProps<any>['options'];
+  placeholder: string;
+  isSearchable?: boolean;
+  className?: string;
+  isDisabled?: boolean;
+}
+
 export interface FullNameProps {
   value?: string;
   editModeIcon?: boolean;
@@ -136,6 +150,15 @@ export interface DeliveryInfo {
 }
 
 export interface DeliveryFormData extends DeliveryInfo {}
+
+export interface CityDeliveryInfo {
+  city_name: string;
+  branches: {
+    branch_name?: string;
+    branch_number?: string;
+    address: string;
+  }[];
+}
 
 export interface CreateNewStoreFormData {
   name: string;
