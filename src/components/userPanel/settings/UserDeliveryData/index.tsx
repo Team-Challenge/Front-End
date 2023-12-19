@@ -6,7 +6,7 @@ import {
   getUkrPostInfo,
 } from '@/store/deliveryOptions/deliveryThunks';
 import { closeModal, openModal } from '@/store/modalSlice';
-import { CityDeliveryInfo } from '@/types';
+import { PostDeliveryInfo  } from '@/types';
 import { SelectInput } from '@/components/UI/SelectInput';
 import { Modal } from '@/components/Modal';
 import { OrnamentalTitle } from '@/components/OrnamentalTitle';
@@ -16,12 +16,12 @@ import s from './UserDeliveryData.module.scss';
 
 export const UserDeliveryData = () => {
   const dispatch = useAppDispatch();
-  const infoNovaPost = useAppSelector(
+  const novaPostDeliveryInfo = useAppSelector(
     (state) => state.delivery.novaPost,
-  ) as CityDeliveryInfo[];
-  const infoUkrPost = useAppSelector(
+  ) as PostDeliveryInfo [];
+  const ukrPostDeliveryInfo = useAppSelector(
     (state) => state.delivery.ukrPost,
-  ) as CityDeliveryInfo[];
+  ) as PostDeliveryInfo [];
   const isDeleteDataModal = useAppSelector(
     (state) => state.modal.deleteDeliveryData,
   );
@@ -33,10 +33,10 @@ export const UserDeliveryData = () => {
 
   const isAllFieldsFilled = selectedCity && selectedPost && selectedBranch;
 
-  const cityNovaPost = infoNovaPost.map((city) => city.city_name);
-  const cityUkrPost = infoUkrPost.map((city) => city.city_name);
+  const novaPostCities = novaPostDeliveryInfo.map((city) => city.city_name);
+  const ukrPostCities = ukrPostDeliveryInfo.map((city) => city.city_name);
 
-  const finishCities = [...new Set([...cityNovaPost, ...cityUkrPost])].map(
+  const availableDeliveryCities = [...new Set([...novaPostCities, ...ukrPostCities])].map(
     (item) => ({ value: item, label: item }),
   );
 
@@ -52,26 +52,26 @@ export const UserDeliveryData = () => {
 
   useEffect(() => {
     if (selectedCity) {
-      const isCityInNova = cityNovaPost.includes(selectedCity);
-      const isCityInUkr = cityUkrPost.includes(selectedCity);
+      const isNovaPostAvailable = novaPostCities.includes(selectedCity);
+      const isUkrPostAvailable = ukrPostCities.includes(selectedCity);
 
-      let deliveryOptions = [];
+      let deliveryCompanies = [];
 
-      if (isCityInNova) {
-        deliveryOptions.push({
+      if (isNovaPostAvailable) {
+        deliveryCompanies.push({
           value: 'nova_post',
           label: 'Нова пошта',
         });
       }
 
-      if (isCityInUkr) {
-        deliveryOptions.push({
+      if (isUkrPostAvailable) {
+        deliveryCompanies.push({
           value: 'ukr_post',
           label: 'Укрпошта',
         });
       }
 
-      setPostOptions(deliveryOptions);
+      setPostOptions(deliveryCompanies);
 
       setValue('post', null);
       setValue('branches', null);
@@ -83,7 +83,7 @@ export const UserDeliveryData = () => {
       let branchesData: string[] = [];
 
       if (selectedPost === 'nova_post') {
-        branchesData = infoNovaPost
+        branchesData = novaPostDeliveryInfo
           .filter((city) => city.city_name === selectedCity)
           .map((city) =>
             city.branches.map(
@@ -94,7 +94,7 @@ export const UserDeliveryData = () => {
       }
 
       if (selectedPost === 'ukr_post') {
-        branchesData = infoUkrPost
+        branchesData = ukrPostDeliveryInfo
           .filter((city) => city.city_name === selectedCity)
           .map((city) =>
             city.branches.map(
@@ -115,15 +115,15 @@ export const UserDeliveryData = () => {
     }
   }, [selectedPost]);
 
-  const handleOpenModalDeleteData = () => {
+  const openDeleteDeliveryDataModal = () => {
     dispatch(openModal('deleteDeliveryData'));
   };
 
-  const handleCancelDeleteData = () => {
+  const cancelDeleteDeliveryData = () => {
     dispatch(closeModal('deleteDeliveryData'));
   };
 
-  const handleDeleteData = () => {
+  const deleteDeliveryData = () => {
     reset({ city: null, post: null, branches: null });
     dispatch(closeModal('deleteDeliveryData'));
   };
@@ -139,7 +139,7 @@ export const UserDeliveryData = () => {
         render={({ field }) => (
           <SelectInput
             field={field}
-            options={finishCities}
+            options={availableDeliveryCities}
             placeholder='-Оберіть місто-'
             isSearchable={true}
           />
@@ -179,7 +179,7 @@ export const UserDeliveryData = () => {
       {isAllFieldsFilled && (
         <button
           className={s.button_delivery}
-          onClick={handleOpenModalDeleteData}
+          onClick={openDeleteDeliveryDataModal}
         >
           <Icon icon='solar:trash-bin-minimalistic-outline' />
           Видалити
@@ -203,12 +203,12 @@ export const UserDeliveryData = () => {
           <div className={s.modal_button}>
             <ButtonUI
               label='Скасувати'
-              onClick={handleCancelDeleteData}
+              onClick={cancelDeleteDeliveryData}
               className={s.modal_button_cancel}
             />
             <ButtonUI
               label='Видалити'
-              onClick={handleDeleteData}
+              onClick={deleteDeliveryData}
               className={s.modal_button_delete}
               variant='secondary'
             />

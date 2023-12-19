@@ -151,7 +151,7 @@ export interface DeliveryInfo {
 
 export interface DeliveryFormData extends DeliveryInfo {}
 
-export interface CityDeliveryInfo {
+export interface PostDeliveryInfo {
   city_name: string;
   branches: {
     branch_name?: string;
