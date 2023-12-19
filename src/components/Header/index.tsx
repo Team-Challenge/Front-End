@@ -14,6 +14,8 @@ import s from './Header.module.scss';
 
 export const Header = () => {
   const { width } = useWindowDimensions();
+  const { isAuth } = useAppSelector((state) => state.auth);
+  const { hasStore } = useAppSelector((state) => state.storeProfile);
 
   const [isShopDropdownOpen, toggleShopMenu] = useToggleMenu('isShopDropdown');
   const [isUserDropdownOpen, toggleUserMenu] = useToggleMenu('isUserDropdown');
@@ -62,16 +64,20 @@ export const Header = () => {
 
           {width >= 479.98 && (
             <>
-              <div className={`${s.icon_shop} ${s.header_dropdown}`}>
-                <button onClick={(event) => toggleShopMenu(event)}>
-                  <Icon icon='solar:shop-2-outline' />
-                  <Icon
-                    icon='solar:alt-arrow-down-outline'
-                    className={isShopDropdownOpen ? s.icon_open : s.icon_close}
-                  />
-                </button>
-                {isShopDropdownOpen && <ShopDropdownMenu />}
-              </div>
+              {isAuth && hasStore && (
+                <div className={`${s.icon_shop} ${s.header_dropdown}`}>
+                  <button onClick={(event) => toggleShopMenu(event)}>
+                    <Icon icon='solar:shop-2-outline' />
+                    <Icon
+                      icon='solar:alt-arrow-down-outline'
+                      className={
+                        isShopDropdownOpen ? s.icon_open : s.icon_close
+                      }
+                    />
+                  </button>
+                  {isShopDropdownOpen && <ShopDropdownMenu />}
+                </div>
+              )}
 
               <div className={`${s.icon_user} ${s.header_dropdown}`}>
                 <button onClick={(event) => toggleUserMenu(event)}>

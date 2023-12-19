@@ -4,9 +4,9 @@ import { TextInput } from '../UI/TextInput';
 
 export const Email = ({
   required = true,
-  isAuth,
+  isServerValidation,
+  isServerError,
   onClick,
-  isAuthError,
 }: EmailProps) => {
   return (
     <TextInput
@@ -16,9 +16,9 @@ export const Email = ({
       required={required}
       regex={EMAIL_REGEX}
       errorMessage='Будь ласка, введіть електронну адресу у форматі "email@mail.com"'
-      isAuth={isAuth}
+      isServerValidation={isServerValidation}
+      isServerError={isServerError}
       onClick={onClick}
-      isAuthError={isAuthError}
     />
   );
 };

@@ -8,10 +8,10 @@ export const StorePanel = () => {
     <aside className='cabinet-sidebar-nav'>
       <Link
         to='/account/profile'
-        className={`cabinet-sidebar-nav_btn ${s.returnBtn}`}
+        className={`cabinet-sidebar-nav_btn ${s.button_return}`}
       >
         <Icon icon='solar:alt-arrow-left-outline' />
-        Мій магазин
+        В мій профіль
       </Link>
       <span className='cabinet-sidebar-nav_line' />
       {storePanelButtonsList.map((button) => (

@@ -47,16 +47,16 @@ export const LoginForm = ({
       <form id='login' className={s.form} onSubmit={(e) => e.preventDefault()}>
         <div className={s.form_inputs}>
           <Email
-            isAuth
-            isAuthError={hasError}
+            isServerValidation
+            isServerError={hasError}
             onClick={() => methods.clearErrors('loginError')}
           />
           <PasswordInput
             id='password'
             placeholder='Пароль'
             required
-            isAuth
-            isAuthError={hasError}
+            isServerValidation
+            isServerError={hasError}
             onClick={() => methods.clearErrors('loginError')}
           />
         </div>

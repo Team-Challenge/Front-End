@@ -22,7 +22,7 @@ export const UserPanelRoutes = () => {
           <Route path='purchases' element={<Purchases />} />
           <Route path='wishlist' element={<FavoriteProducts />} />
           <Route path='messages' element={<Messages />} />
-          <Route path='store' element={<Store />} />
+          <Route path='create-store' element={<Store />} />
           <Route path='settings' element={<Settings />} />
           <Route path='*' element={<Navigate to='profile' />} />
         </Routes>
