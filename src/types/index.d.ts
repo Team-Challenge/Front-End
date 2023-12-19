@@ -139,7 +139,7 @@ export interface DeliveryFormData extends DeliveryInfo {}
 
 export interface CreateNewStoreFormData {
   name: string;
-  phoneNumber: string;
+  phone_number: string;
 }
 
 export interface ChangeFullNameFormData {

@@ -37,7 +37,7 @@ export const CreateNewStore = () => {
       await dispatch(
         changeStoreInfo({
           name: data.name,
-          phone_number: data.phoneNumber,
+          phone_number: data.phone_number,
         }),
       ).unwrap();
 
