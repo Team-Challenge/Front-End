@@ -74,6 +74,8 @@
 @mixin mobileTitleDecorationOverride {
   @media (max-width: $mobile) {
     h4 {
+      grid-template-columns: 1fr;
+
       &::before,
       &::after {
         content: '';
