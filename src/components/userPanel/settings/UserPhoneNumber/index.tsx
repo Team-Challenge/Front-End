@@ -1,6 +1,6 @@
 import { useAppSelector } from '@/hooks/reduxHook';
 import { PhoneNumber } from '@/components/PhoneNumber';
-import s from './Settings.module.scss';
+import s from './UserPhoneNumber.module.scss';
 
 export const UserPhoneNumber = () => {
   const userPhoneNumber = useAppSelector(
@@ -8,9 +8,9 @@ export const UserPhoneNumber = () => {
   );
 
   return (
-    <div className={s.form_block}>
+    <div className={s.block}>
       {userPhoneNumber && (
-        <p className={s.form_hints}>
+        <p className={s.hints}>
           {userPhoneNumber ? 'Змінити номер телефону' : 'Додати номер телефону'}
         </p>
       )}

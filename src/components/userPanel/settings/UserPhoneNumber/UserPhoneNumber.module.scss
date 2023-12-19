@@ -1,0 +1,18 @@
+@import '@/styles/index.scss';
+
+.block {
+  display: grid;
+  gap: 1rem;
+
+  @media (max-width: $mobile) {
+    gap: toRem(10);
+  }
+}
+
+.hints {
+  color: $grey;
+  font-size: toRem(12);
+  font-weight: 300;
+  line-height: 1rem;
+  margin-bottom: -8px;
+}

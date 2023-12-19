@@ -1,0 +1,49 @@
+@import '@/styles/index.scss';
+
+.block {
+  display: grid;
+  gap: 1rem;
+
+  @media (max-width: $mobile) {
+    gap: toRem(10);
+  }
+}
+
+.hints {
+  color: $grey;
+  font-size: toRem(12);
+  font-weight: 300;
+  line-height: 1rem;
+  margin-bottom: -8px;
+}
+
+.button_delivery {
+  color: $red;
+  font-family: 'Craftwork Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0.36px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.modal {
+  > div > :first-child {
+    @include mobileTitleDecorationOverride;
+  }
+
+  &_button {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 24px;
+    width: 100%;
+  }
+}

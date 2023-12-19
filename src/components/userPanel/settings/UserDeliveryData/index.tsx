@@ -5,10 +5,14 @@ import {
   getNovaPostInfo,
   getUkrPostInfo,
 } from '@/store/deliveryOptions/deliveryThunks';
+import { closeModal, openModal } from '@/store/modalSlice';
 import { CityDeliveryInfo } from '@/types';
 import { SelectInput } from '@/components/UI/SelectInput';
+import { Modal } from '@/components/Modal';
+import { OrnamentalTitle } from '@/components/OrnamentalTitle';
+import { ButtonUI } from '@/components/UI/ButtonUI';
 import { Icon } from '@iconify/react';
-import s from './Settings.module.scss';
+import s from './UserDeliveryData.module.scss';
 
 export const UserDeliveryData = () => {
   const dispatch = useAppDispatch();
@@ -18,6 +22,9 @@ export const UserDeliveryData = () => {
   const infoUkrPost = useAppSelector(
     (state) => state.delivery.ukrPost,
   ) as CityDeliveryInfo[];
+  const isDeleteDataModal = useAppSelector(
+    (state) => state.modal.deleteDeliveryData,
+  );
 
   const { control, watch, setValue, reset } = useFormContext();
   const selectedCity = watch('city');
@@ -105,13 +112,22 @@ export const UserDeliveryData = () => {
     }
   }, [selectedPost]);
 
+  const handleOpenDeleteDataModal = () => {
+    dispatch(openModal('deleteDeliveryData'));
+  };
+
+  const handleCancelDeleteData = () => {
+    dispatch(closeModal('deleteDeliveryData'));
+  };
+
   const handleDeleteData = () => {
     reset({ city: null, post: null, branches: null });
+    dispatch(closeModal('deleteDeliveryData'));
   };
 
   return (
-    <div className={s.form_block}>
-      <p className={s.form_hints}>Дані про доставку</p>
+    <div className={s.block}>
+      <p className={s.hints}>Дані про доставку</p>
 
       <Controller
         name='city'
@@ -157,10 +173,32 @@ export const UserDeliveryData = () => {
         )}
       />
 
-      <button className={s.button_delivery} onClick={handleDeleteData}>
+      <button className={s.button_delivery} onClick={handleOpenDeleteDataModal}>
         <Icon icon='solar:trash-bin-minimalistic-outline' />
         Видалити
       </button>
+
+      {isDeleteDataModal && (
+        <Modal modalId='deleteDeliveryData' className={s.modal}>
+          <OrnamentalTitle
+            tag='h4'
+            text='Ви впевнені, що хочете видалити цю адресу?'
+          />
+          <div className={s.modal_button}>
+            <ButtonUI
+              label='Скасувати'
+              onClick={handleCancelDeleteData}
+              className={s.modal_button_cancel}
+            />
+            <ButtonUI
+              label='Видалити'
+              onClick={handleDeleteData}
+              className={s.modal_button_delete}
+              variant='secondary'
+            />
+          </div>
+        </Modal>
+      )}
     </div>
   );
 };
