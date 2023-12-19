@@ -3,7 +3,8 @@ import { PasswordInput } from '@/components/UI/PasswordInput';
 import s from './UserPassword.module.scss';
 
 export const UserPassword = () => {
-  const { getValues, watch } = useFormContext();
+  const methods = useFormContext();
+  const { getValues, watch } = methods;
 
   const oldPassword = watch('current_password');
   const newPassword = watch('new_password');
