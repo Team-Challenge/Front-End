@@ -33,58 +33,37 @@
     gap: toRem(18);
   }
 
-  &_block {
-    display: grid;
-    gap: 1rem;
-
-    @media (max-width: $mobile) {
-      gap: toRem(10);
+    &_wrap {
+      display: grid;
+      gap: toRem(20);
     }
-  }
 
   &_subtitle {
     font-weight: 500;
     line-height: 110%;
     margin-bottom: -0.5rem;
   }
+}
 
-  &_hints {
-    color: $grey;
-    font-size: toRem(12);
-    font-weight: 300;
-    line-height: 1rem;
-    margin-bottom: -8px;
-  }
+.button {
+  &_delete {
+    max-width: toRem(424);
+    margin-top: 1rem;
 
-  &_btn {
-    &_delete {
-      max-width: toRem(424);
-      margin-top: 1rem;
-
-      @media (max-width: $tablet) {
-        max-width: 100%;
-        width: calc(75% - 20px);
-      }
-
-      @media (max-width: $mobileSmall) {
-        width: calc(100% - 20px);
-      }
+    @media (max-width: $tablet) {
+      max-width: 100%;
+      width: calc(75% - 20px);
     }
-  }
 
-  &_wrap {
-    display: grid;
-    gap: 20px;
+    @media (max-width: $mobileSmall) {
+      width: calc(100% - 20px);
+    }
   }
 }
 
 .modal {
   > div > :first-child {
     @include mobileTitleDecorationOverride;
-  }
-
-  &_form {
-    width: 100%;
   }
 
   &_text {
@@ -105,23 +84,5 @@
 
   &_button {
     max-width: toRem(424);
-  }
-}
-
-.button_delivery {
-  color: $red;
-  font-family: 'Craftwork Grotesk', sans-serif;
-  font-size: 12px;
-  font-weight: 700;
-  line-height: 16px;
-  letter-spacing: 0.36px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 0.5rem;
-
-  svg {
-    width: 16px;
-    height: 16px;
   }
 }

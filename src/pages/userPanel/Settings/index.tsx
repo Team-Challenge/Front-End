@@ -13,9 +13,9 @@ import {
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
 import { closeModal, openModal } from '@/store/modalSlice';
 import { SettingsFormData } from '@/types';
-import { UserPassword } from './UserPassword';
-import { UserPhoneNumber } from './UserPhoneNumber';
-import { UserDeliveryData } from './UserDeliveryData';
+import { UserPassword } from '@/components/userPanel/settings/UserPassword';
+import { UserPhoneNumber } from '@/components/userPanel/settings/UserPhoneNumber';
+import { UserDeliveryData } from '@/components/userPanel/settings/UserDeliveryData';
 import { OrnamentalTitle } from '@/components/OrnamentalTitle';
 import { ButtonUI } from '@/components/UI/ButtonUI';
 import { Modal } from '@/components/Modal';
@@ -104,7 +104,7 @@ export const Settings = () => {
       <ButtonUI
         label='Видалити свій профіль'
         variant='secondary'
-        className={s.form_btn_delete}
+        className={s.button_delete}
         disabled
       />
 
