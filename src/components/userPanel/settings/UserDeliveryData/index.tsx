@@ -29,6 +29,9 @@ export const UserDeliveryData = () => {
   const { control, watch, setValue, reset } = useFormContext();
   const selectedCity = watch('city');
   const selectedPost = watch('post');
+  const selectedBranch = watch('branches');
+
+  const isAllFieldsFilled = selectedCity && selectedPost && selectedBranch;
 
   const cityNovaPost = infoNovaPost.map((city) => city.city_name);
   const cityUkrPost = infoUkrPost.map((city) => city.city_name);
@@ -112,7 +115,7 @@ export const UserDeliveryData = () => {
     }
   }, [selectedPost]);
 
-  const handleOpenDeleteDataModal = () => {
+  const handleOpenModalDeleteData = () => {
     dispatch(openModal('deleteDeliveryData'));
   };
 
@@ -173,10 +176,15 @@ export const UserDeliveryData = () => {
         )}
       />
 
-      <button className={s.button_delivery} onClick={handleOpenDeleteDataModal}>
-        <Icon icon='solar:trash-bin-minimalistic-outline' />
-        Видалити
-      </button>
+      {isAllFieldsFilled && (
+        <button
+          className={s.button_delivery}
+          onClick={handleOpenModalDeleteData}
+        >
+          <Icon icon='solar:trash-bin-minimalistic-outline' />
+          Видалити
+        </button>
+      )}
 
       {isDeleteDataModal && (
         <Modal modalId='deleteDeliveryData' className={s.modal}>
@@ -184,6 +192,14 @@ export const UserDeliveryData = () => {
             tag='h4'
             text='Ви впевнені, що хочете видалити цю адресу?'
           />
+          <div className={s.modal_info}>
+            <p>
+              Місто
+            </p>
+            <p>
+              Відділення
+            </p>
+          </div>
           <div className={s.modal_button}>
             <ButtonUI
               label='Скасувати'
