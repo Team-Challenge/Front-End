@@ -130,7 +130,7 @@ input {
   grid-template-rows: auto;
   align-items: start;
   column-gap: 88px;
-  margin: 60px 0;
+  margin-top: 60px;
 
   @media (max-width: $tablet) {
     grid-template-columns: 1fr;
