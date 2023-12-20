@@ -1,7 +1,7 @@
 @import '@/styles/index.scss';
 
 .header {
-  box-shadow: 0 toRem(6) toRem(6) 0 rgba(221, 221, 221, 0.20);
+  box-shadow: 0 toRem(6) toRem(6) 0 rgba(221, 221, 221, 0.2);
 
   svg {
     width: toRem(20);
@@ -126,7 +126,7 @@
   }
 
   &_favorite {
-    margin: 0 toRem(28) 0 toRem(20);
+    margin: 0 toRem(20) 0 toRem(14);
 
     @media (max-width: $mobile) {
       margin-right: toRem(18);
@@ -143,7 +143,7 @@
 
   &_shop {
     align-self: flex-start;
-    margin: 0 toRem(20) 0 toRem(3);
+    margin: 0 toRem(14) 0 toRem(4);
 
     button {
       display: flex;
