@@ -9,7 +9,7 @@ export const storePanelButtonsList = [
   },
   {
     id: 2,
-    title: 'Керування магазином',
+    title: 'Налаштування магазину',
     pathToPage: 'settings',
     icon: <Icon icon='solar:tuning-2-outline' />,
   },
