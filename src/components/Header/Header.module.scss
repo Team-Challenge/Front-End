@@ -84,6 +84,7 @@
     grid-area: links;
     display: flex;
     @include adaptiveValue('gap', 46, 20, 0, 1440, 991.98);
+    margin-right: toRem(-22);
     font-family: 'Craftwork Grotesk', sans-serif;
     font-size: toRem(14);
     font-weight: 700;
