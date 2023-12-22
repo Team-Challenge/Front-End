@@ -138,18 +138,15 @@ export interface SettingsFormData {
   new_password_repeat?: string;
   email?: string;
   phone_number?: string;
-  branch_name: string;
-  city_name: string;
-  post_service: string;
+  city?: string;
+  post?: string;
+  branches?: string;
+  address?: string;
 }
 
-export interface DeliveryInfo {
-  branch_name: string;
-  city_name: string;
-  post_service: string;
+export interface UserSettingsFormProps {
+  changeDataResult: (arg0: boolean) => void;
 }
-
-export interface DeliveryFormData extends DeliveryInfo {}
 
 export interface PostDeliveryInfo {
   city_name: string;
