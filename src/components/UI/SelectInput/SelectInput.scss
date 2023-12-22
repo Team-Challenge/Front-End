@@ -1,26 +1,31 @@
 @import '@/styles/index.scss';
 
-.ant-select-focused .ant-select-selector {
-  box-shadow: none !important;
-}
-
 .ant-select {
   width: 100%;
-}
 
-.ant-select-arrow {
-  padding-right: 5px;
+  &-single {
+    height: toRem(54);
 
-  svg {
-    width: 16px;
-    height: 16px;
+    @media (max-width: $mobileSmall) {
+      height: toRem(48);
+    }
+
+    &:not(.ant-select-customize-input) .ant-select-selector {
+      padding: 0 1rem;
+    }
   }
-}
 
-.ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
-  padding: 0 16px;
 
-  @media (max-width: $mobileSmall) {
-    max-height: 48px;
+  &-focused .ant-select-selector {
+    box-shadow: none !important;
+  }
+
+  &-arrow {
+    padding-right: toRem(5);
+  
+    svg {
+      width: 1rem;
+      height: 1rem;
+    }
   }
 }

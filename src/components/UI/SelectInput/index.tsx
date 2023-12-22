@@ -16,14 +16,12 @@ export const SelectInput = ({
       theme={{
         components: {
           Select: {
-            multipleItemHeight: 54,
             optionFontSize: 14,
             optionPadding: '14px 16px',
             colorPrimary: '#e3e2e1',
           },
         },
         token: {
-          controlHeight: 54,
           colorBorder: '#e3e2e1',
           colorPrimaryHover: '#e3e2e1',
           borderRadius: 4,
