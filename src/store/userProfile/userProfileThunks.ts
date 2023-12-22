@@ -2,6 +2,10 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import $api from '@/http';
 import { setAuth } from '../auth/authSlice';
 import {
+  setDeliveryAddress,
+  setDeliveryBranch,
+  setDeliveryCity,
+  setDeliveryPost,
   setFullName,
   setPhoneNumber,
   setProfilePhoto,
@@ -16,7 +20,10 @@ export const getUserInfo = createAsyncThunk(
         dispatch(setFullName(response.data.full_name));
         dispatch(setPhoneNumber(response.data.phone_number));
         dispatch(setProfilePhoto(response.data.profile_picture));
-        console.log(response.data);
+        dispatch(setDeliveryCity(response.data.city));
+        dispatch(setDeliveryPost(response.data.post));
+        dispatch(setDeliveryBranch(response.data.branch_name));
+        dispatch(setDeliveryAddress(response.data.address));
       }
     } catch (e) {
       const error = e as Error;
@@ -126,6 +133,33 @@ export const deleteProfilePhoto = createAsyncThunk(
         return response.data;
       }
     } catch (error) {
+      throw error;
+    }
+  },
+);
+
+export const changeUserDeliveryInfo = createAsyncThunk(
+  'userSettings/changeUserDeliveryInfo',
+  async (
+    credentials: {
+      city: string | undefined;
+      post: string | undefined;
+      address: string | undefined;
+      branch_name: string | undefined;
+    },
+  ) => {
+    try {
+      const response = await $api.post('/accounts/delivery_info', {
+        city: credentials.city,
+        post: credentials.post,
+        address: credentials.address,
+        branch_name: credentials.branch_name,
+      });
+      if (response.status === 200) {
+        return response.data;
+      }
+    } catch (e) {
+      const error = e as Error;
       throw error;
     }
   },
