@@ -146,6 +146,7 @@ export const UserDeliveryData = () => {
       <Controller
         name='post'
         control={control}
+        rules={{ required: selectedCity }}
         defaultValue={
           post
             ? post === 'nova_post'
@@ -169,6 +170,7 @@ export const UserDeliveryData = () => {
       <Controller
         name='branches'
         control={control}
+        rules={{ required: selectedCity && selectedPost }}
         defaultValue={
           address && branchName ? `${branchName}, ${address}` : null
         }

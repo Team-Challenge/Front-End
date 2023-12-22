@@ -29,7 +29,11 @@ export const UserSettingsForm = ({
   const methods = useForm<SettingsFormData>({
     mode: 'onChange',
   });
-  const { watch, reset } = methods;
+
+  const {
+    watch,
+    formState: { isValid },
+  } = methods;
 
   const newPassword = watch('new_password');
   const phoneNumber = watch('phone_number');
@@ -73,7 +77,6 @@ export const UserSettingsForm = ({
   const handleResponse = (response: any) => {
     if (response.payload) {
       changeDataResult(true);
-      reset();
     } else {
       changeDataResult(false);
     }
@@ -102,6 +105,7 @@ export const UserSettingsForm = ({
         <ButtonUI
           type='submit'
           label='Зберегти'
+          disabled={!isValid}
           className={s.form_btn}
           onClick={methods.handleSubmit(onSubmit as SubmitHandler<FieldValues>)}
         />
