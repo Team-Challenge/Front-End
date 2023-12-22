@@ -154,10 +154,10 @@ export interface ChangeFullNameFormData {
   full_name: string;
 }
 
-export interface UserPanelEmptyPageProps {
+export interface EmptyContentPageProps {
   title: string;
   text: string;
-  icon: React.ReactNode;
+  item: React.ReactNode;
 }
 
 export interface UserProfileMenuProps {

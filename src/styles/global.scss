@@ -126,10 +126,10 @@ input {
 
 .user-panel-page {
   display: grid;
-  grid-template-columns: 224px 1fr;
+  grid-template-columns: 244px 1fr;
   grid-template-rows: auto;
   align-items: start;
-  column-gap: 88px;
+  column-gap: 68px;
   margin-top: 60px;
 
   @media (max-width: $tablet) {
@@ -154,7 +154,7 @@ input {
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
-  padding: 12px 15px;
+  padding: 10px 15px;
   background: transparent;
   border-radius: 4px;
 
