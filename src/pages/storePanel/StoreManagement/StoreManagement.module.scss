@@ -1,0 +1,14 @@
+@import '@/styles/index.scss';
+
+.settings {
+  display: grid;
+  padding-bottom: toRem(20);
+
+  @media (max-width: $tablet) {
+    justify-items: center;
+  }
+
+  &_title {
+    margin-bottom: 16px;
+  }
+}
