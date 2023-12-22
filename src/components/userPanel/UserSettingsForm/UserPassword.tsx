@@ -1,6 +1,6 @@
 import { useFormContext } from 'react-hook-form';
 import { PasswordInput } from '@/components/UI/PasswordInput';
-import s from './UserPassword.module.scss';
+import s from './UserSettingsForm.module.scss';
 
 export const UserPassword = () => {
   const methods = useFormContext();

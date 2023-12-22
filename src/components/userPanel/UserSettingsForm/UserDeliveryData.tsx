@@ -7,16 +7,22 @@ import {
 } from '@/store/deliveryOptions/deliveryThunks';
 import { PostDeliveryInfo } from '@/types';
 import { SelectInput } from '@/components/UI/SelectInput';
-import s from './UserDeliveryData.module.scss';
+import s from './UserSettingsForm.module.scss';
 
 export const UserDeliveryData = () => {
   const dispatch = useAppDispatch();
+
   const novaPostDeliveryInfo = useAppSelector(
     (state) => state.delivery.novaPost,
   ) as PostDeliveryInfo[];
   const ukrPostDeliveryInfo = useAppSelector(
     (state) => state.delivery.ukrPost,
   ) as PostDeliveryInfo[];
+
+  const cityName = useAppSelector((state) => state.userProfile.city);
+  const post = useAppSelector((state) => state.userProfile.post);
+  const address = useAppSelector((state) => state.userProfile.address);
+  const branchName = useAppSelector((state) => state.userProfile.branch_name);
 
   const { control, watch, setValue } = useFormContext();
   const selectedCity = watch('city');
@@ -62,8 +68,16 @@ export const UserDeliveryData = () => {
 
       setPostOptions(deliveryCompanies);
 
-      setValue('post', null);
-      setValue('branches', null);
+      if (selectedCity === cityName) {
+        setValue('post', post ? post : null);
+        setValue(
+          'branches',
+          address && branchName ? `${branchName}, ${address}` : null,
+        );
+      } else {
+        setValue('post', null);
+        setValue('branches', null);
+      }
     }
   }, [selectedCity]);
 
@@ -100,7 +114,14 @@ export const UserDeliveryData = () => {
 
       setBranchesOptions(formattedBranches);
 
-      setValue('branches', null);
+      if (selectedPost === post) {
+        setValue(
+          'branches',
+          address && branchName ? `${branchName}, ${address}` : null,
+        );
+      } else {
+        setValue('branches', null);
+      }
     }
   }, [selectedPost]);
 
@@ -111,7 +132,7 @@ export const UserDeliveryData = () => {
       <Controller
         name='city'
         control={control}
-        defaultValue={null}
+        defaultValue={cityName ? cityName : null}
         render={({ field }) => (
           <SelectInput
             field={field}
@@ -125,14 +146,22 @@ export const UserDeliveryData = () => {
       <Controller
         name='post'
         control={control}
-        defaultValue={null}
+        defaultValue={
+          post
+            ? post === 'nova_post'
+              ? { value: 'nova_post', label: 'Нова Пошта' }
+              : post === 'ukr_post'
+              ? { value: 'ukr_post', label: 'Укрпошта' }
+              : null
+            : null
+        }
         render={({ field }) => (
           <SelectInput
             field={field}
             options={postOptions}
             placeholder='-Оберіть спосіб доставки-'
             isSearchable={true}
-            isDisabled={!selectedCity}
+            isDisabled={!selectedCity || cityName == null}
           />
         )}
       />
@@ -140,14 +169,21 @@ export const UserDeliveryData = () => {
       <Controller
         name='branches'
         control={control}
-        defaultValue={null}
+        defaultValue={
+          address && branchName ? `${branchName}, ${address}` : null
+        }
         render={({ field }) => (
           <SelectInput
             field={field}
             options={branchesOptions}
             placeholder='-Оберіть спосіб доставки-'
             isSearchable={true}
-            isDisabled={!selectedCity || !selectedPost}
+            isDisabled={
+              !selectedCity ||
+              !selectedPost ||
+              cityName === null ||
+              post === null
+            }
           />
         )}
       />

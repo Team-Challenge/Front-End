@@ -1,6 +1,6 @@
 import { useAppSelector } from '@/hooks/reduxHook';
 import { PhoneNumber } from '@/components/PhoneNumber';
-import s from './UserPhoneNumber.module.scss';
+import s from './UserSettingsForm.module.scss';
 
 export const UserPhoneNumber = () => {
   const userPhoneNumber = useAppSelector(
