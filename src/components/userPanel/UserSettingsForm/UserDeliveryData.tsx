@@ -161,7 +161,7 @@ export const UserDeliveryData = () => {
             options={postOptions}
             placeholder='-Оберіть спосіб доставки-'
             isSearchable={true}
-            isDisabled={!selectedCity || cityName == null}
+            isDisabled={!selectedCity}
           />
         )}
       />
@@ -178,12 +178,7 @@ export const UserDeliveryData = () => {
             options={branchesOptions}
             placeholder='-Оберіть спосіб доставки-'
             isSearchable={true}
-            isDisabled={
-              !selectedCity ||
-              !selectedPost ||
-              cityName === null ||
-              post === null
-            }
+            isDisabled={!selectedCity || !selectedPost}
           />
         )}
       />
