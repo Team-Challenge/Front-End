@@ -12,7 +12,7 @@ export const StorePhoneNumber = () => {
       <p className={s.form_subtitle}>
         Номер телефону<span>*</span>
       </p>
-      <PhoneNumber userPhoneNumber={storeContactNumber} />
+      <PhoneNumber phoneNumber={storeContactNumber} />
     </div>
   );
 };

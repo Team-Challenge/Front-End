@@ -14,7 +14,7 @@ export const UserPhoneNumber = () => {
           {userPhoneNumber ? 'Змінити номер телефону' : 'Додати номер телефону'}
         </p>
       )}
-      <PhoneNumber userPhoneNumber={userPhoneNumber} />
+      <PhoneNumber phoneNumber={userPhoneNumber} />
     </div>
   );
 };

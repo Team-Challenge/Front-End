@@ -136,7 +136,7 @@ export interface EmailProps {
 }
 
 export interface PhoneNumberProps {
-  userPhoneNumber?: string;
+  phoneNumber?: string;
 }
 
 export interface DataChangeNotificationModalProps {
