@@ -182,6 +182,13 @@ export interface CreateNewStoreFormData {
   phone_number: string;
 }
 
+export interface StoreSettingsFormProps {
+  name: string;
+  phone_number: string;
+  link: string;
+  description: string;
+}
+
 export interface ChangeFullNameFormData {
   full_name: string;
 }
