@@ -8,6 +8,7 @@ export const StoreSocialMediaLink = () => {
   const storeSocialMediaLink = useAppSelector(
     (state) => state.storeProfile.link,
   );
+
   const instagramLink =
     storeSocialMediaLink &&
     transformInstagramLinkToNickname(storeSocialMediaLink);
@@ -19,7 +20,7 @@ export const StoreSocialMediaLink = () => {
         type='text'
         id='link'
         placeholder='@myshop'
-        value={instagramLink}
+        value={instagramLink as string}
         required={false}
         regex={INSTAGRAM_NICKNAME_REGEX}
         errorMessage={'Будь ласка, введіть ваш нікнейм'}
