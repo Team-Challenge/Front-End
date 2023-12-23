@@ -16,7 +16,7 @@
   padding: toRem(12) toRem(16);
 
   @media (max-width: $mobile) {
-    line-height: 19.6px;
+    line-height: toRem(19.6);
     padding: toRem(10);
   }
 
@@ -27,17 +27,33 @@
     font-weight: 400;
     line-height: 1rem;
   }
+
+  &_error {
+    border-color: $error-color;
+  }
+
+  &_success {
+    border-color: $success-color;
+  }
 }
 
 .icon {
   position: absolute;
   right: 4%;
   top: 5%;
-  color: $success-color;
 
   svg {
-    width: 16px;
-    height: 16px;
+    width: 1rem;
+    height: 1rem;
+  }
+
+  &_edit,
+  &_valid {
+    color: $success-color;
+  }
+
+  &_invalid {
+    color: $error-color;
   }
 }
 

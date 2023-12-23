@@ -5,17 +5,21 @@ import { Icon } from '@iconify/react';
 import s from './TextArea.module.scss';
 
 export const TextArea = ({
-  name,
   id,
+  name,
+  required = false,
+  defaultValue,
   placeholder,
   cols,
   rows,
   maxLength,
   className,
-  defaultValue,
   editModeIcon,
 }: TextAreaProps) => {
-  const { register } = useFormContext();
+  const {
+    register,
+    formState: { errors, dirtyFields },
+  } = useFormContext();
 
   const textareaAttributes = {
     name,
@@ -31,21 +35,42 @@ export const TextArea = ({
     maxLength as number,
   );
 
+  const hasError = errors[id];
+  const isDirty = id in dirtyFields;
+
+  const textAreaClassName = `${s.textarea}
+  ${hasError && s.textarea_error}
+  ${!hasError && isDirty ? s.textarea_success : ''}`;
+
   return (
     <div className={`${s.wrap} ${className}`}>
       <textarea
         {...textareaAttributes}
-        {...register(name as string, {})}
+        {...register(id as string, {
+          required: required
+        })}
         defaultValue={defaultValue}
         onInput={(event) =>
           handleInput(event as React.ChangeEvent<HTMLTextAreaElement>)
         }
-        className={s.textarea}
+        className={textAreaClassName}
       />
 
-      {editModeIcon && (
-        <i className={`${s.icon}`}>
+      {editModeIcon && !isDirty && (
+        <i className={`${s.icon} ${s.icon_edit}`}>
           <Icon icon='solar:pen-outline' />
+        </i>
+      )}
+
+      {hasError && (
+        <i className={`${s.icon} ${s.icon_invalid}`}>
+          <Icon icon='solar:danger-circle-outline' />
+        </i>
+      )}
+
+      {!hasError && isDirty && (
+        <i className={`${s.icon} ${s.icon_valid}`}>
+          <Icon icon='solar:unread-outline' />
         </i>
       )}
 
