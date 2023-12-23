@@ -114,7 +114,7 @@ export const UserDeliveryData = () => {
 
       setBranchesOptions(formattedBranches);
 
-      if (selectedPost === post) {
+      if (selectedPost === post && selectedCity === cityName) {
         setValue(
           'branches',
           address && branchName ? `${branchName}, ${address}` : null,
