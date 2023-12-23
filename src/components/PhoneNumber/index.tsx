@@ -8,7 +8,7 @@ export const PhoneNumber = ({ userPhoneNumber }: PhoneNumberProps) => {
   return (
     <TextInput
       type='text'
-      id='phoneNumber'
+      id='phone_number'
       placeholder='Номер телефону'
       value={value}
       required={false}

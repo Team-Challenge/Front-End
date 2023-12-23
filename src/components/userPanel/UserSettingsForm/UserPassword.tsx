@@ -1,6 +1,6 @@
 import { useFormContext } from 'react-hook-form';
 import { PasswordInput } from '@/components/UI/PasswordInput';
-import s from './Settings.module.scss';
+import s from './UserSettingsForm.module.scss';
 
 export const UserPassword = () => {
   const methods = useFormContext();
@@ -15,8 +15,7 @@ export const UserPassword = () => {
   );
 
   return (
-    <div className={s.form_wrap}>
-      <p className={s.form_subtitle}>Зміна пароля</p>
+    <div className={s.block}>
       <PasswordInput
         id='current_password'
         placeholder='Старий пароль'

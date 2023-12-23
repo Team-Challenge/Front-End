@@ -94,6 +94,20 @@ export interface PasswordInputProps {
   className?: string;
 }
 
+export interface SelectInputProps {
+  field: {
+    onChange: (value: string) => void;
+    onBlur: () => void;
+    value: string;
+    ref: React.Ref<any>;
+  };
+  options: SelectProps<any>['options'];
+  placeholder: string;
+  isSearchable?: boolean;
+  className?: string;
+  isDisabled?: boolean;
+}
+
 export interface FullNameProps {
   value?: string;
   editModeIcon?: boolean;
@@ -123,12 +137,29 @@ export interface SettingsFormData {
   new_password?: string;
   new_password_repeat?: string;
   email?: string;
-  phoneNumber?: string;
+  phone_number?: string;
+  city?: string;
+  post?: string;
+  branches?: string;
+  address?: string;
+}
+
+export interface UserSettingsFormProps {
+  changeDataResult: (arg0: boolean) => void;
+}
+
+export interface PostDeliveryInfo {
+  city_name: string;
+  branches: {
+    branch_name?: string;
+    branch_number?: string;
+    address: string;
+  }[];
 }
 
 export interface CreateNewStoreFormData {
   name: string;
-  phoneNumber: string;
+  phone_number: string;
 }
 
 export interface ChangeFullNameFormData {

@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import authSlice from './auth/authSlice';
 import userProfileSlice from './userProfile/userProfileSlice';
 import storeProfileSlice from './storeProfile/storeProfileSlice';
+import deliverySlice from './deliveryOptions/deliverySlice';
 import overlayStateSlice from './overlayStateSlice';
 import modalSlice from './modalSlice';
 
@@ -11,6 +12,7 @@ const store = configureStore({
     userProfile: userProfileSlice,
     storeProfile: storeProfileSlice,
     overlayState: overlayStateSlice,
+    delivery: deliverySlice,
     modal: modalSlice,
   },
   middleware: (getDefaultMiddleWare) => getDefaultMiddleWare().concat(),
