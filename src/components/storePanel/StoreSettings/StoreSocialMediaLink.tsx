@@ -21,7 +21,7 @@ export const StoreSocialMediaLink = () => {
         id='link'
         placeholder='@myshop'
         value={instagramLink as string}
-        required={false}
+        required={Boolean(instagramLink)}
         regex={INSTAGRAM_NICKNAME_REGEX}
         errorMessage={'Будь ласка, введіть ваш нікнейм'}
         editModeIcon={Boolean(instagramLink)}

@@ -11,7 +11,7 @@ export const PhoneNumber = ({ userPhoneNumber }: PhoneNumberProps) => {
       id='phone_number'
       placeholder='Номер телефону'
       value={value}
-      required={false}
+      required={Boolean(userPhoneNumber)}
       regex={PHONE_NUMBER_REGEX}
       errorMessage='Будь ласка, введіть справний український номер телефону, який розпочинається з +380'
       editModeIcon

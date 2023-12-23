@@ -12,11 +12,14 @@ export const StoreDescription = () => {
       </p>
       <TextArea
         name='description'
+        id='description'
         placeholder='Додайте свій опис'
         maxLength={1000}
+        minLength={1}
         defaultValue={storeDesc}
-        className={s.form_textarea}
+        required={Boolean(storeDesc)}
         editModeIcon={Boolean(storeDesc)}
+        className={s.form_textarea}
       />
     </div>
   );
