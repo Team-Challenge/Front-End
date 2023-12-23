@@ -85,14 +85,15 @@ export interface TextInputProps {
 
 export interface TextAreaProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
-  name: string;
-  id?: string;
-  className?: string;
+  id: string;
+  name?: string;
+  required?: boolean;
+  defaultValue?: string;
   placeholder?: string;
   cols?: number;
   rows?: number;
   maxLength?: number;
-  defaultValue?: string;
+  className?: string;
   editModeIcon?: boolean;
 }
 
