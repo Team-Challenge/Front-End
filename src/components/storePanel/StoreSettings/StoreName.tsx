@@ -14,7 +14,7 @@ export const StoreName = () => {
 
   const { charCount, handleInput } = useCharCount(storeName, 30);
 
-  const hasError = Boolean(errors.changeStoreName);
+  const hasError = Boolean(errors.name);
 
   return (
     <div className={s.form_wrap}>
@@ -31,14 +31,14 @@ export const StoreName = () => {
         maxLength={30}
         isServerValidation={hasError}
         isServerError={hasError}
-        onClick={() => methods.clearErrors('changeStoreName')}
+        onClick={() => methods.clearErrors('name')}
         onInput={(event) => handleInput(event)}
         editModeIcon
       />
 
       {hasError ? (
         <p className={`error-text ${s.form_error}`}>
-          {errors?.changeStoreName?.message as string}
+          {errors?.name?.message as string}
         </p>
       ) : (
         <p className={s.form_char_count}>
