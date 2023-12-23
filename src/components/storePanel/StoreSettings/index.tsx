@@ -5,7 +5,17 @@ import {
   FieldValues,
   useForm,
 } from 'react-hook-form';
-import { useAppSelector } from '@/hooks/reduxHook';
+import {
+  transformInstagramLinkToNickname,
+  transformNicknameToInstagramLink,
+} from '@/utils/transformInstagramLink';
+import {
+  changeStoreInfo,
+  getStoreInfo,
+} from '@/store/storeProfile/storeProfileThunks';
+import { openModal } from '@/store/modalSlice';
+import { StoreSettingsFormProps } from '@/types';
+import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
 import { ButtonUI } from '@/components/UI';
 import { DataChangeNotificationModal } from '@/components/DataChangeNotificationModal';
 import { StoreName } from './StoreName';
@@ -16,20 +26,108 @@ import s from './StoreSettings.module.scss';
 
 export const StoreSettings = () => {
   const [isSuccessfulChange, setIsSuccessfulChange] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
   const isModalOpen = useAppSelector(
     (state) => state.modal.dataStoreChangeNotification,
   );
 
-  const methods = useForm({
+  const storeNameData = useAppSelector((state) => state.storeProfile.name);
+  const storeContactNumber = useAppSelector(
+    (state) => state.storeProfile.phone_number,
+  );
+  const storeDescData = useAppSelector(
+    (state) => state.storeProfile.description,
+  );
+  const storeSocialMediaLink = useAppSelector(
+    (state) => state.storeProfile.link,
+  );
+
+  const instagramLink =
+    storeSocialMediaLink &&
+    transformInstagramLinkToNickname(storeSocialMediaLink);
+
+  const methods = useForm<StoreSettingsFormProps>({
     mode: 'onChange',
   });
 
   const {
+    watch,
+    setError,
     formState: { isValid },
   } = methods;
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const [storeName, storePhoneNumber, storeLink, storeDesc] = watch([
+    'name',
+    'phone_number',
+    'link',
+    'description',
+  ]);
+
+  const onSubmit = async (data: StoreSettingsFormProps) => {
+    if (storeNameData !== storeName) {
+      try {
+        await dispatch(
+          changeStoreInfo({
+            name: data.name,
+          }),
+        ).unwrap();
+
+        setIsSuccessfulChange(true);
+        dispatch(openModal('dataStoreChangeNotification'));
+        dispatch(getStoreInfo());
+      } catch (error: any) {
+        if (error.code === 'ERR_BAD_REQUEST') {
+          setError('name', {
+            type: 'manual',
+            message:
+              'На жаль, вже існує магазин з такою назвою. Будь ласка, введіть іншу назву, яка буде унікальною',
+          });
+          return;
+        }
+      }
+    }
+
+    if (storeContactNumber !== storePhoneNumber) {
+      const response = await dispatch(
+        changeStoreInfo({
+          phone_number: data.phone_number,
+        }),
+      );
+
+      handleResponse(response);
+    }
+
+    if (instagramLink !== storeLink) {
+      const instagramLink = transformNicknameToInstagramLink(data.link);
+
+      const response = await dispatch(
+        changeStoreInfo({
+          link: instagramLink,
+        }),
+      );
+
+      handleResponse(response);
+    }
+
+    if (storeDescData !== storeDesc) {
+      const response = await dispatch(
+        changeStoreInfo({
+          description: data.description,
+        }),
+      );
+
+      handleResponse(response);
+    }
+  };
+
+  const handleResponse = (response: any) => {
+    if (response.payload) {
+      setIsSuccessfulChange(true);
+    } else {
+      setIsSuccessfulChange(false);
+    }
+    dispatch(openModal('dataStoreChangeNotification'));
+    dispatch(getStoreInfo());
   };
 
   return (
