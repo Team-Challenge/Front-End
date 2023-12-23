@@ -2,6 +2,7 @@
 
 .settings {
   display: grid;
+  padding-bottom: 1.5rem;
 
   @media (max-width: $tablet) {
     justify-items: center;
@@ -12,70 +13,23 @@
 
     @media (max-width: $mobileSmall) {
       justify-self: start;
-      margin-bottom: 14px;
+      margin-bottom: toRem(14);
     }
   }
 }
 
-.form {
-  max-width: toRem(424);
-  display: grid;
-  gap: 2rem;
+.button {
+  &_delete {
+    max-width: toRem(424);
+    margin-top: 1rem;
 
-  @media (max-width: $tablet) {
-    max-width: 100%;
-    width: calc(75% - 20px);
-    gap: toRem(24);
-  }
-
-  @media (max-width: $mobileSmall) {
-    width: calc(100% - 20px);
-    gap: toRem(18);
-  }
-
-  &_wrap {
-    display: grid;
-    gap: 1rem;
-
-    @media (max-width: $mobile) {
-      gap: toRem(10);
+    @media (max-width: $tablet) {
+      max-width: 100%;
+      width: calc(75% - 20px);
     }
-  }
 
-  &_subtitle {
-    font-weight: 500;
-    line-height: 110%;
-
-    @media (max-width: $mobile) {
-      margin-bottom: toRem(2);
-    }
-  }
-
-  &_hints {
-    color: $grey;
-    font-size: toRem(12);
-    font-weight: 300;
-    line-height: 1rem;
-    margin: toRem(-5) 0 toRem(-8);
-
-    @media (max-width: $mobile) {
-      margin: 0 0 toRem(-5);
-    }
-  }
-
-  &_btn {
-    &_delete {
-      max-width: toRem(424);
-      margin-top: 1rem;
-
-      @media (max-width: $tablet) {
-        max-width: 100%;
-        width: calc(75% - 20px);
-      }
-
-      @media (max-width: $mobileSmall) {
-        width: calc(100% - 20px);
-      }
+    @media (max-width: $mobileSmall) {
+      width: calc(100% - 20px);
     }
   }
 }
