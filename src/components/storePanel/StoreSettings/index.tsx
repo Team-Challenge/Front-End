@@ -31,20 +31,17 @@ export const StoreSettings = () => {
     (state) => state.modal.dataStoreChangeNotification,
   );
 
-  const storeNameData = useAppSelector((state) => state.storeProfile.name);
-  const storeContactNumber = useAppSelector(
+  const storeNameDefault = useAppSelector((state) => state.storeProfile.name);
+  const storePhoneNumberDefault = useAppSelector(
     (state) => state.storeProfile.phone_number,
   );
-  const storeDescData = useAppSelector(
+  const storeDescriptionDefault = useAppSelector(
     (state) => state.storeProfile.description,
   );
-  const storeSocialMediaLink = useAppSelector(
-    (state) => state.storeProfile.link,
-  );
+  const storeLinkDefault = useAppSelector((state) => state.storeProfile.link);
 
   const instagramLink =
-    storeSocialMediaLink &&
-    transformInstagramLinkToNickname(storeSocialMediaLink);
+    storeLinkDefault && transformInstagramLinkToNickname(storeLinkDefault);
 
   const methods = useForm<StoreSettingsFormProps>({
     mode: 'onChange',
@@ -64,7 +61,7 @@ export const StoreSettings = () => {
   ]);
 
   const onSubmit = async (data: StoreSettingsFormProps) => {
-    if (storeNameData !== storeName) {
+    if (storeNameDefault !== storeName) {
       try {
         await dispatch(
           changeStoreInfo({
@@ -87,7 +84,7 @@ export const StoreSettings = () => {
       }
     }
 
-    if (storeContactNumber !== storePhoneNumber) {
+    if (storePhoneNumberDefault !== storePhoneNumber) {
       const response = await dispatch(
         changeStoreInfo({
           phone_number: data.phone_number,
@@ -97,7 +94,7 @@ export const StoreSettings = () => {
       handleResponse(response);
     }
 
-    if (instagramLink !== storeLink) {
+    if (instagramLink !== storeLink && storeLink) {
       const instagramLink = transformNicknameToInstagramLink(data.link);
 
       const response = await dispatch(
@@ -109,7 +106,7 @@ export const StoreSettings = () => {
       handleResponse(response);
     }
 
-    if (storeDescData !== storeDesc) {
+    if (storeDescriptionDefault !== storeDesc && storeDesc) {
       const response = await dispatch(
         changeStoreInfo({
           description: data.description,
