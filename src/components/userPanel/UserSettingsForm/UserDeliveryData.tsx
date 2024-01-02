@@ -46,7 +46,7 @@ export const UserDeliveryData = () => {
   }, []);
 
   useEffect(() => {
-    if (selectedCity) {
+    if ((selectedCity && cityName) || selectedCity) {
       const isNovaPostAvailable = novaPostCities.includes(selectedCity);
       const isUkrPostAvailable = ukrPostCities.includes(selectedCity);
 
@@ -79,7 +79,7 @@ export const UserDeliveryData = () => {
         setValue('branches', null);
       }
     }
-  }, [selectedCity]);
+  }, [selectedCity, cityName]);
 
   useEffect(() => {
     if (selectedPost) {
