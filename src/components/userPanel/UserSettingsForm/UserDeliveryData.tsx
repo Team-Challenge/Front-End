@@ -1,17 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useFormContext, Controller } from 'react-hook-form';
-import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
-import {
-  getNovaPostInfo,
-  getUkrPostInfo,
-} from '@/store/deliveryOptions/deliveryThunks';
+import { useAppSelector } from '@/hooks/reduxHook';
 import { PostDeliveryInfo } from '@/types';
 import { SelectInput } from '@/components/UI/SelectInput';
 import s from './UserSettingsForm.module.scss';
 
 export const UserDeliveryData = () => {
-  const dispatch = useAppDispatch();
-
   const novaPostDeliveryInfo = useAppSelector(
     (state) => state.delivery.novaPost,
   ) as PostDeliveryInfo[];
@@ -39,11 +33,6 @@ export const UserDeliveryData = () => {
     useState<{ value: string; label: string }[]>();
   const [branchesOptions, setBranchesOptions] =
     useState<{ value: string; label: string }[]>();
-
-  useEffect(() => {
-    dispatch(getNovaPostInfo());
-    dispatch(getUkrPostInfo());
-  }, []);
 
   useEffect(() => {
     if ((selectedCity && cityName) || selectedCity) {
