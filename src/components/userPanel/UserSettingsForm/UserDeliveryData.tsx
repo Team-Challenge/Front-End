@@ -178,7 +178,7 @@ export const UserDeliveryData = () => {
           <SelectInput
             field={field}
             options={branchesOptions}
-            placeholder='-Оберіть спосіб доставки-'
+            placeholder='-Оберіть відділення-'
             isSearchable={true}
             isDisabled={!selectedCity || !selectedPost}
           />

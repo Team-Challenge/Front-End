@@ -9,11 +9,7 @@ export const UserPhoneNumber = () => {
 
   return (
     <div className={s.block}>
-      {userPhoneNumber && (
-        <p className={s.hints}>
-          {userPhoneNumber ? 'Змінити номер телефону' : 'Додати номер телефону'}
-        </p>
-      )}
+      <p className={s.hints}>Номер телефону</p>
       <PhoneNumber userPhoneNumber={userPhoneNumber} />
     </div>
   );
