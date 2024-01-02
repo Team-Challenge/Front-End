@@ -15,7 +15,7 @@ export const StoreSocialMediaLink = () => {
 
   return (
     <div className={s.form_wrap}>
-      <p className={s.form_subtitle}>Посилання на Instagram</p>
+      <p className={s.form_subtitle}>Instagram</p>
       <TextInput
         type='text'
         id='link'
