@@ -52,7 +52,7 @@ export const UserSettingsForm = ({
       handleResponse(response);
     }
 
-    if (userContact !== phoneNumber) {
+    if (userContact !== phoneNumber && phoneNumber) {
       const response = await dispatch(changePhoneNumber(data.phone_number));
       handleResponse(response);
     }
