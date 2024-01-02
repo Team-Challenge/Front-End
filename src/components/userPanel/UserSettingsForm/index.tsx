@@ -23,8 +23,8 @@ export const UserSettingsForm = ({
   changeDataResult,
 }: UserSettingsFormProps) => {
   const dispatch = useAppDispatch();
-  const userContact = useAppSelector((state) => state.userProfile.phone_number);
-  const cityName = useAppSelector((state) => state.userProfile.city);
+  const userPhoneNumberDefault = useAppSelector((state) => state.userProfile.phone_number);
+  const userDeliveryCityDefault = useAppSelector((state) => state.userProfile.city);
 
   const methods = useForm<SettingsFormData>({
     mode: 'onChange',
@@ -35,11 +35,13 @@ export const UserSettingsForm = ({
     formState: { isValid },
   } = methods;
 
-  const newPassword = watch('new_password');
-  const phoneNumber = watch('phone_number');
-  const city = watch('city');
-  const postService = watch('post');
-  const address = watch('branches');
+  const [newPassword, userPhoneNumber, city, postService, address] = watch([
+    'new_password',
+    'phone_number',
+    'city',
+    'post',
+    'branches'
+  ]);
 
   const onSubmit = async (data: SettingsFormData) => {
     if (newPassword) {
@@ -52,12 +54,12 @@ export const UserSettingsForm = ({
       handleResponse(response);
     }
 
-    if (userContact !== phoneNumber && phoneNumber) {
+    if (userPhoneNumberDefault !== userPhoneNumber && userPhoneNumber) {
       const response = await dispatch(changePhoneNumber(data.phone_number));
       handleResponse(response);
     }
 
-    if (cityName !== city && city && postService && address) {
+    if (userDeliveryCityDefault !== city && city && postService && address) {
       const [branch_name, address] =
         (data.branches && data.branches.split(', ')) || [];
 
