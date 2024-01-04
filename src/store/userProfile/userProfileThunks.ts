@@ -19,7 +19,7 @@ export const getUserInfo = createAsyncThunk(
       if (response.status === 200) {
         dispatch(setFullName(response.data.full_name));
         dispatch(setPhoneNumber(response.data.phone_number));
-        dispatch(setProfilePhoto(response.data.profile_picture));
+        dispatch(setProfilePhoto(response.data.profile_photo));
         dispatch(setDeliveryCity(response.data.city));
         dispatch(setDeliveryPost(response.data.post));
         dispatch(setDeliveryBranch(response.data.branch_name));
@@ -70,12 +70,10 @@ export const changePhoneNumber = createAsyncThunk(
 
 export const changePassword = createAsyncThunk(
   'userSettings/changePassword',
-  async (
-    credentials: {
-      currentPassword: string | undefined;
-      newPassword: string | undefined;
-    },
-  ) => {
+  async (credentials: {
+    currentPassword: string | undefined;
+    newPassword: string | undefined;
+  }) => {
     try {
       const response = await $api.post('/accounts/change_password', {
         current_password: credentials.currentPassword,
@@ -140,14 +138,12 @@ export const deleteProfilePhoto = createAsyncThunk(
 
 export const changeUserDeliveryInfo = createAsyncThunk(
   'userSettings/changeUserDeliveryInfo',
-  async (
-    credentials: {
-      city: string | undefined;
-      post: string | undefined;
-      address: string | undefined;
-      branch_name: string | undefined;
-    },
-  ) => {
+  async (credentials: {
+    city: string | undefined;
+    post: string | undefined;
+    address: string | undefined;
+    branch_name: string | undefined;
+  }) => {
     try {
       const response = await $api.post('/accounts/delivery_info', {
         city: credentials.city,
