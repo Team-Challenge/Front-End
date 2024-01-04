@@ -5,12 +5,16 @@ import { useAppDispatch, useAppSelector } from './hooks/reduxHook';
 import { checkAuth } from './store/auth/authActions';
 import { getUserInfo } from './store/userProfile/userProfileThunks';
 import { getStoreInfo } from './store/storeProfile/storeProfileThunks';
-import { getNovaPostInfo, getUkrPostInfo } from './store/deliveryOptions/deliveryThunks';
+import {
+  getNovaPostInfo,
+  getUkrPostInfo,
+} from './store/deliveryOptions/deliveryThunks';
 import { PageNotFound, Home } from './pages';
 import { Header } from './components/Header';
 import { UserPanelRoutes } from './components/routes/UserPanelRoutes';
 import { StorePanelRoutes } from './components/routes/StorePanelRoutes';
 import { BurgerMenu } from './components/BurgerMenu';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 export const App = () => {
   const dispatch = useAppDispatch();
@@ -30,19 +34,20 @@ export const App = () => {
       dispatch(getUkrPostInfo());
     }
   }, [isAuth]);
-
   return (
-    <div>
-      <Header />
-      {width <= 991.98 && isBurgerMenuOpen && <BurgerMenu />}
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='*' element={<PageNotFound />} />
-        {isAuth && <Route path='/account/*' element={<UserPanelRoutes />} />}
-        {isAuth && hasStore && (
-          <Route path='/account/store/*' element={<StorePanelRoutes />} />
-        )}
-      </Routes>
-    </div>
+    <GoogleOAuthProvider clientId={import.meta.env.VITE_APP_CLIENT_ID}>
+      <div>
+        <Header />
+        {width <= 991.98 && isBurgerMenuOpen && <BurgerMenu />}
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='*' element={<PageNotFound />} />
+          {isAuth && <Route path='/account/*' element={<UserPanelRoutes />} />}
+          {isAuth && hasStore && (
+            <Route path='/account/store/*' element={<StorePanelRoutes />} />
+          )}
+        </Routes>
+      </div>
+    </GoogleOAuthProvider>
   );
 };
