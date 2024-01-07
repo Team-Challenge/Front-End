@@ -5,7 +5,7 @@ import {
   useForm,
 } from 'react-hook-form';
 import { useAppDispatch } from '@/hooks/reduxHook';
-import { setUser } from '@/store/auth/authSlice';
+import { setUser, setAuth } from '@/store/auth/authSlice';
 import { registration } from '@/store/auth/authThunks';
 import { IUserAuth, RegistrationFormProps } from '@/types';
 import { FullName } from '@/components/FullName';
@@ -13,6 +13,10 @@ import { Email } from '@/components/Email';
 import { PasswordInput } from '@/components/UI/PasswordInput';
 import { ButtonUI } from '@/components/UI/ButtonUI';
 import s from './AuthForm.module.scss';
+
+import axios from 'axios';
+import { useGoogleLogin } from '@react-oauth/google';
+import { API_URL } from '@/http';
 
 export const RegistrationForm = ({
   isSuccessRegistration,
@@ -28,6 +32,27 @@ export const RegistrationForm = ({
     setError,
     formState: { errors, isValid },
   } = methods;
+
+  const googleLogin = useGoogleLogin({
+    onSuccess: async (codeResponse) => {
+      try {
+        const response = await axios.post(`${API_URL}/accounts/authorize`, {
+          id_token: codeResponse.code,
+        });
+        if (response.status === 200) {
+          localStorage.setItem('token', response.data.access_token),
+            localStorage.setItem('refresh', response.data.refresh_token);
+          dispatch(setAuth(true));
+          isSuccessRegistration();
+        }
+        console.log(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    flow: 'auth-code',
+    redirect_uri: 'http://localhost:8000',
+  });
 
   const hasError = Boolean(errors.registrationError);
 
@@ -114,6 +139,7 @@ export const RegistrationForm = ({
               type='button'
               label='Зареєструватися через Google'
               variant='secondary'
+              onClick={() => googleLogin()}
             />
           </div>
         </form>
