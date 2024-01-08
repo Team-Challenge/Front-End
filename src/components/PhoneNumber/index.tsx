@@ -2,8 +2,8 @@ import { PHONE_NUMBER_REGEX } from '@/constants/RegExp';
 import { PhoneNumberProps } from '@/types';
 import { TextInput } from '../UI/TextInput';
 
-export const PhoneNumber = ({ userPhoneNumber }: PhoneNumberProps) => {
-  const value = userPhoneNumber ? userPhoneNumber : undefined;
+export const PhoneNumber = ({ phoneNumber }: PhoneNumberProps) => {
+  const value = phoneNumber ? phoneNumber : undefined;
 
   return (
     <TextInput
@@ -11,7 +11,7 @@ export const PhoneNumber = ({ userPhoneNumber }: PhoneNumberProps) => {
       id='phone_number'
       placeholder='Номер телефону'
       value={value}
-      required={false}
+      required={Boolean(phoneNumber)}
       regex={PHONE_NUMBER_REGEX}
       errorMessage='Будь ласка, введіть справний український номер телефону, який розпочинається з +380'
       editModeIcon

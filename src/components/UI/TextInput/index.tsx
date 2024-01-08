@@ -13,6 +13,7 @@ export const TextInput = ({
   isServerError,
   editModeIcon,
   onClick,
+  onInput,
   regex,
   errorMessage,
   minLength,
@@ -56,11 +57,12 @@ export const TextInput = ({
           })}
           className={inputClassName}
           onClick={onClick}
+          onInput={onInput}
           defaultValue={value}
         />
 
         {editModeIcon && !isDirty && !isServerError && (
-          <i className={`${s.icon} ${s.icon_profile}`}>
+          <i className={`${s.icon} ${s.icon_edit}`}>
             <Icon icon='solar:pen-outline' />
           </i>
         )}
