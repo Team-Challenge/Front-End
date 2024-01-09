@@ -1,0 +1,28 @@
+.file_drop {
+  display: flex;
+  border-radius: 4px;
+  outline: 1px grey dashed;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+
+  transition: .2s;
+  
+  &:active {
+    outline: 1px blue dashed;
+  }
+
+  &_is_dragged {
+    outline: 1px blue dashed;
+  }
+
+  &_content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &_file_input {
+    display: none;
+  }
+}
