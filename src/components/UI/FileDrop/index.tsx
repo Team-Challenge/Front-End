@@ -27,8 +27,6 @@ export const FileDrop = ({
       }
     })
 
-    console.log('localError:', !!localError);
-
     !localError ? onChange(files) : setError(localError)
     localError = null
   }
