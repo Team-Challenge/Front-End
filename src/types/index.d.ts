@@ -49,6 +49,13 @@ export interface ButtonUIProps {
   disabled?: boolean;
 }
 
+export interface FileDropProps {
+  children?: React.ReactNode;
+  onChange?: (any) => void;
+  isMulti?: boolean,
+  allowedFormats?: Array<string>
+}
+
 export interface ModalProps {
   children: React.ReactNode;
   modalId: string;
