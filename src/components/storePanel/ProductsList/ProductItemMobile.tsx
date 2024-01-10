@@ -1,6 +1,7 @@
 import { ProductStoreItemProps } from '@/types';
 import { useAppDispatch } from '@/hooks/reduxHook';
 import { openModal } from '@/store/modalSlice';
+import { Tooltip } from '@/components/UI/Tooltip';
 import { Icon } from '@iconify/react';
 import s from './ProductsList.module.scss';
 
@@ -52,7 +53,12 @@ export const ProductItemMobile = ({
         <div className={s.item_buttons}>
           <p>
             <span>Статус</span>
-            <Icon icon='solar:info-circle-outline' />
+            <Tooltip
+              text='Щоб змінити статус товару, просто клікніть на поточний статус та оберіть інший'
+              className={s.item_tooltip}
+            >
+              <Icon icon='solar:info-circle-outline' />
+            </Tooltip>
           </p>
           <button className={s.item_status} onClick={openModalWindow}>
             {status}

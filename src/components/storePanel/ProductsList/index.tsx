@@ -1,5 +1,6 @@
 import { useAppSelector } from '@/hooks/reduxHook';
 import { useWindowDimensions } from '@/hooks/useWindowDimensions';
+import { Tooltip } from '@/components/UI/Tooltip';
 import { ProductItemDesktop } from './ProductItemDesktop';
 import { ProductItemMobile } from './ProductItemMobile';
 import { ChangeProductStatus } from '../ChangeProductStatus';
@@ -55,7 +56,13 @@ export const ProductsList = () => {
             <p>Ціна</p>
             <p>Категорія</p>
             <p className={s.headline_status}>
-              Статус <Icon icon='solar:info-circle-outline' />
+              Статус
+              <Tooltip
+                text='Щоб змінити статус товару, просто клікніть на поточний статус та оберіть інший'
+                className={s.headline_tooltip}
+              >
+                <Icon icon='solar:info-circle-outline' />
+              </Tooltip>
             </p>
           </div>
           {products.map((product, index) => (

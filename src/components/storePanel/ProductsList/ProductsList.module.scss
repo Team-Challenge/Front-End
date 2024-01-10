@@ -53,6 +53,24 @@
       color: $green;
     }
   }
+
+  &_tooltip {
+    div {
+      width: toRem(297);
+      top: 30px;
+      right: 8px;
+      border-top-right-radius: 0px;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: -14px;
+        right: 0;
+        border-bottom: 15px solid $pale-yellow;
+        border-left: 15px solid transparent;
+      }
+    }
+  }
 }
 
 .cell {
@@ -269,5 +287,24 @@
     background: $azure;
     border-radius: 0.25rem;
     padding: toRem(8) toRem(12);
+  }
+
+  &_tooltip {
+    div {
+      width: toRem(207);
+      top: -36px;
+      left: 40px;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 37px;
+        left: -20px;
+        border-bottom: 15px solid $pale-yellow;
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        rotate: -90deg;
+      }
+    }
   }
 }
