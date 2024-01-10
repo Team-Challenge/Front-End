@@ -1,0 +1,33 @@
+@import '@/styles/index.scss';
+
+.tooltip {
+  &_container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  &_text {
+    width: toRem(328);
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: $tooltip-bg;
+    border-radius: 0.8rem;
+    z-index: 99;
+
+    @media (max-width: $mobile) {
+      width: toRem(262);
+    }
+
+    p {
+      color: $text-color;
+      font-size: 0.75rem;
+      font-weight: 300;
+      line-height: 1rem;
+      padding: 0.75rem 1rem;
+    }
+  }
+}
