@@ -73,6 +73,7 @@ export interface TextInputProps {
   isServerError?: boolean;
   editModeIcon?: boolean;
   onClick?: () => void;
+  onInput?: (event) => void;
   regex?: RegExp;
   errorMessage?: string;
   minLength?: number;
@@ -80,6 +81,20 @@ export interface TextInputProps {
   maxLength?: number;
   maxLengthMessage?: string;
   className?: string;
+}
+
+export interface TextAreaProps
+  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+  id: string;
+  name?: string;
+  required?: boolean;
+  defaultValue?: string;
+  placeholder?: string;
+  cols?: number;
+  rows?: number;
+  maxLength?: number;
+  className?: string;
+  editModeIcon?: boolean;
 }
 
 export interface PasswordInputProps {
@@ -121,7 +136,12 @@ export interface EmailProps {
 }
 
 export interface PhoneNumberProps {
-  userPhoneNumber?: string;
+  phoneNumber?: string;
+}
+
+export interface DataChangeNotificationModalProps {
+  isSuccessfulChange: boolean;
+  modalId: string;
 }
 
 //user info types
@@ -160,6 +180,13 @@ export interface PostDeliveryInfo {
 export interface CreateNewStoreFormData {
   name: string;
   phone_number: string;
+}
+
+export interface StoreSettingsFormProps {
+  name: string;
+  phone_number: string;
+  link: string;
+  description: string;
 }
 
 export interface ChangeFullNameFormData {

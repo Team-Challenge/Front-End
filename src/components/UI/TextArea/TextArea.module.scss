@@ -1,0 +1,66 @@
+@import '@/styles/index.scss';
+
+.wrap {
+  display: grid;
+  gap: 0.25rem;
+  position: relative;
+}
+
+.textarea {
+  width: 100%;
+  font-size: toRem(14);
+  line-height: toRem(18);
+  background: $white;
+  border: 1px solid $border-color;
+  border-radius: 0.25rem;
+  padding: toRem(12) toRem(16);
+
+  @media (max-width: $mobile) {
+    line-height: toRem(19.6);
+    padding: toRem(10);
+  }
+
+  &::placeholder {
+    color: $grey;
+    font-family: 'Montserrat', sans-serif;
+    font-size: toRem(14);
+    font-weight: 400;
+    line-height: 1rem;
+  }
+
+  &_error {
+    border-color: $error-color;
+  }
+
+  &_success {
+    border-color: $success-color;
+  }
+}
+
+.icon {
+  position: absolute;
+  right: 4%;
+  top: 5%;
+
+  svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  &_edit,
+  &_valid {
+    color: $success-color;
+  }
+
+  &_invalid {
+    color: $error-color;
+  }
+}
+
+.char_count {
+  color: $grey;
+  font-family: 'Montserrat', sans-serif;
+  font-size: toRem(12);
+  font-weight: 300;
+  line-height: 1rem;
+}

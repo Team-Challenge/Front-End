@@ -10,7 +10,7 @@ export const UserPhoneNumber = () => {
   return (
     <div className={s.block}>
       <p className={s.hints}>Номер телефону</p>
-      <PhoneNumber userPhoneNumber={userPhoneNumber} />
+      <PhoneNumber phoneNumber={userPhoneNumber} />
     </div>
   );
 };
