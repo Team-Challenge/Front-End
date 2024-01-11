@@ -64,10 +64,10 @@ export const FileDrop = ({
       onDrop={handleDrop}
     >
       <div className={s.file_input_content}>
-        {children || 'Натисніть щоб завантажити файли'}
-        {error && <div>
+        {children || <p>Натисніть або перетягніть щоб завантажити файли</p>}
+        {error && <p className="error-text">
           {error}
-        </div>}
+        </p>}
       </div>
       <input
         ref={fileInputRef}
