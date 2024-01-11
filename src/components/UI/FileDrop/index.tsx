@@ -6,36 +6,20 @@ export const FileDrop = ({
   children,
   onChange = (items) => { console.log('Changed Items: ', items) },
   isMulti = false,
-  allowedFormats
+  error
 }: FileDropProps) => {
   const [isDraggerOver, setIsDraggedOver] = useState(false)
-  const [files, setFiles] = useState()
-  const [error, setError] = useState<string | null>(null)
   const fileInputRef = useRef<HTMLInputElement | null>(null)
 
   const onChangeFiles = (files: FileList) => {
-    setError(null)
-    let localError = null
-
     const filesNumber = files.length
 
     if (!isMulti && filesNumber > 1) {
-      localError = 'Можливо додати лише один файл'
+      alert('Можоливо додати лише один файл')
+      return;
     }
 
-    Object.values(files).forEach((file) => {
-      if (!isValidType(file)) {
-        localError = 'Невірний тип файлів'
-      }
-    })
-
-    !localError ? onChange(files) : setError(localError)
-    localError = null
-  }
-
-  const isValidType = (file: any) => {
-    const fileFormat = file.name.split('.').pop()?.toLowerCase();
-    return !allowedFormats?.length || allowedFormats?.includes(file.type) || allowedFormats?.includes(fileFormat)
+    onChange(files)
   }
 
   const handleDragEnter = (e: React.DragEvent<HTMLDivElement>) => {
@@ -81,7 +65,9 @@ export const FileDrop = ({
     >
       <div className={s.file_input_content}>
         {children || 'Натисніть щоб завантажити файли'}
-        <div>{error}</div>
+        {error && <div>
+          {error}
+        </div>}
       </div>
       <input
         ref={fileInputRef}
