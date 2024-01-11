@@ -1,6 +1,14 @@
 import $api from '@/http';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { setStore, setName, setDescription, setShopPhoto, setBannerPhoto, setStorePhoneNumber, setLink } from './storeProfileSlice';
+import {
+  setStore,
+  setName,
+  setDescription,
+  setShopPhoto,
+  setBannerPhoto,
+  setStorePhoneNumber,
+  setLink,
+} from './storeProfileSlice';
 
 export const getStoreInfo = createAsyncThunk(
   'shops/info',
@@ -26,13 +34,12 @@ export const getStoreInfo = createAsyncThunk(
 
 export const changeStoreInfo = createAsyncThunk(
   'shops/changeInfo',
-  async (
-    credentials: {
-      name?: string | undefined;
-      description?: string | undefined;
-      phone_number?: string | undefined;
-      link?: string | undefined;
-    }) => {
+  async (credentials: {
+    name?: string | undefined;
+    description?: string | undefined;
+    phone_number?: string | undefined;
+    link?: string | undefined;
+  }) => {
     try {
       const response = await $api.post('/shops/shop', {
         name: credentials.name,
@@ -45,6 +52,22 @@ export const changeStoreInfo = createAsyncThunk(
       }
     } catch (e) {
       const error = e as Error;
+      throw error;
+    }
+  },
+);
+
+export const changeBanner = createAsyncThunk(
+  'shops/changeBanner',
+  async (formData: FormData) => {
+    try {
+      const response = await $api.post('/shops/shop_banner', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      return response.data
+    } catch (error) {
       throw error;
     }
   },

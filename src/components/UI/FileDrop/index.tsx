@@ -15,7 +15,7 @@ export const FileDrop = ({
     const filesNumber = files.length
 
     if (!isMulti && filesNumber > 1) {
-      alert('Можоливо додати лише один файл')
+      alert('Можливо додати лише один файл')
       return;
     }
 

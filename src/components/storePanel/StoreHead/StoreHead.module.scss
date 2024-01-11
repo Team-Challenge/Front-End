@@ -1,0 +1,22 @@
+.banner {
+  &_inner_text {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    & > p {
+      margin-right: 8px;
+      color: #333;
+      font-family: 'Craftwork Grotesk';
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 20px; /* 142.857% */
+      letter-spacing: 0.28px;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
