@@ -20,6 +20,10 @@
   align-items: center;
   gap: 0.25rem;
 
+  @media (max-width: $mobile) {
+    margin-top: toRem(10);
+  }
+
   p {
     color: $text-color;
     margin-right: 0.25rem;
