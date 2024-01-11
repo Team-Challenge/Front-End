@@ -19,7 +19,12 @@ export const ReviewItem = ({
       </div>
 
       <div className={s.feedback}>
-        <Rate disabled defaultValue={rating} character={<RatingStarIcon />} />
+        <Rate
+          disabled
+          defaultValue={rating}
+          character={<RatingStarIcon />}
+          style={{ color: '#fccf5c' }}
+        />
         <h5 className={s.feedback_subtitle}>{productName}</h5>
         <p className={s.feedback_text}>{feedback}</p>
       </div>
