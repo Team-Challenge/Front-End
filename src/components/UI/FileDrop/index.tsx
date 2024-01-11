@@ -17,7 +17,9 @@ export const FileDrop = ({
     setError(null)
     let localError = null
 
-    if (!isMulti && files.length > 1) {
+    const filesNumber = files.length
+
+    if (!isMulti && filesNumber > 1) {
       localError = 'Можливо додати лише один файл'
     }
 
@@ -32,8 +34,8 @@ export const FileDrop = ({
   }
 
   const isValidType = (file: any) => {
-    return !allowedFormats?.length || allowedFormats?.some(format => file.name.toLowerCase().endsWith(`${format}`)) ||
-      allowedFormats?.includes(file.type)
+    const fileFormat = file.name.split('.').pop()?.toLowerCase();
+    return !allowedFormats?.length || allowedFormats?.includes(file.type) || allowedFormats?.includes(fileFormat)
   }
 
   const handleDragEnter = (e: React.DragEvent<HTMLDivElement>) => {
