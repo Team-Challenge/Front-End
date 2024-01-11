@@ -11,7 +11,7 @@ import {
 } from './storeProfileSlice';
 
 export const getStoreInfo = createAsyncThunk(
-  'shops/info',
+  'storeSettings/info',
   async (_, { dispatch }) => {
     try {
       const response = await $api.get('/shops/shop_info');
@@ -20,7 +20,8 @@ export const getStoreInfo = createAsyncThunk(
         dispatch(setName(response.data.name));
         dispatch(setDescription(response.data.description));
         dispatch(setShopPhoto(response.data.shop_photo));
-        dispatch(setBannerPhoto(response.data.banner_photo));
+        // todo change according to docs: banner_photo
+        dispatch(setBannerPhoto(response.data.banner_shop));
         dispatch(setStorePhoneNumber(response.data.phone_number));
         dispatch(setLink(response.data.link));
       }
@@ -33,7 +34,7 @@ export const getStoreInfo = createAsyncThunk(
 );
 
 export const changeStoreInfo = createAsyncThunk(
-  'shops/changeInfo',
+  'storeSettings/changeInfo',
   async (credentials: {
     name?: string | undefined;
     description?: string | undefined;
@@ -58,7 +59,7 @@ export const changeStoreInfo = createAsyncThunk(
 );
 
 export const changeBanner = createAsyncThunk(
-  'shops/changeBanner',
+  'storeSettings/changeBanner',
   async (formData: FormData) => {
     try {
       const response = await $api.post('/shops/shop_banner', formData, {
@@ -72,3 +73,15 @@ export const changeBanner = createAsyncThunk(
     }
   },
 );
+
+export const deleteBanner = createAsyncThunk(
+  'storeSettings/deleteBanner', 
+  async () => {
+    try {
+      const response = await $api.delete('shops/shop_banner')
+      return response.data
+    } catch (error) {
+      throw error
+    }
+  }
+)

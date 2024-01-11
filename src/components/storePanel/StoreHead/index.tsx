@@ -2,7 +2,7 @@ import { FileDrop } from "@/components/UI/FileDrop";
 import { Icon } from "@iconify/react";
 import s from './StoreHead.module.scss'
 import { useAppDispatch, useAppSelector } from "@/hooks/reduxHook";
-import { changeBanner, getStoreInfo } from "@/store/storeProfile/storeProfileThunks";
+import { changeBanner, deleteBanner, getStoreInfo } from "@/store/storeProfile/storeProfileThunks";
 
 
 export const StoreHead = () => {
@@ -38,7 +38,12 @@ export const StoreHead = () => {
     await dispatch(changeBanner(formData))
     dispatch(getStoreInfo())
   }
- 
+
+  const handleDeleteBanner = async () => {
+    await dispatch(deleteBanner())
+    dispatch(getStoreInfo())
+  }
+
   return (
     <div>
       <div className={s.banner}>
@@ -53,6 +58,7 @@ export const StoreHead = () => {
         </FileDrop>
       </div>
       <img src={banner_photo} alt='banner'/>
+      <button onClick={handleDeleteBanner}>Delete banner</button>
     </div>
   );
 }

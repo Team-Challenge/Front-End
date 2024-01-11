@@ -21,7 +21,7 @@ const initialState: StoreProfileState = {
 };
 
 const storeProfileSlice = createSlice({
-  name: 'store',
+  name: 'storeSettings',
   initialState,
   reducers: {
     setStore: (state, action: PayloadAction<boolean>) => {
