@@ -108,6 +108,12 @@ export interface SelectInputProps {
   isDisabled?: boolean;
 }
 
+export interface TooltipProps {
+  text: string;
+  children: ReactNode;
+  className?: string;
+}
+
 export interface FullNameProps {
   value?: string;
   editModeIcon?: boolean;
@@ -179,3 +185,31 @@ export interface UserProfileMenuProps {
 export interface StoreProfileMenuProps {
   closeStoreMenu: () => void;
 }
+
+//store panel types
+export interface ProductStoreItemProps {
+  photo: string;
+  title: string;
+  date: string;
+  code: string;
+  price: string;
+  category: string;
+  status: string;
+}
+
+export interface ReviewItemProps {
+  productPhoto: string;
+  productName: string;
+  rating: number;
+  feedback: string;
+  userPhoto: string;
+  userName: string;
+  date: string;
+}
+
+export interface RatingItemProps {
+  rating: number;
+  percent: number;
+  numberOfReviews: number;
+}
+
