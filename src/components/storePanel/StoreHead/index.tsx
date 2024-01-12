@@ -45,20 +45,25 @@ export const StoreHead = () => {
   }
 
   return (
-    <div>
+    <>
       <div className={s.banner}>
-        <FileDrop
-          error={'error text'}
-          onChange={handleBannerUpload}
-        >
-          <div className={s.banner_inner_text}>
-            <p>Завантажити фото банера</p>
-            <Icon icon="solar:camera-outline" />
-          </div>
-        </FileDrop>
+        {banner_photo ?
+          <img className={s.banner_image} src={banner_photo} alt='banner' /> :
+          <FileDrop
+            error={'error text'}
+            onChange={handleBannerUpload}
+          >
+            <div className={s.banner_inner_text}>
+              <p>Завантажити фото банера</p>
+              <Icon icon="solar:camera-outline" />
+            </div>
+          </FileDrop>
+        }
       </div>
-      <img src={banner_photo} alt='banner'/>
-      <button onClick={handleDeleteBanner}>Delete banner</button>
-    </div>
+      <div>
+        <button onClick={handleDeleteBanner}>Delete banner</button>
+
+      </div>
+    </>
   );
 }

@@ -1,4 +1,27 @@
+@import '@/styles/index.scss';
+
 .banner {
+  display: flex;
+  height: 180px;
+  max-width: toRem(1008);
+  width: 100%;
+
+  @media (max-width: $tablet) {
+    max-width: 100%;
+    width: calc(75% - 20px);
+  }
+
+  @media (max-width: $mobileSmall) {
+    width: calc(100% - 20px);
+  }
+
+  &_image {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
   &_inner_text {
     display: flex;
     align-items: center;
