@@ -2,7 +2,7 @@
 
 .banner {
   display: flex;
-  height: 180px;
+  flex-direction: column;
   max-width: toRem(1008);
   width: 100%;
 
@@ -16,9 +16,8 @@
   }
 
   &_image {
-    display: flex;
     width: 100%;
-    height: 100%;
+    height: 180px;
     object-fit: cover;
   }
 
@@ -40,6 +39,23 @@
       &:hover {
         text-decoration: underline;
       }
+    }
+  }
+
+  &_buttons {
+    display: flex;
+    justify-content: end;
+    gap: 4px;
+
+    & > div {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 8px 12px;
+    }
+
+    @media (max-width: $tablet) {
+      display: none;
     }
   }
 }

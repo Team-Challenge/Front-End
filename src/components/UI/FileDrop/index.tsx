@@ -4,6 +4,7 @@ import { ChangeEvent, useRef, useState } from "react";
 
 export const FileDrop = ({
   children,
+  className,
   onChange = (items) => { console.log('Changed Items: ', items) },
   isMulti = false,
   error
@@ -54,7 +55,8 @@ export const FileDrop = ({
   return (
     <div
       className={
-        `${s.file_drop}
+        `${className}
+        ${s.file_drop}
         ${isDraggerOver ? s.file_drop_is_dragged : null}`
       }
       onClick={handleClick}

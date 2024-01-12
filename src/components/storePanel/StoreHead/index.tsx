@@ -48,8 +48,22 @@ export const StoreHead = () => {
     <>
       <div className={s.banner}>
         {banner_photo ?
-          <img className={s.banner_image} src={banner_photo} alt='banner' /> :
+          <>
+            <img className={s.banner_image} src={banner_photo} alt='banner' />
+            <div className={s.banner_buttons}>
+              {/* <div>
+                <Icon icon="solar:camera-outline" />
+                <button onClick={handleDeleteBanner}>Завантажити нове фото</button>
+              </div> */}
+
+              <div>
+                <Icon icon="solar:trash-bin-trash-outline" />
+                <button onClick={handleDeleteBanner}>Видалити</button>
+              </div>
+            </div>
+          </> :
           <FileDrop
+            className={s.banner_image}
             error={'error text'}
             onChange={handleBannerUpload}
           >
@@ -59,10 +73,6 @@ export const StoreHead = () => {
             </div>
           </FileDrop>
         }
-      </div>
-      <div>
-        <button onClick={handleDeleteBanner}>Delete banner</button>
-
       </div>
     </>
   );

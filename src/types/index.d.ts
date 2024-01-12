@@ -51,6 +51,7 @@ export interface ButtonUIProps {
 
 export interface FileDropProps {
   children?: React.ReactNode;
+  className?: string;
   onChange?: (any) => void;
   isMulti?: boolean,
   error?: string | null
