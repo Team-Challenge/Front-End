@@ -15,7 +15,6 @@ export const StoreHead = () => {
     const file = files[0]
     if (!file) return;
 
-    const fileFormat = file.name.split('.').pop()?.toLowerCase();
     const allowedFormats = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp']
     const fileSize = file.size / 1024 / 1024;
 
