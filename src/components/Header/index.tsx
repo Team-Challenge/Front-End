@@ -71,7 +71,7 @@ export const Header = () => {
                     <Icon
                       icon='solar:alt-arrow-down-outline'
                       className={
-                        isShopDropdownOpen ? s.icon_open : s.icon_close
+                        isShopDropdownOpen ? 'icon_open' : 'icon_close'
                       }
                     />
                   </button>
@@ -84,7 +84,7 @@ export const Header = () => {
                   <Icon icon='solar:user-outline' />
                   <Icon
                     icon='solar:alt-arrow-down-outline'
-                    className={isUserDropdownOpen ? s.icon_open : s.icon_close}
+                    className={isUserDropdownOpen ? 'icon_open' : 'icon_close'}
                   />
                 </button>
                 {isUserDropdownOpen && <UserDropdownMenu />}

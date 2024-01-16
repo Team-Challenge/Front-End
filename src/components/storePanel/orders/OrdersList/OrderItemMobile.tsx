@@ -34,7 +34,7 @@ export const OrderItemMobile = ({
           <button onClick={() => setIsOpen(!isOpen)}>
             <Icon
               icon='solar:alt-arrow-down-outline'
-              className={isOpen ? s.icon_open : s.icon_close}
+              className={isOpen ? 'icon_open' : 'icon_close'}
             />
           </button>
         </div>
