@@ -235,7 +235,8 @@
   padding: toRem(16) toRem(12);
 
   p {
-    font-size: 0.875rem;
+    color: $grey;
+    font-size: 0.813rem;
     font-weight: 500;
     line-height: 1rem;
     letter-spacing: 0.28px;
@@ -245,8 +246,8 @@
   }
 
   p span {
-    font-size: 0.813rem;
-    color: $grey;
+    font-size: 0.875rem;
+    color: $text-color;
   }
 
   &_wrap {
@@ -263,10 +264,16 @@
     }
   }
 
-  &_buttons {
+  &_status {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    p {
+      span {
+        color: $grey;
+        font-size: 0.813rem;
+      }
 
       svg {
         width: 1rem;
@@ -274,19 +281,20 @@
         color: $green;
         margin-left: 0.25rem;
       }
-  }
+    }
 
-  &_status {
-    max-width: toRem(165);
-    width: 100%;
-    font-size: 0.875rem;
-    font-weight: 500;
-    line-height: 1rem;
-    letter-spacing: 0.28px;
-    color: $text-color;
-    background: $azure;
-    border-radius: 0.25rem;
-    padding: toRem(8) toRem(12);
+    &_button {
+      max-width: toRem(165);
+      width: 100%;
+      font-size: 0.875rem;
+      font-weight: 500;
+      line-height: 1rem;
+      letter-spacing: 0.28px;
+      color: $text-color;
+      background: $azure;
+      border-radius: 0.25rem;
+      padding: toRem(8) toRem(12);
+    }
   }
 
   &_tooltip {

@@ -35,22 +35,22 @@ export const ProductItemMobile = ({
 
       <div className={s.item_wrap}>
         <p className={s.item_price}>
-          <span>Ціна</span>
-          {price}
+          Ціна
+          <span>{price}</span>
         </p>
         <p className={s.item_code}>
-          <span>Код</span>
-          {code}
+          Код
+          <span>{code}</span>
         </p>
         <p className={s.item_category}>
-          <span>Категорія</span>
-          {category}
+          Категорія
+          <span>{category}</span>
         </p>
         <p className={s.item_date}>
-          <span>Дата додавання</span>
-          {date}
+          Дата додавання
+          <span>{date}</span>
         </p>
-        <div className={s.item_buttons}>
+        <div className={s.item_status}>
           <p>
             <span>Статус</span>
             <Tooltip
@@ -60,7 +60,7 @@ export const ProductItemMobile = ({
               <Icon icon='solar:info-circle-outline' />
             </Tooltip>
           </p>
-          <button className={s.item_status} onClick={openModalWindow}>
+          <button className={s.item_status_button} onClick={openModalWindow}>
             {status}
           </button>
         </div>

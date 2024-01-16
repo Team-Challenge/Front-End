@@ -1,7 +1,7 @@
 import { Modal } from '@/components/Modal';
-import s from './ChangeProductStatus.module.scss';
 import { OrnamentalTitle } from '@/components/OrnamentalTitle';
 import { ButtonUI } from '@/components/UI/ButtonUI';
+import s from './ChangeProductStatus.module.scss';
 
 const statuses = [
   {
