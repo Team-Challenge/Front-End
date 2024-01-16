@@ -9,23 +9,6 @@ body {
   font-weight: 400;
   line-height: 150%;
   color: $text-color;
-
-  scrollbar-color: $green $azure;
-  scrollbar-width: thin;
-}
-
-::-webkit-scrollbar {
-  height: 0.125rem;
-}
-
-::-webkit-scrollbar-track {
-  background-color: transparent;
-  border-radius: 0.5rem;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: $green;
-  border-radius: 0.5rem;
 }
 
 h1, h2, h3, h4, h5, h6 {
