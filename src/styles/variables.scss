@@ -14,10 +14,12 @@ $light-red: #ebe7e7;
 $dark-red: #9c8787;
 $yellow: #fccf5c;
 $pale-yellow: #fbe5aa;
+$yellow-orange: #ffb800;
 $azure: #f0f6f7;
 $light-cyan: #8cc0c4;
 $light-bluish-green: #aec3c3;
 $light-teal: #adc3c3;
+$medium-blue: #5387d5;
 
 $text-color: $black;
 $error-color: $red;
@@ -39,5 +41,11 @@ $screen-bg-at-modal: $dark-grey;
 $mobile-modal-bg: $azure;
 
 $tooltip-bg: $pale-yellow;
+
+//status color
+$active: $yellow-orange;
+$completed: $green;
+$delivery: $medium-blue;
+$cancelled: $red;
 
 
