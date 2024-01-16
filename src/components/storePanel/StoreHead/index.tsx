@@ -3,13 +3,15 @@ import { Icon } from "@iconify/react";
 import s from './StoreHead.module.scss'
 import { useAppDispatch, useAppSelector } from "@/hooks/reduxHook";
 import { changeBanner, deleteBanner, getStoreInfo } from "@/store/storeProfile/storeProfileThunks";
+import { useRef } from "react";
 
 
 export const StoreHead = () => {
   const dispatch = useAppDispatch()
   const { banner_photo } = useAppSelector(state => state.storeProfile)
+  const fileInputRef = useRef<HTMLInputElement | null>(null)
 
-  const handleBannerUpload = async (files: Array<File>) => {
+  const handleBannerUpload = async (files: FileList) => {
     const file = files[0]
     if (!file) return;
 
@@ -27,12 +29,6 @@ export const StoreHead = () => {
       return;
     }
 
-    // todo validate image resolution
-    //
-    //
-    //
-    //
-
     const formData = new FormData()
     formData.append('image', file);
     await dispatch(changeBanner(formData))
@@ -44,6 +40,15 @@ export const StoreHead = () => {
     dispatch(getStoreInfo())
   }
 
+  const handleUploadClick = () => {
+    fileInputRef.current?.click()
+  }
+
+  const handleBannerInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault()
+    e.target.files && handleBannerUpload(e.target.files)
+  }
+
   return (
     <>
       <div className={s.banner}>
@@ -51,10 +56,15 @@ export const StoreHead = () => {
           <>
             <img className={s.banner_image} src={banner_photo} alt='banner' />
             <div className={s.banner_buttons}>
-              {/* <div>
+              <div>
                 <Icon icon="solar:camera-outline" />
-                <button onClick={handleDeleteBanner}>Завантажити нове фото</button>
-              </div> */}
+                <button onClick={handleUploadClick}>Завантажити нове фото</button>
+                <input
+                  type="file"
+                  ref={fileInputRef}
+                  onChange={handleBannerInput}
+                />
+              </div>
 
               <div>
                 <Icon icon="solar:trash-bin-trash-outline" />
@@ -64,7 +74,6 @@ export const StoreHead = () => {
           </> :
           <FileDrop
             className={s.banner_image}
-            error={'error text'}
             onChange={handleBannerUpload}
           >
             <div className={s.banner_inner_text}>

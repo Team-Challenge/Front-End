@@ -57,5 +57,9 @@
     @media (max-width: $tablet) {
       display: none;
     }
+
+    & input {
+      display: none;
+    }
   }
 }
