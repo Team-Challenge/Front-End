@@ -130,6 +130,11 @@ export interface PhoneNumberProps {
   userPhoneNumber?: string;
 }
 
+export interface ButtonsBarProps {
+  buttonsList: any;
+  className?: string;
+}
+
 //user info types
 export interface UserInfo {
   email: string;
