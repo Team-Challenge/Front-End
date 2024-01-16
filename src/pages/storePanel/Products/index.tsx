@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useWindowDimensions } from '@/hooks/useWindowDimensions';
 import { productStatusList } from '@/constants/productStatusList';
+import { ButtonsBar } from '@/components/ButtonsBar';
 import { ProductsList } from '@/components/storePanel/products/ProductsList';
 import { AddProductButton } from '@/components/storePanel/AddProductButton';
 import { EmptyContentPage } from '@/components/EmptyContentPage';
@@ -26,19 +27,10 @@ export const Products = () => {
             {width <= 500 ? 'Додати' : 'Додати товар'}
             <Icon icon='solar:add-circle-outline' />
           </button>
-          <div className={s.products_status}>
-            {productStatusList.map((status) => (
-              <button
-                key={status.id}
-                className={`${s.products_status_button} ${
-                  status.id === activeButtonId ? s.active : ''
-                }`}
-                onClick={() => handleButtonClick(status.id)}
-              >
-                {status.label}
-              </button>
-            ))}
-          </div>
+          <ButtonsBar
+            buttonsList={productStatusList}
+            className={s.products_status}
+          />
           <ProductSorting />
           <ProductsList />
         </section>
