@@ -1,13 +1,12 @@
 import { FileDropProps } from "@/types";
 import s from "./FileDrop.module.scss"
-import { ChangeEvent, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 export const FileDrop = ({
   children,
   className,
   onChange = (items) => { console.log('Changed Items: ', items) },
   isMulti = false,
-  error
 }: FileDropProps) => {
   const [isDraggerOver, setIsDraggedOver] = useState(false)
   const fileInputRef = useRef<HTMLInputElement | null>(null)
@@ -67,9 +66,6 @@ export const FileDrop = ({
     >
       <div className={s.file_input_content}>
         {children || <p>Натисніть або перетягніть щоб завантажити файли</p>}
-        {error && <p className="error-text">
-          {error}
-        </p>}
       </div>
       <input
         ref={fileInputRef}

@@ -54,7 +54,6 @@ export interface FileDropProps {
   className?: string;
   onChange?: (any) => void;
   isMulti?: boolean,
-  error?: string | null
 }
 
 export interface ModalProps {
