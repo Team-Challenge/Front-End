@@ -1,6 +1,6 @@
 import { FileDrop } from "@/components/UI/FileDrop";
 import { Icon } from "@iconify/react";
-import s from './StoreHead.module.scss'
+import s from './StoreBanner.module.scss'
 import { useAppDispatch, useAppSelector } from "@/hooks/reduxHook";
 import { changeBanner, deleteBanner, getStoreInfo } from "@/store/storeProfile/storeProfileThunks";
 import { useRef } from "react";
