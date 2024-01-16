@@ -6,7 +6,7 @@ import { changeBanner, deleteBanner, getStoreInfo } from "@/store/storeProfile/s
 import { useRef } from "react";
 
 
-export const StoreHead = () => {
+export const StoreBanner = () => {
   const dispatch = useAppDispatch()
   const { banner_photo } = useAppSelector(state => state.storeProfile)
   const fileInputRef = useRef<HTMLInputElement | null>(null)
