@@ -197,6 +197,22 @@ export interface ProductStoreItemProps {
   status: string;
 }
 
+export interface OrderItemProps {
+  orderNumber: string;
+  date: string;
+  status: string;
+  price: string;
+  updateDate: string;
+}
+
+export interface OrderProductItemProps {
+  img: string;
+  productTitle: string;
+  productCode: string;
+  quantity: string;
+  productPrice: string;
+}
+
 export interface ReviewItemProps {
   productPhoto: string;
   productName: string;
