@@ -60,7 +60,7 @@ export interface ProductItemProps {
   title: string;
   subtitle: string;
   desc: string;
-  link?: string; // for btn
+  link?: string;
 }
 
 export interface TextInputProps {
@@ -142,6 +142,14 @@ export interface PhoneNumberProps {
 export interface DataChangeNotificationModalProps {
   isSuccessfulChange: boolean;
   modalId: string;
+}
+
+export interface ProfilePhotoProps {
+  defaultPhoto: string;
+  modalId: string;
+  profilePhoto: string;
+  isUser?: boolean;
+  isStore?: boolean;
 }
 
 //user info types

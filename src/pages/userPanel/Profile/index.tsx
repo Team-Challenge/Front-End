@@ -6,15 +6,22 @@ import {
 } from 'react-hook-form';
 import { ChangeFullNameFormData } from '@/types';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
-import { changeFullName, getUserInfo } from '@/store/userProfile/userProfileThunks';
+import {
+  changeFullName,
+  getUserInfo,
+} from '@/store/userProfile/userProfileThunks';
+import { ProfilePhoto } from '@/components/ProfilePhoto';
 import { FullName } from '@/components/FullName';
 import { ButtonUI } from '@/components/UI/ButtonUI';
-import { ProfilePhoto } from './ProfilePhoto';
+import defaultUserPic from '@assets/default-user-pic.svg';
 import s from './Profile.module.scss';
 
 export const Profile = () => {
   const dispatch = useAppDispatch();
   const fullName = useAppSelector((state) => state.userProfile.full_name);
+  const userPhoto = useAppSelector(
+    (state) => state.userProfile.profile_picture,
+  );
 
   const methods = useForm({
     mode: 'onChange',
@@ -28,7 +35,12 @@ export const Profile = () => {
 
   return (
     <section className={s.profile}>
-      <ProfilePhoto />
+      <ProfilePhoto
+        isUser
+        defaultPhoto={defaultUserPic}
+        modalId='userPhoto'
+        profilePhoto={userPhoto}
+      />
       <h4 className={s.profile_title}>Персональні дані</h4>
       <FormProvider {...methods}>
         <form
