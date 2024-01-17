@@ -21,6 +21,10 @@
 
     p:first-child {
       margin-bottom: 0.25rem;
+
+      @media (max-width: $mobile) {
+        margin-bottom: 0;
+      }
     }
   }
 
@@ -43,7 +47,19 @@
     color: $grey;
   }
 
+  &_textarea {
+    textarea {
+      @media (max-width: $mobileSmall) {
+        max-height: 138px;
+      }
+    }
+  }
+
   &_button {
     margin-top: toRem(15);
+
+    @media (max-width: $mobile) {
+      margin-top: 0;
+    }
   }
 }
