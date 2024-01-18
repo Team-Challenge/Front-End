@@ -52,6 +52,23 @@
     justify-content: end;
     gap: 4px;
 
+    & :first-child button {
+      color: var(--Green-900, #1a7171);
+    }
+    
+    & :last-child button {
+      color: var(--Red-Red-900, #B23636);
+    }
+    
+    & button {
+      font-family: 'Craftwork Grotesk';
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 20px; /* 142.857% */
+      letter-spacing: 0.28px;
+    }
+
     & > div {
       display: flex;
       align-items: center;
