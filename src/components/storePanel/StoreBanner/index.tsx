@@ -51,36 +51,35 @@ export const StoreBanner = () => {
   return (
     <>
       <div className={s.banner}>
-        {banner_photo ?
-          <>
-            <img className={s.banner_image} src={banner_photo} alt='banner' />
-          </> :
-          <FileDrop
-            className={s.banner_image}
-            onChange={handleBannerUpload}
-          >
-            <div className={s.banner_inner_text}>
-              <p>Завантажити фото банера</p>
-              <Icon icon="solar:camera-outline" />
-            </div>
-          </FileDrop>
-        }
-        <div className={s.banner_buttons}>
-              <div>
+        <div className={s.banner_image}>
+          {banner_photo ?
+            <img src={banner_photo} alt='banner' /> :
+            <FileDrop
+              onChange={handleBannerUpload}
+            >
+              <div className={s.banner_inner_text}>
+                <p>Завантажити фото банера</p>
                 <Icon icon="solar:camera-outline" />
-                <button onClick={handleUploadClick}>Завантажити нове фото</button>
-                <input
-                  type="file"
-                  ref={fileInputRef}
-                  onChange={handleBannerInput}
-                />
               </div>
+            </FileDrop>
+          }
+        </div>
 
-              <div>
-                <Icon icon="solar:trash-bin-trash-outline" />
-                <button onClick={handleDeleteBanner}>Видалити</button>
-              </div>
-            </div>
+        <div className={s.banner_buttons}>
+          <div>
+            <Icon icon="solar:camera-outline" />
+            <button onClick={handleUploadClick}>Завантажити нове фото</button>
+            <input
+              type="file"
+              ref={fileInputRef}
+              onChange={handleBannerInput}
+            />
+          </div>
+          <div>
+            <Icon icon="solar:trash-bin-trash-outline" />
+            <button onClick={handleDeleteBanner}>Видалити</button>
+          </div>
+        </div>
       </div>
     </>
   );

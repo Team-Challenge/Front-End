@@ -9,23 +9,21 @@
 
   @media (max-width: $tablet) {
     width: calc(75% - 20px);
-  }
-
-  @media (max-width: $mobileSmall) {
     min-height: 124px;
   }
 
   &_image {
-    position: initial;
-    width: 100%;
-    left: 0;
-    height: 180px;
-    object-fit: cover;
-
-    @media (max-width: $mobileSmall) {
-      position: absolute;
+    & > * {
       height: 124px;
-      width: 100vw;
+      width: 100%;
+      object-fit: cover;
+
+      @media (max-width: $mobileSmall) {
+        position: absolute;
+        left: 0;
+        height: 124px;
+        width: 100vw;
+      }
     }
   }
 
