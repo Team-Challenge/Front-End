@@ -5,20 +5,28 @@
   flex-direction: column;
   max-width: toRem(1008);
   width: 100%;
+  min-height: 180px;
 
   @media (max-width: $tablet) {
-    max-width: 100%;
     width: calc(75% - 20px);
   }
 
   @media (max-width: $mobileSmall) {
-    width: calc(100% - 20px);
+    min-height: 124px;
   }
 
   &_image {
+    position: initial;
     width: 100%;
+    left: 0;
     height: 180px;
     object-fit: cover;
+
+    @media (max-width: $mobileSmall) {
+      position: absolute;
+      height: 124px;
+      width: 100vw;
+    }
   }
 
   &_inner_text {

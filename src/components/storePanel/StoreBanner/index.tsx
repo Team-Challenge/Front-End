@@ -54,7 +54,18 @@ export const StoreBanner = () => {
         {banner_photo ?
           <>
             <img className={s.banner_image} src={banner_photo} alt='banner' />
-            <div className={s.banner_buttons}>
+          </> :
+          <FileDrop
+            className={s.banner_image}
+            onChange={handleBannerUpload}
+          >
+            <div className={s.banner_inner_text}>
+              <p>Завантажити фото банера</p>
+              <Icon icon="solar:camera-outline" />
+            </div>
+          </FileDrop>
+        }
+        <div className={s.banner_buttons}>
               <div>
                 <Icon icon="solar:camera-outline" />
                 <button onClick={handleUploadClick}>Завантажити нове фото</button>
@@ -70,17 +81,6 @@ export const StoreBanner = () => {
                 <button onClick={handleDeleteBanner}>Видалити</button>
               </div>
             </div>
-          </> :
-          <FileDrop
-            className={s.banner_image}
-            onChange={handleBannerUpload}
-          >
-            <div className={s.banner_inner_text}>
-              <p>Завантажити фото банера</p>
-              <Icon icon="solar:camera-outline" />
-            </div>
-          </FileDrop>
-        }
       </div>
     </>
   );
