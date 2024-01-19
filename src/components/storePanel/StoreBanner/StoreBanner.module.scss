@@ -7,11 +7,7 @@
   width: 100%;
 
   @media (max-width: $tablet) {
-    width: calc(75% - 20px);
-  }
-
-  @media (max-width: $mobileSmall) {
-    width: 100%;
+    max-width: $tablet;
   }
 
   &_image {
