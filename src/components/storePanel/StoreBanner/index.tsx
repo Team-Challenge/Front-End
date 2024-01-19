@@ -72,21 +72,36 @@ export const StoreBanner = () => {
           )}
         </div>
 
+        <div className={s.banner_burger}>
+          <Icon icon="solar:menu-dots-outline" />
+          <div className={s.banner_burger_list}>
+            <div>
+              <Icon icon='solar:camera-outline' />
+              <button onClick={handleUploadClick}>Завантажити фото банеру</button>
+            </div>
+            <div>
+              <Icon icon='solar:trash-bin-trash-outline' />
+              <button onClick={handleDeleteBanner}>Видалити</button>
+            </div>
+          </div>
+        </div>
+
         <div className={s.banner_buttons}>
           <div>
             <Icon icon='solar:camera-outline' />
             <button onClick={handleUploadClick}>Завантажити нове фото</button>
-            <input
-              type='file'
-              ref={fileInputRef}
-              onChange={handleBannerInput}
-            />
           </div>
           <div>
             <Icon icon='solar:trash-bin-trash-outline' />
             <button onClick={handleDeleteBanner}>Видалити</button>
           </div>
         </div>
+
+        <input
+          type='file'
+          ref={fileInputRef}
+          onChange={handleBannerInput}
+        />
       </div>
     </>
   );
