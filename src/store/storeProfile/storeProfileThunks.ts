@@ -19,8 +19,8 @@ export const getStoreInfo = createAsyncThunk(
         dispatch(setStore(true));
         dispatch(setName(response.data.name));
         dispatch(setDescription(response.data.description));
-        dispatch(setShopPhoto(response.data.shop_photo));
-        dispatch(setBannerPhoto(response.data.banner_photo));
+        dispatch(setShopPhoto(response.data.photo_shop));
+        dispatch(setBannerPhoto(response.data.banner_shop));
         dispatch(setStorePhoneNumber(response.data.phone_number));
         dispatch(setLink(response.data.link));
       }
