@@ -8,7 +8,10 @@
 
   @media (max-width: $tablet) {
     width: calc(75% - 20px);
-    min-height: 124px;
+  }
+
+  @media (max-width: $mobileSmall) {
+    width: 100%;
   }
 
   &_image {
@@ -18,10 +21,7 @@
       object-fit: cover;
 
       @media (max-width: $mobileSmall) {
-        position: absolute;
-        left: 0;
         height: 124px;
-        width: 100%;
       }
     }
   }
@@ -55,11 +55,11 @@
     & :first-child button {
       color: var(--Green-900, #1a7171);
     }
-    
+
     & :last-child button {
-      color: var(--Red-Red-900, #B23636);
+      color: var(--Red-Red-900, #b23636);
     }
-    
+
     & button {
       font-family: 'Craftwork Grotesk';
       font-size: 14px;
