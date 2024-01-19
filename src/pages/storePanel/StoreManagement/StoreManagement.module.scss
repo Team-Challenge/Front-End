@@ -9,6 +9,10 @@
   }
 
   &_title {
-    margin-bottom: 16px;
+    margin: toRem(32) 0 toRem(16);
+
+    @media (max-width: $mobileSmall) {
+      margin-top: toRem(20);
+    }
   }
 }
