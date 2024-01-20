@@ -35,8 +35,8 @@ export const StoreBanner = () => {
       return;
     }
 
-    if (fileSize > 3) {
-      alert('Файл повинен бути менше 3 MB');
+    if (fileSize > 5) {
+      alert('Файл повинен бути менше 5 MB');
       return;
     }
 
