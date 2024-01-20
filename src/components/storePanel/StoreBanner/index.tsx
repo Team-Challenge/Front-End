@@ -12,13 +12,15 @@ import { useWindowDimensions } from '@/hooks/useWindowDimensions';
 import { ChangeEvent } from 'react';
 import { openModal } from '@/store/modalSlice';
 import { BannerModal } from './BannerModal';
+import { useClickOutside } from '@/hooks/useClickOutside';
 
 export const StoreBanner = () => {
   const dispatch = useAppDispatch();
   const { banner_photo } = useAppSelector((state) => state.storeProfile);
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
   const { width } = useWindowDimensions();
-  const [isBurgerOpen, setIsBurgerOpen] = useState(false)
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const dropdownRef = useRef<HTMLInputElement | null>(null);
 
   const handleBannerUpload = async (files: FileList) => {
     const file = files[0];
@@ -51,10 +53,7 @@ export const StoreBanner = () => {
   const handleDeleteBanner = async () => {
     await dispatch(deleteBanner());
     dispatch(getStoreInfo());
-  };
-
-  const handleUploadClick = () => {
-    fileInputRef.current?.click();
+    setIsDropdownOpen(false)
   };
 
   const handleBannerInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -62,9 +61,20 @@ export const StoreBanner = () => {
     e.target.files && handleBannerUpload(e.target.files);
   };
 
+  const handleUploadClick = () => {
+    fileInputRef.current?.click();
+  };
+  
   const handleOpenModal = () => {
     dispatch(openModal('storeBanner'));
+    setIsDropdownOpen(false)
   };
+
+  const handleCloseDropdown = () => {
+    setIsDropdownOpen(false)
+  }
+
+  useClickOutside(dropdownRef, handleCloseDropdown)
 
   return (
     <>
@@ -88,9 +98,9 @@ export const StoreBanner = () => {
         </div>
 
         {width <= 991.98 ?
-          <div className={s.banner_dropdown}>
-            <Icon icon="solar:menu-dots-outline" onClick={() => setIsBurgerOpen(!isBurgerOpen)} />
-            {isBurgerOpen &&
+          <div ref={dropdownRef} className={s.banner_dropdown}>
+            <Icon icon="solar:menu-dots-outline" onClick={() => setIsDropdownOpen(!isDropdownOpen)} />
+            {isDropdownOpen &&
               <div className={s.banner_dropdown_list}>
                 <div>
                   <Icon icon='solar:camera-outline' />
