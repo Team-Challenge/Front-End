@@ -8,13 +8,17 @@ import { ButtonUI } from "@/components/UI";
 import { useState } from "react";
 import { closeModal } from "@/store/modalSlice";
 
+interface BannerModalProps {
+  handleBannerUpload: (files: FileList) => Promise<void>
+}
 
-export const BannerModal = ({ modalId = 'storeBanner', handleBannerUpload }: any) => {
+export const BannerModal = ({ handleBannerUpload }: BannerModalProps) => {
   const [files, setFiles] = useState<FileList | null>(null)
   const dispatch = useAppDispatch()
   const isModalOpen = useAppSelector((state) =>
     state.modal.storeBanner
   );
+  const modalId = 'storeBanner'
 
   const handleSave = () => {
     files && handleBannerUpload(files)

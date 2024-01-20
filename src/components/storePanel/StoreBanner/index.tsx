@@ -131,7 +131,6 @@ export const StoreBanner = () => {
         }
 
         <BannerModal
-          modalId={'storeBanner'}
           handleBannerUpload={handleBannerUpload}
         />
 
