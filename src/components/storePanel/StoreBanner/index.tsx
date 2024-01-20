@@ -77,31 +77,35 @@ export const StoreBanner = () => {
 
         {width <= 991.98 ?
           <div className={s.banner_dropdown}>
-            <Icon icon="solar:menu-dots-outline" onClick={() => setIsBurgerOpen(!isBurgerOpen)}/>
+            <Icon icon="solar:menu-dots-outline" onClick={() => setIsBurgerOpen(!isBurgerOpen)} />
             {isBurgerOpen &&
               <div className={s.banner_dropdown_list}>
                 <div>
                   <Icon icon='solar:camera-outline' />
                   <button onClick={handleUploadClick}>Завантажити фото банеру</button>
                 </div>
-                <div>
-                  <Icon icon='solar:trash-bin-trash-outline' />
-                  <button onClick={handleDeleteBanner}>Видалити</button>
-                </div>
+                {banner_photo &&
+                  <div>
+                    <Icon icon='solar:trash-bin-trash-outline' />
+                    <button onClick={handleDeleteBanner}>Видалити</button>
+                  </div>
+                }
               </div>
             }
           </div>
           :
-          <div className={s.banner_buttons}>
-            <div>
-              <Icon icon='solar:camera-outline' />
-              <button onClick={handleUploadClick}>Завантажити нове фото</button>
+          (banner_photo &&
+            <div className={s.banner_buttons}>
+              <div>
+                <Icon icon='solar:camera-outline' />
+                <button onClick={handleUploadClick}>Завантажити нове фото</button>
+              </div>
+              <div>
+                <Icon icon='solar:trash-bin-trash-outline' />
+                <button onClick={handleDeleteBanner}>Видалити</button>
+              </div>
             </div>
-            <div>
-              <Icon icon='solar:trash-bin-trash-outline' />
-              <button onClick={handleDeleteBanner}>Видалити</button>
-            </div>
-          </div>
+          )
         }
 
         <input
