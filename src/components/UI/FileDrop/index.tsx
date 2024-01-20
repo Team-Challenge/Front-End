@@ -1,6 +1,7 @@
 import { FileDropProps } from "@/types";
 import s from "./FileDrop.module.scss"
 import { useRef, useState } from "react";
+import { DragEvent, ChangeEvent } from "react";
 
 export const FileDrop = ({
   children,
@@ -22,16 +23,16 @@ export const FileDrop = ({
     onChange(files)
   }
 
-  const handleDragEnter = (e: React.DragEvent<HTMLDivElement>) => {
+  const handleDragEnter = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     setIsDraggedOver(true)
   }
 
-  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+  const handleDragOver = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
   }
 
-  const handleDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
+  const handleDragLeave = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     setIsDraggedOver(false)
   }
@@ -40,13 +41,13 @@ export const FileDrop = ({
     fileInputRef.current?.click();
   }
 
-  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+  const handleDrop = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     setIsDraggedOver(false)
     onChangeFiles(e.dataTransfer.files)
   }
 
-  const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileInput = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     e.target.files && onChangeFiles(e.target.files)
   }

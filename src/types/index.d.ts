@@ -53,7 +53,7 @@ export interface FileDropProps {
   children?: React.ReactNode;
   className?: string;
   onChange?: (any) => void;
-  isMulti?: boolean,
+  isMulti?: boolean;
 }
 
 export interface ModalProps {

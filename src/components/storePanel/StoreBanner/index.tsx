@@ -9,6 +9,7 @@ import { FileDrop } from '@/components/UI/FileDrop';
 import { Icon } from '@iconify/react';
 import s from './StoreBanner.module.scss';
 import { useWindowDimensions } from '@/hooks/useWindowDimensions';
+import { ChangeEvent } from 'react';
 
 export const StoreBanner = () => {
   const dispatch = useAppDispatch();
@@ -54,7 +55,7 @@ export const StoreBanner = () => {
     fileInputRef.current?.click();
   };
 
-  const handleBannerInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleBannerInput = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     e.target.files && handleBannerUpload(e.target.files);
   };

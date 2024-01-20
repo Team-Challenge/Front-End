@@ -13,12 +13,12 @@
 
   &_image {
     & > * {
-      height: 180px;
+      height: toRem(180);
       width: 100%;
       object-fit: cover;
 
       @media (max-width: $mobileSmall) {
-        height: 124px;
+        height: toRem(124);
       }
     }
   }
@@ -29,13 +29,10 @@
     cursor: pointer;
 
     & > p {
-      margin-right: 8px;
-      color: #333;
-      font-family: 'Craftwork Grotesk';
+      margin-right: toRem(8);
+      color: $black;
       font-size: 14px;
-      font-style: normal;
       font-weight: 700;
-      line-height: 20px; /* 142.857% */
       letter-spacing: 0.28px;
 
       &:hover {
@@ -46,11 +43,11 @@
 
   .buttons {
     & :first-child * {
-      color: var(--Green-900, #1a7171);
+      color: $green;
     }
 
     & :nth-child(2) * {
-      color: var(--Red-Red-900, #b23636);
+      color: $red;
     }
 
     & button {
@@ -58,7 +55,6 @@
       font-size: 14px;
       font-style: normal;
       font-weight: 700;
-      line-height: 20px; /* 142.857% */
       letter-spacing: 0.28px;
     }
   }
@@ -69,14 +65,14 @@
 
   &_dropdown {
     position: absolute;
-    top: 8px;
-    right: 12px;
+    top: toRem(8);
+    right: toRem(12);
     z-index: 999;
 
     & > svg {
-      color: #1a7171;
-      height: 24px;
-      width: 24px;
+      color: $green;
+      height: toRem(24);
+      width: toRem(24);
     }
 
     &_list {
@@ -84,28 +80,28 @@
       @extend .buttons;
 
       // borders from Figma
-      border-radius: 4px;
-      border: 1px solid var(--Inputs-Light-grey, #e3e2e1);
+      border-radius: toRem(4);
+      border: toRem(1) solid $light-grey;
 
-      background: var(--White, #fff);
+      background: $white;
       top: 2rem;
       right: 0;
 
-      background-color: #fff;
+      background-color: $white;
 
       & > div {
         display: flex;
-        gap: 8px;
+        gap: toRem(8);
         flex-direction: row-reverse;
         justify-content: start;
         align-items: center;
         white-space: nowrap;
-        padding: 6px 12px;
-        height: 36px;
+        padding: toRem(6) toRem(12);
+        height: toRem(36);
       }
 
       & > :nth-child(2) {
-        border-top: 1px solid var(--Inputs-Light-grey, #e3e2e1);
+        border-top: toRem(1) solid $light-grey;
       }
     }
   }
@@ -114,18 +110,17 @@
     @extend .buttons;
     display: flex;
     justify-content: end;
-    gap: 4px;
+    gap: toRem(4);
 
     @media (max-width: $tablet) {
       display: none;
     }
 
-    
     & > div {
       display: flex;
       align-items: center;
-      gap: 8px;
-      margin: 8px 12px;
+      gap: toRem(8);
+      margin: toRem(8) toRem(12);
     }
   }
 }
