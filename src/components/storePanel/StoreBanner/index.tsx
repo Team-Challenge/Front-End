@@ -73,13 +73,18 @@ export const StoreBanner = () => {
           {banner_photo ? (
             <img src={banner_photo} alt='banner' />
           ) : (
-            <FileDrop onChange={handleBannerUpload}>
-              <div className={s.banner_inner_text}>
-                <p>Завантажити фото банера</p>
-                <Icon icon='solar:camera-outline' />
-              </div>
-            </FileDrop>
-          )}
+            width >= 991.98 ? <>
+              <FileDrop onChange={handleBannerUpload}>
+                <div className={s.banner_inner_text}>
+                  <p>Завантажити фото банера</p>
+                  <Icon icon='solar:camera-outline' />
+                </div>
+              </FileDrop>
+            </>
+            :
+            <div className={s.banner_border}/>
+          )
+          }
         </div>
 
         {width <= 991.98 ?

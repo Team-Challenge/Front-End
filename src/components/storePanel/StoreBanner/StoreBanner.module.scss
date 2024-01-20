@@ -23,6 +23,11 @@
     }
   }
 
+  &_border {
+    border-radius: 4px;
+    outline: 1px $light-grey dashed;
+  }
+
   &_inner_text {
     display: flex;
     align-items: center;
