@@ -128,3 +128,42 @@
     }
   }
 }
+
+.modal {
+  > div > :first-child {
+    @include mobileTitleDecorationOverride;
+  }
+
+  &_title,
+  &_button {
+    margin: toRem(20) 0;
+  }
+
+  &_file_drop {
+    height: toRem(87);
+  }
+
+  &_inner_text {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+
+    & > p {
+      color: $grey;
+      font-size: 10px;
+      letter-spacing: 0.28px;
+    }
+
+    svg {
+      width: toRem(18);
+      height: toRem(18);
+    }
+  }
+
+  &_image {
+    width: 100%;
+    max-height: toRem(87);
+    object-fit: cover;
+  }
+}

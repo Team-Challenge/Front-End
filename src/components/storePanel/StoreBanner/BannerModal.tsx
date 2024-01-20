@@ -2,7 +2,7 @@ import { Modal } from "@/components/Modal";
 import { OrnamentalTitle } from "@/components/OrnamentalTitle";
 import { FileDrop } from "@/components/UI/FileDrop";
 import { useAppDispatch, useAppSelector } from "@/hooks/reduxHook";
-import s from './BannerModal.module.scss';
+import s from './StoreBanner.module.scss';
 import { Icon } from "@iconify/react";
 import { ButtonUI } from "@/components/UI";
 import { useState } from "react";
@@ -18,12 +18,11 @@ export const BannerModal = ({ handleBannerUpload }: BannerModalProps) => {
   const isModalOpen = useAppSelector((state) =>
     state.modal.storeBanner
   );
-  const modalId = 'storeBanner'
 
   const handleSave = () => {
     files && handleBannerUpload(files)
     setFiles(null)
-    dispatch(closeModal(modalId))
+    dispatch(closeModal('storeBanner'))
   }
 
   const handleAddImage = (files: FileList) => {
@@ -33,7 +32,7 @@ export const BannerModal = ({ handleBannerUpload }: BannerModalProps) => {
   return (
     <>
       {isModalOpen &&
-        <Modal modalId={modalId} className={s.modal}>
+        <Modal modalId={'storeBanner'} className={s.modal}>
           <OrnamentalTitle
             tag='h4'
             text={'Фото банера'}
