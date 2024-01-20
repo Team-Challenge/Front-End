@@ -60,9 +60,7 @@ export const FileDrop = ({
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
     >
-      <div className={s.file_input_content}>
-        {children || <p>Натисніть або перетягніть щоб завантажити файли</p>}
-      </div>
+      {children || <p>Натисніть або перетягніть щоб завантажити файли</p>}
       <input
         ref={fileInputRef}
         type="file"

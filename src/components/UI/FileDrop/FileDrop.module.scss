@@ -10,11 +10,6 @@
   align-items: center;
 
   transition: .2s;
-  
-  &_content {
-    display: flex;
-    flex-direction: column;
-  }
 
   &_file_input {
     display: none;

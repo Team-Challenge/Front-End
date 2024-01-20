@@ -9,7 +9,7 @@ import { useState } from "react";
 import { closeModal } from "@/store/modalSlice";
 
 
-export const BannerModal = ({ modalId = 'storeBanner', handleBannerUpload }: any ) => {
+export const BannerModal = ({ modalId = 'storeBanner', handleBannerUpload }: any) => {
   const [files, setFiles] = useState<FileList | null>(null)
   const dispatch = useAppDispatch()
   const isModalOpen = useAppSelector((state) =>
@@ -35,16 +35,16 @@ export const BannerModal = ({ modalId = 'storeBanner', handleBannerUpload }: any
             text={'Фото банера'}
             className={s.modal_title}
           />
-          {files ? <>
-            <img src={URL.createObjectURL(files[0])} alt='banner' className={s.modal_image} />
-          </> : <>
-            <FileDrop onChange={handleAddImage} className={s.modal_file_drop}>
+          <FileDrop onChange={handleAddImage} className={s.modal_file_drop}>
+            {files ? <>
+              <img src={URL.createObjectURL(files[0])} alt='banner' className={s.modal_image} />
+            </> : <>
               <div className={s.modal_inner_text}>
                 <p>Натисніть, щоб завантажити фото</p>
                 <Icon icon='solar:camera-outline' />
               </div>
-            </FileDrop>
-          </>}
+            </>}
+          </FileDrop>
           <p>Допустимі розміри банера 360х160</p>
           <ButtonUI
             label='Зберегти'

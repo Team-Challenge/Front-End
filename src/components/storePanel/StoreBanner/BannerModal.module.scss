@@ -4,7 +4,7 @@
   > div > :first-child {
     @include mobileTitleDecorationOverride;
   }
-
+  
   &_title,
   &_button {
     margin: toRem(20) 0;
