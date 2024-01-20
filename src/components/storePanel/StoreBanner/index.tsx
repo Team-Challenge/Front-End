@@ -10,6 +10,8 @@ import { Icon } from '@iconify/react';
 import s from './StoreBanner.module.scss';
 import { useWindowDimensions } from '@/hooks/useWindowDimensions';
 import { ChangeEvent } from 'react';
+import { openModal } from '@/store/modalSlice';
+import { BannerModal } from './BannerModal';
 
 export const StoreBanner = () => {
   const dispatch = useAppDispatch();
@@ -60,6 +62,10 @@ export const StoreBanner = () => {
     e.target.files && handleBannerUpload(e.target.files);
   };
 
+  const handleOpenModal = () => {
+    dispatch(openModal('storeBanner'));
+  };
+
   return (
     <>
       <div className={s.banner}>
@@ -83,7 +89,7 @@ export const StoreBanner = () => {
               <div className={s.banner_dropdown_list}>
                 <div>
                   <Icon icon='solar:camera-outline' />
-                  <button onClick={handleUploadClick}>Завантажити фото банеру</button>
+                  <button onClick={handleOpenModal}>Завантажити фото банеру</button>
                 </div>
                 {banner_photo &&
                   <div>
@@ -108,6 +114,11 @@ export const StoreBanner = () => {
             </div>
           )
         }
+
+        <BannerModal
+          modalId={'storeBanner'}
+          handleBannerUpload={handleBannerUpload}
+        />
 
         <input
           type='file'

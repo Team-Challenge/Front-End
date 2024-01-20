@@ -79,7 +79,6 @@
       position: absolute;
       @extend .buttons;
 
-      // borders from Figma
       border-radius: toRem(4);
       border: toRem(1) solid $light-grey;
 
