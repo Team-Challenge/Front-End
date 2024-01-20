@@ -9,7 +9,6 @@ export const FileDrop = ({
   onChange = (items) => { console.log('Changed Items: ', items) },
   isMulti = false,
 }: FileDropProps) => {
-  const [isDraggerOver, setIsDraggedOver] = useState(false)
   const fileInputRef = useRef<HTMLInputElement | null>(null)
 
   const onChangeFiles = (files: FileList) => {
@@ -25,7 +24,6 @@ export const FileDrop = ({
 
   const handleDragEnter = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
-    setIsDraggedOver(true)
   }
 
   const handleDragOver = (e: DragEvent<HTMLDivElement>) => {
@@ -34,7 +32,6 @@ export const FileDrop = ({
 
   const handleDragLeave = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
-    setIsDraggedOver(false)
   }
 
   const handleClick = () => {
@@ -43,7 +40,6 @@ export const FileDrop = ({
 
   const handleDrop = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
-    setIsDraggedOver(false)
     onChangeFiles(e.dataTransfer.files)
   }
 
@@ -56,8 +52,7 @@ export const FileDrop = ({
     <div
       className={
         `${className}
-        ${s.file_drop}
-        ${isDraggerOver ? s.file_drop_is_dragged : null}`
+        ${s.file_drop}`
       }
       onClick={handleClick}
       onDragEnter={handleDragEnter}
