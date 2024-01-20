@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
 import {
   changeBanner,
@@ -8,11 +8,14 @@ import {
 import { FileDrop } from '@/components/UI/FileDrop';
 import { Icon } from '@iconify/react';
 import s from './StoreBanner.module.scss';
+import { useWindowDimensions } from '@/hooks/useWindowDimensions';
 
 export const StoreBanner = () => {
   const dispatch = useAppDispatch();
   const { banner_photo } = useAppSelector((state) => state.storeProfile);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const { width } = useWindowDimensions();
+  const [isBurgerOpen, setIsBurgerOpen] = useState(false)
 
   const handleBannerUpload = async (files: FileList) => {
     const file = files[0];
@@ -72,30 +75,34 @@ export const StoreBanner = () => {
           )}
         </div>
 
-        <div className={s.banner_burger}>
-          <Icon icon="solar:menu-dots-outline" />
-          <div className={s.banner_burger_list}>
+        {width <= 991.98 ?
+          <div className={s.banner_dropdown}>
+            <Icon icon="solar:menu-dots-outline" onClick={() => setIsBurgerOpen(!isBurgerOpen)}/>
+            {isBurgerOpen &&
+              <div className={s.banner_dropdown_list}>
+                <div>
+                  <Icon icon='solar:camera-outline' />
+                  <button onClick={handleUploadClick}>Завантажити фото банеру</button>
+                </div>
+                <div>
+                  <Icon icon='solar:trash-bin-trash-outline' />
+                  <button onClick={handleDeleteBanner}>Видалити</button>
+                </div>
+              </div>
+            }
+          </div>
+          :
+          <div className={s.banner_buttons}>
             <div>
               <Icon icon='solar:camera-outline' />
-              <button onClick={handleUploadClick}>Завантажити фото банеру</button>
+              <button onClick={handleUploadClick}>Завантажити нове фото</button>
             </div>
             <div>
               <Icon icon='solar:trash-bin-trash-outline' />
               <button onClick={handleDeleteBanner}>Видалити</button>
             </div>
           </div>
-        </div>
-
-        <div className={s.banner_buttons}>
-          <div>
-            <Icon icon='solar:camera-outline' />
-            <button onClick={handleUploadClick}>Завантажити нове фото</button>
-          </div>
-          <div>
-            <Icon icon='solar:trash-bin-trash-outline' />
-            <button onClick={handleDeleteBanner}>Видалити</button>
-          </div>
-        </div>
+        }
 
         <input
           type='file'
