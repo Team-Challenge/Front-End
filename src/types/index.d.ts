@@ -221,3 +221,7 @@ export interface UserProfileMenuProps {
 export interface StoreProfileMenuProps {
   closeStoreMenu: () => void;
 }
+
+export interface BannerModalProps {
+  handleBannerUpload: (files: FileList) => Promise<void>
+}
