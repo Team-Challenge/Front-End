@@ -23,6 +23,7 @@ export const ProfilePhoto = ({
   profilePhoto,
   isUser,
   isStore,
+  className,
 }: ProfilePhotoProps) => {
   const [defaultImg, setDefaultImg] = useState<string>(defaultPhoto);
   const dispatch = useAppDispatch();
@@ -98,7 +99,7 @@ export const ProfilePhoto = ({
   );
 
   return (
-    <div className={s.photo}>
+    <div className={`${s.photo} ${className}`}>
       <div className={s.photo_block}>
         <div className={s.photo_img}>{profilePicture}</div>
         <button className={s.photo_button} onClick={handleOpenModal}>
