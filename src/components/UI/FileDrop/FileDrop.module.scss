@@ -1,17 +1,16 @@
 @import '@/styles/index.scss';
 
-.file_drop {
-  display: flex;
-  border-radius: toRem(4);
-  outline: toRem(1) $light-grey dashed;
+.dropzone {
   width: 100%;
   height: 100%;
+  display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: toRem(4);
+  outline: 2px $light-grey dashed;
+  overflow: hidden;
 
-  transition: .2s;
-
-  &_file_input {
+  &_input {
     display: none;
   }
 }

@@ -1,59 +1,55 @@
-import { FileDropProps } from "@/types";
-import s from "./FileDrop.module.scss"
-import { useRef, useState } from "react";
-import { DragEvent, ChangeEvent } from "react";
+import { DragEvent, ChangeEvent, useRef } from 'react';
+import { FileDropProps } from '@/types';
+import s from './FileDrop.module.scss';
 
 export const FileDrop = ({
   children,
   className,
-  onChange = (items) => { console.log('Changed Items: ', items) },
+  onChange = () => {},
   isMulti = false,
 }: FileDropProps) => {
-  const fileInputRef = useRef<HTMLInputElement | null>(null)
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const onChangeFiles = (files: FileList) => {
-    const filesNumber = files.length
+    const filesNumber = files.length;
 
     if (!isMulti && filesNumber > 1) {
-      alert('Можливо додати лише один файл')
+      alert('Можливо додати лише один файл');
       return;
     }
 
-    onChange(files)
-  }
+    onChange(files);
+  };
 
   const handleDragEnter = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
-  }
+  };
 
   const handleDragOver = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
-  }
+  };
 
   const handleDragLeave = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
-  }
+  };
 
   const handleClick = () => {
     fileInputRef.current?.click();
-  }
+  };
 
   const handleDrop = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
-    onChangeFiles(e.dataTransfer.files)
-  }
+    onChangeFiles(e.dataTransfer.files);
+  };
 
   const handleFileInput = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    e.target.files && onChangeFiles(e.target.files)
-  }
+    e.target.files && onChangeFiles(e.target.files);
+  };
 
   return (
     <div
-      className={
-        `${className}
-        ${s.file_drop}`
-      }
+      className={`${className} ${s.dropzone}`}
       onClick={handleClick}
       onDragEnter={handleDragEnter}
       onDragOver={handleDragOver}
@@ -63,10 +59,10 @@ export const FileDrop = ({
       {children || <p>Натисніть або перетягніть щоб завантажити файли</p>}
       <input
         ref={fileInputRef}
-        type="file"
+        type='file'
         onChange={handleFileInput}
-        className={s.file_drop_file_input}
+        className={s.dropzone_input}
       />
-    </div >
+    </div>
   );
-}
+};
