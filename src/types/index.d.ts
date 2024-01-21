@@ -157,6 +157,7 @@ export interface ProfilePhotoProps {
   profilePhoto: string;
   isUser?: boolean;
   isStore?: boolean;
+  className?: string;
 }
 
 //user info types
