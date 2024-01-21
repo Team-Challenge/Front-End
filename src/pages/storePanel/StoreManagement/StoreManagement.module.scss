@@ -2,6 +2,7 @@
 
 .settings {
   display: grid;
+  grid-template-columns: 1fr;
   padding-bottom: toRem(20);
 
   @media (max-width: $tablet) {
@@ -13,6 +14,21 @@
 
     @media (max-width: $mobileSmall) {
       margin-top: toRem(20);
+    }
+  }
+
+  &_photo {
+    grid-area: -1 / 1;
+    display: grid;
+    align-items: center;
+    margin: toRem(40) 0 0 toRem(21);
+
+    @media (max-width: $tablet) {
+      margin: 0;
+    }
+
+    @media (max-width: $mobileSmall) {
+      margin-top: toRem(12);
     }
   }
 }
