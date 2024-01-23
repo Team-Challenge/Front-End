@@ -27,18 +27,19 @@ export const BannerModal = ({ handleBannerUpload }: BannerModalProps) => {
   return (
     <>
       {isModalOpen && (
-        <Modal modalId={'storeBanner'} className={s.modal}>
+        <Modal modalId='storeBanner' className={s.modal}>
           <OrnamentalTitle tag='h4' text='Фото банера' />
-          <FileDrop onChange={handleAddImage} className={s.modal_block}>
+          <FileDrop
+            onChange={handleAddImage}
+            className={`${s.modal_block} ${files ? s.modal_img : s.modal_text}`}
+          >
             {files ? (
-              <div className={s.modal_image}>
-                <img src={URL.createObjectURL(files[0])} alt='banner' />
-              </div>
+              <img src={URL.createObjectURL(files[0])} alt='banner' />
             ) : (
-              <div className={s.modal_text}>
+              <>
                 <p>Натисніть, щоб завантажити фото</p>
                 <Icon icon='solar:camera-outline' />
-              </div>
+              </>
             )}
           </FileDrop>
           <p className={s.modal_hint}>Допустимі розміри банера 360х160</p>
