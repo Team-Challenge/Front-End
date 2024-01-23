@@ -1,4 +1,4 @@
-import { Icon } from "@iconify/react";
+import { Icon } from '@iconify/react';
 import s from './AddProductButton.module.scss';
 
 export const AddProductButton = () => {

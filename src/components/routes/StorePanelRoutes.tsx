@@ -9,7 +9,7 @@ export const StorePanelRoutes = () => {
   return (
     <main>
       <div className='container user-panel-page'>
-        {width >=991.98 && <StorePanel />}
+        {width >= 991.98 && <StorePanel />}
         <Routes>
           <Route path='products' element={<Products />} />
           <Route path='settings' element={<StoreManagement />} />

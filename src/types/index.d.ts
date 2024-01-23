@@ -224,5 +224,5 @@ export interface StoreProfileMenuProps {
 }
 
 export interface BannerModalProps {
-  handleBannerUpload: (files: FileList) => Promise<void>
+  handleBannerUpload: (files: FileList) => Promise<void>;
 }

@@ -44,11 +44,18 @@ const userProfileSlice = createSlice({
     },
     setDeliveryAddress: (state, action: PayloadAction<string>) => {
       state.address = action.payload;
-    }
+    },
   },
 });
 
-export const { setFullName, setPhoneNumber, setProfilePhoto, setDeliveryCity, setDeliveryPost, setDeliveryBranch, setDeliveryAddress } =
-  userProfileSlice.actions;
+export const {
+  setFullName,
+  setPhoneNumber,
+  setProfilePhoto,
+  setDeliveryCity,
+  setDeliveryPost,
+  setDeliveryBranch,
+  setDeliveryAddress,
+} = userProfileSlice.actions;
 
 export default userProfileSlice.reducer;

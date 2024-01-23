@@ -33,10 +33,7 @@ export const StoreProfileMenu = ({ closeStoreMenu }: StoreProfileMenuProps) => {
             {item.title}
           </Link>
         ))}
-        <Link
-          to={`/account/store`}
-          className={s.profile_item}
-        >
+        <Link to={`/account/store`} className={s.profile_item}>
           <Icon icon='solar:square-top-down-outline' />
           Переглянути мій магазин
         </Link>

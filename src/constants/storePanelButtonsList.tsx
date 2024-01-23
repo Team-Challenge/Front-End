@@ -30,5 +30,5 @@ export const storePanelButtonsList = [
     title: 'Відгуки та рейтинг',
     pathToPage: 'reviews',
     icon: <Icon icon='solar:chat-round-outline' />,
-  }
+  },
 ];

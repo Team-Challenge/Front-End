@@ -18,5 +18,5 @@ export const purchaseStatusList = [
   {
     id: 5,
     label: 'Скасовані',
-  }
+  },
 ];

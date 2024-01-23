@@ -6,7 +6,7 @@ interface OverlayStateProps {
 
 const initialState: OverlayStateProps = {};
 
-const overlayStateSlice  = createSlice({
+const overlayStateSlice = createSlice({
   name: 'overlayComponentState',
   initialState,
   reducers: {
