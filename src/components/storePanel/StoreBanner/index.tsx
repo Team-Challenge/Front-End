@@ -133,7 +133,6 @@ export const StoreBanner = () => {
                 type='file'
                 ref={fileInputRef}
                 onChange={handleBannerInput}
-                className={s.banner_buttons_input}
               />
             </button>
             <button onClick={handleDeleteBanner}>
