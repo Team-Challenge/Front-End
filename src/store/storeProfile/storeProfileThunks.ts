@@ -1,9 +1,17 @@
 import $api from '@/http';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { setStore, setName, setDescription, setShopPhoto, setBannerPhoto, setStorePhoneNumber, setLink } from './storeProfileSlice';
+import {
+  setStore,
+  setName,
+  setDescription,
+  setShopPhoto,
+  setBannerPhoto,
+  setStorePhoneNumber,
+  setLink,
+} from './storeProfileSlice';
 
 export const getStoreInfo = createAsyncThunk(
-  'shops/info',
+  'storeSettings/info',
   async (_, { dispatch }) => {
     try {
       const response = await $api.get('/shops/shop_info');
@@ -25,14 +33,13 @@ export const getStoreInfo = createAsyncThunk(
 );
 
 export const changeStoreInfo = createAsyncThunk(
-  'shops/changeInfo',
-  async (
-    credentials: {
-      name?: string | undefined;
-      description?: string | undefined;
-      phone_number?: string | undefined;
-      link?: string | undefined;
-    }) => {
+  'storeSettings/changeInfo',
+  async (credentials: {
+    name?: string | undefined;
+    description?: string | undefined;
+    phone_number?: string | undefined;
+    link?: string | undefined;
+  }) => {
     try {
       const response = await $api.post('/shops/shop', {
         name: credentials.name,
@@ -51,7 +58,7 @@ export const changeStoreInfo = createAsyncThunk(
 );
 
 export const uploadStorePhoto = createAsyncThunk(
-  'shops/uploadStorePhoto',
+  'storeSettings/uploadStorePhoto',
   async (formData: FormData) => {
     try {
       const response = await $api.post('/shops/shop_photo', formData, {
@@ -67,7 +74,7 @@ export const uploadStorePhoto = createAsyncThunk(
 );
 
 export const deleteStorePhoto = createAsyncThunk(
-  'shops/deleteStorePhoto',
+  'storeSettings/deleteStorePhoto',
   async () => {
     try {
       const response = await $api.delete('/shops/shop_photo');
@@ -79,3 +86,31 @@ export const deleteStorePhoto = createAsyncThunk(
     }
   },
 );
+
+export const changeBanner = createAsyncThunk(
+  'storeSettings/changeBanner',
+  async (formData: FormData) => {
+    try {
+      const response = await $api.post('/shops/shop_banner', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      return response.data
+    } catch (error) {
+      throw error;
+    }
+  },
+);
+
+export const deleteBanner = createAsyncThunk(
+  'storeSettings/deleteBanner', 
+  async () => {
+    try {
+      const response = await $api.delete('shops/shop_banner')
+      return response.data
+    } catch (error) {
+      throw error
+    }
+  }
+)

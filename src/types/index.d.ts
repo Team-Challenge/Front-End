@@ -49,6 +49,13 @@ export interface ButtonUIProps {
   disabled?: boolean;
 }
 
+export interface FileDropProps {
+  children?: React.ReactNode;
+  className?: string;
+  onChange?: (any) => void;
+  isMulti?: boolean;
+}
+
 export interface ModalProps {
   children: React.ReactNode;
   modalId: string;
@@ -150,6 +157,7 @@ export interface ProfilePhotoProps {
   profilePhoto: string;
   isUser?: boolean;
   isStore?: boolean;
+  className?: string;
 }
 
 //user info types
@@ -213,4 +221,8 @@ export interface UserProfileMenuProps {
 
 export interface StoreProfileMenuProps {
   closeStoreMenu: () => void;
+}
+
+export interface BannerModalProps {
+  handleBannerUpload: (files: FileList) => Promise<void>
 }
