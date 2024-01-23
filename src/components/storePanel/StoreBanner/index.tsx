@@ -1,24 +1,25 @@
-import { useRef, useState } from 'react';
+import { ChangeEvent, useRef, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
+import { useWindowDimensions } from '@/hooks/useWindowDimensions';
+import { useClickOutside } from '@/hooks/useClickOutside';
 import {
   changeBanner,
   deleteBanner,
   getStoreInfo,
 } from '@/store/storeProfile/storeProfileThunks';
+import { openModal } from '@/store/modalSlice';
 import { FileDrop } from '@/components/UI/FileDrop';
+import { BannerModal } from './BannerModal';
 import { Icon } from '@iconify/react';
 import s from './StoreBanner.module.scss';
-import { useWindowDimensions } from '@/hooks/useWindowDimensions';
-import { ChangeEvent } from 'react';
-import { openModal } from '@/store/modalSlice';
-import { BannerModal } from './BannerModal';
-import { useClickOutside } from '@/hooks/useClickOutside';
 
 export const StoreBanner = () => {
-  const dispatch = useAppDispatch();
-  const { banner_photo } = useAppSelector((state) => state.storeProfile);
   const { width } = useWindowDimensions();
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const dispatch = useAppDispatch();
+  const storeBanner = useAppSelector(
+    (state) => state.storeProfile.banner_photo,
+  );
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const dropdownRef = useRef<HTMLInputElement | null>(null);
 
@@ -53,7 +54,7 @@ export const StoreBanner = () => {
   const handleDeleteBanner = async () => {
     await dispatch(deleteBanner());
     dispatch(getStoreInfo());
-    setIsDropdownOpen(false)
+    setIsDropdownOpen(false);
   };
 
   const handleBannerInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -64,82 +65,88 @@ export const StoreBanner = () => {
   const handleUploadClick = () => {
     fileInputRef.current?.click();
   };
-  
+
   const handleOpenModal = () => {
     dispatch(openModal('storeBanner'));
-    setIsDropdownOpen(false)
+    setIsDropdownOpen(false);
   };
 
   const handleCloseDropdown = () => {
-    setIsDropdownOpen(false)
-  }
+    setIsDropdownOpen(false);
+  };
 
-  useClickOutside(dropdownRef, handleCloseDropdown)
+  useClickOutside(dropdownRef, handleCloseDropdown);
 
   return (
-    <>
-      <div className={s.banner}>
-        <div className={s.banner_image}>
-          {banner_photo ? (
-            <img src={banner_photo} alt='banner' />
-          ) : (
-            width >= 991.98 ? <>
-              <FileDrop onChange={handleBannerUpload}>
-                <div className={s.banner_inner_text}>
-                  <p>Завантажити фото банера</p>
-                  <Icon icon='solar:camera-outline' />
-                </div>
-              </FileDrop>
-            </>
-            :
-            <div className={s.banner_border}/>
-          )
-          }
-        </div>
-
-        {width <= 991.98 ?
-          <div ref={dropdownRef} className={s.banner_dropdown}>
-            <Icon icon="solar:menu-dots-outline" onClick={() => setIsDropdownOpen(!isDropdownOpen)} />
-            {isDropdownOpen &&
-              <div className={s.banner_dropdown_list}>
-                <div>
-                  <Icon icon='solar:camera-outline' />
-                  <button onClick={handleOpenModal}>Завантажити фото банеру</button>
-                </div>
-                {banner_photo &&
-                  <div>
-                    <Icon icon='solar:trash-bin-trash-outline' />
-                    <button onClick={handleDeleteBanner}>Видалити</button>
-                  </div>
-                }
-              </div>
-            }
-          </div>
-          :
-          (banner_photo &&
-            <div className={s.banner_buttons}>
-              <div>
-                <Icon icon='solar:camera-outline' />
-                <button onClick={handleUploadClick}>Завантажити нове фото</button>
-              </div>
-              <div>
-                <Icon icon='solar:trash-bin-trash-outline' />
-                <button onClick={handleDeleteBanner}>Видалити</button>
-              </div>
+    <div className={s.banner}>
+      <div className={s.banner_image}>
+        {storeBanner ? (
+          <img src={storeBanner} alt='banner' />
+        ) : width >= 991.98 ? (
+          <FileDrop onChange={handleBannerUpload}>
+            <div className={s.banner_text}>
+              <p>Завантажити фото банера</p>
+              <Icon icon='solar:camera-outline' />
             </div>
-          )
-        }
-
-        <BannerModal
-          handleBannerUpload={handleBannerUpload}
-        />
-
-        <input
-          type='file'
-          ref={fileInputRef}
-          onChange={handleBannerInput}
-        />
+          </FileDrop>
+        ) : (
+          <div className={s.banner_border} />
+        )}
       </div>
-    </>
+
+      {width <= 991.98 ? (
+        <div ref={dropdownRef} className={s.dropdown}>
+          <button
+            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+            className={s.dropdown_button}
+          >
+            <Icon icon='solar:menu-dots-outline' />
+          </button>
+          {isDropdownOpen && (
+            <div className={s.dropdown_buttons}>
+              <button
+                onClick={handleOpenModal}
+                className={s.dropdown_button_add}
+              >
+                <Icon icon='solar:camera-outline' />
+                Завантажити нове фото
+              </button>
+              {storeBanner && (
+                <button
+                  onClick={handleDeleteBanner}
+                  className={s.dropdown_button_delete}
+                >
+                  <Icon icon='solar:trash-bin-trash-outline' />
+                  Видалити
+                </button>
+              )}
+            </div>
+          )}
+        </div>
+      ) : (
+        storeBanner && (
+          <div className={s.banner_buttons}>
+            <button onClick={handleUploadClick}>
+              <Icon icon='solar:camera-outline' />
+              Завантажити нове фото
+              <input
+                type='file'
+                ref={fileInputRef}
+                onChange={handleBannerInput}
+                className={s.banner_buttons_input}
+              />
+            </button>
+            <button onClick={handleDeleteBanner}>
+              <Icon icon='solar:trash-bin-trash-outline' />
+              Видалити
+            </button>
+          </div>
+        )
+      )}
+
+      {width <= 991.98 && (
+        <BannerModal handleBannerUpload={handleBannerUpload} />
+      )}
+    </div>
   );
 };
