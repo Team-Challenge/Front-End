@@ -14,6 +14,7 @@
   border: 1px solid $border-color;
   border-radius: 0.25rem;
   padding: toRem(12) toRem(16);
+  resize: none;
 
   @media (max-width: $mobile) {
     line-height: toRem(19.6);
