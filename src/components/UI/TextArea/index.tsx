@@ -47,7 +47,7 @@ export const TextArea = ({
       <textarea
         {...textareaAttributes}
         {...register(id as string, {
-          required: required
+          required: required,
         })}
         defaultValue={defaultValue}
         onInput={(event) =>

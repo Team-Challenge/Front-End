@@ -16,7 +16,7 @@ export const UserPanelRoutes = () => {
   return (
     <main>
       <div className='container user-panel-page'>
-        {width >=991.98 && <UserPanel />}
+        {width >= 991.98 && <UserPanel />}
         <Routes>
           <Route path='profile' element={<Profile />} />
           <Route path='purchases' element={<Purchases />} />

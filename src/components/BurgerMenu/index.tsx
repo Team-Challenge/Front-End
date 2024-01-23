@@ -119,7 +119,6 @@ export const BurgerMenu = () => {
                           Мій магазин
                         </Link>
                       )}
-
                     </ul>
                   </div>
                   <div className={s.button_logout}>

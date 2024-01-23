@@ -4,7 +4,7 @@ import s from './OrnamentalTitle.module.scss';
 export const OrnamentalTitle = ({
   tag,
   text,
-  className
+  className,
 }: OrnamentalTitleProps) => {
   const Tag = tag;
 

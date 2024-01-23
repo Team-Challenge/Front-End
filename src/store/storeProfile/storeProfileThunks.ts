@@ -95,8 +95,8 @@ export const changeBanner = createAsyncThunk(
         headers: {
           'Content-Type': 'multipart/form-data',
         },
-      })
-      return response.data
+      });
+      return response.data;
     } catch (error) {
       throw error;
     }
@@ -104,13 +104,13 @@ export const changeBanner = createAsyncThunk(
 );
 
 export const deleteBanner = createAsyncThunk(
-  'storeSettings/deleteBanner', 
+  'storeSettings/deleteBanner',
   async () => {
     try {
-      const response = await $api.delete('shops/shop_banner')
-      return response.data
+      const response = await $api.delete('shops/shop_banner');
+      return response.data;
     } catch (error) {
-      throw error
+      throw error;
     }
-  }
-)
+  },
+);

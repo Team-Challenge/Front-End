@@ -23,5 +23,5 @@ export {
   Products,
   StoreManagement,
   Orders,
-  Reviews
+  Reviews,
 };

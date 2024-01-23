@@ -35,5 +35,5 @@ export const categoryList = [
     id: 6,
     label: 'Набори',
     icon: sets,
-  }
+  },
 ];
