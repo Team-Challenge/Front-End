@@ -1,34 +1,42 @@
 @import '@/styles/index.scss';
 
 .banner {
-  position: relative;
+  grid-area: -1 / 1;
   display: flex;
   flex-direction: column;
+  gap: 0.25rem;
   max-width: toRem(1008);
   width: 100%;
+  position: relative;
 
   @media (max-width: $tablet) {
     max-width: $tablet;
   }
 
   &_image {
-    & > * {
-      height: toRem(180);
-      width: 100%;
-      object-fit: cover;
+    width: 100%;
+    height: toRem(180);
+    overflow: hidden;
 
-      @media (max-width: $mobileSmall) {
-        height: toRem(124);
-      }
+    @media (max-width: $mobileSmall) {
+      height: toRem(124);
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 0.25rem;
     }
   }
 
   &_border {
+    height: 100%;
+    border: 2px $light-grey dashed;
     border-radius: 4px;
-    outline: 1px $light-grey dashed;
   }
 
-  &_inner_text {
+  &_text {
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -36,96 +44,117 @@
     & > p {
       margin-right: toRem(8);
       color: $black;
-      font-size: 14px;
+      font-family: 'Craftwork Grotesk', sans-serif;
+      font-size: 0.875rem;
       font-weight: 700;
+      line-height: 1.25rem;
       letter-spacing: 0.28px;
 
       &:hover {
         text-decoration: underline;
       }
     }
-  }
-
-  .buttons {
-    & :first-child * {
-      color: $green;
-    }
-
-    & :nth-child(2) * {
-      color: $red;
-    }
-
-    & button {
-      font-family: 'Craftwork Grotesk';
-      font-size: 14px;
-      font-style: normal;
-      font-weight: 700;
-      letter-spacing: 0.28px;
-    }
-  }
-
-  & input {
-    display: none;
-  }
-
-  &_dropdown {
-    position: absolute;
-    top: toRem(8);
-    right: toRem(12);
-    z-index: 999;
 
     & > svg {
+      width: 1rem;
+      height: 1rem;
       color: $green;
-      height: toRem(24);
-      width: toRem(24);
-    }
-
-    &_list {
-      position: absolute;
-      @extend .buttons;
-
-      border-radius: toRem(4);
-      border: toRem(1) solid $light-grey;
-
-      background: $white;
-      top: 2rem;
-      right: 0;
-
-      background-color: $white;
-
-      & > div {
-        display: flex;
-        gap: toRem(8);
-        flex-direction: row-reverse;
-        justify-content: start;
-        align-items: center;
-        white-space: nowrap;
-        padding: toRem(6) toRem(12);
-        height: toRem(36);
-      }
-
-      & > :nth-child(2) {
-        border-top: toRem(1) solid $light-grey;
-      }
     }
   }
 
   &_buttons {
-    @extend .buttons;
     display: flex;
+    align-items: center;
     justify-content: end;
-    gap: toRem(4);
+    gap: 0.5rem;
 
-    @media (max-width: $tablet) {
-      display: none;
-    }
-
-    & > div {
+    & button {
+      font-family: 'Craftwork Grotesk', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 700;
+      letter-spacing: 0.28px;
       display: flex;
       align-items: center;
-      gap: toRem(8);
-      margin: toRem(8) toRem(12);
+      gap: 0.5rem;
+      padding: toRem(8) toRem(12);
+
+      &:first-child {
+        color: $green;
+      }
+
+      &:nth-child(2) {
+        color: $red;
+        padding-right: 0;
+      }
+
+      svg {
+        width: 1rem;
+        height: 1rem;
+      }
     }
+
+    &_input {
+      display: none;
+    }
+  }
+}
+
+.dropdown {
+  position: absolute;
+  top: toRem(8);
+  right: toRem(12);
+  z-index: 5;
+
+  &_button {
+    svg {
+      height: 1.5rem;
+      width: 1.5rem;
+      color: $green;
+    }
+  }
+
+  &_buttons {
+    background: $white;
+    border: 1px solid $light-grey;
+    border-radius: toRem(4);
+    position: absolute;
+    top: 27px;
+    right: 0;
+
+    & > :nth-child(2) {
+      border-top: 1px solid $light-grey;
+      width: 100%;
+    }
+  }
+
+  &_button_add,
+  &_button_delete {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: start;
+    align-items: center;
+    gap: toRem(8);
+    padding: toRem(9) toRem(11);
+
+    font-family: 'Craftwork Grotesk', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1rem;
+    letter-spacing: 0.36px;
+    white-space: nowrap;
+
+    svg {
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+
+  &_button_add {
+    color: $green;
+  }
+
+  &_button_delete {
+    color: $red;
   }
 }
 
@@ -134,36 +163,66 @@
     @include mobileTitleDecorationOverride;
   }
 
-  &_title,
-  &_button {
-    margin: toRem(20) 0;
+  &_block {
+    max-width: toRem(360);
+    margin-top: toRem(10);
   }
 
-  &_file_drop {
-    height: toRem(87);
-  }
+  &_text {
+    display: grid;
+    justify-items: center;
+    gap: 0.5rem;
+    padding: toRem(25) 0;
 
-  &_inner_text {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    cursor: pointer;
+    @media (max-width: $mobileSmall) {
+      gap: 0.375rem;
+    }
 
-    & > p {
+    p {
+      font-size: 0.875rem;
+      letter-spacing: 0.01px;
+      line-height: 130%;
       color: $grey;
-      font-size: 10px;
-      letter-spacing: 0.28px;
+
+      @media (max-width: $mobileSmall) {
+        font-size: 0.625rem;
+      }
     }
 
     svg {
       width: toRem(18);
       height: toRem(18);
+      color: $green;
     }
   }
 
-  &_image {
+  &_img {
+    height: toRem(100);
+    border: none;
+
+    @media (max-width: $mobileSmall) {
+      width: toRem(280);
+      height: toRem(63);
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 0.25rem;
+    }
+  }
+
+  &_hint {
+    font-size: 0.75rem;
+    font-weight: 300;
+    line-height: 1rem;
+    margin-top: toRem(4);
+  }
+
+  &_button {
+    max-width: toRem(360);
     width: 100%;
-    max-height: toRem(87);
-    object-fit: cover;
+    margin-top: toRem(20);
   }
 }

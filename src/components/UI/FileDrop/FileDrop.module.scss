@@ -6,9 +6,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 2px $light-grey dashed;
   border-radius: toRem(4);
-  outline: 2px $light-grey dashed;
   overflow: hidden;
+  cursor: pointer;
 
   &_input {
     display: none;
