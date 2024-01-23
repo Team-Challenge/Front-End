@@ -1,7 +1,7 @@
 @import '@/styles/index.scss';
 
 .header {
-  box-shadow: 0 toRem(6) toRem(6) 0 rgba(221, 221, 221, 0.20);
+  box-shadow: 0 toRem(6) toRem(6) 0 rgba(221, 221, 221, 0.2);
 
   svg {
     width: toRem(20);
@@ -11,6 +11,7 @@
   &_container {
     display: grid;
     grid-template-areas: 'logo links buttons';
+    grid-template-columns: 1fr auto 1fr;
     justify-items: center;
     align-items: center;
 
@@ -84,6 +85,7 @@
     grid-area: links;
     display: flex;
     @include adaptiveValue('gap', 46, 20, 0, 1440, 991.98);
+    margin-right: toRem(64);
     font-family: 'Craftwork Grotesk', sans-serif;
     font-size: toRem(14);
     font-weight: 700;
@@ -123,10 +125,15 @@
       align-items: center;
       gap: toRem(4);
     }
+ 
+    & > button > :last-child {
+      width: 16px;
+      height: 16px;
+    }
   }
 
   &_favorite {
-    margin: 0 toRem(28) 0 toRem(20);
+    margin: 0 toRem(20) 0 toRem(14);
 
     @media (max-width: $mobile) {
       margin-right: toRem(18);
@@ -143,12 +150,17 @@
 
   &_shop {
     align-self: flex-start;
-    margin: 0 toRem(20) 0 toRem(3);
+    margin: 0 toRem(14) 0 toRem(4);
 
     button {
       display: flex;
       align-items: center;
       gap: toRem(4);
+    }
+
+    & > button > :last-child {
+      width: 16px;
+      height: 16px;
     }
   }
 
