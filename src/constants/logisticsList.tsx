@@ -4,19 +4,19 @@ import ukrPostLogo from '@assets/ukr-post-logo.svg';
 
 export const paymentMethods = [
   {
-    id: 'card',
+    id: 'cardPayment',
     icon: <Icon icon='solar:card-outline' />,
     title: 'Оплата на карту',
     desc: 'Оплата вартості товару на карту',
   },
   {
-    id: 'cash',
+    id: 'cashPayment',
     icon: <Icon icon='solar:wallet-outline' />,
     title: 'Оплата при отриманні (Накладений платіж)',
     desc: 'Комісія за тарифами перевізника (Нова Пошта від 40 грн)',
   },
   {
-    id: 'secure-payment',
+    id: 'securePayment',
     icon: <Icon icon='solar:shield-check-outline' />,
     title: 'Безпечна оплата',
     desc: 'Ви отримає кошти після того як покупець отримає та перевірить товар',
