@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import s from './ProductColors.module.scss';
+import { useFormContext } from 'react-hook-form';
 import { colorsList } from '@/constants/colorsList';
-import { Controller, useFormContext } from 'react-hook-form';
-import { Icon } from '@iconify/react';
 import { Tooltip } from '@/components/UI';
+import { Icon } from '@iconify/react';
+import s from './ProductColors.module.scss';
 
 export const ProductColors = () => {
   const { setValue } = useFormContext();
@@ -30,7 +30,7 @@ export const ProductColors = () => {
       <div className='product-add_subtitle_wrap'>
         <p className='product-add_subtitle'>Кольори</p>
         <Tooltip
-          text='Використовуйте природне світло та уникайте спалаху. Під час фотографування акцентуйте увагу на тому, як виглядають прикраси під час носіння. Оберіть світлий та нейтральний фон для кращого візуального враження. Збільште кількість деталей та варіюйте кути зйомки, щоб забезпечити повноцінний огляд прикрас.'
+          text='Додайте як умога більше характеристик вашого виробу, такі як: основні кольори, розміри та матеріали. Це допоможе майбутнім покупцям знайти його ще простіше.'
           className={`product-add_tooltip ${s.color_tooltip}`}
         >
           <Icon icon='heroicons:light-bulb' />

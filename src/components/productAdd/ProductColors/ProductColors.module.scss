@@ -79,10 +79,10 @@
       right: 10px;
 
       &::before {
-        top: -13%;
+        top: -21%;
 
         @media (max-width: $mobile) {
-          top: -9%;
+          top: -18%;
         }
       }
     }
