@@ -1,0 +1,14 @@
+@import '@/styles/index.scss';
+
+.name {
+  max-width: toRem(496);
+  width: 100%;
+
+  &_char_count {
+    color: $grey;
+    font-size: 0.75rem;
+    font-weight: 300;
+    line-height: 1rem;
+    margin-top: toRem(4);
+  }
+}
