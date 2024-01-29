@@ -3,4 +3,15 @@
 .description {
   max-width: toRem(496);
   width: 100%;
+
+  &_tooltip {
+    div {
+      top: 44px;
+      right: 10px;
+
+      &::before {
+        top: -22%;
+      }
+    }
+  }
 }

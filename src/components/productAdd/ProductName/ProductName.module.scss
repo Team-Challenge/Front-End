@@ -11,4 +11,15 @@
     line-height: 1rem;
     margin-top: toRem(4);
   }
+
+  &_tooltip {
+    div {
+      top: 44px;
+      right: 10px;
+
+      &::before {
+        top: -34%;
+      }
+    }
+  }
 }
