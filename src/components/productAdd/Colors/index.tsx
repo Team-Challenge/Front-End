@@ -3,9 +3,9 @@ import { useFormContext } from 'react-hook-form';
 import { colorsList } from '@/constants/colorsList';
 import { Tooltip } from '@/components/UI';
 import { Icon } from '@iconify/react';
-import s from './ProductColors.module.scss';
+import s from './Colors.module.scss';
 
-export const ProductColors = () => {
+export const Colors = () => {
   const { setValue } = useFormContext();
   const [selectedColors, setSelectedColors] = useState<string[]>([]);
 
