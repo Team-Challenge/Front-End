@@ -1,5 +1,5 @@
 import { Controller, useFormContext } from 'react-hook-form';
-import { refundsList } from '@/constants/refundsList';
+import { refundsRulesList } from '@/constants/refundsRulesList';
 import { ToggleSwitch, Tooltip } from '@/components/UI';
 import { Icon } from '@iconify/react';
 import s from './ProductRefundRules.module.scss';
@@ -22,7 +22,7 @@ export const ProductRefundRules = () => {
         <Icon icon='solar:undo-left-round-outline' />
         <p className={s.refunds_subtitle}>Умови повернення та обміну</p>
         <ul className={s.refunds_list}>
-          {refundsList.map(({ id, item }) => (
+          {refundsRulesList.map(({ id, item }) => (
             <li key={id} className={s.refunds_item}>
               {item}
             </li>
