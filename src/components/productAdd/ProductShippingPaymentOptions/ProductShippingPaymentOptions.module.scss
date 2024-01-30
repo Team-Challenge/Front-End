@@ -1,0 +1,97 @@
+@import '@/styles/index.scss';
+
+.logistics {
+  &_list {
+    display: grid;
+    gap: 1.5rem;
+    border: 1px solid $border-color;
+    border-radius: 0.25rem;
+    padding: toRem(24) toRem(28) toRem(24) toRem(20);
+
+    @media (max-width: $mobileSmall) {
+      padding: toRem(16) toRem(12) 
+    }
+  }
+
+  &_item {
+    display: grid;
+    grid-template-areas: 'icon title toggle' 'icon desc toggle';
+    justify-content: space-between;
+    align-items: center;
+    grid-template-columns: 1.75rem auto 1fr;
+    column-gap: 1rem;
+    row-gap: 0.25rem;
+
+    @media (max-width: $mobileSmall) {
+      grid-template-columns: 1.5rem auto 1fr;
+      column-gap: 0.75rem;
+    }
+
+    &:not(:first-child) {
+      grid-template-areas:
+        'topLine topLine topLine'
+        'icon title toggle'
+        'icon desc toggle';
+
+      &::before {
+        grid-area: topLine;
+        content: "";
+        width: 100%;
+        height: 1px;
+        background: $white-grey;
+        border-radius: 0.625rem;
+        margin-bottom: 1.5rem;
+      }
+    }
+  }
+
+  &_icon {
+    grid-area: icon;
+
+    svg {
+      width: 1.75rem;
+      height: 1.75rem;
+      color: $green;
+
+      @media (max-width: $mobileSmall) {
+        width: 1.25rem;
+        height: 1.25rem;
+      }
+    }
+
+    img {
+      width: 1.75rem;
+      height: 1.75rem;
+
+      @media (max-width: $mobileSmall) {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
+  }
+
+  &_title {
+    grid-area: title;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.813rem;
+    font-weight: 500;
+    line-height: 1rem;
+
+    @media (max-width: $mobileSmall) {
+      font-size: 0.75rem;
+    }
+  }
+
+  &_desc {
+    grid-area: desc;
+    font-size: 0.75rem;
+    font-weight: 300;
+    line-height: 1rem;
+    color: $grey;
+  }
+
+  &_toggle {
+    grid-area: toggle;
+    justify-self: end;
+  }
+}
