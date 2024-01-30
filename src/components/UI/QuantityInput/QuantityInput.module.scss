@@ -1,0 +1,50 @@
+@import '@/styles/index.scss';
+
+.quantity {
+  display: grid;
+  gap: 0.625rem;
+
+  @media (max-width: 800px) {
+    width: 100%;
+  }
+
+  &_label {
+    font-size: 0.813rem;
+    line-height: 1rem;
+  }
+
+  &_wrap {
+    display: flex;
+    align-items: center;
+    max-width: toRem(240);
+    width: 100%;
+    max-height: toRem(54);
+    height: 100%;
+  
+    @media (max-width: 800px) {
+      max-width: toRem(496);
+    }
+  }
+
+  &_input {
+    height: inherit;
+    background: $white;
+    border: 1px solid $border-color;
+    border-radius: 0.25rem 0px 0px 0.25rem;
+    padding: toRem(17) toRem(16);
+  }
+
+  &_unit {
+    max-width: toRem(70);
+    width: 100%;
+    height: inherit;
+    font-size: 0.875rem;
+    line-height: 1rem;
+    background: $white;
+    border-radius: 0px 0.25rem 0.25rem 0px;
+    border-top: 1px solid $border-color;
+    border-right: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
+    padding: toRem(18) toRem(16);
+  }
+}
