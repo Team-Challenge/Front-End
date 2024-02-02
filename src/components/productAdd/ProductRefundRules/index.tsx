@@ -18,6 +18,7 @@ export const ProductRefundRules = () => {
           <Icon icon='heroicons:light-bulb' />
         </Tooltip>
       </div>
+
       <div className={s.refunds}>
         <Icon icon='solar:undo-left-round-outline' />
         <p className={s.refunds_subtitle}>Умови повернення та обміну</p>
@@ -34,8 +35,13 @@ export const ProductRefundRules = () => {
             name='refunds'
             control={control}
             rules={{ required: false }}
-            defaultValue={null}
-            render={({ field }) => <ToggleSwitch field={field} id='refunds' />}
+            render={({ field }) => (
+              <ToggleSwitch
+                field={field}
+                id='refunds'
+                onChange={(e) => field.onChange(e?.target.checked)}
+              />
+            )}
           />
         </div>
       </div>
