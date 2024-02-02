@@ -1,0 +1,133 @@
+@import '@/styles/index.scss';
+
+.availability {
+  margin-bottom: 0.563rem;
+
+  &_statuses {
+    display: grid;
+    gap: 1rem;
+
+    @media (max-width: $mobileSmall) {
+      gap: 0.625rem;
+    }
+  }
+
+  &_wrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    column-gap: 2rem;
+    row-gap: 0.625rem;
+  }
+}
+
+.status {
+  max-width: toRem(496);
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-between;
+  background: $white;
+  border: 1px solid $border-color;
+  border-radius: 0.25rem;
+  padding: 1rem;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1rem;
+  cursor: pointer;
+
+  @media (max-width: $mobileSmall) {
+    max-height: 3rem;
+    font-size: 0.875rem;
+    letter-spacing: 0.28px;
+  }
+
+  &_input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    appearance: none;
+    width: toRem(20);
+    height: toRem(20);
+    border-radius: 50%;
+    border: 2px solid $light-grey;
+    outline: none;
+    padding: 0;
+    background: transparent;
+
+    &:checked {
+      border: 2px solid $green;
+    }
+
+    &::before {
+      content: '';
+      background: $green;
+      display: block;
+      border-radius: 50%;
+      width: toRem(12);
+      height: toRem(12);
+      transform: scale(0);
+      transition: 120ms transform ease-in-out;
+      transform-origin: center;
+    }
+
+    &:checked::before {
+      transform: scale(1);
+    }
+  }
+}
+
+.unique {
+  display: flex;
+  align-items: center;
+  align-self: center;
+  gap: 0.5rem;
+
+  svg {
+    width: 1rem;
+    height: 1rem;
+    color: $green;
+  }
+
+  &_text {
+    font-size: 0.875rem;
+    line-height: 1rem;
+  }
+}
+
+.deadline {
+  position: relative;
+
+  &_subtitle {
+    position: absolute;
+    top: -20px;
+    left: 0;
+    font-size: 0.75rem;
+    font-weight: 300;
+    line-height: 1rem;
+
+    span {
+      color: $red;
+    }
+
+    @media (max-width: 807px) {
+      position: static;
+    }
+  }
+
+  div {
+    gap: 0;
+
+    @media (max-width: 807px) {
+      gap: 0.25rem;
+    }
+  }
+}
+
+.price {
+  div {
+    gap: 0;
+  }
+}
