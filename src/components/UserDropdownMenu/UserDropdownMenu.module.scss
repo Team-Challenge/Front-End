@@ -1,26 +1,23 @@
 @import '@/styles/index.scss';
-@import '@/styles/global.scss';
 
 .dropdown {
-  @extend .dropdown-menu;
-
   &_menu {
     width: 204px;
   }
 
   &_auth {
+    width: 226px;
     display: inherit;
     flex-direction: inherit;
-    gap: 12px;
+    gap: 0.75;
     padding: 12px 15px;
-    width: 226px;
-    
+
     &_registration {
       display: flex;
       gap: 0.5rem;
-      font-size: 12px;
-      line-height: 16px;
-      
+      font-size: 0.75rem;
+      line-height: 1rem;
+
       p {
         font-weight: 300;
       }
