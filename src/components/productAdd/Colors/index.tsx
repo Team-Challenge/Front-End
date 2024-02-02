@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
+import { useWindowDimensions } from '@/hooks/useWindowDimensions';
 import { colorsList } from '@/constants/colorsList';
 import { Tooltip } from '@/components/UI';
 import { Icon } from '@iconify/react';
@@ -7,7 +8,17 @@ import s from './Colors.module.scss';
 
 export const Colors = () => {
   const { setValue } = useFormContext();
+  const { width } = useWindowDimensions();
   const [selectedColors, setSelectedColors] = useState<string[]>([]);
+  const [showAllColors, setShowAllColors] = useState<boolean>(false);
+
+  const isMobileScreen = width <= 582;
+  const displayedColors =
+    showAllColors || !isMobileScreen ? colorsList : colorsList.slice(0, 8);
+
+  const toggleShowAllColors = () => {
+    setShowAllColors(!showAllColors);
+  };
 
   const handleCheckboxChange = (color: string) => {
     if (selectedColors.includes(color)) {
@@ -26,23 +37,23 @@ export const Colors = () => {
   }, [selectedColors]);
 
   return (
-    <div>
+    <div className={s.colors}>
       <div className='product-add_subtitle_wrap'>
         <p className='product-add_subtitle'>Кольори</p>
         <Tooltip
           text='Додайте як умога більше характеристик вашого виробу, такі як: основні кольори, розміри та матеріали. Це допоможе майбутнім покупцям знайти його ще простіше.'
-          className={`product-add_tooltip ${s.color_tooltip}`}
+          className={`product-add_tooltip ${s.colors_tooltip}`}
         >
           <Icon icon='heroicons:light-bulb' />
         </Tooltip>
       </div>
       <p className='product-add_hint'>Оберіть до 3-ох відтінків</p>
-      <ul className={s.color_list}>
-        {colorsList.map(({ id, name, styleClass }) => (
+      <ul className={s.colors_list}>
+        {displayedColors.map(({ id, name, styleClass }) => (
           <li
             key={id}
-            className={`${s.color_item} ${
-              isCheckboxInactive(name) ? s.color_inactive : s.active
+            className={`${s.colors_item} ${
+              isCheckboxInactive(name) ? s.colors_inactive : ''
             }`}
           >
             <input
@@ -59,6 +70,21 @@ export const Colors = () => {
           </li>
         ))}
       </ul>
+      {isMobileScreen && (
+        <button onClick={toggleShowAllColors} className={s.colors_button}>
+          {showAllColors ? (
+            <>
+              Сховати всі
+              <Icon icon='iconamoon:sign-minus-light' />
+            </>
+          ) : (
+            <>
+              Показати всі
+              <Icon icon='iconamoon:sign-plus' />
+            </>
+          )}
+        </button>
+      )}
     </div>
   );
 };
