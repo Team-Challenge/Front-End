@@ -8,6 +8,10 @@
     width: 100%;
   }
 
+  @media (max-width: $mobileSmall) {
+    gap: toRem(5);
+  }
+
   &_label {
     font-size: 0.813rem;
     line-height: 1rem;
@@ -23,6 +27,10 @@
   
     @media (max-width: 800px) {
       max-width: toRem(496);
+    }
+
+    @media (max-width: $mobileSmall) {
+      max-height: toRem(48);
     }
   }
 

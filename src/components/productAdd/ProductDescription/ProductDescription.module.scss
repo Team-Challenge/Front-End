@@ -3,6 +3,11 @@
 .description {
   max-width: toRem(496);
   width: 100%;
+  margin-bottom: 0.75rem;
+
+  @media (max-width: $mobileSmall) {
+    margin-bottom: 0.25rem;
+  }
 
   &_tooltip {
     div {
@@ -11,6 +16,10 @@
 
       &::before {
         top: -22%;
+
+        @media (max-width: $mobile) {
+          top: -17%;
+        }
       }
     }
   }

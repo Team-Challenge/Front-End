@@ -3,6 +3,17 @@
 .name {
   max-width: toRem(496);
   width: 100%;
+  margin-bottom: 0.75rem;
+
+  @media (max-width: $mobileSmall) {
+    margin-bottom: 0.25rem;
+  }
+
+  &_input {
+    input {
+      padding-right: toRem(44);
+    }
+  }
 
   &_char_count {
     color: $grey;
@@ -10,6 +21,10 @@
     font-weight: 300;
     line-height: 1rem;
     margin-top: toRem(4);
+
+    @media (max-width: $mobileSmall) {
+      font-size: 0.625rem;
+    }
   }
 
   &_tooltip {
@@ -19,6 +34,10 @@
 
       &::before {
         top: -34%;
+
+        @media (max-width: $mobile) {
+          top: -26%;
+        }
       }
     }
   }

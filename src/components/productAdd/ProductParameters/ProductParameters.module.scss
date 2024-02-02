@@ -1,6 +1,12 @@
 @import '@/styles/index.scss';
 
 .parameters {
+  margin-bottom: 0.75rem;
+
+  @media (max-width: $mobileSmall) {
+    margin-bottom: 0.25rem;
+  }
+
   &_wrap {
     display: grid;
     gap: 1.25rem;

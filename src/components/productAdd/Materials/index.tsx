@@ -19,7 +19,7 @@ export const Materials = () => {
   const otherList = createOptionsList('other', materialsList);
 
   return (
-    <div className={`${s.form_wrap} ${s.materials}`}>
+    <div className={s.materials}>
       <p className='product-add_subtitle'>Матеріали</p>
       <p className='product-add_hint'>
         Ви можете обрати до 5-ти варіантів в кожному розділі

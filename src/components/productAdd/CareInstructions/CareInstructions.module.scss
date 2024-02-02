@@ -11,6 +11,10 @@
 
       &::before {
         top: -18%;
+
+        @media (max-width: $mobile) {
+          top: -15%;
+        }
       }
     }
   }
