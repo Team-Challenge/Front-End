@@ -1,21 +1,22 @@
 @import '@/styles/index.scss';
 
-.form {
-  &_categories {
-    display: grid;
-    gap: 2rem;
-    margin-top: toRem(22);
+.categorization {
+  margin-bottom: 0.75rem;
+
+  @media (max-width: $mobileSmall) {
+    margin-bottom: 0.25rem;
+  }
+
+  &::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: $white-grey;
+    margin-top: 2rem;
 
     @media (max-width: $mobile) {
-      gap: 1.25rem;
-    }
-
-    &::after {
-      content: '';
-      display: block;
-      width: 100%;
-      height: 1px;
-      background: $white-grey;
+      margin-top: 1.25rem;
     }
   }
 }
@@ -86,6 +87,12 @@
 }
 
 .subcategories {
+  margin-top: toRem(36);
+
+  @media (max-width: $mobile) {
+    margin-top: toRem(20);
+  }
+
   &_item {
     max-width: toRem(185);
     width: 100%;

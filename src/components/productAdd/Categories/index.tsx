@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useFormContext } from 'react-hook-form';
+import { Controller, useFormContext } from 'react-hook-form';
 import { categoryList } from '@/constants/categoryList';
 import s from './Categories.module.scss';
 
@@ -7,25 +7,20 @@ export const Categories = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [selectedSubcategory, setSelectedSubcategory] = useState<string>('');
 
-  const { setValue } = useFormContext();
+  const {
+    setValue,
+    control,
+    clearErrors,
+    formState: { errors },
+  } = useFormContext();
 
   const foundCategory = categoryList.find(
     (category) => category.label === selectedCategory,
   );
   const hasSubcategories = foundCategory?.subcategories?.length! > 0;
 
-  const handleCategoryChange = (category: string) => {
-    setSelectedCategory(category);
-    setValue('category', category);
-  };
-
-  const handleSubcategoryChange = (subcategory: string) => {
-    setSelectedSubcategory(subcategory);
-    setValue('subcategory', subcategory);
-  };
-
   return (
-    <div className={s.form_categories}>
+    <div className={s.categorization}>
       <div className={s.categories}>
         <p className='product-add_subtitle'>
           Оберіть категорію<span>*</span>
@@ -33,13 +28,29 @@ export const Categories = () => {
         <ul className={s.list}>
           {categoryList.map(({ id, icon, label }) => (
             <li key={id} className={s.categories_item}>
-              <input
-                type='radio'
+              <Controller
                 name='category'
-                id={label}
-                className={s.input}
-                checked={selectedCategory === label}
-                onChange={() => handleCategoryChange(label)}
+                control={control}
+                rules={{
+                  required:
+                    'Будь ласка, оберіть категорія та підкатегію відповідно вашому товару.',
+                }}
+                render={({ field }) => (
+                  <input
+                    {...field}
+                    type='radio'
+                    name='category'
+                    id={label}
+                    value={label}
+                    className={s.input}
+                    checked={selectedCategory === label}
+                    onChange={() => {
+                      setSelectedCategory(label);
+                      setValue('category', label);
+                      setValue('subcategory', '');
+                    }}
+                  />
+                )}
               />
               <label htmlFor={label} className={s.label}>
                 <img src={icon} alt={label} />
@@ -58,13 +69,33 @@ export const Categories = () => {
           <ul className={s.list}>
             {foundCategory?.subcategories?.map((subcategory) => (
               <li key={subcategory} className={s.subcategories_item}>
-                <input
-                  type='radio'
+                <Controller
                   name='subcategory'
-                  id={subcategory}
-                  className={s.input}
-                  checked={selectedSubcategory === subcategory}
-                  onChange={() => handleSubcategoryChange(subcategory)}
+                  control={control}
+                  rules={{
+                    required:
+                      selectedCategory !== 'Набори'
+                        ? 'Будь ласка, оберіть підкатегорію відповідно вашому товару.'
+                        : false,
+                  }}
+                  defaultValue={null}
+                  render={({ field }) => (
+                    <input
+                      {...field}
+                      type='radio'
+                      name='subcategory'
+                      id={subcategory}
+                      value={subcategory}
+                      className={s.input}
+                      checked={selectedSubcategory === subcategory}
+                      onChange={() => {
+                        setSelectedSubcategory(subcategory);
+                        setValue('subcategory', subcategory);
+                        clearErrors('category');
+                        clearErrors('subcategory');
+                      }}
+                    />
+                  )}
                 />
                 <label htmlFor={subcategory} className={s.label}>
                   {subcategory}
@@ -73,6 +104,14 @@ export const Categories = () => {
             ))}
           </ul>
         </div>
+      )}
+
+      {errors.category && (
+        <p className='error-text'>{errors.category.message as string}</p>
+      )}
+
+      {errors.subcategory && !errors.category && (
+        <p className='error-text'>{errors.subcategory.message as string}</p>
       )}
     </div>
   );
