@@ -9,12 +9,12 @@ export const ProductName = () => {
   const {
     formState: { errors },
   } = methods;
-  const { charCount, handleInput } = useCharCount('', 30);
+  const { charCount, handleInput } = useCharCount('', 100);
 
-  const hasError = Boolean(errors.name);
+  const hasError = Boolean(errors.productName);
 
   return (
-    <div className={`${s.form_wrap} ${s.name}`}>
+    <div className={s.name}>
       <div className='product-add_subtitle_wrap'>
         <p className='product-add_subtitle'>
           Назва товару<span>*</span>
@@ -26,22 +26,24 @@ export const ProductName = () => {
           <Icon icon='heroicons:light-bulb' />
         </Tooltip>
       </div>
+
       <TextInput
         type='text'
-        id='name'
+        id='productName'
         placeholder='Наприклад: Сережки з дерева “Ластівки”'
         // value={productName}
         required
         errorMessage={`Будь ласка, введіть назву свого товару`}
         maxLength={100}
-        onClick={() => methods.clearErrors('name')}
+        onClick={() => methods.clearErrors('productName')}
         onInput={(event) => handleInput(event)}
-        editModeIcon
+        // editModeIcon
+        className={s.name_input}
       />
 
       {hasError ? (
-        <p className={`error-text ${s.form_error}`}>
-          {errors?.name?.message as string}
+        <p className='error-text'>
+          {errors?.productName?.message as string}
         </p>
       ) : (
         <p className={s.name_char_count}>

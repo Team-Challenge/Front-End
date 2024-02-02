@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { Controller, useFieldArray, useFormContext } from 'react-hook-form';
 import { useWindowDimensions } from '@/hooks/useWindowDimensions';
 import { QuantityInput } from '@/components/UI/QuantityInput';
@@ -44,46 +44,25 @@ export const ProductParameters = () => {
   };
 
   return (
-    <div>
+    <div className={s.parameters}>
       <p className='product-add_subtitle'>Параметри виробу</p>
       <div className={s.parameters_wrap}>
         {fields.map((item, index) => (
-          <>
-            <div key={item.id} className={s.parameters_list}>
+          <Fragment key={item.id}>
+            <div className={s.parameters_list}>
               {selectedSubcategory === 'Каблучки' ? (
-                <>
-                  <Controller
-                    name={`parameters[${index}].size`}
-                    control={control}
-                    rules={{
-                      required: true,
-                    }}
-                    render={({ field }) => (
-                      <>
-                        <div className={s.parameters_rings}>
-                          <div className={s.parameters_rings_header}>
-                            <p>Розмір колечка</p>
-                            {width <= 800 && (
-                              <button
-                                type='button'
-                                className={`${s.parameters_rings_button} ${
-                                  isOpenRingsChart && activeItemId === item.id
-                                    ? s.open
-                                    : s.close
-                                }`}
-                                onClick={() => handleOpenRingSizeChart(item.id)}
-                              >
-                                Розмірна таблиця
-                                <Icon icon='solar:alt-arrow-up-bold' />
-                              </button>
-                            )}
-                          </div>
-                          <SelectInput
-                            field={field}
-                            options={ringSizeOptions}
-                            placeholder='Оберіть розмір'
-                          />
-                          {width >= 801 && (
+                <Controller
+                  name={`parameters[${index}].size`}
+                  control={control}
+                  rules={{
+                    required: false,
+                  }}
+                  render={({ field }) => (
+                    <>
+                      <div className={s.parameters_rings}>
+                        <div className={s.parameters_rings_header}>
+                          <p>Розмір колечка</p>
+                          {width <= 800 && (
                             <button
                               type='button'
                               className={`${s.parameters_rings_button} ${
@@ -98,18 +77,37 @@ export const ProductParameters = () => {
                             </button>
                           )}
                         </div>
-                        {isOpenRingsChart &&
-                          activeItemId === item.id &&
-                          width <= 800 && <RingsSizeChart />}
-                      </>
-                    )}
-                  />
-                </>
+                        <SelectInput
+                          field={field}
+                          options={ringSizeOptions}
+                          placeholder='Оберіть розмір'
+                        />
+                        {width >= 801 && (
+                          <button
+                            type='button'
+                            className={`${s.parameters_rings_button} ${
+                              isOpenRingsChart && activeItemId === item.id
+                                ? s.open
+                                : s.close
+                            }`}
+                            onClick={() => handleOpenRingSizeChart(item.id)}
+                          >
+                            Розмірна таблиця
+                            <Icon icon='solar:alt-arrow-up-bold' />
+                          </button>
+                        )}
+                      </div>
+                      {isOpenRingsChart &&
+                        activeItemId === item.id &&
+                        width <= 800 && <RingsSizeChart />}
+                    </>
+                  )}
+                />
               ) : (
                 <Controller
                   name={`parameters[${index}].length`}
                   control={control}
-                  rules={{ required: true }}
+                  rules={{ required: false }}
                   defaultValue={null}
                   render={({ field }) => (
                     <QuantityInput
@@ -126,7 +124,7 @@ export const ProductParameters = () => {
               <Controller
                 name={`parameters[${index}].width`}
                 control={control}
-                rules={{ required: true }}
+                rules={{ required: false }}
                 defaultValue={null}
                 render={({ field }) => (
                   <QuantityInput
@@ -142,7 +140,7 @@ export const ProductParameters = () => {
               <Controller
                 name={`parameters[${index}].weight`}
                 control={control}
-                rules={{ required: true }}
+                rules={{ required: false }}
                 defaultValue={null}
                 render={({ field }) => (
                   <QuantityInput
@@ -180,7 +178,7 @@ export const ProductParameters = () => {
             {isOpenRingsChart && activeItemId === item.id && width >= 801 && (
               <RingsSizeChart />
             )}
-          </>
+          </Fragment>
         ))}
       </div>
     </div>

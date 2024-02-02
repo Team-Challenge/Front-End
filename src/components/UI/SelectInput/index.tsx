@@ -10,6 +10,8 @@ export const SelectInput = ({
   isSearchable = false,
   className,
   isDisabled = false,
+  mode,
+  maxCount,
 }: SelectInputProps) => {
   return (
     <ConfigProvider
@@ -41,7 +43,10 @@ export const SelectInput = ({
         showSearch={isSearchable}
         className={className}
         suffixIcon={<Icon icon='solar:alt-arrow-down-outline' />}
+        removeIcon={<Icon icon='iconamoon:close-light' />}
         disabled={isDisabled}
+        mode={mode}
+        maxCount={maxCount}
       />
     </ConfigProvider>
   );
