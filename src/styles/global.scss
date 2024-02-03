@@ -12,25 +12,25 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: $text-color;
   font-family: 'Craftwork Grotesk', sans-serif;
   font-style: normal;
   font-weight: 700;
   line-height: 110%;
+  color: $text-color;
 }
 
 h1 {
-  font-size: 62px;
+  font-size: 3.875rem;
   letter-spacing: 1.86px;
 }
 
 h2 {
-  font-size: 48px;
+  font-size: 3rem;
   letter-spacing: 1.44px;
 }
 
 h3 {
-  font-size: 32px;
+  font-size: 2rem;
   letter-spacing: 0.96px;
 }
 
@@ -41,56 +41,56 @@ h4 {
 }
 
 h5 {
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 600;
 }
 
 h6 {
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 600;
   line-height: 120%;
 }
 
 input {
   width: 100%;
-  font-size: 14px;
-  line-height: 18px;
-  background: $white;
-  padding: 17px 16px;
-  border-radius: 4px;
+  font-size: 0.875rem;
+  line-height: 1.125rem;
   border: 1px solid $border-color;
+  border-radius: 0.25rem;
+  padding: toRem(17) toRem(16);
+  background: $white;
 
   @media (max-width: $mobile) {
-    line-height: 19.6px;
-    padding: 13px 16px;
+    line-height: 1.225rem;
+    padding: toRem(13) toRem(16);
   }
 
   &::placeholder {
     color: $grey;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 400;
   }
 }
 
 .error-text {
-  color: $red;
   font-family: 'Montserrat', sans-serif;
-  font-size: 12px;
+  font-size: 0.75rem;
   font-style: normal;
   font-weight: 500;
-  line-height: 17px;
+  line-height: 1.063rem;
+  color: $red;
 }
 
 .account-promt {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
   color: $text-color;
-  font-size: 12px;
-  line-height: 16px;
 
   @media (max-width: $mobile) {
-    line-height: 17px;
+    line-height: 1.063rem;
   }
 
   p {
@@ -110,27 +110,27 @@ input {
   @include mobileTitleDecorationOverride;
 
   p {
-    text-align: center;
     @include adaptiveValue('font-size', 16, 14, 0, 1440, 360);
     font-weight: 400;
-    line-height: 24px;
-    margin-bottom: 32px;
+    line-height: 1.5rem;
     letter-spacing: 0.32px;
+    text-align: 2rem;
+    margin-bottom: 32px;
 
     @media (max-width: $mobile) {
       letter-spacing: 0.14px;
-      margin-bottom: 20px;
+      margin-bottom: 1.25rem;
     }
   }
 }
 
 .user-panel-page {
   display: grid;
-  grid-template-columns: 244px 1fr;
+  grid-template-columns: toRem(244) 1fr;
   grid-template-rows: auto;
   align-items: start;
-  column-gap: 68px;
-  margin-top: 60px;
+  column-gap: 4.25rem;
+  margin-top: 3.75rem;
 
   @media (max-width: $tablet) {
     grid-template-columns: 1fr;
@@ -143,24 +143,23 @@ input {
 .cabinet-sidebar-nav {
   display: grid;
   align-self: start;
-  gap: 4px;
+  gap: 0.25rem;
 
   &_btn {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 12px;
-
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 20px;
-  padding: 10px 15px;
-  background: transparent;
-  border-radius: 4px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.25rem;
+    padding: toRem(10) toRem(15);
+    border-radius: 0.25rem;
+    background: transparent;
 
     svg {
-      width: 16px;
-      height: 16px;
+      width: 1rem;
+      height: 1rem;
       color: $grey;
     }
   }
@@ -168,8 +167,8 @@ input {
   &_line {
     width: 100%;
     height: 1px;
-    background: #F1F1F1;
-    border-radius: 5px;
+    border-radius: 0.313rem;
+    background: $white-grey;
   }
 
   &_active {
@@ -181,40 +180,239 @@ input {
 .dropdown-menu {
   display: flex;
   flex-direction: column;
-
   background: $white;
   z-index: 999;
-  
-  border-radius: 4px;
   border: 1px solid $light-grey;
+  border-radius: 0.25rem;
   box-shadow: 0px 4px 8px 0px rgba(18, 17, 50, 0.08);
 
   position: absolute;
-  top: 48px;
-  right: 0;
+  top: 30px;
+  right: 19px;
 
   &_btn {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 12px;
-  
-    font-size: 14px;
+    gap: 0.75rem;
+    font-size: 0.875rem;
     font-weight: 500;
-    line-height: 20px;
-    padding: 12px 15px;
+    line-height: 1rem;
+    padding: 12px 16px;
     background: transparent;
-    border-radius: 4px;
+    white-space: nowrap;
+  
+    svg {
+      width: 1rem;
+      height: 1rem;
+      color: $grey;
+    }
+  }
+
+  &_active {
+    background: $azure;
+    transition: background 0.4s;
+  }
+}
+
+.checkbox-input {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0.25rem;
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+
+  @media (max-width: $mobile) {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  &::before {
+    content: '';
+    background: url('@assets/checkmark.svg');
+    width: 1rem;
+    height: 1rem;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    transform-origin: bottom left;
+  }
+
+  &:checked::before {
+    transform: scale(1);
+  }
+
+  &:checked {
+    background: $green;
+    border-color: transparent;
+  }
+}
+
+//for product add page
+.product-add {
+  &_subtitle {
+    font-weight: 500;
+    line-height: 1.25rem;
+    letter-spacing: 0.16px;
+    color: $text-color;
+    margin-bottom: 0.5rem;
+  
+    @media (max-width: $mobileSmall) {
+      font-size: 0.813rem;
+      line-height: 1rem;
+      margin-bottom: 0.375rem;
+    }
+  
+    span {
+      color: $red;
+    }
+  
+    &_wrap {
+      display: flex;
+      justify-content: space-between;
   
       svg {
-        width: 16px;
-        height: 16px;
-        color: $grey;
+        width: 1.25rem;
+        height: 1.25rem;
+        color: $green;
       }
     }
+  }
 
-    &_active {
-      background: $azure;
-      transition: background 0.4s;
+  &_hint {
+    font-size: 0.75rem;
+    font-weight: 300;
+    line-height: 1rem;
+    margin-bottom: 0.813rem;
+
+    @media (max-width: $mobile) {
+      margin-bottom: 0.5rem;
     }
+  }
+
+  &_tooltip {
+    div {
+      border-top-right-radius: 0;
+
+      &::before {
+        content: '';
+        position: absolute;
+        right: 0;
+        border-bottom: 1.25rem solid $azure;
+        border-left: 1.25rem solid transparent;
+      }
+    }
+  }
+}
+
+//for color pallet
+.red {
+  background: #dd3e29;
+}
+
+.pink {
+  background: #ffbece;
+}
+
+.orange {
+  background: #f69031;
+}
+
+.yellow {
+  background: #ffe353;
+};
+
+.brown {
+  background: #916a43;
+};
+
+.blue {
+  background: #1c62c9;
+};
+
+.cyan {
+ background: #b6dff6;
+};
+
+.beige {
+  background: #f9e4c4;
+};
+
+.turquoise {
+  background: #8cece3;
+};
+
+.black {
+  background: #333;
+};
+
+.purple {
+  background: #be39ca;
+};
+
+.grey {
+  background: #afb0af;
+};
+
+.white {
+  background: #fff;
+  border: 1px solid #f1f1f1;
+};
+
+.gold {
+  background: linear-gradient(90deg, #fbdd90 0%, rgba(236, 174, 13, 0.00) 50%), linear-gradient(270deg, #fbdd90 0%, rgba(249, 221, 150, 0.00) 50%, rgba(236, 174, 13, 0.00) 50%);
+};
+
+.pearly {
+  background: linear-gradient(90deg, #bfe4f6 5%, rgba(252, 236, 217, 0.40) 38.19%, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.10) 50%), linear-gradient(90deg, rgba(255, 240, 201, 0.10) 50%, rgba(252, 236, 217, 0.40) 62.75%, #bfe4f6 100%);
+};
+
+.copper {
+  background: linear-gradient(90deg, #d76737 0%, rgba(225, 171, 33, 0.00) 50%), linear-gradient(270deg, #d76737 0%, rgba(249, 221, 150, 0.00) 50%, rgba(225, 171, 33, 0.00) 50%);
+};
+
+.transparent {
+  background: linear-gradient(90deg, #e1e1e1 0%, rgba(237, 237, 237, 0.00) 50%);
+  border: 1px solid #f1f1f1;
+};
+
+.green {
+  background: #138d5c;
+};
+
+.silver {
+  background: linear-gradient(90deg, #aeaeae 0%, rgba(188, 188, 188, 0.00) 50%), linear-gradient(270deg, #aeaeae 0%, rgba(188, 188, 188, 0.00) 50%);
+};
+
+.multicoloured {
+  background: linear-gradient(to right, #fc1f1c, #fc4e1e, #fd8023, #e6fd36, #b4fd33, #85fd31, #56fd2f, #29fd36, #2afd85, #2cfee5, #1a9bfc, #0d3ffb, #7f25fb, #e31798);
+};
+
+//for Ant Design
+.ant-select-outlined.ant-select-multiple .ant-select-selection-item {
+  border: 1px solid transparent;
+  background: $azure;
+}
+
+.ant-select-multiple .ant-select-selection-item {
+  margin-inline-end: 0;
+  padding-inline-start: toRem(10);
+  padding-inline-end: toRem(10);
+}
+
+.ant-select-multiple .ant-select-selection-overflow {
+  gap: 0.875rem;
+  padding: toRem(14) toRem(16) toRem(14) toRem(3);
+}
+
+.ant-select-multiple .ant-select-selection-item-remove svg {
+  width: 12px;
+  height: 12px;
+  color: $green;
+}
+
+.ant-select-multiple .ant-select-selection-placeholder {
+  inset-inline-start: 1rem;
 }
