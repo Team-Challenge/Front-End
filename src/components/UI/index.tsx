@@ -7,6 +7,7 @@ import { ToggleSwitch } from './ToggleSwitch';
 import { Tooltip } from './Tooltip';
 import { QuantityInput } from './QuantityInput';
 import { SelectInput } from './SelectInput';
+import { PhotoUploader } from './PhotoUploader';
 
 export {
   ButtonUI,
@@ -17,5 +18,6 @@ export {
   ToggleSwitch,
   Tooltip,
   QuantityInput,
-  SelectInput
+  SelectInput,
+  PhotoUploader
 };
