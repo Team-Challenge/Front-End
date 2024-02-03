@@ -46,7 +46,7 @@ export const Categories = () => {
                     checked={selectedCategory === label}
                     onChange={() => {
                       setSelectedCategory(label);
-                      setValue('category', label);
+                      setValue('category', id);
                       setValue('subcategory', '');
                     }}
                   />
