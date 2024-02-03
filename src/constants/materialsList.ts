@@ -1,4 +1,6 @@
-export const materialsList = [
+import { MultiDataMapping } from '@/types';
+
+export const materialsList: MultiDataMapping[] = [
   {
     metals: [
       'Бронза',

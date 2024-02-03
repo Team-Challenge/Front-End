@@ -1,10 +1,7 @@
+import { BooleanState } from '@/types';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface OverlayStateProps {
-  [key: string]: boolean;
-}
-
-const initialState: OverlayStateProps = {};
+const initialState: BooleanState = {};
 
 const overlayStateSlice = createSlice({
   name: 'overlayComponentState',
