@@ -5,6 +5,14 @@ declare module '*.png';
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
+export interface MultiDataMapping {
+  [key: string]: string[];
+}
+
+export interface BooleanState {
+  [key: string]: boolean;
+}
+
 //auth types
 export interface LoginFormProps {
   isForgotPassword: () => void;
@@ -50,14 +58,19 @@ export interface ButtonUIProps {
 }
 
 export interface FileDropProps {
-  children?: React.ReactNode;
+  children?: ReactNode;
   className?: string;
   onChange?: (any) => void;
   isMulti?: boolean;
 }
 
+export interface PhotoUploaderProps {
+  children?: ReactNode;
+  className?: string;
+}
+
 export interface ModalProps {
-  children: React.ReactNode;
+  children: ReactNode;
   modalId: string;
   className?: string;
 }
@@ -128,6 +141,37 @@ export interface SelectInputProps {
   isSearchable?: boolean;
   className?: string;
   isDisabled?: boolean;
+  mode?: 'multiple' | 'tags';
+  maxCount?: number;
+}
+
+export interface TooltipProps {
+  text: string;
+  children: ReactNode;
+  className?: string;
+  isBase?: boolean;
+}
+
+export interface QuantityInputProps {
+  type: string;
+  id: string;
+  placeholder?: string;
+  required?: boolean;
+  value?: string;
+  unit: string;
+  errorMessage?: string;
+  label?: string;
+  field?: any;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+export interface ToggleSwitchProps {
+  id: string;
+  name?: string;
+  className?: string;
+  field?: any;
+  value?: boolean;
+  onChange?: (e?: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export interface FullNameProps {
@@ -212,7 +256,7 @@ export interface ChangeFullNameFormData {
 export interface EmptyContentPageProps {
   title: string;
   text: string;
-  item: React.ReactNode;
+  item: ReactNode;
 }
 
 export interface UserProfileMenuProps {
