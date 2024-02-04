@@ -42,9 +42,7 @@ export const ProductName = () => {
       />
 
       {hasError ? (
-        <p className='error-text'>
-          {errors?.productName?.message as string}
-        </p>
+        <p className='error-text'>{errors?.productName?.message as string}</p>
       ) : (
         <p className={s.name_char_count}>
           {charCount}/{100} символів

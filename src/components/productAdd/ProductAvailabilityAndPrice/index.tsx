@@ -9,7 +9,7 @@ export const ProductAvailabilityAndPrice = () => {
     control,
     setValue,
     clearErrors,
-    formState: { errors }
+    formState: { errors },
   } = useFormContext();
 
   const productStatus = watch('status');
@@ -102,9 +102,7 @@ export const ProductAvailabilityAndPrice = () => {
           )}
         />
         {hasError && (
-          <p className='error-text'>
-            Будь ласка, оберіть статус товару.
-          </p>
+          <p className='error-text'>Будь ласка, оберіть статус товару.</p>
         )}
       </div>
 

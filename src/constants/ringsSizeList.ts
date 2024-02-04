@@ -14,8 +14,7 @@ export const ringSizeList = [
   {
     id: 3,
     size: '15',
-    length: '47-48'
-    ,
+    length: '47-48',
     styleClass: 'size_15',
   },
   {
@@ -101,7 +100,7 @@ export const ringSizeList = [
     size: '22',
     length: '68-69',
     styleClass: 'size_22',
-  }
+  },
 ];
 
 export const ringSizeMeasurementSteps = [

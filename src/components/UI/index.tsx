@@ -19,5 +19,5 @@ export {
   Tooltip,
   QuantityInput,
   SelectInput,
-  PhotoUploader
+  PhotoUploader,
 };
