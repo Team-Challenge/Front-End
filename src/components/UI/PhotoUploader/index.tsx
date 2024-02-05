@@ -1,10 +1,17 @@
-import { DragEvent, ChangeEvent, useRef, useState, ReactNode } from 'react';
+import { DragEvent, ChangeEvent, useRef, useState } from 'react';
+import { useFormContext } from 'react-hook-form';
 import { PhotoUploaderProps } from '@/types';
 import { checkFileFormat } from '@/utils/checkFileFormat';
 import { checkFileSize } from '@/utils/checkFileSize';
 import s from './PhotoUploader.module.scss';
 
-export const PhotoUploader = ({ children, className }: PhotoUploaderProps) => {
+export const PhotoUploader = ({
+  children,
+  className,
+  id,
+  required,
+}: PhotoUploaderProps) => {
+  const { register, setValue } = useFormContext();
   const [previewImage, setPreviewImage] = useState<File | null>(null);
   const hiddenFileInput = useRef<HTMLInputElement | null>(null);
 
@@ -14,6 +21,7 @@ export const PhotoUploader = ({ children, className }: PhotoUploaderProps) => {
 
     if (isFileSizeValid && isFileFormatValid && file) {
       setPreviewImage(file);
+      setValue(id as string, file);
     }
   };
 
@@ -49,6 +57,7 @@ export const PhotoUploader = ({ children, className }: PhotoUploaderProps) => {
       }`}
     >
       <input
+        {...register(id as string, { required: required })}
         ref={hiddenFileInput}
         type='file'
         accept='image/*'
