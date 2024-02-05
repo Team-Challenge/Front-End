@@ -67,6 +67,8 @@ export interface FileDropProps {
 export interface PhotoUploaderProps {
   children?: ReactNode;
   className?: string;
+  id?: string;
+  required?: boolean;
 }
 
 export interface ModalProps {
