@@ -67,7 +67,7 @@ export const ProductShippingPaymentOptions = () => {
                   required:
                     selectedPaymentMethods.length > 0
                       ? false
-                      : 'Будь ласка, оберіть принаймні один варіант оплати.',
+                      : 'Будь ласка, оберіть принаймні один варіант оплати',
                 }}
                 render={({ field }) => (
                   <ToggleSwitch
@@ -109,7 +109,7 @@ export const ProductShippingPaymentOptions = () => {
                   required:
                     selectedDeliveryMethods.length > 0
                       ? false
-                      : 'Будь ласка, оберіть принаймні один варіант доставки.',
+                      : 'Будь ласка, оберіть принаймні один варіант доставки',
                 }}
                 render={({ field }) => (
                   <ToggleSwitch
