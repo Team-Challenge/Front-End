@@ -1,5 +1,6 @@
+import { useEffect } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
-import { QuantityInput } from '@/components/UI/QuantityInput';
+import { Tooltip, QuantityInput } from '@/components/UI';
 import { Icon } from '@iconify/react';
 import s from './ProductAvailabilityAndPrice.module.scss';
 
@@ -13,7 +14,20 @@ export const ProductAvailabilityAndPrice = () => {
   } = useFormContext();
 
   const productStatus = watch('status');
-  const hasError = errors.status;
+  const hasStatusError = errors.status;
+  const hasDeadlineError = errors.deadline;
+
+  useEffect(() => {
+    if (productStatus === 'available') {
+      setValue('deadline', null);
+      clearErrors('status');
+    }
+
+    if (productStatus === 'toOrder') {
+      setValue('uniqueItem', false);
+      clearErrors('status');
+    }
+  }, [productStatus]);
 
   return (
     <>
@@ -22,15 +36,15 @@ export const ProductAvailabilityAndPrice = () => {
           Наявність товару<span>*</span>
         </p>
         <p className='product-add_hint'>Виберіть наявність товару iз списку</p>
-        <Controller
-          name='status'
-          control={control}
-          rules={{
-            required: true,
-          }}
-          render={({ field }) => (
-            <div className={s.availability_statuses}>
-              <div className={s.availability_wrap}>
+        <div className={s.availability_statuses}>
+          <div className={s.availability_wrap}>
+            <Controller
+              name='status'
+              control={control}
+              rules={{
+                required: true,
+              }}
+              render={({ field }) => (
                 <label className={s.status}>
                   <input
                     {...field}
@@ -38,33 +52,51 @@ export const ProductAvailabilityAndPrice = () => {
                     id='available'
                     className={s.status_input}
                     value='available'
-                    onChange={() => {
-                      setValue('status', 'available');
-                      setValue('deadline', null);
-                      clearErrors('status');
-                    }}
                   />
                   В наявності
                 </label>
+              )}
+            />
 
-                {productStatus === 'available' && (
-                  <label htmlFor='uniqueItem' className={s.unique}>
-                    <input
-                      {...field}
-                      type='checkbox'
-                      id='uniqueItem'
-                      className='checkbox-input'
-                      onChange={(e) => {
-                        setValue('uniqueItem', e.target.checked);
-                      }}
-                    />
-                    <p className={s.unique_text}>В єдиному екземплярі</p>
-                    <Icon icon='solar:question-circle-outline' />
-                  </label>
+            {productStatus === 'available' && (
+              <Controller
+                name='uniqueItem'
+                control={control}
+                rules={{
+                  required: false,
+                }}
+                render={({ field }) => (
+                  <div className={s.unique}>
+                    <label htmlFor='uniqueItem' className={s.unique_label}>
+                      <input
+                        {...field}
+                        type='checkbox'
+                        id='uniqueItem'
+                        className='checkbox-input'
+                      />
+                      <p className={s.unique_text}>В єдиному екземплярі</p>
+                    </label>
+                    <Tooltip
+                      isBase
+                      text='Вказаний товар є лише в єдиному екземплярі'
+                      className={s.unique_tooltip}
+                    >
+                      <Icon icon='solar:question-circle-outline' />
+                    </Tooltip>
+                  </div>
                 )}
-              </div>
+              />
+            )}
+          </div>
 
-              <div className={s.availability_wrap}>
+          <div className={s.availability_wrap}>
+            <Controller
+              name='status'
+              control={control}
+              rules={{
+                required: true,
+              }}
+              render={({ field }) => (
                 <label className={s.status}>
                   <input
                     {...field}
@@ -72,15 +104,20 @@ export const ProductAvailabilityAndPrice = () => {
                     id='toOrder'
                     className={s.status_input}
                     value='toOrder'
-                    onChange={() => {
-                      setValue('status', 'toOrder');
-                      setValue('uniqueItem', false);
-                      clearErrors('status');
-                    }}
                   />
                   Під замовлення
                 </label>
-                {productStatus === 'toOrder' && (
+              )}
+            />
+
+            {productStatus === 'toOrder' && (
+              <Controller
+                name='deadline'
+                control={control}
+                rules={{
+                  required: true,
+                }}
+                render={({ field }) => (
                   <div className={s.deadline}>
                     <p className={s.deadline_subtitle}>
                       Вкажіть термін виконання<span>*</span>
@@ -91,18 +128,22 @@ export const ProductAvailabilityAndPrice = () => {
                       id='deadline'
                       unit='дні'
                       placeholder='Наприклад: 3-4'
-                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                        setValue('deadline', e.target.value);
-                      }}
                     />
                   </div>
                 )}
-              </div>
-            </div>
-          )}
-        />
-        {hasError && (
-          <p className='error-text'>Будь ласка, оберіть статус товару.</p>
+              />
+            )}
+          </div>
+        </div>
+
+        {hasStatusError && (
+          <p className='error-text'>Будь ласка, оберіть статус товару</p>
+        )}
+
+        {hasDeadlineError && (
+          <p className='error-text'>
+            Будь ласка, вкажіть приблизну дату виготовлення товару
+          </p>
         )}
       </div>
 
@@ -122,7 +163,7 @@ export const ProductAvailabilityAndPrice = () => {
               id='price'
               unit='грн'
               placeholder='Введіть вартість'
-              errorMessage='Будь ласка, введіть вартість товару.'
+              errorMessage='Будь ласка, введіть вартість товару'
             />
           )}
         />

@@ -83,17 +83,55 @@
   display: flex;
   align-items: center;
   align-self: center;
-  gap: 0.5rem;
+  gap: 0.25rem;
 
-  svg {
-    width: 1rem;
-    height: 1rem;
-    color: $green;
+  &_label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
   }
 
   &_text {
     font-size: 0.875rem;
     line-height: 1rem;
+  }
+
+  &_tooltip {
+    svg {
+      width: 1rem;
+      height: 1rem;
+      color: $green;
+    }
+
+    div {
+      border-top-right-radius: 0;
+      top: 36px;
+      right: 8px;
+
+      @media (max-width: 784px) {
+        border-top-right-radius: 8px;
+        top: 33px;
+        right: -147px;
+      }
+
+      @media (max-width: $mobile) {
+        top: 38px;
+        right: -117px;
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: -33%;
+        right: 0;
+        border-bottom: 1.25rem solid $pale-yellow;
+        border-left: 1.25rem solid transparent;
+
+        @media (max-width: 784px) {
+          right: 47%;
+        }
+      }
+    }
   }
 }
 
