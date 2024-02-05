@@ -1,10 +1,12 @@
-import { useWindowDimensions } from '@/hooks/useWindowDimensions';
+import { useFormContext } from 'react-hook-form';
 import { PhotoUploader, Tooltip } from '@/components/UI';
 import { Icon } from '@iconify/react';
 import s from './ProductPhotos.module.scss';
 
 export const ProductPhotos = () => {
-  const { width } = useWindowDimensions();
+  const {
+    formState: { errors },
+  } = useFormContext();
 
   return (
     <div className={s.photos}>
@@ -25,21 +27,23 @@ export const ProductPhotos = () => {
         розміри 130*130
       </p>
 
-      {width <= 1027 && (
-        <p className={s.photos_tips}>Це фото буде на обкладинці</p>
-      )}
+      <p className={s.photos_tips}>Це фото буде на обкладинці</p>
       <ul className={s.photos_list}>
         {[1, 2, 3, 4].map((item) => (
           <li key={item} className={s.photos_item}>
-            <PhotoUploader>
+            <PhotoUploader id={`productPhoto${item}`} required>
               <Icon icon='solar:camera-outline' />
             </PhotoUploader>
-            {width >= 1028 && item === 1 && (
-              <p className={s.photos_tips}>Це фото буде на обкладинці</p>
-            )}
           </li>
         ))}
       </ul>
+
+      {(errors.productPhoto1 ||
+        errors.productPhoto2 ||
+        errors.productPhoto3 ||
+        errors.productPhoto4) && (
+        <p className='error-text'>Будь ласка, завантажте фото свого товару</p>
+      )}
     </div>
   );
 };
