@@ -12,6 +12,7 @@ export const QuantityInput = ({
   errorMessage,
   label,
   field,
+  fieldState,
   onChange,
 }: QuantityInputProps) => {
   const {
@@ -38,6 +39,11 @@ export const QuantityInput = ({
         />
         <div className={s.quantity_unit}>{unit}</div>
       </div>
+
+      {fieldState?.error && !hasError && (
+        <p className='error-text'>{errorMessage}</p>
+      )}
+
       {hasError && <p className='error-text'>{errorMessage}</p>}
     </div>
   );

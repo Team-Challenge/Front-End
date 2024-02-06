@@ -1,15 +1,8 @@
 @import '@/styles/index.scss';
 
 .quantity {
-  display: grid;
-  gap: 0.625rem;
-
   @media (max-width: 800px) {
     width: 100%;
-  }
-
-  @media (max-width: $mobileSmall) {
-    gap: toRem(5);
   }
 
   &_label {
@@ -18,34 +11,36 @@
   }
 
   &_wrap {
-    display: flex;
-    align-items: center;
     max-width: toRem(240);
     width: 100%;
-    max-height: toRem(54);
-    height: 100%;
-  
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem;
+
     @media (max-width: 800px) {
       max-width: toRem(496);
     }
 
     @media (max-width: $mobileSmall) {
-      max-height: toRem(48);
+      margin-top: 0.25rem;
     }
   }
 
   &_input {
-    height: inherit;
+    height: toRem(54);
     background: $white;
     border: 1px solid $border-color;
     border-radius: 0.25rem 0px 0px 0.25rem;
-    padding: toRem(17) toRem(16);
+
+    @media (max-width: $mobileSmall) {
+      height: toRem(48);
+    }
   }
 
   &_unit {
     max-width: toRem(70);
     width: 100%;
-    height: inherit;
+    height: toRem(54);
     font-size: 0.875rem;
     line-height: 1rem;
     background: $white;
@@ -53,6 +48,10 @@
     border-top: 1px solid $border-color;
     border-right: 1px solid $border-color;
     border-bottom: 1px solid $border-color;
-    padding: toRem(18) toRem(16);
+    padding: toRem(17) toRem(16);
+
+    @media (max-width: $mobileSmall) {
+      height: toRem(48);
+    }
   }
 }
