@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
+import { DEADLINE_REGEX, INTEGER_REGEX } from '@/constants/RegExp';
 import { Tooltip, QuantityInput } from '@/components/UI';
 import { Icon } from '@iconify/react';
 import s from './ProductAvailabilityAndPrice.module.scss';
@@ -116,6 +117,7 @@ export const ProductAvailabilityAndPrice = () => {
                 control={control}
                 rules={{
                   required: true,
+                  pattern: DEADLINE_REGEX,
                 }}
                 render={({ field }) => (
                   <div className={s.deadline}>
@@ -154,7 +156,7 @@ export const ProductAvailabilityAndPrice = () => {
         <Controller
           name='price'
           control={control}
-          rules={{ required: true }}
+          rules={{ required: true, pattern: INTEGER_REGEX }}
           defaultValue={null}
           render={({ field }) => (
             <QuantityInput
@@ -163,7 +165,7 @@ export const ProductAvailabilityAndPrice = () => {
               id='price'
               unit='грн'
               placeholder='Введіть вартість'
-              errorMessage='Будь ласка, введіть вартість товару'
+              errorMessage='Будь ласка, введіть ціле число, що відповідає вартості товару'
             />
           )}
         />

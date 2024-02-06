@@ -155,17 +155,11 @@
     }
   }
 
-  div {
-    gap: 0;
+  & div:first-child {
+    margin-top: 0;
 
-    @media (max-width: 807px) {
-      gap: 0.25rem;
+    @media (max-width: $mobile) {
+      margin-top: 0.25rem;
     }
-  }
-}
-
-.price {
-  div {
-    gap: 0;
   }
 }
