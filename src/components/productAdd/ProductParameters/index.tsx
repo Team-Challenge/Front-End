@@ -1,5 +1,6 @@
 import { Fragment, useState } from 'react';
 import { Controller, useFieldArray, useFormContext } from 'react-hook-form';
+import { PARAMETERS_REGEX } from '@/constants/RegExp';
 import { useWindowDimensions } from '@/hooks/useWindowDimensions';
 import { QuantityInput } from '@/components/UI/QuantityInput';
 import { SelectInput } from '@/components/UI/SelectInput';
@@ -49,20 +50,41 @@ export const ProductParameters = () => {
       <div className={s.parameters_wrap}>
         {fields.map((item, index) => (
           <Fragment key={item.id}>
-            <div className={s.parameters_list}>
-              {selectedSubcategory === 'Каблучки' ? (
-                <Controller
-                  name={`parameters[${index}].size`}
-                  control={control}
-                  rules={{
-                    required: false,
-                  }}
-                  render={({ field }) => (
-                    <>
-                      <div className={s.parameters_rings}>
-                        <div className={s.parameters_rings_header}>
-                          <p>Розмір колечка</p>
-                          {width <= 800 && (
+            <div className={s.parameters_row}>
+              <div className={s.parameters_inputs}>
+                {selectedSubcategory === 'Каблучки' ? (
+                  <Controller
+                    name={`parameters[${index}].size`}
+                    control={control}
+                    rules={{
+                      required: false,
+                    }}
+                    render={({ field }) => (
+                      <>
+                        <div className={s.parameters_rings}>
+                          <div className={s.parameters_rings_header}>
+                            <p>Розмір колечка</p>
+                            {width <= 800 && (
+                              <button
+                                type='button'
+                                className={`${s.parameters_rings_button} ${
+                                  isOpenRingsChart && activeItemId === item.id
+                                    ? s.open
+                                    : s.close
+                                }`}
+                                onClick={() => handleOpenRingSizeChart(item.id)}
+                              >
+                                Розмірна таблиця
+                                <Icon icon='solar:alt-arrow-up-bold' />
+                              </button>
+                            )}
+                          </div>
+                          <SelectInput
+                            field={field}
+                            options={ringSizeOptions}
+                            placeholder='Оберіть розмір'
+                          />
+                          {width >= 801 && (
                             <button
                               type='button'
                               className={`${s.parameters_rings_button} ${
@@ -77,82 +99,87 @@ export const ProductParameters = () => {
                             </button>
                           )}
                         </div>
-                        <SelectInput
-                          field={field}
-                          options={ringSizeOptions}
-                          placeholder='Оберіть розмір'
-                        />
-                        {width >= 801 && (
-                          <button
-                            type='button'
-                            className={`${s.parameters_rings_button} ${
-                              isOpenRingsChart && activeItemId === item.id
-                                ? s.open
-                                : s.close
-                            }`}
-                            onClick={() => handleOpenRingSizeChart(item.id)}
-                          >
-                            Розмірна таблиця
-                            <Icon icon='solar:alt-arrow-up-bold' />
-                          </button>
-                        )}
-                      </div>
-                      {isOpenRingsChart &&
-                        activeItemId === item.id &&
-                        width <= 800 && <RingsSizeChart />}
-                    </>
-                  )}
-                />
-              ) : (
+                        {isOpenRingsChart &&
+                          activeItemId === item.id &&
+                          width <= 800 && <RingsSizeChart />}
+                      </>
+                    )}
+                  />
+                ) : (
+                  <Controller
+                    name={`parameters[${index}].length`}
+                    control={control}
+                    rules={{
+                      required: false,
+                      pattern: {
+                        value: PARAMETERS_REGEX,
+                        message: 'Введіть довжину товару',
+                      },
+                    }}
+                    defaultValue={null}
+                    render={({ field, fieldState }) => (
+                      <QuantityInput
+                        field={field}
+                        fieldState={fieldState}
+                        type='text'
+                        id='length'
+                        unit='см'
+                        placeholder='Введіть довжину'
+                        label='Довжина'
+                        errorMessage='Введіть довжину товару'
+                      />
+                    )}
+                  />
+                )}
                 <Controller
-                  name={`parameters[${index}].length`}
+                  name={`parameters[${index}].width`}
                   control={control}
-                  rules={{ required: false }}
+                  rules={{
+                    required: false,
+                    pattern: {
+                      value: PARAMETERS_REGEX,
+                      message: 'Введіть ширину товару',
+                    },
+                  }}
                   defaultValue={null}
-                  render={({ field }) => (
+                  render={({ field, fieldState }) => (
                     <QuantityInput
                       field={field}
+                      fieldState={fieldState}
                       type='text'
-                      id='length'
+                      id='width'
                       unit='см'
-                      placeholder='Введіть довжину'
-                      label='Довжина'
+                      placeholder='Введіть ширину'
+                      label='Ширина'
+                      errorMessage='Введіть ширину товару'
                     />
                   )}
                 />
-              )}
-              <Controller
-                name={`parameters[${index}].width`}
-                control={control}
-                rules={{ required: false }}
-                defaultValue={null}
-                render={({ field }) => (
-                  <QuantityInput
-                    field={field}
-                    type='text'
-                    id='width'
-                    unit='см'
-                    placeholder='Введіть ширину'
-                    label='Ширина'
-                  />
-                )}
-              />
-              <Controller
-                name={`parameters[${index}].weight`}
-                control={control}
-                rules={{ required: false }}
-                defaultValue={null}
-                render={({ field }) => (
-                  <QuantityInput
-                    field={field}
-                    type='text'
-                    id='weight'
-                    unit='грам'
-                    placeholder='Введіть вагу'
-                    label='Вага виробу'
-                  />
-                )}
-              />
+                <Controller
+                  name={`parameters[${index}].weight`}
+                  control={control}
+                  rules={{
+                    required: false,
+                    pattern: {
+                      value: PARAMETERS_REGEX,
+                      message: 'Введіть вагу товару',
+                    },
+                  }}
+                  defaultValue={null}
+                  render={({ field, fieldState }) => (
+                    <QuantityInput
+                      field={field}
+                      fieldState={fieldState}
+                      type='text'
+                      id='weight'
+                      unit='грам'
+                      placeholder='Введіть вагу'
+                      label='Вага виробу'
+                      errorMessage='Введіть вагу товару'
+                    />
+                  )}
+                />
+              </div>
 
               <div className={s.parameters_buttons}>
                 <button
