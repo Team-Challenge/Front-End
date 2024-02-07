@@ -164,6 +164,7 @@ export interface QuantityInputProps {
   errorMessage?: string;
   label?: string;
   field?: any;
+  fieldState?: any;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
