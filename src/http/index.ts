@@ -1,11 +1,10 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable eqeqeq */
 import axios from 'axios';
-import { AuthResponse } from '@/types';
 
 export const API_URL = import.meta.env.VITE_APP_API_URL
   ? import.meta.env.VITE_APP_API_URL
-  : 'http://207.154.197.128:8080/';
+  : 'https://api.dorechi.store/';
 
 const $api = axios.create({
   withCredentials: true,
