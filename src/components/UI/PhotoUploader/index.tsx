@@ -1,4 +1,4 @@
-import { DragEvent, ChangeEvent, useRef, useState } from 'react';
+import { DragEvent, ChangeEvent, useRef, useState, KeyboardEvent } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { PhotoUploaderProps } from '@/types';
 import { checkFileFormat } from '@/utils/checkFileFormat';
@@ -11,7 +11,7 @@ export const PhotoUploader = ({
   id,
   required,
 }: PhotoUploaderProps) => {
-  const { register, setValue } = useFormContext();
+  const { register, setValue, clearErrors } = useFormContext();
   const [previewImage, setPreviewImage] = useState<File | null>(null);
   const hiddenFileInput = useRef<HTMLInputElement | null>(null);
 
@@ -22,6 +22,7 @@ export const PhotoUploader = ({
     if (isFileSizeValid && isFileFormatValid && file) {
       setPreviewImage(file);
       setValue(id as string, file);
+      clearErrors(id);
     }
   };
 
@@ -41,6 +42,12 @@ export const PhotoUploader = ({
     hiddenFileInput?.current?.click();
   };
 
+  const handleEnterKey = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === 'Enter') {
+      openFileInput();
+    }
+  };
+
   const preventDefault = (event: DragEvent<HTMLDivElement>) => {
     event.preventDefault();
   };
@@ -52,6 +59,8 @@ export const PhotoUploader = ({
       onDragLeave={preventDefault}
       onDrop={handleDrop}
       onClick={openFileInput}
+      onKeyDown={(event) => handleEnterKey(event)}
+      tabIndex={0}
       className={`${className} ${s.uploader} ${
         previewImage ? s.uploader_inactive : s.uploader_active
       }`}
