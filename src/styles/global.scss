@@ -9,6 +9,7 @@ body {
   font-weight: 400;
   line-height: 150%;
   color: $text-color;
+  -webkit-tap-highlight-color: transparent;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -100,6 +101,10 @@ input {
   button {
     font-weight: 400;
     text-decoration-line: underline;
+
+    &:focus {
+      font-weight: 600;
+    }
   }
 }
 
@@ -114,8 +119,8 @@ input {
     font-weight: 400;
     line-height: 1.5rem;
     letter-spacing: 0.32px;
-    text-align: 2rem;
-    margin-bottom: 32px;
+    text-align: center;
+    margin-bottom: toRem(32);
 
     @media (max-width: $mobile) {
       letter-spacing: 0.14px;
@@ -247,6 +252,10 @@ input {
   &:checked {
     background: $green;
     border-color: transparent;
+  }
+
+  &:focus {
+    box-shadow: 0px 0px 0px 1px $border-color;
   }
 }
 
@@ -408,11 +417,21 @@ input {
 }
 
 .ant-select-multiple .ant-select-selection-item-remove svg {
-  width: 12px;
-  height: 12px;
+  width: 0.75rem;
+  height: 0.75rem;
   color: $green;
 }
 
 .ant-select-multiple .ant-select-selection-placeholder {
   inset-inline-start: 1rem;
+
+  @media (max-width: $mobileSmall) {
+    inset-inline-start: toRem(11);
+  }
+}
+
+.ant-select .ant-select-arrow {
+  @media (max-width: $mobileSmall) {
+    inset-inline-end: toRem(6);
+  }
 }
