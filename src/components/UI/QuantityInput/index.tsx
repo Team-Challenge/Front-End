@@ -1,3 +1,4 @@
+import { useState, KeyboardEvent } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { QuantityInputProps } from '@/types';
 import s from './QuantityInput.module.scss';
@@ -15,18 +16,33 @@ export const QuantityInput = ({
   fieldState,
   onChange,
 }: QuantityInputProps) => {
+  const [isFocused, setIsFocused] = useState<boolean>(false);
   const {
     formState: { errors },
   } = useFormContext();
 
   const hasError = errors[id];
 
+  const handleFocus = () => {
+    setIsFocused(true);
+  };
+
+  const handleBlur = () => {
+    setIsFocused(false);
+  };
+
+  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+    }
+  };
+
   return (
     <div className={s.quantity}>
       <label htmlFor={id} className={s.quantity_label}>
         {label}
       </label>
-      <div className={s.quantity_wrap}>
+      <div className={`${s.quantity_wrap} ${isFocused && s.focused}`}>
         <input
           {...field}
           type={type}
@@ -36,6 +52,9 @@ export const QuantityInput = ({
           required={required}
           className={s.quantity_input}
           onChange={onChange ? onChange : field.onChange}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          onKeyDown={handleKeyDown}
         />
         <div className={s.quantity_unit}>{unit}</div>
       </div>

@@ -29,6 +29,10 @@
     line-height: 1.25rem;
   }
 
+  &:focus {
+    box-shadow: 0px 0px 0px 1px $border-color;
+  }
+
   &_error {
     border-color: $error-color;
   }

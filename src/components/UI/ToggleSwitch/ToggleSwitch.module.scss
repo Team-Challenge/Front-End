@@ -43,6 +43,10 @@
   background-color: $green;
 }
 
+.toggle input:focus + .toggle_slider {
+  box-shadow: 0px 0px 0px 2px $green;
+}
+
 .toggle input:checked + .toggle_slider:before {
   transform: translateX(24px);
 

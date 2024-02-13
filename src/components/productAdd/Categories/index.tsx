@@ -18,6 +18,31 @@ export const Categories = () => {
     (category) => category.label === selectedCategory,
   );
   const hasSubcategories = foundCategory?.subcategories?.length! > 0;
+  var isNotSetsCategory = selectedCategory !== 'Набори';
+
+  const handleCategoriesLabelKeyPress = (
+    event: React.KeyboardEvent<HTMLLabelElement>,
+    label: string,
+    id: number,
+  ) => {
+    if (event.key === 'Enter') {
+      setSelectedCategory(label);
+      setValue('category', id);
+      setValue('subcategory', '');
+    }
+  };
+
+  const handleSubcategoriesLabelKeyPress = (
+    event: React.KeyboardEvent<HTMLLabelElement>,
+    subcategory: string,
+  ) => {
+    if (event.key === 'Enter') {
+      setSelectedSubcategory(subcategory);
+      setValue('subcategory', subcategory);
+      clearErrors('category');
+      clearErrors('subcategory');
+    }
+  };
 
   return (
     <div className={s.categorization}>
@@ -52,7 +77,14 @@ export const Categories = () => {
                   />
                 )}
               />
-              <label htmlFor={label} className={s.label}>
+              <label
+                htmlFor={label}
+                tabIndex={0}
+                onKeyDown={(event) =>
+                  handleCategoriesLabelKeyPress(event, label, id)
+                }
+                className={s.label}
+              >
                 <img src={icon} alt={label} />
                 <p>{label}</p>
               </label>
@@ -73,10 +105,9 @@ export const Categories = () => {
                   name='subcategory'
                   control={control}
                   rules={{
-                    required:
-                      selectedCategory !== 'Набори'
-                        ? 'Будь ласка, оберіть підкатегорію відповідно вашому товару'
-                        : false,
+                    required: isNotSetsCategory
+                      ? 'Будь ласка, оберіть підкатегорію відповідно вашому товару'
+                      : false,
                   }}
                   defaultValue={null}
                   render={({ field }) => (
@@ -97,7 +128,14 @@ export const Categories = () => {
                     />
                   )}
                 />
-                <label htmlFor={subcategory} className={s.label}>
+                <label
+                  htmlFor={subcategory}
+                  tabIndex={0}
+                  onKeyDown={(event) =>
+                    handleSubcategoriesLabelKeyPress(event, subcategory)
+                  }
+                  className={s.label}
+                >
                   {subcategory}
                 </label>
               </li>
@@ -106,7 +144,7 @@ export const Categories = () => {
         </div>
       )}
 
-      {errors.category && (
+      {errors.category && isNotSetsCategory && (
         <p className='error-text'>{errors.category.message as string}</p>
       )}
 

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { RefObject, useEffect, useRef, KeyboardEvent } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { DEADLINE_REGEX, INTEGER_REGEX } from '@/constants/RegExp';
 import { Tooltip, QuantityInput } from '@/components/UI';
@@ -6,6 +6,9 @@ import { Icon } from '@iconify/react';
 import s from './ProductAvailabilityAndPrice.module.scss';
 
 export const ProductAvailabilityAndPrice = () => {
+  const inputAvailableRef = useRef<HTMLInputElement>(null);
+  const inputToOrderRef = useRef<HTMLInputElement>(null);
+
   const {
     watch,
     control,
@@ -30,6 +33,22 @@ export const ProductAvailabilityAndPrice = () => {
     }
   }, [productStatus]);
 
+  const handleEnterKeyPress = (
+    ref: RefObject<HTMLInputElement>,
+    e: KeyboardEvent<HTMLLabelElement>,
+  ) => {
+    if (e.key === 'Enter') {
+      ref.current?.click();
+    }
+  };
+
+  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      event.currentTarget.checked = !event.currentTarget.checked;
+    }
+  };
+
   return (
     <>
       <div className={s.availability}>
@@ -46,13 +65,18 @@ export const ProductAvailabilityAndPrice = () => {
                 required: true,
               }}
               render={({ field }) => (
-                <label className={s.status}>
+                <label
+                  tabIndex={0}
+                  className={s.status}
+                  onKeyDown={(e) => handleEnterKeyPress(inputAvailableRef, e)}
+                >
                   <input
                     {...field}
                     type='radio'
                     id='available'
                     className={s.status_input}
                     value='available'
+                    ref={inputAvailableRef}
                   />
                   В наявності
                 </label>
@@ -74,6 +98,7 @@ export const ProductAvailabilityAndPrice = () => {
                         type='checkbox'
                         id='uniqueItem'
                         className='checkbox-input'
+                        onKeyDown={handleKeyDown}
                       />
                       <p className={s.unique_text}>В єдиному екземплярі</p>
                     </label>
@@ -98,13 +123,18 @@ export const ProductAvailabilityAndPrice = () => {
                 required: true,
               }}
               render={({ field }) => (
-                <label className={s.status}>
+                <label
+                  tabIndex={0}
+                  className={s.status}
+                  onKeyDown={(e) => handleEnterKeyPress(inputToOrderRef, e)}
+                >
                   <input
                     {...field}
                     type='radio'
                     id='toOrder'
                     className={s.status_input}
                     value='toOrder'
+                    ref={inputToOrderRef}
                   />
                   Під замовлення
                 </label>

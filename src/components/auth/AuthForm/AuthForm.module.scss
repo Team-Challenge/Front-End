@@ -77,6 +77,10 @@
       background: $green;
       border-color: transparent;
     }
+
+    &:focus {
+      box-shadow: 0px 0px 0px 1px $border-color;
+    }
   }
 
   &_text {
@@ -104,6 +108,10 @@
   line-height: 16px;
   text-decoration-line: underline;
   margin-top: 0.5rem;
+
+  &:focus {
+    font-weight: 600;
+  }
 }
 
 .decorative_line {

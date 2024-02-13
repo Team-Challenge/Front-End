@@ -57,7 +57,11 @@ export const PasswordInput = ({
           className={inputClassName}
         />
         <div className={s.icon}>
-          <button onClick={togglePasswordVisibility} className={s.icon_eye}>
+          <button
+            onClick={togglePasswordVisibility}
+            className={s.icon_eye}
+            tabIndex={-1}
+          >
             {passwordShown ? (
               <Icon icon='solar:eye-outline' />
             ) : (

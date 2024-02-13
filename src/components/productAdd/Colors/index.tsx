@@ -32,6 +32,15 @@ export const Colors = () => {
     return !selectedColors.includes(color) && selectedColors.length === 3;
   };
 
+  const handleLabelKeyPress = (
+    event: React.KeyboardEvent<HTMLLabelElement>,
+    name: string,
+  ) => {
+    if (event.key === 'Enter') {
+      handleCheckboxChange(name);
+    }
+  };
+
   useEffect(() => {
     setValue('colors', selectedColors);
   }, [selectedColors]);
@@ -53,7 +62,7 @@ export const Colors = () => {
           <li
             key={id}
             className={`${s.colors_item} ${
-              isCheckboxInactive(name) ? s.colors_inactive : ''
+              isCheckboxInactive(name) && s.colors_inactive
             }`}
           >
             <input
@@ -63,7 +72,11 @@ export const Colors = () => {
               checked={selectedColors.includes(name)}
               onChange={() => handleCheckboxChange(name)}
             />
-            <label htmlFor={name}>
+            <label
+              htmlFor={name}
+              tabIndex={0}
+              onKeyDown={(event) => handleLabelKeyPress(event, name)}
+            >
               <div className={styleClass}></div>
               <p>{name}</p>
             </label>
