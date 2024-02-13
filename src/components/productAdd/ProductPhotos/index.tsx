@@ -8,6 +8,12 @@ export const ProductPhotos = () => {
     formState: { errors },
   } = useFormContext();
 
+  const hasPhotoErrors =
+    errors.productPhoto1 ||
+    errors.productPhoto2 ||
+    errors.productPhoto3 ||
+    errors.productPhoto4;
+
   return (
     <div className={s.photos}>
       <div className='product-add_subtitle_wrap'>
@@ -38,10 +44,7 @@ export const ProductPhotos = () => {
         ))}
       </ul>
 
-      {(errors.productPhoto1 ||
-        errors.productPhoto2 ||
-        errors.productPhoto3 ||
-        errors.productPhoto4) && (
+      {hasPhotoErrors && (
         <p className='error-text'>Будь ласка, завантажте фото свого товару</p>
       )}
     </div>
