@@ -55,6 +55,8 @@ export interface ButtonUIProps {
   onClick?: () => void;
   type?: 'button' | 'reset' | 'submit';
   disabled?: boolean;
+  isLink?: boolean;
+  path?: string;
 }
 
 export interface FileDropProps {
