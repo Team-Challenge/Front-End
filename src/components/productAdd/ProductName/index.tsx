@@ -9,6 +9,7 @@ export const ProductName = () => {
   const {
     formState: { errors },
   } = methods;
+
   const { charCount, handleInput } = useCharCount('', 100);
 
   const hasError = Boolean(errors.productName);
@@ -33,16 +34,17 @@ export const ProductName = () => {
         placeholder='Наприклад: Сережки з дерева “Ластівки”'
         // value={productName}
         required
-        errorMessage={`Будь ласка, введіть назву свого товару`}
         maxLength={100}
         onClick={() => methods.clearErrors('productName')}
         onInput={(event) => handleInput(event)}
         // editModeIcon
         className={s.name_input}
+        shouldApplyErrorStyles={false}
+        shouldApplySuccessStyles={false}
       />
 
       {hasError ? (
-        <p className='error-text'>{errors?.productName?.message as string}</p>
+        <p className='error-text'>Будь ласка, введіть назву свого товару</p>
       ) : (
         <p className={s.name_char_count}>
           {charCount}/{100} символів

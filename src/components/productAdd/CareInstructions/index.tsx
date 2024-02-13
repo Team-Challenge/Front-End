@@ -22,6 +22,8 @@ export const CareInstructions = () => {
         maxLength={1000}
         minLength={1}
         className={s.form_textarea}
+        shouldApplyErrorStyles={false}
+        shouldApplySuccessStyles={false}
       />
     </div>
   );

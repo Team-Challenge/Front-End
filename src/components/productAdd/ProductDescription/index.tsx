@@ -23,6 +23,8 @@ export const ProductDescription = () => {
         rows={11}
         maxLength={1000}
         minLength={1}
+        shouldApplyErrorStyles={false}
+        shouldApplySuccessStyles={false}
       />
     </div>
   );
