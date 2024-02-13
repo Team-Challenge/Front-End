@@ -105,6 +105,8 @@ export interface TextInputProps {
   maxLength?: number;
   maxLengthMessage?: string;
   className?: string;
+  shouldApplyErrorStyles?: boolean;
+  shouldApplySuccessStyles?: boolean;
 }
 
 export interface TextAreaProps
@@ -119,6 +121,8 @@ export interface TextAreaProps
   maxLength?: number;
   className?: string;
   editModeIcon?: boolean;
+  shouldApplyErrorStyles?: boolean;
+  shouldApplySuccessStyles?: boolean;
 }
 
 export interface PasswordInputProps {
