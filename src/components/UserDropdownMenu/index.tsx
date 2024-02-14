@@ -32,7 +32,11 @@ export const UserDropdownMenu = () => {
   useClickOutside(dropdownRef, handleCloseDropdown);
 
   return (
-    <div ref={dropdownRef} className={s.dropdown} onClick={handleCloseDropdown}>
+    <div
+      ref={dropdownRef}
+      className={`dropdown-menu ${s.dropdown}`}
+      onClick={handleCloseDropdown}
+    >
       {isAuth ? (
         <div className={s.dropdown_menu}>
           {userPanelButtonsList.map((button) => (

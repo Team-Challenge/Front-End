@@ -26,7 +26,11 @@
     font-family: 'Montserrat', sans-serif;
     font-size: toRem(14);
     font-weight: 400;
-    line-height: 1rem;
+    line-height: 1.25rem;
+  }
+
+  &:focus {
+    box-shadow: 0px 0px 0px 1px $border-color;
   }
 
   &_error {
@@ -64,4 +68,8 @@
   font-size: toRem(12);
   font-weight: 300;
   line-height: 1rem;
+
+  @media (max-width: $mobileSmall) {
+    font-size: 10px;
+  }
 }

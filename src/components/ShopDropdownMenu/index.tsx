@@ -20,10 +20,10 @@ export const ShopDropdownMenu = () => {
   return (
     <div
       ref={dropdownRef}
-      className={s.shopDropdownMenu}
+      className={`dropdown-menu ${s.dropdown}`}
       onClick={handleCloseDropdown}
     >
-      <div>
+      <>
         {storePanelButtonsList.map((button) => (
           <NavLink
             to={`/account/store/${button.pathToPage}`}
@@ -42,7 +42,7 @@ export const ShopDropdownMenu = () => {
           <Icon icon='solar:square-top-down-outline' />
           Мій магазин
         </Link>
-      </div>
+      </>
     </div>
   );
 };

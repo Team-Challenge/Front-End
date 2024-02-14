@@ -6,3 +6,7 @@ export const PASSWORD_REGEX = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).+$/;
 export const PHONE_NUMBER_REGEX = /^\+380\d{9}$/;
 export const INSTAGRAM_NICKNAME_REGEX =
   /^(?!.*\.\.)(?!.*\.$)@{0,1}[a-zA-Z0-9.,_]{2,30}$/;
+
+export const INTEGER_REGEX = /^\d+$/;
+export const DEADLINE_REGEX = /^\d+(?:-\d+)*$/;
+export const PARAMETERS_REGEX = /^\d+(?:,\d+|\.\d+)*$/;

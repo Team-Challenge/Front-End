@@ -35,4 +35,10 @@
   @media (max-width: $mobile) {
     flex-direction: column;
   }
+
+  button {
+    &:focus {
+      font-weight: 600;
+    }
+  }
 }

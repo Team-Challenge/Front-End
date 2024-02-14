@@ -15,6 +15,8 @@ export const TextArea = ({
   maxLength,
   className,
   editModeIcon,
+  shouldApplyErrorStyles = true,
+  shouldApplySuccessStyles = true,
 }: TextAreaProps) => {
   const {
     register,
@@ -39,8 +41,8 @@ export const TextArea = ({
   const isDirty = id in dirtyFields;
 
   const textAreaClassName = `${s.textarea}
-  ${hasError && s.textarea_error}
-  ${!hasError && isDirty ? s.textarea_success : ''}`;
+  ${shouldApplyErrorStyles && hasError && s.textarea_error}
+  ${shouldApplySuccessStyles && !hasError && isDirty && s.textarea_success}`;
 
   return (
     <div className={`${s.wrap} ${className}`}>
@@ -62,13 +64,13 @@ export const TextArea = ({
         </i>
       )}
 
-      {hasError && (
+      {shouldApplyErrorStyles && hasError && (
         <i className={`${s.icon} ${s.icon_invalid}`}>
           <Icon icon='solar:danger-circle-outline' />
         </i>
       )}
 
-      {!hasError && isDirty && (
+      {shouldApplySuccessStyles && !hasError && isDirty && (
         <i className={`${s.icon} ${s.icon_valid}`}>
           <Icon icon='solar:unread-outline' />
         </i>
