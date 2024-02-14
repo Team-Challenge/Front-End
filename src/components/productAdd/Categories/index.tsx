@@ -18,7 +18,7 @@ export const Categories = () => {
     (category) => category.label === selectedCategory,
   );
   const hasSubcategories = foundCategory?.subcategories?.length! > 0;
-  var isNotSetsCategory = selectedCategory !== 'Набори';
+  const isNotSetsCategory = selectedCategory !== 'Набори';
 
   const handleCategoriesLabelKeyPress = (
     event: React.KeyboardEvent<HTMLLabelElement>,
