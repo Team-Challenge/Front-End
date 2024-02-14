@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { FormProvider, useForm } from 'react-hook-form';
 import {
   ProductName,
@@ -77,9 +78,9 @@ export const ProductAddPage = () => {
   return (
     <section className={s.product}>
       <div className={`container ${s.product_container}`}>
-        <button className={s.product_button}>
+        <Link to='/account/store/products' className={s.product_button}>
           <Icon icon='solar:alt-arrow-left-outline' /> Назад
-        </button>
+        </Link>
         <FormProvider {...methods}>
           <form
             id='addNewProduct'
