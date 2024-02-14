@@ -10,6 +10,7 @@ import { Products } from './storePanel/Products';
 import { StoreManagement } from './storePanel/StoreManagement';
 import { Orders } from './storePanel/Orders';
 import { Reviews } from './storePanel/Reviews';
+import { ProductAddPage } from './ProductAddPage';
 
 export {
   Home,
@@ -24,4 +25,5 @@ export {
   StoreManagement,
   Orders,
   Reviews,
+  ProductAddPage,
 };
