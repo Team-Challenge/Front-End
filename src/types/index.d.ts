@@ -279,3 +279,42 @@ export interface StoreProfileMenuProps {
 export interface BannerModalProps {
   handleBannerUpload: (files: FileList) => Promise<void>;
 }
+
+export interface ProductAddForm {
+  productName: string;
+  description?: string;
+  productPhoto1: File;
+  productPhoto2: File;
+  productPhoto3: File;
+  productPhoto4: File;
+  category: number;
+  subcategory: string;
+  status: string;
+  uniqueItem?: boolean;
+  deadline?: string;
+  price: string;
+  colors?: string[];
+  parameters?: Array<{
+    length: string;
+    width: string;
+    weight: string;
+    size: null | string;
+  }>;
+  metals?: string[];
+  coating?: string[];
+  decorativeElements?: string[];
+  stones?: string[];
+  textiles?: string[];
+  other?: string[];
+  careInstructions?: string;
+  paymentMethods: {
+    cardPayment: boolean;
+    cashPayment: boolean;
+    securePayment: boolean;
+  };
+  deliveryMethods: {
+    novaPost: boolean;
+    ukrPost: boolean;
+  };
+  refunds?: boolean;
+}

@@ -1,5 +1,10 @@
 import { Link } from 'react-router-dom';
-import { FormProvider, useForm } from 'react-hook-form';
+import {
+  FieldValues,
+  FormProvider,
+  SubmitHandler,
+  useForm,
+} from 'react-hook-form';
 import {
   ProductName,
   ProductDescription,
@@ -13,6 +18,7 @@ import {
   ProductShippingPaymentOptions,
   ProductRefundRules,
 } from '@/components/productAdd';
+import { ProductAddForm } from '@/types';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
 import { closeModal, openModal } from '@/store/modalSlice';
 import { OrnamentalTitle } from '@/components/OrnamentalTitle';
@@ -25,7 +31,7 @@ export const ProductAddPage = () => {
   const dispatch = useAppDispatch();
   const isModalOpen = useAppSelector((state) => state.modal.productAdd);
 
-  const methods = useForm({
+  const methods = useForm<ProductAddForm>({
     mode: 'onChange',
   });
 
@@ -34,7 +40,7 @@ export const ProductAddPage = () => {
     reset,
   } = methods;
 
-  const onSubmit = (data) => {
+  const onSubmit: SubmitHandler<ProductAddForm> = (data) => {
     const formattedData = {
       category_id: data.category,
       sub_category_name: data.subcategory,
@@ -114,6 +120,7 @@ export const ProductAddPage = () => {
             </div>
 
             <ButtonUI
+              type='submit'
               label='Опублікувати товар'
               className={s.form_button}
               onClick={handleFormSubmit}
