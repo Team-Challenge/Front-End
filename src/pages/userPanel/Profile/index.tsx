@@ -55,7 +55,7 @@ export const Profile = () => {
             <FullName value={fullName as string} editModeIcon />
           </label>
           <ButtonUI
-            label='Зберігти'
+            label='Зберегти'
             className={s.form_btn}
             disabled={!methods.formState.isValid}
           />
