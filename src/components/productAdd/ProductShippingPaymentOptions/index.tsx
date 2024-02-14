@@ -8,12 +8,19 @@ import { ToggleSwitch } from '@/components/UI';
 import s from './ProductShippingPaymentOptions.module.scss';
 
 export const ProductShippingPaymentOptions = () => {
-  const [selectedPaymentMethods, setSelectedPaymentMethods] = useState<
-    string[]
-  >([]);
-  const [selectedDeliveryMethods, setSelectedDeliveryMethods] = useState<
-    string[]
-  >([]);
+  const [selectedPaymentMethods, setSelectedPaymentMethods] = useState<{
+    [key: string]: boolean;
+  }>({
+    cardPayment: false,
+    cashPayment: false,
+    securePayment: false,
+  });
+  const [selectedDeliveryMethods, setSelectedDeliveryMethods] = useState<{
+    [key: string]: boolean;
+  }>({
+    ukrPost: false,
+    novaPost: false,
+  });
 
   const {
     control,
@@ -22,22 +29,18 @@ export const ProductShippingPaymentOptions = () => {
     formState: { errors },
   } = useFormContext();
 
-  const handleSelectedPaymentMethod = (id: string) => {
-    if (selectedPaymentMethods.includes(id)) {
-      setSelectedPaymentMethods(selectedPaymentMethods.filter((c) => c !== id));
-    } else if (selectedPaymentMethods.length < 3) {
-      setSelectedPaymentMethods([...selectedPaymentMethods, id]);
-    }
+  const handleSelectedPaymentMethod = (id: string, value: boolean) => {
+    setSelectedPaymentMethods((prevMethods) => ({
+      ...prevMethods,
+      [id]: value,
+    }));
   };
 
-  const handleSelectedDeliveryMethod = (id: string) => {
-    if (selectedDeliveryMethods.includes(id)) {
-      setSelectedDeliveryMethods(
-        selectedDeliveryMethods.filter((c) => c !== id),
-      );
-    } else if (selectedDeliveryMethods.length < 3) {
-      setSelectedDeliveryMethods([...selectedDeliveryMethods, id]);
-    }
+  const handleSelectedDeliveryMethod = (id: string, value: boolean) => {
+    setSelectedDeliveryMethods((prevMethods) => ({
+      ...prevMethods,
+      [id]: value,
+    }));
   };
 
   useEffect(() => {
@@ -47,6 +50,14 @@ export const ProductShippingPaymentOptions = () => {
   useEffect(() => {
     setValue('deliveryMethods', selectedDeliveryMethods);
   }, [selectedDeliveryMethods]);
+
+  const isAnyPaymentMethodSelected = Object.values(
+    selectedPaymentMethods,
+  ).includes(true);
+
+  const isAnyDeliveryMethodSelected = Object.values(
+    selectedPaymentMethods,
+  ).includes(true);
 
   return (
     <>
@@ -64,10 +75,9 @@ export const ProductShippingPaymentOptions = () => {
                 name='paymentMethods'
                 control={control}
                 rules={{
-                  required:
-                    selectedPaymentMethods.length > 0
-                      ? false
-                      : 'Будь ласка, оберіть принаймні один варіант оплати',
+                  validate: () =>
+                    isAnyPaymentMethodSelected ||
+                    'Будь ласка, оберіть принаймні один варіант оплати',
                 }}
                 render={({ field }) => (
                   <ToggleSwitch
@@ -75,7 +85,7 @@ export const ProductShippingPaymentOptions = () => {
                     id={id}
                     className={s.item_toggle}
                     onChange={() => {
-                      handleSelectedPaymentMethod(id);
+                      handleSelectedPaymentMethod(id, true);
                       clearErrors('paymentMethods');
                     }}
                   />
@@ -106,10 +116,9 @@ export const ProductShippingPaymentOptions = () => {
                 name='deliveryMethods'
                 control={control}
                 rules={{
-                  required:
-                    selectedDeliveryMethods.length > 0
-                      ? false
-                      : 'Будь ласка, оберіть принаймні один варіант доставки',
+                  validate: () =>
+                    isAnyDeliveryMethodSelected ||
+                    'Будь ласка, оберіть принаймні один варіант оплати',
                 }}
                 render={({ field }) => (
                   <ToggleSwitch
@@ -117,7 +126,7 @@ export const ProductShippingPaymentOptions = () => {
                     id={id}
                     className={s.item_toggle}
                     onChange={() => {
-                      handleSelectedDeliveryMethod(id);
+                      handleSelectedDeliveryMethod(id, true);
                       clearErrors('deliveryMethods');
                     }}
                   />

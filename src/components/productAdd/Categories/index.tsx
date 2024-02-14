@@ -72,7 +72,10 @@ export const Categories = () => {
                     onChange={() => {
                       setSelectedCategory(label);
                       setValue('category', id);
-                      setValue('subcategory', '');
+
+                      label === 'Набори'
+                        ? setValue('subcategory', 'Набори')
+                        : setValue('subcategory', '');
                     }}
                   />
                 )}
