@@ -63,7 +63,7 @@ export const ProductParameters = () => {
                       <>
                         <div className={s.parameters_rings}>
                           <div className={s.parameters_rings_header}>
-                            <p>Розмір колечка</p>
+                            <p>Розмір каблучки</p>
                             {width <= 800 && (
                               <button
                                 type='button'
@@ -124,6 +124,7 @@ export const ProductParameters = () => {
                         type='text'
                         id='length'
                         unit='см'
+                        maxLength={4}
                         placeholder='Введіть довжину'
                         label='Довжина'
                         errorMessage='Введіть довжину товару'
@@ -149,6 +150,7 @@ export const ProductParameters = () => {
                       type='text'
                       id='width'
                       unit='см'
+                      maxLength={4}
                       placeholder='Введіть ширину'
                       label='Ширина'
                       errorMessage='Введіть ширину товару'
@@ -173,6 +175,7 @@ export const ProductParameters = () => {
                       type='text'
                       id='weight'
                       unit='грам'
+                      maxLength={4}
                       placeholder='Введіть вагу'
                       label='Вага виробу'
                       errorMessage='Введіть вагу товару'
