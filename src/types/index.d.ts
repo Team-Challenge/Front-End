@@ -167,6 +167,7 @@ export interface QuantityInputProps {
   required?: boolean;
   value?: string;
   unit: string;
+  maxLength?: number;
   errorMessage?: string;
   label?: string;
   field?: any;

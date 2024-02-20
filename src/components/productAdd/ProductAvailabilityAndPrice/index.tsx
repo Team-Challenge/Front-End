@@ -174,7 +174,8 @@ export const ProductAvailabilityAndPrice = () => {
 
         {hasDeadlineError && (
           <p className='error-text'>
-            Будь ласка, вкажіть приблизну дату виготовлення товару
+            Будь ласка, вкажіть приблизну дату виготовлення товару у форматі 4-5
+            робочих днів
           </p>
         )}
       </div>
@@ -194,6 +195,7 @@ export const ProductAvailabilityAndPrice = () => {
               type='text'
               id='price'
               unit='грн'
+              maxLength={6}
               placeholder='Введіть вартість'
               errorMessage='Будь ласка, введіть ціле число, що відповідає вартості товару'
             />
