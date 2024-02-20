@@ -8,5 +8,5 @@ export const INSTAGRAM_NICKNAME_REGEX =
   /^(?!.*\.\.)(?!.*\.$)@{0,1}[a-zA-Z0-9.,_]{2,30}$/;
 
 export const INTEGER_REGEX = /^\d+$/;
-export const DEADLINE_REGEX = /^[0-9]{1,3}-(?!0$)[1-9][0-9]{0,2}$/;
+export const DEADLINE_REGEX = /^[1-9][0-9]{0,2}-(?!0$)[1-9][0-9]{0,2}$/;
 export const PARAMETERS_REGEX = /^\d+(?:,\d+|\.\d+)*$/;
