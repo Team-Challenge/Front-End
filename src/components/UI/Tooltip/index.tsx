@@ -2,7 +2,12 @@ import { useState } from 'react';
 import { TooltipProps } from '@/types';
 import s from './Tooltip.module.scss';
 
-export const Tooltip = ({ text, children, className }: TooltipProps) => {
+export const Tooltip = ({
+  text,
+  children,
+  className,
+  isBase,
+}: TooltipProps) => {
   const [showTooltip, setShowTooltip] = useState(false);
 
   const handleMouseEnter = () => {
@@ -21,7 +26,11 @@ export const Tooltip = ({ text, children, className }: TooltipProps) => {
     >
       {children}
       {showTooltip && (
-        <div className={s.tooltip_text}>
+        <div
+          className={`${s.tooltip_text} ${
+            isBase ? s.tooltip_base : s.tooltip_advanced
+          }`}
+        >
           <p>{text}</p>
         </div>
       )}

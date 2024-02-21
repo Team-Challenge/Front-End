@@ -65,7 +65,7 @@
       {
         "singleQuote": true,
         "parser": "typescript",
-        "endOfLine": "off"
+        "endOfLine": "auto"
       }
     ],
     "import/no-extraneous-dependencies": [

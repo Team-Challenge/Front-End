@@ -1,0 +1,17 @@
+@import '@/styles/index.scss';
+
+.dropzone {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px $light-grey dashed;
+  border-radius: toRem(4);
+  overflow: hidden;
+  cursor: pointer;
+
+  &_input {
+    display: none;
+  }
+}

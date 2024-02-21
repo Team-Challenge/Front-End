@@ -92,7 +92,7 @@ export const UserSettingsForm = ({
     } else {
       changeDataResult(false);
     }
-    dispatch(openModal('settingsMessage'));
+    dispatch(openModal('dataUserChangeNotification'));
     dispatch(getUserInfo());
   };
 

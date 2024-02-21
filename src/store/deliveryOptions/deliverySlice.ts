@@ -23,7 +23,6 @@ const deliverySlice = createSlice({
   },
 });
 
-export const { setNovaPost, setUkrPost } =
-deliverySlice.actions;
+export const { setNovaPost, setUkrPost } = deliverySlice.actions;
 
 export default deliverySlice.reducer;

@@ -1,0 +1,66 @@
+@import '@/styles/index.scss';
+
+.quantity {
+  @media (max-width: 800px) {
+    width: 100%;
+  }
+
+  &_label {
+    font-size: 0.813rem;
+    line-height: 1rem;
+
+    @media (max-width: $mobileSmall) {
+      font-size: 0.75rem;
+      font-weight: 300;
+    }
+  }
+
+  &_wrap {
+    max-width: toRem(240);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-top: toRem(5);
+
+    @media (max-width: 800px) {
+      max-width: toRem(496);
+    }
+
+    @media (max-width: $mobileSmall) {
+      margin-top: toRem(2);
+    }
+
+    border: 1px solid $border-color;
+    border-radius: 0.25rem;
+    overflow: hidden;
+  }
+
+  &_input {
+    height: toRem(54);
+    background: $white;
+    border: none;
+
+    @media (max-width: $mobileSmall) {
+      height: toRem(48);
+    }
+  }
+
+  &_unit {
+    max-width: toRem(70);
+    width: 100%;
+    height: toRem(54);
+    font-size: 0.875rem;
+    line-height: 1rem;
+    background: $white;
+    border-left: 1px solid $border-color;
+    padding: toRem(17) toRem(16);
+
+    @media (max-width: $mobileSmall) {
+      height: toRem(48);
+    }
+  }
+}
+
+.focused {
+  box-shadow: 0px 0px 0px 1px $border-color;
+}

@@ -1,10 +1,7 @@
+import { BooleanState } from '@/types';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface ModalState {
-  [key: string]: boolean;
-}
-
-const initialState: ModalState = {};
+const initialState: BooleanState = {};
 
 const modalSlice = createSlice({
   name: 'modal',

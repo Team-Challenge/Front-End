@@ -15,9 +15,8 @@
     }
   }
 
-
   &-focused .ant-select-selector {
-    box-shadow: none !important;
+    box-shadow: 0px 0px 0px 1px $border-color !important;
   }
 
   &-arrow {

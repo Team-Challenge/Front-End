@@ -3,11 +3,11 @@ import { closeComponent, openComponent } from '@/store/overlayStateSlice';
 
 export const useToggleMenu = (menuType: string) => {
   const dispatch = useAppDispatch();
-  const isOpen = useAppSelector(
-    (state) => state.overlayState[menuType],
-  );
+  const isOpen = useAppSelector((state) => state.overlayState[menuType]);
 
-  const toggleMenu = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const toggleMenu = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
     event.stopPropagation();
 
     if (isOpen) {
@@ -16,10 +16,10 @@ export const useToggleMenu = (menuType: string) => {
       dispatch(openComponent(menuType));
 
       ['isUserDropdown', 'isShopDropdown', 'isBurgerMenu']
-        .filter(item => item !== menuType)
-        .forEach(type => dispatch(closeComponent(type)));
+        .filter((item) => item !== menuType)
+        .forEach((type) => dispatch(closeComponent(type)));
     }
   };
 
-  return [ isOpen, toggleMenu ] as const;
+  return [isOpen, toggleMenu] as const;
 };

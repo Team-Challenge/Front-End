@@ -1,13 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface StoreProfileState {
-  hasStore: boolean,
-  name: string,
-  description: string,
-  shop_photo: string,
-  banner_photo: string,
-  phone_number: string,
-  link: string
+  hasStore: boolean;
+  name: string;
+  description: string;
+  shop_photo: string;
+  banner_photo: string;
+  phone_number: string;
+  link: string;
 }
 
 const initialState: StoreProfileState = {
@@ -17,11 +17,11 @@ const initialState: StoreProfileState = {
   shop_photo: '',
   banner_photo: '',
   phone_number: '',
-  link: ''
+  link: '',
 };
 
 const storeProfileSlice = createSlice({
-  name: 'store',
+  name: 'storeSettings',
   initialState,
   reducers: {
     setStore: (state, action: PayloadAction<boolean>) => {
@@ -48,7 +48,14 @@ const storeProfileSlice = createSlice({
   },
 });
 
-export const { setStore, setName, setDescription, setShopPhoto, setBannerPhoto, setStorePhoneNumber, setLink } =
-storeProfileSlice.actions;
+export const {
+  setStore,
+  setName,
+  setDescription,
+  setShopPhoto,
+  setBannerPhoto,
+  setStorePhoneNumber,
+  setLink,
+} = storeProfileSlice.actions;
 
 export default storeProfileSlice.reducer;

@@ -13,6 +13,7 @@ export const TextInput = ({
   isServerError,
   editModeIcon,
   onClick,
+  onInput,
   regex,
   errorMessage,
   minLength,
@@ -20,6 +21,8 @@ export const TextInput = ({
   maxLength,
   maxLengthMessage,
   className,
+  shouldApplyErrorStyles = true,
+  shouldApplySuccessStyles = true,
 }: TextInputProps) => {
   const {
     register,
@@ -30,8 +33,17 @@ export const TextInput = ({
   const isDirty = id in dirtyFields;
 
   const inputClassName = `${s.input}
-    ${(hasError && !isServerValidation) || isServerError ? s.input_error : ''}
-    ${!hasError && isDirty && !isServerValidation ? s.input_success : ''}`;
+  ${
+    shouldApplyErrorStyles &&
+    ((hasError && !isServerValidation) || isServerError)
+      ? s.input_error
+      : ''
+  }
+  ${
+    shouldApplySuccessStyles && !hasError && isDirty && !isServerValidation
+      ? s.input_success
+      : ''
+  }`;
 
   return (
     <div className={className}>
@@ -56,20 +68,23 @@ export const TextInput = ({
           })}
           className={inputClassName}
           onClick={onClick}
+          onInput={onInput}
           defaultValue={value}
         />
 
         {editModeIcon && !isDirty && !isServerError && (
-          <i className={`${s.icon} ${s.icon_profile}`}>
+          <i className={`${s.icon} ${s.icon_edit}`}>
             <Icon icon='solar:pen-outline' />
           </i>
         )}
 
-        {(hasError && !isServerValidation) || isServerError ? (
+        {(shouldApplyErrorStyles && hasError && !isServerValidation) ||
+        isServerError ? (
           <i className={`${s.icon} ${s.icon_invalid}`}>
             <Icon icon='solar:danger-circle-outline' />
           </i>
         ) : (
+          shouldApplySuccessStyles &&
           isDirty &&
           !isServerValidation && (
             <i className={`${s.icon} ${s.icon_valid}`}>
@@ -79,7 +94,7 @@ export const TextInput = ({
         )}
       </label>
 
-      {hasError && !isServerValidation && (
+      {shouldApplyErrorStyles && hasError && !isServerValidation && (
         <p className={`error-text ${s.error}`}>{hasError.message as string}</p>
       )}
     </div>

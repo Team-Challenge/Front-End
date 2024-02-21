@@ -1,0 +1,250 @@
+@import '@/styles/index.scss';
+
+.rings {
+  &_subtitle {
+    font-size: 0.813rem;
+    line-height: 1rem;
+  }
+}
+
+.steps {
+  &_list {
+    display: grid;
+    gap: 0.5rem;
+    margin: toRem(12) 0 toRem(16);
+  }
+
+  &_item {
+    font-size: 0.75rem;
+    font-weight: 300;
+    line-height: 1rem;
+  }
+}
+
+.size {
+  &_list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 2.813rem;
+  }
+
+  &_item {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+
+    p {
+      font-size: 0.875rem;
+      color: $grey;
+    }
+
+    p:first-of-type {
+      grid-area: -1 / 1;
+      z-index: 2;
+      margin-top: toRem(10);
+    }
+
+    img {
+      grid-area: -1 / 1;
+    }
+
+    span {
+      width: 100%;
+      height: 1px;
+      background: $light-grey;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      &::before {
+        content: '';
+        display: inline-block;
+        border: solid $light-grey;
+        border-width: 0 1.5px 1.5px 0;
+        padding: 1.5px;
+        transform: rotate(135deg);
+      }
+
+      &::after {
+        content: '';
+        display: inline-block;
+        border: solid $light-grey;
+        border-width: 0 1.5px 1.5px 0;
+        padding: 1.5px;
+        transform: rotate(-45deg);
+      }
+    }
+  }
+
+  &_14 {
+    width: 3.5rem;
+    height: 3.5rem;
+
+    @media (max-width: $tablet) {
+      width: 2.75rem;
+      height: 2.75rem;
+    }
+  }
+
+  &_14_5 {
+    width: 3.625rem;
+    height: 3.625rem;
+
+    @media (max-width: $tablet) {
+      width: 2.875rem;
+      height: 2.875rem;
+    }
+  }
+
+  &_15 {
+    width: 3.75rem;
+    height: 3.75rem;
+
+    @media (max-width: $tablet) {
+      width: 3rem;
+      height: 3rem;
+    }
+  }
+
+  &_15_5 {
+    width: 3.875rem;
+    height: 3.875rem;
+
+    @media (max-width: $tablet) {
+      width: 3.125rem;
+      height: 3.125rem;
+    }
+  }
+
+  &_16 {
+    width: 4rem;
+    height: 4rem;
+
+    @media (max-width: $tablet) {
+      width: 3.25rem;
+      height: 3.25rem;
+    }
+  }
+
+  &_16_5 {
+    width: 4.125rem;
+    height: 4.125rem;
+
+    @media (max-width: $tablet) {
+      width: 3.375rem;
+      height: 3.375rem;
+    }
+  }
+
+  &_17 {
+    width: 4.25rem;
+    height: 4.25rem;
+
+    @media (max-width: $tablet) {
+      width: 3.5rem;
+      height: 3.5rem;
+    }
+  }
+
+  &_17_5 {
+    width: 4.375rem;
+    height: 4.375rem;
+
+    @media (max-width: $tablet) {
+      width: 3.625rem;
+      height: 3.625rem;
+    }
+  }
+
+  &_18 {
+    width: 4.5rem;
+    height: 4.5rem;
+
+    @media (max-width: $tablet) {
+      width: 3.75rem;
+      height: 3.75rem;
+    }
+  }
+
+  &_18_5 {
+    width: 4.625rem;
+    height: 4.625rem;
+
+    @media (max-width: $tablet) {
+      width: 3.875rem;
+      height: 3.875rem;
+    }
+  }
+
+  &_19 {
+    width: 4.75rem;
+    height: 4.75rem;
+
+    @media (max-width: $tablet) {
+      width: 4rem;
+      height: 4rem;
+    }
+  }
+
+  &_19_5 {
+    width: 4.875rem;
+    height: 4.875rem;
+
+    @media (max-width: $tablet) {
+      width: 4.125rem;
+      height: 4.125rem;
+    }
+  }
+
+  &_20 {
+    width: 5rem;
+    height: 5rem;
+
+    @media (max-width: $tablet) {
+      width: 4.25rem;
+      height: 4.25rem;
+    }
+  }
+
+  &_20_5 {
+    width: 5.125rem;
+    height: 5.125rem;
+
+    @media (max-width: $tablet) {
+      width: 4.375rem;
+      height: 4.375rem;
+    }
+  }
+
+  &_21 {
+    width: 5.25rem;
+    height: 5.25rem;
+
+    @media (max-width: $tablet) {
+      width: 4.5rem;
+      height: 4.5rem;
+    }
+  }
+
+  &_21_5 {
+    width: 5.375rem;
+    height: 5.375rem;
+
+    @media (max-width: $tablet) {
+      width: 4.625rem;
+      height: 4.625rem;
+    }
+  }
+
+  &_22 {
+    width: 5.5rem;
+    height: 5.5rem;
+
+    @media (max-width: $tablet) {
+      width: 4.75rem;
+      height: 4.75rem;
+    }
+  }
+}
