@@ -6,7 +6,7 @@ import { Icon } from '@iconify/react';
 import s from './ProductsList.module.scss';
 
 export const ProductItemMobile = ({
-  photo,
+  photos,
   title,
   date,
   code,
@@ -20,6 +20,9 @@ export const ProductItemMobile = ({
     dispatch(openModal('changeProductStatus'));
   };
 
+  const mainPhoto = photos.find((photo) => photo.main === true);
+  const photo = mainPhoto?.product_photo;
+
   return (
     <div className={s.item}>
       <div className={s.header}>
@@ -28,7 +31,7 @@ export const ProductItemMobile = ({
         </div>
         <p className={s.header_subtitle}>Товар</p>
         <h5 className={s.header_title}>{title}</h5>
-        <button className={s.header_edit}>
+        <button type='button' className={s.header_edit}>
           <Icon icon='solar:pen-outline' />
         </button>
       </div>
@@ -36,7 +39,7 @@ export const ProductItemMobile = ({
       <div className={s.item_wrap}>
         <p className={s.item_price}>
           Ціна
-          <span>{price}</span>
+          <span>{price}₴</span>
         </p>
         <p className={s.item_code}>
           Код
@@ -60,7 +63,11 @@ export const ProductItemMobile = ({
               <Icon icon='solar:info-circle-outline' />
             </Tooltip>
           </p>
-          <button className={s.item_status_button} onClick={openModalWindow}>
+          <button
+            type='button'
+            className={s.item_status_button}
+            onClick={openModalWindow}
+          >
             {status}
           </button>
         </div>

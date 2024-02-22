@@ -1,44 +1,16 @@
+import { Icon } from '@iconify/react';
 import { useAppSelector } from '@/hooks/reduxHook';
 import { useWindowDimensions } from '@/hooks/useWindowDimensions';
+import { formatDate } from '@/utils/formatDate';
 import { Tooltip } from '@/components/UI/Tooltip';
 import { ProductItemDesktop } from './ProductItemDesktop';
 import { ProductItemMobile } from './ProductItemMobile';
 import { ChangeProductStatus } from '../ChangeProductStatus';
-import { Icon } from '@iconify/react';
 import s from './ProductsList.module.scss';
-
-const products = [
-  {
-    photo: '',
-    title: 'First product',
-    date: '30.01.2024',
-    code: '452158',
-    price: '655',
-    category: 'на руки',
-    status: 'В наявності',
-  },
-  {
-    photo: '',
-    title: 'Second product',
-    date: '30.01.2024',
-    code: '452158',
-    price: '655',
-    category: 'на руки',
-    status: 'В наявності',
-  },
-  {
-    photo: '',
-    title: 'Third product',
-    date: '30.01.2024',
-    code: '452158',
-    price: '655',
-    category: 'на руки',
-    status: 'В наявності',
-  },
-];
 
 export const ProductsList = () => {
   const { width } = useWindowDimensions();
+  const { products } = useAppSelector((state) => state.product);
   const isModalOpen = useAppSelector(
     (state) => state.modal.changeProductStatus,
   );
@@ -64,16 +36,33 @@ export const ProductsList = () => {
               </Tooltip>
             </div>
           </div>
-          {products.map((product, index) => (
-            <div className={`${s.cell} ${s.row}`} key={index}>
-              <ProductItemDesktop {...product} />
+          {products.map((product) => (
+            <div className={`${s.cell} ${s.row}`} key={product.id}>
+              <ProductItemDesktop
+                photos={product.photos}
+                title={product.product_name}
+                date={formatDate(product.time_added)}
+                code={product.id}
+                price={product.price}
+                category={product.sub_category_name}
+                status={product.product_status}
+              />
             </div>
           ))}
         </div>
       ) : (
         <div className={s.block}>
-          {products.map((product, index) => (
-            <ProductItemMobile {...product} key={index} />
+          {products.map((product) => (
+            <ProductItemMobile
+              photos={product.photos}
+              title={product.product_name}
+              date={formatDate(product.time_added)}
+              code={product.id}
+              price={product.price}
+              category={product.sub_category_name}
+              status={product.product_status}
+              key={product.id}
+            />
           ))}
         </div>
       )}
