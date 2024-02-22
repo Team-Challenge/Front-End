@@ -1,11 +1,11 @@
+import { Rate } from 'antd';
+import { Icon } from '@iconify/react';
 import { RatingStarIcon } from '@/components/icons/RatingStarIcon';
 import { Tooltip } from '@/components/UI/Tooltip';
 import { RatingItem } from './RatingItem';
-import { Rate } from 'antd';
-import { Icon } from '@iconify/react';
 import s from './ReviewStatisticsPanel.module.scss';
 
-const rating = [
+const ratingList = [
   {
     id: 1,
     rating: 5,
@@ -67,13 +67,13 @@ export const ReviewStatisticsPanel = () => {
           <Tooltip
             text=' Рейтинг магазину - це середнє значення усіх оцінок за ваші товари. Чим
           більше у вас товарів з високими оцінками - тим вище ваш рейтинг.'
-          className={s.hint_tooltip}
+            className={s.hint_tooltip}
           >
             <Icon icon='solar:question-circle-outline' />
           </Tooltip>
         </p>
         <ul className={s.scores_list}>
-          {rating.map(({ id, rating, percent, numberOfReviews }) => (
+          {ratingList.map(({ id, rating, percent, numberOfReviews }) => (
             <li key={id} className={s.item}>
               <RatingItem
                 rating={rating}
