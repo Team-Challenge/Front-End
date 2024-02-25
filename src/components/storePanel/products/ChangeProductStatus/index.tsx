@@ -1,26 +1,25 @@
+import { useState } from 'react';
+import { useAppDispatch } from '@/hooks/reduxHook';
+import { closeModal } from '@/store/modalSlice';
+import { changeProductInfo } from '@/store/productPage/productPageThunks';
+import { mutableProductStatuses } from '@/constants/statusesList';
 import { Modal } from '@/components/Modal';
 import { OrnamentalTitle } from '@/components/OrnamentalTitle';
 import { ButtonUI } from '@/components/UI/ButtonUI';
 import s from './ChangeProductStatus.module.scss';
 
-const statuses = [
-  {
-    id: 'available',
-    text: 'В наявності',
-  },
-  {
-    id: 'out_of_stock',
-    text: 'Під замовлення',
-  },
-  {
-    id: 'preorder',
-    text: 'Нема в наявності',
-  },
-];
+export const ChangeProductStatus = ({ productId }: { productId: number }) => {
+  const dispatch = useAppDispatch();
+  const [status, setStatus] = useState<string>('');
 
-export const ChangeProductStatus = () => {
-  const handleSaveProductStatus = () => {
-    console.log('status change');
+  const handleSaveProductStatus = (productStatus: string) => {
+    dispatch(
+      changeProductInfo({
+        data: { product_status: productStatus },
+        product_id: productId,
+      }),
+    );
+    dispatch(closeModal('changeProductStatus'));
   };
 
   return (
@@ -30,7 +29,7 @@ export const ChangeProductStatus = () => {
         Оберіть статус вашого товару та збережіть зміни
       </p>
       <ul className={s.status_list}>
-        {statuses.map(({ id, text }) => (
+        {mutableProductStatuses.map(({ id, text }) => (
           <li className={s.status_item} key={id}>
             <label className={s.status_label}>
               <input
@@ -38,6 +37,7 @@ export const ChangeProductStatus = () => {
                 id={id}
                 name='status'
                 className={s.status_input}
+                onClick={() => setStatus(id)}
               />
               {text}
             </label>
@@ -47,7 +47,7 @@ export const ChangeProductStatus = () => {
       <ButtonUI
         label='Зберегти'
         className={s.modal_button}
-        onClick={handleSaveProductStatus}
+        onClick={() => handleSaveProductStatus(status)}
       />
     </Modal>
   );
