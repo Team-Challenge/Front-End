@@ -116,7 +116,8 @@ export const uploadProfilePhoto = createAsyncThunk(
         },
       });
       return response.data;
-    } catch (error) {
+    } catch (e) {
+      const error = e as Error;
       throw error;
     }
   },
@@ -130,7 +131,8 @@ export const deleteProfilePhoto = createAsyncThunk(
       if (response.status === 200) {
         return response.data;
       }
-    } catch (error) {
+    } catch (e) {
+      const error = e as Error;
       throw error;
     }
   },
@@ -138,7 +140,7 @@ export const deleteProfilePhoto = createAsyncThunk(
 
 export const changeUserDeliveryInfo = createAsyncThunk(
   'userSettings/changeUserDeliveryInfo',
-  async (credentials: {
+  async (data: {
     city: string | undefined;
     post: string | undefined;
     address: string | undefined;
@@ -146,10 +148,10 @@ export const changeUserDeliveryInfo = createAsyncThunk(
   }) => {
     try {
       const response = await $api.post('/accounts/delivery_info', {
-        city: credentials.city,
-        post: credentials.post,
-        address: credentials.address,
-        branch_name: credentials.branch_name,
+        city: data.city,
+        post: data.post,
+        address: data.address,
+        branch_name: data.branch_name,
       });
       if (response.status === 200) {
         return response.data;

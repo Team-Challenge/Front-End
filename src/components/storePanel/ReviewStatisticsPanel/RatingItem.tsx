@@ -12,7 +12,7 @@ export const RatingItem = ({
       <RatingStarIcon size='small' className={s.item_stars} />
       <p className={s.item_rating}>{rating}</p>
       <div className={s.item_progress}>
-        <div style={{ width: `${percent}%` }}></div>
+        <div style={{ width: `${percent}%` }} />
       </div>
       <p className={s.item_count}>{numberOfReviews}</p>
     </>

@@ -13,7 +13,7 @@ export interface BooleanState {
   [key: string]: boolean;
 }
 
-//auth types
+// auth types
 export interface LoginFormProps {
   isForgotPassword: () => void;
   isSuccessLogin: () => void;
@@ -41,7 +41,7 @@ export interface AuthResponse {
   user: SignUpEmailType;
 }
 
-//UI types
+// UI types
 export interface OrnamentalTitleProps {
   tag: keyof JSX.IntrinsicElements;
   text: string;
@@ -67,10 +67,11 @@ export interface FileDropProps {
 }
 
 export interface PhotoUploaderProps {
+  id: string;
+  required?: boolean;
   children?: ReactNode;
   className?: string;
-  id?: string;
-  required?: boolean;
+  isPhotoDeleted?: boolean;
 }
 
 export interface ModalProps {
@@ -184,12 +185,6 @@ export interface ToggleSwitchProps {
   onChange?: (e?: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export interface TooltipProps {
-  text: string;
-  children: ReactNode;
-  className?: string;
-}
-
 export interface FullNameProps {
   value?: string;
   editModeIcon?: boolean;
@@ -221,11 +216,15 @@ export interface ProfilePhotoProps {
 }
 
 export interface ButtonsBarProps {
-  buttonsList: any;
+  buttonsList: Array<{
+    id: number;
+    label: string;
+  }>;
   className?: string;
+  onStatusChange?: (arg0: string) => void;
 }
 
-//user info types
+// user info types
 export interface UserInfo {
   email: string;
   full_name: string;
@@ -292,13 +291,31 @@ export interface BannerModalProps {
   handleBannerUpload: (files: FileList) => Promise<void>;
 }
 
+export interface ProductCharacteristic {
+  parameters?: Array<{
+    length: string;
+    width: string;
+    weight: string;
+    size: null | string;
+  }>;
+  coating?: string[];
+  colors?: string[];
+  deadline?: string;
+  decorative_elements?: string[];
+  metals?: string[];
+  other?: string[];
+  stones?: string[];
+  textiles?: string[];
+  care_instructions?: string;
+}
+
 export interface ProductAddForm {
   productName: string;
   description?: string;
-  productPhoto1: File;
-  productPhoto2: File;
-  productPhoto3: File;
-  productPhoto4: File;
+  productPhotoFirst: File;
+  productPhotoSecond: File;
+  productPhotoThird: File;
+  productPhotoFourth: File;
   category: number;
   subcategory: string;
   status: string;
@@ -331,15 +348,21 @@ export interface ProductAddForm {
   refunds?: boolean;
 }
 
-//store panel types
+// store panel types
 export interface ProductStoreItemProps {
-  photo: string;
+  photos: Array<{
+    id: number;
+    main: boolean;
+    product_photo: string;
+    timestamp: string;
+  }>;
   title: string;
   date: string;
-  code: string;
+  code: number;
   price: string;
   category: string;
   status: string;
+  onClick?: () => void;
 }
 
 export interface OrderItemProps {

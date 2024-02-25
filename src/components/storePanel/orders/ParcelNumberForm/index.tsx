@@ -20,7 +20,7 @@ export const ParcelNumberForm = () => {
     formState: { isValid },
   } = methods;
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: unknown) => {
     console.log(data);
   };
 
@@ -41,7 +41,7 @@ export const ParcelNumberForm = () => {
             placeholder='Номер ТТН'
             // value={value}
             regex={PARCEL_NUMBER_REGEX}
-            required={true}
+            required
             errorMessage='Будь ласка, введіть номер ТТН'
           />
           <ButtonUI

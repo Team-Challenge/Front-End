@@ -1,8 +1,8 @@
 import { useWindowDimensions } from '@/hooks/useWindowDimensions';
 import { Tooltip } from '@/components/UI/Tooltip';
+import { Icon } from '@iconify/react';
 import { OrderItemMobile } from './OrderItemMobile';
 import { OrderItemDesktop } from './OrderItemDesktop';
-import { Icon } from '@iconify/react';
 import s from './OrdersList.module.scss';
 
 const products = [
@@ -32,37 +32,33 @@ const products = [
 export const OrdersList = () => {
   const { width } = useWindowDimensions();
 
-  return (
-    <>
-      {width >= 1260 ? (
-        <div className={s.product_table}>
-          <div className={`${s.headline} ${s.row}`}>
-            <p>№ замовлення</p>
-            <p>Отримано</p>
-            <p>Разом</p>
-            <p>Статус</p>
-            <p>Оновлено</p>
-            <div className={s.headline_number}>
-              <p>Номер посилки</p>
-              <Tooltip
-                text='Введіть тут отриманий на пошті номер відправлення і ми повідомимо покупця, що товар вже прямує до нього'
-                className={s.headline_tooltip}
-              >
-                <Icon icon='solar:info-circle-outline' />
-              </Tooltip>
-            </div>
-          </div>
-          {products.map((product) => (
-            <OrderItemDesktop {...product} key={product.orderNumber} />
-          ))}
+  return width >= 1260 ? (
+    <div className={s.product_table}>
+      <div className={`${s.headline} ${s.row}`}>
+        <p>№ замовлення</p>
+        <p>Отримано</p>
+        <p>Разом</p>
+        <p>Статус</p>
+        <p>Оновлено</p>
+        <div className={s.headline_number}>
+          <p>Номер посилки</p>
+          <Tooltip
+            text='Введіть тут отриманий на пошті номер відправлення і ми повідомимо покупця, що товар вже прямує до нього'
+            className={s.headline_tooltip}
+          >
+            <Icon icon='solar:info-circle-outline' />
+          </Tooltip>
         </div>
-      ) : (
-        <div className={s.product_list}>
-          {products.map((product) => (
-            <OrderItemMobile {...product} key={product.orderNumber} />
-          ))}
-        </div>
-      )}
-    </>
+      </div>
+      {products.map((product) => (
+        <OrderItemDesktop {...product} key={product.orderNumber} />
+      ))}
+    </div>
+  ) : (
+    <div className={s.product_list}>
+      {products.map((product) => (
+        <OrderItemMobile {...product} key={product.orderNumber} />
+      ))}
+    </div>
   );
 };

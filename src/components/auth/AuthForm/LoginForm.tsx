@@ -33,7 +33,7 @@ export const LoginForm = ({
     try {
       await dispatch(login(data)).unwrap();
       isSuccessLogin();
-    } catch (error: any) {
+    } catch (error: unknown) {
       setError('loginError', {
         type: 'manual',
         message:

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Icon } from '@iconify/react';
 import { getStatusColor } from '@/utils/getStatusColor';
 import { OrderItemProps } from '@/types';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
@@ -6,7 +7,6 @@ import { openModal } from '@/store/modalSlice';
 import { OrderProductList } from '../OrderProductList';
 import { ParcelNumberForm } from '../ParcelNumberForm';
 import { OrderDeliveryInfo } from '../OrderDeliveryInfo';
-import { Icon } from '@iconify/react';
 import s from './OrdersList.module.scss';
 
 export const OrderItemDesktop = ({
@@ -19,9 +19,7 @@ export const OrderItemDesktop = ({
   const statusColor = getStatusColor(status, s);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const dispatch = useAppDispatch();
-  const isModalOpen = useAppSelector(
-    (state) => state.modal.addParcelNumber,
-  );
+  const isModalOpen = useAppSelector((state) => state.modal.addParcelNumber);
 
   const handleAddParcelNumberForm = () => {
     dispatch(openModal('addParcelNumber'));
@@ -36,12 +34,14 @@ export const OrderItemDesktop = ({
         <p className={`${s.cell_status} ${statusColor}`}>{status}</p>
         <p className={s.cell_update}>{updateDate}</p>
         <button
+          type='button'
           className={s.cell_button_add}
           onClick={handleAddParcelNumberForm}
         >
           Номер ТТН
         </button>
         <button
+          type='button'
           className={s.cell_button_open}
           onClick={() => setIsOpen(!isOpen)}
         >
@@ -56,7 +56,7 @@ export const OrderItemDesktop = ({
         <div className={s.cell_info}>
           <OrderProductList />
           <OrderDeliveryInfo />
-          <button className={s.order_cancel}>
+          <button type='button' className={s.order_cancel}>
             <Icon icon='solar:close-circle-outline' />
             Скасувати замовлення
           </button>

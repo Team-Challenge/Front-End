@@ -4,10 +4,10 @@ import { OrderItemProps } from '@/types';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
 import { openModal } from '@/store/modalSlice';
 import { Tooltip } from '@/components/UI/Tooltip';
+import { Icon } from '@iconify/react';
 import { OrderProductList } from '../OrderProductList';
 import { ParcelNumberForm } from '../ParcelNumberForm';
 import { OrderDeliveryInfo } from '../OrderDeliveryInfo';
-import { Icon } from '@iconify/react';
 import s from './OrdersList.module.scss';
 
 export const OrderItemMobile = ({
@@ -31,7 +31,7 @@ export const OrderItemMobile = ({
       <div className={s.item}>
         <div className={s.item_title}>
           <p>Замовлення {orderNumber}</p>
-          <button onClick={() => setIsOpen(!isOpen)}>
+          <button type='button' onClick={() => setIsOpen(!isOpen)}>
             <Icon
               icon='solar:alt-arrow-down-outline'
               className={isOpen ? 'icon_open' : 'icon_close'}
@@ -68,6 +68,7 @@ export const OrderItemMobile = ({
               </Tooltip>
             </div>
             <button
+              type='button'
               onClick={handleAddParcelNumberForm}
               className={s.item_parcel_button}
             >
@@ -80,7 +81,7 @@ export const OrderItemMobile = ({
           <>
             <OrderProductList />
             <OrderDeliveryInfo />
-            <button className={s.order_cancel}>
+            <button type='button' className={s.order_cancel}>
               <Icon icon='solar:close-circle-outline' />
               Скасувати замовлення
             </button>

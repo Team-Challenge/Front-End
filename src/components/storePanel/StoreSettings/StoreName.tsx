@@ -27,7 +27,7 @@ export const StoreName = () => {
         placeholder='Назва магазину'
         value={storeName}
         required
-        errorMessage={`Будь ласка, введіть назву магазину`}
+        errorMessage='Будь ласка, введіть назву магазину'
         maxLength={30}
         isServerValidation={hasError}
         isServerError={hasError}
