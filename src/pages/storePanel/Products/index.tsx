@@ -1,4 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
+import { getAllProductsInfo } from '@/store/productPage/productPageThunks';
 import { useWindowDimensions } from '@/hooks/useWindowDimensions';
 import { productStatusList } from '@/constants/productStatusList';
 import { ButtonsBar } from '@/components/ButtonsBar';
@@ -11,36 +14,40 @@ import s from './Products.module.scss';
 
 export const Products = () => {
   const { width } = useWindowDimensions();
-  const [isProductsAvailable, setIsProductsAvailable] = useState<boolean>(true);
-  const [activeButtonId, setActiveButtonId] = useState<number>(1);
+  const { products } = useAppSelector((state) => state.product);
+  const dispatch = useAppDispatch();
+  const [selectedStatus, setSelectedStatus] = useState<string>('Всі');
 
-  const handleButtonClick = (buttonId: number) => {
-    setActiveButtonId(buttonId);
+  const isProductsAvailable = products.length > 0;
+
+  const handleStatusChange = (newStatus: string) => {
+    setSelectedStatus(newStatus);
   };
 
-  return (
-    <>
-      {isProductsAvailable ? (
-        <section className={s.products}>
-          <h4 className={s.products_title}>Мої товари</h4>
-          <button className={s.products_button}>
-            {width <= 500 ? 'Додати' : 'Додати товар'}
-            <Icon icon='solar:add-circle-outline' />
-          </button>
-          <ButtonsBar
-            buttonsList={productStatusList}
-            className={s.products_status}
-          />
-          <ProductSorting />
-          <ProductsList />
-        </section>
-      ) : (
-        <EmptyContentPage
-          title='Ой, тут поки пусто'
-          text='Здається, ви не додали ще жодного товару на наш маркетплейс. Додайте свої унікальні товари та почніть продавати вже зараз!'
-          item={<AddProductButton />}
-        />
-      )}
-    </>
+  useEffect(() => {
+    dispatch(getAllProductsInfo());
+  }, []);
+
+  return isProductsAvailable ? (
+    <section className={s.products}>
+      <h4 className={s.products_title}>Мої товари</h4>
+      <Link to='/account/new-product' className={s.products_button}>
+        {width <= 500 ? 'Додати' : 'Додати товар'}
+        <Icon icon='solar:add-circle-outline' />
+      </Link>
+      <ButtonsBar
+        buttonsList={productStatusList}
+        className={s.products_status}
+        onStatusChange={handleStatusChange}
+      />
+      <ProductSorting />
+      <ProductsList selectedStatus={selectedStatus} />
+    </section>
+  ) : (
+    <EmptyContentPage
+      title='Ой, тут поки пусто'
+      text='Здається, ви не додали ще жодного товару на наш маркетплейс. Додайте свої унікальні товари та почніть продавати вже зараз!'
+      item={<AddProductButton />}
+    />
   );
 };
