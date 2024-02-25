@@ -1,15 +1,9 @@
 import { useState } from 'react';
+import { sortingOptions } from '@/constants/sortingOptions';
 import { Icon } from '@iconify/react';
-import s from './ProductSorting.module.scss';
+import s from './Sorting.module.scss';
 
-const options = [
-  { id: 'popular', label: 'за популярністю' },
-  { id: 'date', label: 'за датою додавання' },
-  { id: 'priceLowToHigh', label: 'від дешевих до дорогих' },
-  { id: 'priceHighToLow', label: 'від дорогих до дешевих' },
-];
-
-export const ProductSorting = () => {
+export const Sorting = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [selectedOption, setSelectedOption] = useState('за популярністю');
 
@@ -32,7 +26,7 @@ export const ProductSorting = () => {
 
       {showDropdown && (
         <ul className={s.dropdown}>
-          {options.map(({ id, label }) => (
+          {sortingOptions.map(({ id, label }) => (
             <li
               key={id}
               onClick={() => handleSortingChange(label)}
