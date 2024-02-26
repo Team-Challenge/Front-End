@@ -74,7 +74,7 @@ export const Categories = () => {
                       setValue('category', id);
 
                       label === 'Набори'
-                        ? setValue('subcategory', 'Набори')
+                        ? setValue('subcategory', 'Набір')
                         : setValue('subcategory', '');
                     }}
                   />
