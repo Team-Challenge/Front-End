@@ -62,9 +62,20 @@ const productSlice = createSlice({
     setAllProducts: (state, action: PayloadAction<ProductData[]>) => {
       state.products = action.payload;
     },
+    setProductStatus: (
+      state,
+      action: PayloadAction<{ productId: number; productStatus: string }>,
+    ) => {
+      const { productId, productStatus } = action.payload;
+      const product = state.products.find((item) => item.id === productId);
+
+      if (product) {
+        product.product_status = productStatus;
+      }
+    },
   },
 });
 
-export const { setAllProducts } = productSlice.actions;
+export const { setAllProducts, setProductStatus } = productSlice.actions;
 
 export default productSlice.reducer;

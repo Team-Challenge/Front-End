@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useAppDispatch } from '@/hooks/reduxHook';
 import { closeModal } from '@/store/modalSlice';
 import { changeProductInfo } from '@/store/productPage/productPageThunks';
+import { setProductStatus } from '@/store/productPage/productPageSlice';
 import { mutableProductStatuses } from '@/constants/statusesList';
 import { Modal } from '@/components/Modal';
 import { OrnamentalTitle } from '@/components/OrnamentalTitle';
@@ -13,12 +14,16 @@ export const ChangeProductStatus = ({ productId }: { productId: number }) => {
   const [status, setStatus] = useState<string>('');
 
   const handleSaveProductStatus = (productStatus: string) => {
-    dispatch(
-      changeProductInfo({
-        data: { product_status: productStatus },
-        product_id: productId,
-      }),
-    );
+    if (status) {
+      dispatch(
+        changeProductInfo({
+          data: { product_status: productStatus },
+          product_id: productId,
+        }),
+      );
+
+      dispatch(setProductStatus({ productId, productStatus }));
+    }
     dispatch(closeModal('changeProductStatus'));
   };
 
