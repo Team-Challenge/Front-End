@@ -42,13 +42,15 @@ export const ProductAddPage = () => {
   } = methods;
 
   const onSubmit: SubmitHandler<ProductAddForm> = async (data) => {
+    console.log(data);
     try {
       const formattedData = {
         category_id: data.category,
         sub_category_name: data.subcategory,
         product_name: data.productName,
         price: data.price,
-        product_description: data.description,
+        product_description:
+          data.description !== '' ? data.description : undefined,
         is_active: true,
         product_status: data.status,
         product_characteristic: {
@@ -114,9 +116,9 @@ export const ProductAddPage = () => {
   };
 
   const handleFormSubmit = () => {
-    if (isValid) {
-      methods.handleSubmit(onSubmit)();
-    } else {
+    methods.handleSubmit(onSubmit)();
+
+    if (!isValid) {
       dispatch(openModal('productAdd'));
     }
   };
