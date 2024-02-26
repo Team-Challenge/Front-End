@@ -1,10 +1,5 @@
 import { Link } from 'react-router-dom';
-import {
-  FieldValues,
-  FormProvider,
-  SubmitHandler,
-  useForm,
-} from 'react-hook-form';
+import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import {
   ProductName,
   ProductDescription,
@@ -18,6 +13,10 @@ import {
   ProductShippingPaymentOptions,
   ProductRefundRules,
 } from '@/components/productAdd';
+import {
+  addNewProduct,
+  uploadStorePhoto,
+} from '@/store/productPage/productPageThunks';
 import { ProductAddForm } from '@/types';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
 import { closeModal, openModal } from '@/store/modalSlice';
@@ -40,35 +39,69 @@ export const ProductAddPage = () => {
     reset,
   } = methods;
 
-  const onSubmit: SubmitHandler<ProductAddForm> = (data) => {
-    const formattedData = {
-      category_id: data.category,
-      sub_category_name: data.subcategory,
-      product_name: data.productName,
-      price: data.price,
-      product_description: data.description,
-      is_active: true,
-      product_status: data.status,
-      product_characteristic: {
-        careInstructions: data.careInstructions,
-        coating: data.coating,
-        colors: data.colors,
-        deadline: data.deadline,
-        decorativeElements: data.decorativeElements,
-        metals: data.metals,
-        other: data.other,
-        parameters: data.parameters,
-        stones: data.stones,
-        textiles: data.textiles,
-      },
-      is_return: data.refunds,
-      delivery_post: data.deliveryMethods,
-      method_of_payment: data.paymentMethods,
-      is_unique: data.uniqueItem,
-    };
+  const onSubmit: SubmitHandler<ProductAddForm> = async (data) => {
+    try {
+      const formattedData = {
+        category_id: data.category,
+        sub_category_name: data.subcategory,
+        product_name: data.productName,
+        price: data.price,
+        product_description: data.description,
+        is_active: true,
+        product_status: data.status,
+        product_characteristic: {
+          careInstructions: data.careInstructions,
+          coating: data.coating,
+          colors: data.colors,
+          deadline: data.deadline,
+          decorativeElements: data.decorativeElements,
+          metals: data.metals,
+          other: data.other,
+          parameters: data.parameters,
+          stones: data.stones,
+          textiles: data.textiles,
+        },
+        is_return: data.refunds,
+        delivery_post: {
+          novaPost: data.deliveryMethods.novaPost,
+          ukrPost: data.deliveryMethods.ukrPost,
+        },
+        method_of_payment: {
+          cardPayment: data.paymentMethods.cardPayment,
+          cashPayment: data.paymentMethods.cashPayment,
+          securePayment: data.paymentMethods.securePayment,
+        },
+        is_unique: data.uniqueItem,
+      };
 
-    // console.log(data);
-    // console.log(formattedData);
+      const productResponse = await dispatch(addNewProduct(formattedData));
+      const productId = productResponse.payload[1].product_id;
+
+      const allPhotos = [
+        { file: data.productPhotoFirst, isMain: 'true' },
+        { file: data.productPhotoSecond, isMain: 'false' },
+        { file: data.productPhotoThird, isMain: 'false' },
+        { file: data.productPhotoFourth, isMain: 'false' },
+      ];
+
+      const existingPhotos = allPhotos.filter((photo) => photo.file);
+      existingPhotos.map(async (photo) => {
+        const formData = new FormData();
+        formData.append('image', photo.file);
+        formData.append('main', photo.isMain);
+
+        await dispatch(
+          uploadStorePhoto({
+            product_id: productId,
+            form_data: formData,
+          }),
+        );
+      });
+
+      dispatch(openModal('productAdd'));
+    } catch (error: unknown) {
+      console.log('error');
+    }
   };
 
   const handleFormSubmit = () => {
