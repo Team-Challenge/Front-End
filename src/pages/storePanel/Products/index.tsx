@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
 import { getAllProductsInfo } from '@/store/productPage/productPageThunks';
 import { useWindowDimensions } from '@/hooks/useWindowDimensions';
-import { productStatusList } from '@/constants/productStatusList';
+import { productStatusList } from '@/constants/statusesList';
 import { ButtonsBar } from '@/components/ButtonsBar';
 import { ProductsList } from '@/components/storePanel/products/ProductsList';
 import { AddProductButton } from '@/components/storePanel/AddProductButton';

@@ -36,7 +36,6 @@ export const productStatusList = [
   },
 ];
 
-
 export const purchaseStatusList = [
   {
     id: 1,
