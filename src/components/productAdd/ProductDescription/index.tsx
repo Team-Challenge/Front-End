@@ -6,7 +6,9 @@ export const ProductDescription = () => {
   return (
     <div className={s.description}>
       <div className='product-add_subtitle_wrap'>
-        <p className='product-add_subtitle'>Опис товару</p>
+        <p className='product-add_subtitle'>
+          Опис товару<span>*</span>
+        </p>
         <Tooltip
           text='Не знаєте що написати?
           Почніть з опису вигляду самого виробу, з яких матеріалів виготовлений, 
@@ -22,8 +24,10 @@ export const ProductDescription = () => {
         id='description'
         placeholder='Приклад: Реконструкція старовинної карпатської силянки, виготовлена з червоного чеського бісеру...'
         rows={11}
+        required
         maxLength={1000}
         minLength={1}
+        errorMessage='Будь ласка, введіть опис свого товару'
         shouldApplyErrorStyles={false}
         shouldApplySuccessStyles={false}
       />
