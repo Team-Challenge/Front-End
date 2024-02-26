@@ -122,6 +122,7 @@ export interface TextAreaProps
   maxLength?: number;
   className?: string;
   editModeIcon?: boolean;
+  errorMessage?: string;
   shouldApplyErrorStyles?: boolean;
   shouldApplySuccessStyles?: boolean;
 }
@@ -360,7 +361,7 @@ export interface ProductStoreItemProps {
   date: string;
   code: number;
   price: string;
-  category: string;
+  categoryId: number;
   status: string;
   onClick?: () => void;
 }
