@@ -10,7 +10,6 @@ export const getAllProductsInfo = createAsyncThunk(
       const response = await $api.get('/products/shop_products');
       if (response.status === 200) {
         dispatch(setAllProducts(response.data));
-        console.log(response.data);
       }
     } catch (e) {
       const error = e as Error;
@@ -21,26 +20,29 @@ export const getAllProductsInfo = createAsyncThunk(
 
 export const addNewProduct = createAsyncThunk(
   'productPage/addNewProduct',
-  async (data: {
-    product_name: string;
-    product_description?: string;
-    category_id: number;
-    sub_category_name: string;
-    product_status: string;
-    is_unique?: boolean;
-    price: string;
-    product_characteristic: ProductCharacteristic;
-    method_of_payment: {
-      cardPayment: boolean;
-      cashPayment: boolean;
-      securePayment: boolean;
-    };
-    delivery_post: {
-      novaPost: boolean;
-      ukrPost: boolean;
-    };
-    is_return?: boolean;
-  }) => {
+  async (
+    data: {
+      product_name: string;
+      product_description?: string;
+      category_id: number;
+      sub_category_name: string;
+      product_status: string;
+      is_unique?: boolean;
+      price: string;
+      product_characteristic: ProductCharacteristic;
+      method_of_payment: {
+        cardPayment: boolean;
+        cashPayment: boolean;
+        securePayment: boolean;
+      };
+      delivery_post: {
+        novaPost: boolean;
+        ukrPost: boolean;
+      };
+      is_return?: boolean;
+    },
+    { rejectWithValue },
+  ) => {
     try {
       const response = await $api.post('/products/product', {
         product_name: data.product_name,
@@ -59,9 +61,10 @@ export const addNewProduct = createAsyncThunk(
       if (response.status === 201) {
         return response.data;
       }
-    } catch (e) {
-      const error = e as Error;
-      throw error;
+    } catch (e: any) {
+      const errorMessage =
+        e.response?.data?.message || 'Помилка додавання товару';
+      return rejectWithValue(errorMessage);
     }
   },
 );

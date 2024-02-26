@@ -29,6 +29,9 @@ import s from './ProductAddPage.module.scss';
 export const ProductAddPage = () => {
   const dispatch = useAppDispatch();
   const isModalOpen = useAppSelector((state) => state.modal.productAdd);
+  const isServerErrorModalOpen = useAppSelector(
+    (state) => state.modal.errorToAddProduct,
+  );
 
   const methods = useForm<ProductAddForm>({
     mode: 'onChange',
@@ -36,7 +39,6 @@ export const ProductAddPage = () => {
 
   const {
     formState: { isValid },
-    reset,
   } = methods;
 
   const onSubmit: SubmitHandler<ProductAddForm> = async (data) => {
@@ -75,43 +77,52 @@ export const ProductAddPage = () => {
       };
 
       const productResponse = await dispatch(addNewProduct(formattedData));
-      const productId = productResponse.payload[1].product_id;
 
-      const allPhotos = [
-        { file: data.productPhotoFirst, isMain: 'true' },
-        { file: data.productPhotoSecond, isMain: 'false' },
-        { file: data.productPhotoThird, isMain: 'false' },
-        { file: data.productPhotoFourth, isMain: 'false' },
-      ];
+      if (productResponse.payload !== 'Помилка додавання товару') {
+        const productId = productResponse.payload[1].product_id;
 
-      const existingPhotos = allPhotos.filter((photo) => photo.file);
-      existingPhotos.map(async (photo) => {
-        const formData = new FormData();
-        formData.append('image', photo.file);
-        formData.append('main', photo.isMain);
+        const allPhotos = [
+          { file: data.productPhotoFirst, isMain: 'true' },
+          { file: data.productPhotoSecond, isMain: 'false' },
+          { file: data.productPhotoThird, isMain: 'false' },
+          { file: data.productPhotoFourth, isMain: 'false' },
+        ];
 
-        await dispatch(
-          uploadStorePhoto({
-            product_id: productId,
-            form_data: formData,
-          }),
-        );
-      });
+        const existingPhotos = allPhotos.filter((photo) => photo.file);
+        existingPhotos.map(async (photo) => {
+          const formData = new FormData();
+          formData.append('image', photo.file);
+          formData.append('main', photo.isMain);
 
-      dispatch(openModal('productAdd'));
+          await dispatch(
+            uploadStorePhoto({
+              product_id: productId,
+              form_data: formData,
+            }),
+          );
+        });
+
+        dispatch(openModal('productAdd'));
+      }
+
+      if (productResponse.payload === 'Помилка додавання товару') {
+        dispatch(openModal('errorToAddProduct'));
+      }
     } catch (error: unknown) {
-      console.log('error');
+      console.log(error);
     }
   };
 
   const handleFormSubmit = () => {
-    dispatch(openModal('productAdd'));
-    methods.handleSubmit(onSubmit)();
+    if (isValid) {
+      methods.handleSubmit(onSubmit)();
+    } else {
+      dispatch(openModal('productAdd'));
+    }
   };
 
-  const closeModalWindow = () => {
-    dispatch(closeModal('productAdd'));
-    reset();
+  const closeModalWindow = (id: string) => {
+    dispatch(closeModal(id));
   };
 
   return (
@@ -175,7 +186,7 @@ export const ProductAddPage = () => {
                 isLink
                 path='/account/store/products'
                 label='Готово!'
-                onClick={closeModalWindow}
+                onClick={() => closeModalWindow('productAdd')}
                 className={s.modal_button}
               />
             </>
@@ -188,13 +199,27 @@ export const ProductAddPage = () => {
               </p>
               <ButtonUI
                 label='Повернутися'
-                onClick={() => {
-                  dispatch(closeModal('productAdd'));
-                }}
+                onClick={() => closeModalWindow('productAdd')}
                 className={s.modal_button}
               />
             </>
           )}
+        </Modal>
+      )}
+
+      {!isModalOpen && isServerErrorModalOpen && (
+        <Modal modalId='errorToAddProduct' className={s.modal}>
+          <OrnamentalTitle tag='h4' text='Виникла помилка!' />
+          <p className={s.modal_text}>
+            Виникла непередбачувана помилка. Будь ласка, спробуйте ще раз.
+          </p>
+          <ButtonUI
+            isLink
+            path='/account/store/products'
+            label='Закрити'
+            onClick={() => closeModalWindow('errorToAddProduct')}
+            className={s.modal_button}
+          />
         </Modal>
       )}
     </section>
