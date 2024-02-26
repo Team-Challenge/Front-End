@@ -62,8 +62,8 @@ export const ReviewStatisticsPanel = () => {
       </div>
 
       <div className={s.scores}>
-        <p className={s.hint}>
-          Як розраховується рейтинг
+        <div className={s.hint}>
+          <p>Як розраховується рейтинг</p>
           <Tooltip
             text=' Рейтинг магазину - це середнє значення усіх оцінок за ваші товари. Чим
           більше у вас товарів з високими оцінками - тим вище ваш рейтинг.'
@@ -71,7 +71,7 @@ export const ReviewStatisticsPanel = () => {
           >
             <Icon icon='solar:question-circle-outline' />
           </Tooltip>
-        </p>
+        </div>
         <ul className={s.scores_list}>
           {ratingList.map(({ id, rating, percent, numberOfReviews }) => (
             <li key={id} className={s.item}>
