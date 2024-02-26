@@ -1,6 +1,5 @@
 import { ProductStoreItemProps } from '@/types';
-import { useAppDispatch } from '@/hooks/reduxHook';
-import { openModal } from '@/store/modalSlice';
+import { categoryList } from '@/constants/categoryList';
 import { Tooltip } from '@/components/UI/Tooltip';
 import { Icon } from '@iconify/react';
 import s from './ProductsList.module.scss';
@@ -11,17 +10,14 @@ export const ProductItemMobile = ({
   date,
   code,
   price,
-  category,
+  categoryId,
   status,
+  onClick,
 }: ProductStoreItemProps) => {
-  const dispatch = useAppDispatch();
-
-  const openModalWindow = () => {
-    dispatch(openModal('changeProductStatus'));
-  };
-
   const mainPhoto = photos.find((photo) => photo.main === true);
   const photo = mainPhoto?.product_photo;
+
+  const category = categoryList.find((item) => item.id === categoryId);
 
   return (
     <div className={s.item}>
@@ -47,14 +43,14 @@ export const ProductItemMobile = ({
         </p>
         <p className={s.item_category}>
           Категорія
-          <span>{category}</span>
+          <span>{category?.label}</span>
         </p>
         <p className={s.item_date}>
           Дата додавання
           <span>{date}</span>
         </p>
         <div className={s.item_status}>
-          <p>
+          <div className={s.item_status_wrap}>
             <span>Статус</span>
             <Tooltip
               text='Щоб змінити статус товару, просто клікніть на поточний статус та оберіть інший'
@@ -62,11 +58,11 @@ export const ProductItemMobile = ({
             >
               <Icon icon='solar:info-circle-outline' />
             </Tooltip>
-          </p>
+          </div>
           <button
             type='button'
             className={s.item_status_button}
-            onClick={openModalWindow}
+            onClick={onClick}
           >
             {status}
           </button>

@@ -1,6 +1,5 @@
 import { ProductStoreItemProps } from '@/types';
-import { useAppDispatch } from '@/hooks/reduxHook';
-import { openModal } from '@/store/modalSlice';
+import { categoryList } from '@/constants/categoryList';
 import { Icon } from '@iconify/react';
 import s from './ProductsList.module.scss';
 
@@ -10,16 +9,14 @@ export const ProductItemDesktop = ({
   date,
   code,
   price,
-  category,
+  categoryId,
   status,
+  onClick,
 }: ProductStoreItemProps) => {
-  const dispatch = useAppDispatch();
-
-  const openModalWindow = () => {
-    dispatch(openModal('changeProductStatus'));
-  };
   const mainPhoto = photos.find((photo) => photo.main === true);
   const photo = mainPhoto?.product_photo;
+
+  const category = categoryList.find((item) => item.id === categoryId);
 
   return (
     <>
@@ -30,13 +27,9 @@ export const ProductItemDesktop = ({
       <p className={s.cell_date}>{date}</p>
       <p className={s.cell_code}>{code}</p>
       <p className={s.cell_price}>{price}₴</p>
-      <p className={s.cell_category}>{category}</p>
+      <p className={s.cell_category}>{category?.label}</p>
       <div className={s.cell_buttons}>
-        <button
-          type='button'
-          className={s.cell_status}
-          onClick={openModalWindow}
-        >
+        <button type='button' className={s.cell_status} onClick={onClick}>
           {status}
         </button>
         <button type='button' className={s.cell_edit}>

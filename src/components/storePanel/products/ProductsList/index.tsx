@@ -1,19 +1,58 @@
-import { Icon } from '@iconify/react';
-import { useAppSelector } from '@/hooks/reduxHook';
-import { useWindowDimensions } from '@/hooks/useWindowDimensions';
+import { useState } from 'react';
 import { formatDate } from '@/utils/formatDate';
+import { useWindowDimensions } from '@/hooks/useWindowDimensions';
+import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
+import { openModal } from '@/store/modalSlice';
+import { Icon } from '@iconify/react';
 import { Tooltip } from '@/components/UI/Tooltip';
 import { ProductItemDesktop } from './ProductItemDesktop';
 import { ProductItemMobile } from './ProductItemMobile';
 import { ChangeProductStatus } from '../ChangeProductStatus';
 import s from './ProductsList.module.scss';
 
-export const ProductsList = () => {
+export const ProductsList = ({
+  selectedStatus,
+}: {
+  selectedStatus: string;
+}) => {
+  const [activeProductId, setActiveProductId] = useState<number | null>(null);
   const { width } = useWindowDimensions();
   const { products } = useAppSelector((state) => state.product);
+  const dispatch = useAppDispatch();
   const isModalOpen = useAppSelector(
     (state) => state.modal.changeProductStatus,
   );
+
+  const filteredProducts = products.filter((product) => {
+    if (selectedStatus === 'Всі') {
+      return true;
+    }
+
+    if (selectedStatus === 'В наявності') {
+      return product.product_status === 'В наявності' && product.is_active;
+    }
+
+    if (selectedStatus === 'Нема в наявності') {
+      return (
+        product.product_status === 'Нема в наявності' || !product.is_active
+      );
+    }
+
+    if (selectedStatus === 'Під замовлення') {
+      return product.product_status === 'Під замовлення' && product.is_active;
+    }
+
+    if (selectedStatus === 'В єдиному екземплярі') {
+      return product.is_unique && product.is_active;
+    }
+
+    return false;
+  });
+
+  const openChangeProductStatusModal = (productId: number) => {
+    dispatch(openModal('changeProductStatus'));
+    setActiveProductId(productId);
+  };
 
   return (
     <>
@@ -36,7 +75,7 @@ export const ProductsList = () => {
               </Tooltip>
             </div>
           </div>
-          {products.map((product) => (
+          {filteredProducts.map((product) => (
             <div className={`${s.cell} ${s.row}`} key={product.id}>
               <ProductItemDesktop
                 photos={product.photos}
@@ -44,30 +83,34 @@ export const ProductsList = () => {
                 date={formatDate(product.time_added)}
                 code={product.id}
                 price={product.price}
-                category={product.sub_category_name}
+                categoryId={product.category_id}
                 status={product.product_status}
+                onClick={() => openChangeProductStatusModal(product.id)}
               />
             </div>
           ))}
         </div>
       ) : (
         <div className={s.block}>
-          {products.map((product) => (
+          {filteredProducts.map((product) => (
             <ProductItemMobile
               photos={product.photos}
               title={product.product_name}
               date={formatDate(product.time_added)}
               code={product.id}
               price={product.price}
-              category={product.sub_category_name}
+              categoryId={product.category_id}
               status={product.product_status}
               key={product.id}
+              onClick={() => openChangeProductStatusModal(product.id)}
             />
           ))}
         </div>
       )}
 
-      {isModalOpen && <ChangeProductStatus />}
+      {isModalOpen && (
+        <ChangeProductStatus productId={activeProductId as number} />
+      )}
     </>
   );
 };

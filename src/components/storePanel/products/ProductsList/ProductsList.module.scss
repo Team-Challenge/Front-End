@@ -128,6 +128,10 @@
     }
   }
 
+  &_category {
+    text-transform: lowercase;
+  }
+
   &_buttons {
     display: grid;
     grid-template-columns: 165px 1fr;
@@ -250,6 +254,10 @@
     color: $text-color;
   }
 
+  &_category {
+    text-transform: lowercase;
+  }
+
   &_wrap {
     display: grid;
     gap: 1rem;
@@ -269,7 +277,11 @@
     align-items: center;
     justify-content: space-between;
 
-    p {
+    &_wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+
       span {
         color: $grey;
         font-size: 0.813rem;
