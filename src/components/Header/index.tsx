@@ -3,13 +3,13 @@ import { useAppSelector } from '@/hooks/reduxHook';
 import { useWindowDimensions } from '@/hooks/useWindowDimensions';
 import { useToggleMenu } from '@/hooks/useToggleMenu';
 import { categoryList } from '@/constants/categoryList';
+import { Icon } from '@iconify/react';
 import { SignIn } from '../auth/SignIn';
 import { SignUp } from '../auth/SignUp';
 import { UserDropdownMenu } from '../UserDropdownMenu';
 import { ShopDropdownMenu } from '../ShopDropdownMenu';
 import { Modal } from '../Modal';
 import LogoImg from '../../assets/logo.svg';
-import { Icon } from '@iconify/react';
 import s from './Header.module.scss';
 
 export const Header = () => {
@@ -42,6 +42,7 @@ export const Header = () => {
         {width <= 991.98 && (
           <div className={s.header_burger}>
             <button
+              type='button'
               onClick={(event) => toggleBurgerMenu(event)}
               className={`${s.icon_burger} ${
                 isBurgerMenuOpen ? s.open : s.closed
@@ -51,14 +52,14 @@ export const Header = () => {
               <span className={s.icon_bar} />
               <span className={s.icon_bar} />
             </button>
-            <button>
+            <button type='button'>
               <Icon icon='solar:magnifer-outline' />
             </button>
           </div>
         )}
 
         <div className={s.header_buttons}>
-          <button className={s.icon_search}>
+          <button type='button' className={s.icon_search}>
             <Icon icon='solar:magnifer-outline' />
           </button>
 
@@ -66,7 +67,10 @@ export const Header = () => {
             <>
               {isAuth && hasStore && (
                 <div className={`${s.icon_shop} ${s.header_dropdown}`}>
-                  <button onClick={(event) => toggleShopMenu(event)}>
+                  <button
+                    type='button'
+                    onClick={(event) => toggleShopMenu(event)}
+                  >
                     <Icon icon='solar:shop-2-outline' />
                     <Icon
                       icon='solar:alt-arrow-down-outline'
@@ -80,7 +84,10 @@ export const Header = () => {
               )}
 
               <div className={`${s.icon_user} ${s.header_dropdown}`}>
-                <button onClick={(event) => toggleUserMenu(event)}>
+                <button
+                  type='button'
+                  onClick={(event) => toggleUserMenu(event)}
+                >
                   <Icon icon='solar:user-outline' />
                   <Icon
                     icon='solar:alt-arrow-down-outline'
@@ -92,10 +99,10 @@ export const Header = () => {
             </>
           )}
 
-          <button className={s.icon_favorite}>
+          <button type='button' className={s.icon_favorite}>
             <Icon icon='solar:heart-outline' />
           </button>
-          <button className={s.icon_cart}>
+          <button type='button' className={s.icon_cart}>
             <Icon icon='solar:bag-5-outline' />
           </button>
         </div>
@@ -106,6 +113,7 @@ export const Header = () => {
           <SignIn />
         </Modal>
       )}
+
       {isRegistrationModalOpen && (
         <Modal modalId='isRegistration'>
           <SignUp />
