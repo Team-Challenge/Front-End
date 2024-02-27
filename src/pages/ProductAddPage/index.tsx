@@ -28,9 +28,14 @@ import s from './ProductAddPage.module.scss';
 
 export const ProductAddPage = () => {
   const dispatch = useAppDispatch();
-  const isModalOpen = useAppSelector((state) => state.modal.productAdd);
-  const isServerErrorModalOpen = useAppSelector(
-    (state) => state.modal.errorToAddProduct,
+  const isSuccessModal = useAppSelector(
+    (state) => state.modal.successAddProduct,
+  );
+  const isFormErrorModal = useAppSelector(
+    (state) => state.modal.errorFormAddProduct,
+  );
+  const isServerErrorModal = useAppSelector(
+    (state) => state.modal.serverErrorAddProduct,
   );
 
   const methods = useForm<ProductAddForm>({
@@ -42,7 +47,6 @@ export const ProductAddPage = () => {
   } = methods;
 
   const onSubmit: SubmitHandler<ProductAddForm> = async (data) => {
-    console.log(data);
     try {
       const formattedData = {
         category_id: data.category,
@@ -104,11 +108,11 @@ export const ProductAddPage = () => {
           );
         });
 
-        dispatch(openModal('productAdd'));
+        dispatch(openModal('successAddProduct'));
       }
 
       if (productResponse.payload === 'Помилка додавання товару') {
-        dispatch(openModal('errorToAddProduct'));
+        dispatch(openModal('serverErrorAddProduct'));
       }
     } catch (error: unknown) {
       console.log(error);
@@ -119,7 +123,7 @@ export const ProductAddPage = () => {
     methods.handleSubmit(onSubmit)();
 
     if (!isValid) {
-      dispatch(openModal('productAdd'));
+      dispatch(openModal('errorFormAddProduct'));
     }
   };
 
@@ -175,42 +179,40 @@ export const ProductAddPage = () => {
         </FormProvider>
       </div>
 
-      {isModalOpen && (
-        <Modal modalId='productAdd' className={s.modal}>
-          {isValid ? (
-            <>
-              <OrnamentalTitle tag='h4' text='Товар успішно додано!' />
-              <p className={s.modal_text}>
-                Товар успішно додано до вашого списку. Ви можете переглянути
-                його у своєму особистому кабінеті або на сторінці магазину.
-              </p>
-              <ButtonUI
-                isLink
-                path='/account/store/products'
-                label='Готово!'
-                onClick={() => closeModalWindow('productAdd')}
-                className={s.modal_button}
-              />
-            </>
-          ) : (
-            <>
-              <OrnamentalTitle tag='h4' text='Виникла помилка!' />
-              <p className={s.modal_text}>
-                Ой. Здається, ви пропустили заповнення одного з полів. Будь
-                ласка, поверніться та перегляньте форму.
-              </p>
-              <ButtonUI
-                label='Повернутися'
-                onClick={() => closeModalWindow('productAdd')}
-                className={s.modal_button}
-              />
-            </>
-          )}
+      {isSuccessModal && (
+        <Modal modalId='successAddProduct' className={s.modal}>
+          <OrnamentalTitle tag='h4' text='Товар успішно додано!' />
+          <p className={s.modal_text}>
+            Товар успішно додано до вашого списку. Ви можете переглянути його у
+            своєму особистому кабінеті або на сторінці магазину.
+          </p>
+          <ButtonUI
+            isLink
+            path='/account/store/products'
+            label='Готово!'
+            onClick={() => closeModalWindow('successAddProduct')}
+            className={s.modal_button}
+          />
         </Modal>
       )}
 
-      {!isModalOpen && isServerErrorModalOpen && (
-        <Modal modalId='errorToAddProduct' className={s.modal}>
+      {isFormErrorModal && (
+        <Modal modalId='errorFormAddProduct' className={s.modal}>
+          <OrnamentalTitle tag='h4' text='Виникла помилка!' />
+          <p className={s.modal_text}>
+            Ой. Здається, ви пропустили заповнення одного з полів. Будь ласка,
+            поверніться та перегляньте форму.
+          </p>
+          <ButtonUI
+            label='Повернутися'
+            onClick={() => closeModalWindow('errorFormAddProduct')}
+            className={s.modal_button}
+          />
+        </Modal>
+      )}
+
+      {isServerErrorModal && (
+        <Modal modalId='serverErrorAddProduct' className={s.modal}>
           <OrnamentalTitle tag='h4' text='Виникла помилка!' />
           <p className={s.modal_text}>
             Виникла непередбачувана помилка. Будь ласка, спробуйте ще раз.
@@ -219,7 +221,7 @@ export const ProductAddPage = () => {
             isLink
             path='/account/store/products'
             label='Закрити'
-            onClick={() => closeModalWindow('errorToAddProduct')}
+            onClick={() => closeModalWindow('serverErrorAddProduct')}
             className={s.modal_button}
           />
         </Modal>
