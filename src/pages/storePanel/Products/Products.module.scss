@@ -23,6 +23,17 @@
     gap: 0.5rem;
   }
 
+  &_sorting {
+    grid-area: sorting;
+    justify-self: end;
+    margin-top: toRem(-14);
+
+    @media (max-width: $mobileSmall) {
+      justify-self: start;
+      margin-top: toRem(-5);
+    }
+  }
+
   &_title {
     grid-area: title;
   }

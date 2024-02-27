@@ -3,7 +3,7 @@ import { sortingOptions } from '@/constants/sortingOptions';
 import { Icon } from '@iconify/react';
 import s from './Sorting.module.scss';
 
-export const Sorting = () => {
+export const Sorting = ({ className }: { className?: string }) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [selectedOption, setSelectedOption] = useState('за популярністю');
 
@@ -17,7 +17,7 @@ export const Sorting = () => {
   };
 
   return (
-    <div className={s.sorting}>
+    <div className={`${s.sorting} ${className}`}>
       <div className={s.sort} onClick={toggleDropdown}>
         Сортувати:
         <p>{selectedOption}</p>

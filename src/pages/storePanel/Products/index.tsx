@@ -40,7 +40,7 @@ export const Products = () => {
         className={s.products_status}
         onStatusChange={handleStatusChange}
       />
-      <Sorting />
+      <Sorting className={s.products_sorting} />
       <ProductsList selectedStatus={selectedStatus} />
     </section>
   ) : (

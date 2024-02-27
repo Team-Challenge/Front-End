@@ -1,14 +1,7 @@
 @import '@/styles/index.scss';
 
 .sorting {
-  grid-area: sorting;
-  justify-self: end;
-  margin-top: toRem(-14);
   position: relative;
-
-  @media (max-width: $mobileSmall) {
-    justify-self: start;
-  }
 }
 
 .sort {
@@ -19,10 +12,6 @@
   display: flex;
   align-items: center;
   gap: 0.25rem;
-
-  @media (max-width: $mobile) {
-    margin-top: toRem(10);
-  }
 
   p {
     color: $text-color;
