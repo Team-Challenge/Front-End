@@ -1,9 +1,12 @@
 import { Link, NavLink } from 'react-router-dom';
+import { useAppSelector } from '@/hooks/reduxHook';
 import { storePanelButtonsList } from '@/constants/storePanelButtonsList';
 import { Icon } from '@iconify/react';
 import s from './StorePanel.module.scss';
 
 export const StorePanel = () => {
+  const { linkToStore } = useAppSelector((state) => state.storeProfile);
+
   return (
     <aside className='cabinet-sidebar-nav'>
       <Link
@@ -28,7 +31,7 @@ export const StorePanel = () => {
         </NavLink>
       ))}
       <span className='cabinet-sidebar-nav_line' />
-      <Link to='/account/store' className='cabinet-sidebar-nav_btn'>
+      <Link to={`/store/${linkToStore}`} className='cabinet-sidebar-nav_btn'>
         <Icon icon='solar:square-top-down-outline' />
         Мій магазин
       </Link>
