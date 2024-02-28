@@ -1,0 +1,330 @@
+@import '@/styles/index.scss';
+
+.table {
+  grid-area: list;
+  max-width: toRem(960);
+  width: 100%;
+  border: 1px solid $white-smoke;
+  border-radius: 0.25rem;
+  margin-top: toRem(-10);
+  overflow: hidden;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 63px minmax(140px, 174px) minmax(117px, 128px) 77px 62px 95px 1fr;
+  grid-template-rows: 100% auto;
+  justify-items: start;
+  align-items: center;
+  @include adaptiveValue('column-gap', 20, 4, 0, 1440, 1100);
+}
+
+.headline {
+  padding: toRem(8) toRem(12);
+  background: $white-smoke;
+
+  @media (max-width: $tablet) {
+    padding: toRem(8) toRem(5);
+  }
+
+  p {
+    font-size: 0.813rem;
+    font-weight: 500;
+    line-height: 1rem;
+
+    @media (max-width: $tablet) {
+      font-size: 0.688rem;
+    }
+  }
+
+  &_status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  
+    svg {
+      width: 1rem;
+      height: 1rem;
+      color: $green;
+    }
+  }
+
+  &_tooltip {
+    div {
+      width: toRem(297);
+      top: 30px;
+      right: 8px;
+      border-top-right-radius: 0px;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: -14px;
+        right: 0;
+        border-bottom: 15px solid $pale-yellow;
+        border-left: 15px solid transparent;
+      }
+
+      p {
+        font-size: 0.75rem;
+        font-weight: 300;
+      }
+    }
+  }
+}
+
+.cell {
+  padding: toRem(12);
+
+  @media (max-width: $tablet) {
+    padding: toRem(9) toRem(5);
+  }
+
+  &:not(:last-child) {
+    border-bottom: 1px solid $white-grey;
+  }
+
+  &_title {
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.28px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    @media (max-width: $tablet) {
+      font-size: 0.75rem;
+    }
+  }
+
+  &_img {
+    width: toRem(64);
+    height: toRem(46);
+    overflow: hidden;
+    font-size: 0.75rem;
+
+    @media (max-width: $tablet) {
+      width: toRem(45);
+      height: toRem(35);
+      font-size: 0.6rem;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 0.125rem;
+    }
+  }
+
+  p {
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.28px;
+
+    @media (max-width: $tablet) {
+      font-size: 0.75rem;
+    }
+  }
+
+  &_category {
+    text-transform: lowercase;
+  }
+
+  &_buttons {
+    display: grid;
+    grid-template-columns: 165px 1fr;
+    justify-items: center;
+    gap: 1.75rem;
+
+    @media (max-width: $tablet) {
+      grid-template-columns: 130px 1fr;
+      gap: 1.25rem;
+    }
+  }
+
+  &_status {
+    max-width: toRem(165);
+    width: 100%;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.28px;
+    padding: toRem(8) toRem(12);
+    background: $azure;
+    border-radius: 0.25rem;
+
+    @media (max-width: $tablet) {
+      max-width: toRem(130);
+      width: 100%;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.28px;
+      padding: toRem(6) toRem(10);
+    }
+  }
+
+  &_edit {
+    color: $green;
+  }
+}
+
+.block {
+  width: 100%;
+  grid-area: list;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(312px, auto));
+  gap: 0.75rem;
+}
+
+.header {
+  display: grid;
+  grid-template-areas: 'img subtitle btn' 'img title btn';
+  grid-template-columns: 68px 170px 1fr;
+  justify-items: start;
+  column-gap: 0.5rem;
+
+  &_img {
+    grid-area: img;
+    width: toRem(68);
+    height: toRem(48);
+    overflow: hidden;
+    font-size: 0.7rem;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &_subtitle {
+    grid-area: subtitle;
+    color: $grey;
+    font-size: 0.813rem;
+    font-weight: 500;
+    line-height: 1rem;
+  }
+
+  &_title {
+    grid-area: title;
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1rem;
+    letter-spacing: 0.28px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &_edit {
+    grid-area: btn;
+    justify-self: end;
+
+    svg {
+      width: 1rem;
+      height: 1rem;
+      color: $green;
+    }
+  }
+
+}
+
+.item {
+  width: clamp(toRem(320), 100%, toRem(430));
+  justify-self: center;
+  border: 1px solid $white-grey;
+  border-radius: 0.25rem;
+  padding: toRem(16) toRem(12);
+
+  p {
+    color: $grey;
+    font-size: 0.813rem;
+    font-weight: 500;
+    line-height: 1rem;
+    letter-spacing: 0.28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  p span {
+    font-size: 0.875rem;
+    color: $text-color;
+  }
+
+  &_category {
+    text-transform: lowercase;
+  }
+
+  &_wrap {
+    display: grid;
+    gap: 1rem;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 100%;
+      height: 2px;
+      background: $azure;
+      margin: toRem(9) 0 toRem(-4);
+    }
+  }
+
+  &_status {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &_wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+
+      span {
+        color: $grey;
+        font-size: 0.813rem;
+      }
+
+      svg {
+        width: 1rem;
+        height: 1rem;
+        color: $green;
+        margin-left: 0.25rem;
+      }
+    }
+
+    &_button {
+      max-width: toRem(165);
+      width: 100%;
+      font-size: 0.875rem;
+      font-weight: 500;
+      line-height: 1rem;
+      letter-spacing: 0.28px;
+      color: $text-color;
+      background: $azure;
+      border-radius: 0.25rem;
+      padding: toRem(8) toRem(12);
+    }
+  }
+
+  &_tooltip {
+    div {
+      width: toRem(207);
+      top: -36px;
+      left: 40px;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 37px;
+        left: -20px;
+        border-bottom: 15px solid $pale-yellow;
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        rotate: -90deg;
+      }
+    }
+  }
+}

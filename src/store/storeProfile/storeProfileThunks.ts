@@ -34,7 +34,7 @@ export const getStoreInfo = createAsyncThunk(
 
 export const changeStoreInfo = createAsyncThunk(
   'storeSettings/changeInfo',
-  async (credentials: {
+  async (data: {
     name?: string | undefined;
     description?: string | undefined;
     phone_number?: string | undefined;
@@ -42,10 +42,10 @@ export const changeStoreInfo = createAsyncThunk(
   }) => {
     try {
       const response = await $api.post('/shops/shop', {
-        name: credentials.name,
-        description: credentials.description,
-        phone_number: credentials.phone_number,
-        link: credentials.link,
+        name: data.name,
+        description: data.description,
+        phone_number: data.phone_number,
+        link: data.link,
       });
       if (response.status === 200) {
         return response.data;
@@ -67,7 +67,8 @@ export const uploadStorePhoto = createAsyncThunk(
         },
       });
       return response.data;
-    } catch (error) {
+    } catch (e) {
+      const error = e as Error;
       throw error;
     }
   },
@@ -81,7 +82,8 @@ export const deleteStorePhoto = createAsyncThunk(
       if (response.status === 200) {
         return response.data;
       }
-    } catch (error) {
+    } catch (e) {
+      const error = e as Error;
       throw error;
     }
   },
@@ -97,7 +99,8 @@ export const changeBanner = createAsyncThunk(
         },
       });
       return response.data;
-    } catch (error) {
+    } catch (e) {
+      const error = e as Error;
       throw error;
     }
   },
@@ -109,7 +112,8 @@ export const deleteBanner = createAsyncThunk(
     try {
       const response = await $api.delete('shops/shop_banner');
       return response.data;
-    } catch (error) {
+    } catch (e) {
+      const error = e as Error;
       throw error;
     }
   },

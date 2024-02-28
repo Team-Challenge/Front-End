@@ -1,0 +1,114 @@
+@import '@/styles/index.scss';
+
+.products {
+  grid-area: products;
+
+  &_list {
+    display: grid;
+    gap: 0.75rem;
+    margin: toRem(16) 0 toRem(12);
+
+    &::after {
+      content: '';
+      display: inline-block;
+      width: 100%;
+      height: 2px;
+      background: $azure;
+    }
+
+    @media (max-width: $desktop) {
+      margin-bottom: toRem(10);
+    }
+  }
+
+  &_total {
+    font-family: 'Craftwork Grotesk', sans-serif;
+    font-weight: 600;
+    line-height: 1.25rem;
+    letter-spacing: 0.32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.product {
+  display: grid;
+  grid-template-areas:
+    'img title price'
+    'img code price'
+    'img quantity price';
+  grid-template-columns: toRem(88) auto 1fr;
+  column-gap: 0.75rem;
+
+  &_img {
+    grid-area: img;
+    width: toRem(88);
+    height: toRem(64);
+    font-size: 0.8rem;
+
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 2px;
+    }
+  }
+
+  &_title {
+    grid-area: title;
+    color: $green;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.813rem;
+    font-weight: 500;
+    line-height: 1rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &_code {
+    grid-area: code;
+    color: $grey;
+    font-size: 0.75rem;
+    font-weight: 300;
+    line-height: 1rem;
+  }
+
+  &_quantity {
+    grid-area: quantity;
+    color: $grey;
+    font-size: 0.75rem;
+    font-weight: 300;
+    line-height: 1rem;
+
+    span {
+      color: $text-color;
+    }
+  }
+
+  &_price {
+    grid-area: price;
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    gap: 0.25rem;
+    color: $grey;
+    font-size: 0.75rem;
+    font-weight: 300;
+    line-height: 1rem;
+    margin-left: toRem(16);
+
+    span {
+      color: $text-color;
+      font-family: 'Craftwork Grotesk', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      line-height: 1rem;
+      letter-spacing: 0.42px;
+    }
+
+    @media (max-width: $desktop) {
+      justify-self: end;
+    }
+  }
+}

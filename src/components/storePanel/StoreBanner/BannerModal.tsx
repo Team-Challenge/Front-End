@@ -25,31 +25,29 @@ export const BannerModal = ({ handleBannerUpload }: BannerModalProps) => {
   };
 
   return (
-    <>
-      {isModalOpen && (
-        <Modal modalId='storeBanner' className={s.modal}>
-          <OrnamentalTitle tag='h4' text='Фото банера' />
-          <FileDrop
-            onChange={handleAddImage}
-            className={`${s.modal_block} ${files ? s.modal_img : s.modal_text}`}
-          >
-            {files ? (
-              <img src={URL.createObjectURL(files[0])} alt='banner' />
-            ) : (
-              <>
-                <p>Натисніть, щоб завантажити фото</p>
-                <Icon icon='solar:camera-outline' />
-              </>
-            )}
-          </FileDrop>
-          <p className={s.modal_hint}>Допустимі розміри банера 360х160</p>
-          <ButtonUI
-            label='Зберегти'
-            onClick={handleSave}
-            className={s.modal_button}
-          />
-        </Modal>
-      )}
-    </>
+    isModalOpen && (
+      <Modal modalId='storeBanner' className={s.modal}>
+        <OrnamentalTitle tag='h4' text='Фото банера' />
+        <FileDrop
+          onChange={handleAddImage}
+          className={`${s.modal_block} ${files ? s.modal_img : s.modal_text}`}
+        >
+          {files ? (
+            <img src={URL.createObjectURL(files[0])} alt='banner' />
+          ) : (
+            <>
+              <p>Натисніть, щоб завантажити фото</p>
+              <Icon icon='solar:camera-outline' />
+            </>
+          )}
+        </FileDrop>
+        <p className={s.modal_hint}>Допустимі розміри банера 360х160</p>
+        <ButtonUI
+          label='Зберегти'
+          onClick={handleSave}
+          className={s.modal_button}
+        />
+      </Modal>
+    )
   );
 };

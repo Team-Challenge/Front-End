@@ -36,7 +36,7 @@ export const Materials = () => {
                 field={field}
                 options={metalsList}
                 placeholder='Почніть вводити або оберіть зі списку'
-                isSearchable={true}
+                isSearchable
                 mode='multiple'
                 maxCount={5}
               />
@@ -54,7 +54,7 @@ export const Materials = () => {
                 field={field}
                 options={coatingList}
                 placeholder='Почніть вводити або оберіть зі списку'
-                isSearchable={true}
+                isSearchable
                 mode='multiple'
                 maxCount={5}
               />
@@ -72,7 +72,7 @@ export const Materials = () => {
                 field={field}
                 options={decorativeElementsList}
                 placeholder='Почніть вводити або оберіть зі списку'
-                isSearchable={true}
+                isSearchable
                 mode='multiple'
                 maxCount={5}
               />
@@ -90,7 +90,7 @@ export const Materials = () => {
                 field={field}
                 options={stonesList}
                 placeholder='Почніть вводити або оберіть зі списку'
-                isSearchable={true}
+                isSearchable
                 mode='multiple'
                 maxCount={5}
               />
@@ -108,7 +108,7 @@ export const Materials = () => {
                 field={field}
                 options={textilesList}
                 placeholder='Почніть вводити або оберіть зі списку'
-                isSearchable={true}
+                isSearchable
                 mode='multiple'
                 maxCount={5}
               />
@@ -126,7 +126,7 @@ export const Materials = () => {
                 field={field}
                 options={otherList}
                 placeholder='Почніть вводити або оберіть зі списку'
-                isSearchable={true}
+                isSearchable
                 mode='multiple'
                 maxCount={5}
               />

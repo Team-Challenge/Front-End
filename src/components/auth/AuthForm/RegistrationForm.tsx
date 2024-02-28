@@ -67,7 +67,7 @@ export const RegistrationForm = ({
       await dispatch(registration(postData)).unwrap();
       dispatch(setUser(postData));
       isSuccessRegistration();
-    } catch (error: any) {
+    } catch (error: unknown) {
       setError('registrationError', {
         type: 'manual',
         message:

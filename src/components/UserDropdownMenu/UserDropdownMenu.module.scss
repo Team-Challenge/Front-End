@@ -11,6 +11,12 @@
     row-gap: 0.75rem;
     padding: toRem(12) toRem(15);
 
+    &_login {
+      font-size: 0.75rem;
+      line-height: 1rem;
+      letter-spacing: 0.36px;
+    }
+
     &_registration {
       display: flex;
       gap: 0.5rem;

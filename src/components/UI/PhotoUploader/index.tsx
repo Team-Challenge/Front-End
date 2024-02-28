@@ -3,13 +3,15 @@ import { useFormContext } from 'react-hook-form';
 import { PhotoUploaderProps } from '@/types';
 import { checkFileFormat } from '@/utils/checkFileFormat';
 import { checkFileSize } from '@/utils/checkFileSize';
+import { Icon } from '@iconify/react';
 import s from './PhotoUploader.module.scss';
 
 export const PhotoUploader = ({
-  children,
-  className,
   id,
   required,
+  children,
+  className,
+  isPhotoDeleted,
 }: PhotoUploaderProps) => {
   const { register, setValue, clearErrors } = useFormContext();
   const [previewImage, setPreviewImage] = useState<File | null>(null);
@@ -52,38 +54,54 @@ export const PhotoUploader = ({
     event.preventDefault();
   };
 
+  const handleDeletePhoto = () => {
+    setPreviewImage(null);
+    setValue(id as string, null);
+  };
+
   return (
-    <div
-      onDragEnter={preventDefault}
-      onDragOver={preventDefault}
-      onDragLeave={preventDefault}
-      onDrop={handleDrop}
-      onClick={openFileInput}
-      onKeyDown={(event) => handleEnterKey(event)}
-      tabIndex={0}
-      className={`${className} ${s.uploader} ${
-        previewImage ? s.uploader_inactive : s.uploader_active
-      }`}
-    >
-      <input
-        {...register(id as string, { required: required })}
-        ref={hiddenFileInput}
-        type='file'
-        accept='image/*'
-        onChange={handleInputChange}
-        className={s.uploader_input}
-      />
-      {previewImage ? (
-        <img
-          src={URL.createObjectURL(previewImage)}
-          alt='photo'
-          className={s.uploader_photo}
+    <>
+      <div
+        onDragEnter={preventDefault}
+        onDragOver={preventDefault}
+        onDragLeave={preventDefault}
+        onDrop={handleDrop}
+        onClick={openFileInput}
+        onKeyDown={(event) => handleEnterKey(event)}
+        tabIndex={0}
+        className={`${className} ${s.uploader} ${
+          previewImage ? s.uploader_inactive : s.uploader_active
+        }`}
+      >
+        <input
+          {...register(id as string, { required: required })}
+          ref={hiddenFileInput}
+          type='file'
+          accept='image/*'
+          onChange={handleInputChange}
+          className={s.uploader_input}
         />
-      ) : (
-        <>
-          {children || <p>Натисніть або перетягніть щоб завантажити файли</p>}
-        </>
+        {previewImage ? (
+          <img
+            src={URL.createObjectURL(previewImage)}
+            alt='product'
+            className={s.uploader_photo}
+          />
+        ) : (
+          <>
+            {children || <p>Натисніть або перетягніть щоб завантажити файли</p>}
+          </>
+        )}
+      </div>
+      {isPhotoDeleted && (
+        <button
+          type='button'
+          className={s.button_delete}
+          onClick={handleDeletePhoto}
+        >
+          <Icon icon='iconamoon:close-light' />
+        </button>
       )}
-    </div>
+    </>
   );
 };

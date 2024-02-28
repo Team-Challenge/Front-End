@@ -9,6 +9,7 @@ export const CareInstructions = () => {
         <p className='product-add_subtitle'>Інструкція по догляду</p>
         <Tooltip
           text='Додайте поради, які допоможуть правильно доглядати за вашими прикрасами. Розкажіть, як уникнути подряпин, як правильно чистити та зберігати, щоб забезпечити тривалий та бездоганний вигляд.'
+          isBase={false}
           className={`product-add_tooltip ${s.instructions_tooltip}`}
         >
           <Icon icon='heroicons:light-bulb' />

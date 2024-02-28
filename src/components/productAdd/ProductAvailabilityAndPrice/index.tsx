@@ -22,12 +22,12 @@ export const ProductAvailabilityAndPrice = () => {
   const hasDeadlineError = errors.deadline;
 
   useEffect(() => {
-    if (productStatus === 'available') {
+    if (productStatus === 'В наявності') {
       setValue('deadline', null);
       clearErrors('status');
     }
 
-    if (productStatus === 'toOrder') {
+    if (productStatus === 'Під замовлення') {
       setValue('uniqueItem', false);
       clearErrors('status');
     }
@@ -75,7 +75,7 @@ export const ProductAvailabilityAndPrice = () => {
                     type='radio'
                     id='available'
                     className={s.status_input}
-                    value='available'
+                    value='В наявності'
                     ref={inputAvailableRef}
                   />
                   В наявності
@@ -83,7 +83,7 @@ export const ProductAvailabilityAndPrice = () => {
               )}
             />
 
-            {productStatus === 'available' && (
+            {productStatus === 'В наявності' && (
               <Controller
                 name='uniqueItem'
                 control={control}
@@ -133,7 +133,7 @@ export const ProductAvailabilityAndPrice = () => {
                     type='radio'
                     id='toOrder'
                     className={s.status_input}
-                    value='toOrder'
+                    value='Під замовлення'
                     ref={inputToOrderRef}
                   />
                   Під замовлення
@@ -141,7 +141,7 @@ export const ProductAvailabilityAndPrice = () => {
               )}
             />
 
-            {productStatus === 'toOrder' && (
+            {productStatus === 'Під замовлення' && (
               <Controller
                 name='deadline'
                 control={control}
