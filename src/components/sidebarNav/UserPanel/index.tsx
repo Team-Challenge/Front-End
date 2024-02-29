@@ -1,12 +1,13 @@
 import { Link, NavLink } from 'react-router-dom';
 import { Icon } from '@iconify/react';
-import { useAppDispatch } from '@/hooks/reduxHook';
+import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
 import { userLogout } from '@/store/userProfile/userProfileThunks';
 import { getUserPanelButtonsList } from '@/constants/userPanelButtonsList';
 
 export const UserPanel = () => {
   const dispatch = useAppDispatch();
-  const userPanelButtonsList = getUserPanelButtonsList();
+  const hasStore = useAppSelector((state) => state.storeProfile.name);
+  const userPanelButtonsList = getUserPanelButtonsList(!!hasStore);
 
   const logoutUser = () => {
     dispatch(userLogout());

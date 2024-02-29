@@ -12,7 +12,7 @@ export const StoreProducts = () => {
   const { products } = useAppSelector((state) => state.product);
   const isProducts = products.length > 0;
 
-  const itemsPerPage = 2;
+  const itemsPerPage = 36;
   const { currentPage, changePage, pageData, nextPage, previousPage } =
     usePagination(products, itemsPerPage);
 
@@ -52,7 +52,7 @@ export const StoreProducts = () => {
         </p>
       )}
 
-      {products.length > 2 && (
+      {products.length > itemsPerPage && (
         <Pagination
           itemsPerPage={itemsPerPage}
           totalItems={products.length}

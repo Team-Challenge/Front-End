@@ -11,9 +11,10 @@ import { ButtonUI } from '../UI/ButtonUI';
 import s from './UserDropdownMenu.module.scss';
 
 export const UserDropdownMenu = () => {
-  const userPanelButtonsList = getUserPanelButtonsList();
-  const { isAuth } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
+  const { isAuth } = useAppSelector((state) => state.auth);
+  const hasStore = useAppSelector((state) => state.storeProfile.name);
+  const userPanelButtonsList = getUserPanelButtonsList(!!hasStore);
   const dropdownRef = useRef(null);
 
   const handleOpenModal = (id: string) => {

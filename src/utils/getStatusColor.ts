@@ -1,4 +1,4 @@
-export const getStatusColor = (status: string, style: any) => {
+export const getStatusColor = (status: string, style: CSSModuleClasses) => {
   switch (status) {
     case 'В роботі':
       return style.active;

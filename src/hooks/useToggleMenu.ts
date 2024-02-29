@@ -1,5 +1,5 @@
-import { useAppDispatch, useAppSelector } from './reduxHook';
 import { closeComponent, openComponent } from '@/store/overlayStateSlice';
+import { useAppDispatch, useAppSelector } from './reduxHook';
 
 export const useToggleMenu = (menuType: string) => {
   const dispatch = useAppDispatch();
