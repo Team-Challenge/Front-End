@@ -60,6 +60,16 @@ export const StoreSettings = () => {
     'description',
   ]);
 
+  const handleResponse = (response: any) => {
+    if (response.payload) {
+      setIsSuccessfulChange(true);
+    } else {
+      setIsSuccessfulChange(false);
+    }
+    dispatch(openModal('dataStoreChangeNotification'));
+    dispatch(getStoreInfo());
+  };
+
   const onSubmit = async (data: StoreSettingsFormProps) => {
     if (storeNameDefault !== storeName) {
       try {
@@ -115,16 +125,6 @@ export const StoreSettings = () => {
 
       handleResponse(response);
     }
-  };
-
-  const handleResponse = (response: any) => {
-    if (response.payload) {
-      setIsSuccessfulChange(true);
-    } else {
-      setIsSuccessfulChange(false);
-    }
-    dispatch(openModal('dataStoreChangeNotification'));
-    dispatch(getStoreInfo());
   };
 
   return (

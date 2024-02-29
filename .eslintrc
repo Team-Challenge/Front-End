@@ -56,7 +56,7 @@
     "react/jsx-no-useless-fragment": "warn",
     "no-console": "off",
     "max-len": [
-      "error",
+      "warn",
       {
         "code": 140
       }

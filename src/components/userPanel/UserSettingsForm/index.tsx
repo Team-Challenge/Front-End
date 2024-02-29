@@ -53,6 +53,16 @@ export const UserSettingsForm = ({
     postService &&
     address;
 
+  const handleResponse = (response: any) => {
+    if (response.payload) {
+      changeDataResult(true);
+    } else {
+      changeDataResult(false);
+    }
+    dispatch(openModal('dataUserChangeNotification'));
+    dispatch(getUserInfo());
+  };
+
   const onSubmit = async (data: SettingsFormData) => {
     if (newPassword) {
       const response = await dispatch(
@@ -84,16 +94,6 @@ export const UserSettingsForm = ({
 
       handleResponse(response);
     }
-  };
-
-  const handleResponse = (response: any) => {
-    if (response.payload) {
-      changeDataResult(true);
-    } else {
-      changeDataResult(false);
-    }
-    dispatch(openModal('dataUserChangeNotification'));
-    dispatch(getUserInfo());
   };
 
   return (

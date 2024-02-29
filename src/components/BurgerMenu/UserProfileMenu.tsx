@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useAppDispatch } from '@/hooks/reduxHook';
+import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
 import { userLogout } from '@/store/userProfile/userProfileThunks';
 import { closeComponent } from '@/store/overlayStateSlice';
 import { UserProfileMenuProps } from '@/types';
@@ -9,7 +9,8 @@ import s from './BurgerMenu.module.scss';
 
 export const UserProfileMenu = ({ closeUserMenu }: UserProfileMenuProps) => {
   const dispatch = useAppDispatch();
-  const userPanelButtonsList = getUserPanelButtonsList();
+  const hasStore = useAppSelector((state) => state.storeProfile.name);
+  const userPanelButtonsList = getUserPanelButtonsList(!!hasStore);
   const filteredButtonsList = userPanelButtonsList.filter(
     (item) => item.title !== 'Мій магазин',
   );

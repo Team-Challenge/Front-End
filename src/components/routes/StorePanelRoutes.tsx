@@ -1,10 +1,19 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useWindowDimensions } from '@/hooks/useWindowDimensions';
+import { useAppSelector } from '@/hooks/reduxHook';
+import {
+  Orders,
+  Products,
+  Messages,
+  Reviews,
+  StoreManagement,
+  StorePage,
+} from '@/pages';
 import { StorePanel } from '../sidebarNav/StorePanel';
-import { Orders, Products, Messages, Reviews, StoreManagement } from '@/pages';
 
 export const StorePanelRoutes = () => {
   const { width } = useWindowDimensions();
+  const { linkToStore } = useAppSelector((state) => state.storeProfile);
 
   return (
     <main>
@@ -16,6 +25,7 @@ export const StorePanelRoutes = () => {
           <Route path='orders' element={<Orders />} />
           <Route path='messages' element={<Messages />} />
           <Route path='reviews' element={<Reviews />} />
+          <Route path={`/store/${linkToStore}`} element={<StorePage />} />
           <Route path='*' element={<Navigate to='products' />} />
         </Routes>
       </div>

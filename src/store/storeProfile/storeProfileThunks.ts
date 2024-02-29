@@ -8,6 +8,7 @@ import {
   setBannerPhoto,
   setStorePhoneNumber,
   setLink,
+  setLinkToStore,
 } from './storeProfileSlice';
 
 export const getStoreInfo = createAsyncThunk(
@@ -23,6 +24,7 @@ export const getStoreInfo = createAsyncThunk(
         dispatch(setBannerPhoto(response.data.banner_shop));
         dispatch(setStorePhoneNumber(response.data.phone_number));
         dispatch(setLink(response.data.link));
+        dispatch(setLinkToStore(response.data.owner));
       }
     } catch (e) {
       console.warn('Ой, здається, у вас ще немає створеного магазину.');

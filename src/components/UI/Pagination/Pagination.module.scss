@@ -1,0 +1,74 @@
+@import '@/styles/index.scss';
+
+.pagination {
+  &::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: $white-grey;
+  }
+
+  &_desktop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: toRem(48) 0 0;
+  }
+
+  &_prev,
+  &_next {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Craftwork Grotesk', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 1.25rem;
+    letter-spacing: 0.12px;
+    color: $grey;
+
+    svg {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+  }
+
+  &_number {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-family: 'Craftwork Grotesk', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 1.25rem;
+    border-radius: 50%;
+  }
+
+  &_mobile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: toRem(20) 0;
+  }
+
+  &_details {
+    font-family: 'Craftwork Grotesk', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.25rem;
+    color: $green;
+  
+    span {
+      font-weight: 500;
+    }
+  }
+}
+
+.inactive {
+  color: $light-grayish-blue;
+}
+
+.active {
+  color: $green;
+  background: $azure;
+}
