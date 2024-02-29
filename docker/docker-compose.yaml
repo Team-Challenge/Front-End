@@ -3,9 +3,10 @@ version: '3'
 services:
   frontend: 
     build:
-      context: .
+      context: ../
+      dockerfile: ./docker/Dockerfile
     env_file:
-      - .env
+      - ../.env
     container_name: tc-frontend
     ports: 
       - 5173:5173
