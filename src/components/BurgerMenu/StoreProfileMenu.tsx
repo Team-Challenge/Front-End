@@ -16,24 +16,26 @@ export const StoreProfileMenu = ({ closeStoreMenu }: StoreProfileMenuProps) => {
   return (
     <div className={s.profile}>
       <button
+        type='button'
         className={`${s.profile_item} ${s.profile_return}`}
         onClick={closeStoreMenu}
       >
         <Icon icon='solar:alt-arrow-right-outline' />
         Мій магазин
       </button>
-      <ul className={`${s.profile_list}`} onClick={closeBurgerMenu}>
+      <ul className={s.profile_list}>
         {storePanelButtonsList.map((item) => (
           <Link
             key={item.id}
             to={`/account/store/${item.pathToPage}`}
-            className={`${s.profile_item}`}
+            onClick={closeBurgerMenu}
+            className={s.profile_item}
           >
             {item.icon}
             {item.title}
           </Link>
         ))}
-        <Link to={`/account/store`} className={s.profile_item}>
+        <Link to='/account/store' className={s.profile_item}>
           <Icon icon='solar:square-top-down-outline' />
           Переглянути мій магазин
         </Link>
