@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useAppDispatch } from '@/hooks/reduxHook';
 import { closeModal, openModal } from '@/store/modalSlice';
-import { LoginForm } from './AuthForm/LoginForm';
 import { OrnamentalTitle } from '@/components/OrnamentalTitle';
+import { LoginForm } from './AuthForm/LoginForm';
 import { PasswordRecoveryForm } from './PasswordRecoveryForm';
 import { SuccessMessage } from './SuccessMessage';
 import s from './Auth.module.scss';
@@ -36,7 +36,9 @@ export const SignIn = () => {
           />
           <div className={`account-promt ${s.login_promt}`}>
             <p>Ще немає облікового запису?</p>
-            <button onClick={handleOpenRegistration}>Зареєструватися</button>
+            <button type='button' onClick={handleOpenRegistration}>
+              Зареєструватися
+            </button>
           </div>
         </>
       )}

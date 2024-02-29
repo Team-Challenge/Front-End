@@ -1,3 +1,6 @@
+import axios from 'axios';
+import { useGoogleLogin } from '@react-oauth/google';
+import { API_URL } from '@/http';
 import {
   FieldValues,
   FormProvider,
@@ -10,13 +13,8 @@ import { registration } from '@/store/auth/authThunks';
 import { IUserAuth, RegistrationFormProps } from '@/types';
 import { FullName } from '@/components/FullName';
 import { Email } from '@/components/Email';
-import { PasswordInput } from '@/components/UI/PasswordInput';
-import { ButtonUI } from '@/components/UI/ButtonUI';
+import { ButtonUI, PasswordInput } from '@/components/UI';
 import s from './AuthForm.module.scss';
-
-import axios from 'axios';
-import { useGoogleLogin } from '@react-oauth/google';
-import { API_URL } from '@/http';
 
 export const RegistrationForm = ({
   isSuccessRegistration,
@@ -77,73 +75,70 @@ export const RegistrationForm = ({
   };
 
   return (
-    <>
-      <FormProvider {...methods}>
-        <form
-          id='registration'
-          className={s.form}
-          onSubmit={(e) => e.preventDefault()}
-        >
-          <div className={s.form_inputs}>
-            <FullName />
-            <Email
-              isServerValidation={hasError}
-              isServerError={hasError}
-              onClick={() => methods.clearErrors('registrationError')}
-            />
-            {hasError && (
-              <p className={`error-text ${s.registration_error}`}>
-                {errors?.registrationError?.message as string}
-              </p>
-            )}
-            <PasswordInput id='password' placeholder='Пароль' required />
-            <PasswordInput
-              id='passwordRepeat'
-              placeholder='Повторіть пароль'
-              required
-              validate={(value: string) =>
-                value === getValues('password') ||
-                'Введені паролі не співпадають'
-              }
-              isRepeatPassword
-            />
-          </div>
-
-          <div className={s.checkbox}>
-            <input
-              type='checkbox'
-              id='checkbox'
-              className={s.checkbox_input}
-              {...register('checkbox', {
-                required: true,
-              })}
-            />
-            <p className={s.checkbox_text}>
-              Погоджуюсь з <span>Умовами надання послуг</span> та{' '}
-              <span>Політикою конфіденційності</span>
+    <FormProvider {...methods}>
+      <form
+        id='registration'
+        className={s.form}
+        onSubmit={(e) => e.preventDefault()}
+      >
+        <div className={s.form_inputs}>
+          <FullName />
+          <Email
+            isServerValidation={hasError}
+            isServerError={hasError}
+            onClick={() => methods.clearErrors('registrationError')}
+          />
+          {hasError && (
+            <p className={`error-text ${s.registration_error}`}>
+              {errors?.registrationError?.message as string}
             </p>
-          </div>
+          )}
+          <PasswordInput id='password' placeholder='Пароль' required />
+          <PasswordInput
+            id='passwordRepeat'
+            placeholder='Повторіть пароль'
+            required
+            validate={(value: string) =>
+              value === getValues('password') || 'Введені паролі не співпадають'
+            }
+            isRepeatPassword
+          />
+        </div>
 
-          <div className={s.form_buttons}>
-            <ButtonUI
-              type='submit'
-              label='Зареєструватися'
-              variant='main'
-              disabled={!isValid}
-              onClick={methods.handleSubmit(
-                onSubmit as SubmitHandler<FieldValues>,
-              )}
-            />
-            <span className={s.decorative_line}>або</span>
-            <ButtonUI
-              type='button'
-              label='Зареєструватися через Google'
-              variant='secondary'
-              onClick={() => googleLogin()}
-            />
-          </div>
-        </form>
-      </FormProvider>
-    </>
+        <div className={s.checkbox}>
+          <input
+            type='checkbox'
+            id='checkbox'
+            className={s.checkbox_input}
+            {...register('checkbox', {
+              required: true,
+            })}
+          />
+          <p className={s.checkbox_text}>
+            Погоджуюсь з <span>Умовами надання послуг</span> та{' '}
+            <span>Політикою конфіденційності</span>
+          </p>
+        </div>
+
+        <div className={s.form_buttons}>
+          <ButtonUI
+            type='submit'
+            label='Зареєструватися'
+            variant='main'
+            disabled={!isValid}
+            onClick={methods.handleSubmit(
+              onSubmit as SubmitHandler<FieldValues>,
+            )}
+          />
+          <span className={s.decorative_line}>або</span>
+          <ButtonUI
+            type='button'
+            label='Зареєструватися через Google'
+            variant='secondary'
+            onClick={() => googleLogin()}
+          />
+        </div>
+      </form>
+    </FormProvider>
   );
 };

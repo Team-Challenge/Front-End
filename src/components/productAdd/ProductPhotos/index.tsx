@@ -1,6 +1,7 @@
 import { useFormContext } from 'react-hook-form';
 import { PhotoUploader, Tooltip } from '@/components/UI';
 import { Icon } from '@iconify/react';
+import { productAddTips } from '@/constants/productAddTips';
 import s from './ProductPhotos.module.scss';
 
 const photosArray = [
@@ -24,7 +25,7 @@ export const ProductPhotos = () => {
           Фото<span>*</span>
         </p>
         <Tooltip
-          text='Використовуйте природне світло та уникайте спалаху. Під час фотографування акцентуйте увагу на тому, як виглядають прикраси під час носіння. Оберіть світлий та нейтральний фон для кращого візуального враження. Збільште кількість деталей та варіюйте кути зйомки, щоб забезпечити повноцінний огляд прикрас.'
+          text={productAddTips.photos}
           isBase={false}
           className={`product-add_tooltip ${s.photos_tooltip}`}
         >
