@@ -8,6 +8,7 @@ interface StoreProfileState {
   banner_photo: string;
   phone_number: string;
   link: string;
+  linkToStore: number;
 }
 
 const initialState: StoreProfileState = {
@@ -18,6 +19,7 @@ const initialState: StoreProfileState = {
   banner_photo: '',
   phone_number: '',
   link: '',
+  linkToStore: 0,
 };
 
 const storeProfileSlice = createSlice({
@@ -45,6 +47,9 @@ const storeProfileSlice = createSlice({
     setLink: (state, action: PayloadAction<string>) => {
       state.link = action.payload;
     },
+    setLinkToStore: (state, action: PayloadAction<number>) => {
+      state.linkToStore = action.payload;
+    },
   },
 });
 
@@ -56,6 +61,7 @@ export const {
   setBannerPhoto,
   setStorePhoneNumber,
   setLink,
+  setLinkToStore,
 } = storeProfileSlice.actions;
 
 export default storeProfileSlice.reducer;

@@ -39,7 +39,7 @@ export const UserDeliveryData = () => {
       const isNovaPostAvailable = novaPostCities.includes(selectedCity);
       const isUkrPostAvailable = ukrPostCities.includes(selectedCity);
 
-      let deliveryCompanies = [];
+      const deliveryCompanies = [];
 
       if (isNovaPostAvailable) {
         deliveryCompanies.push({
@@ -58,7 +58,7 @@ export const UserDeliveryData = () => {
       setPostOptions(deliveryCompanies);
 
       if (selectedCity === cityName) {
-        setValue('post', post ? post : null);
+        setValue('post', post || null);
         setValue(
           'branches',
           address && branchName ? `${branchName}, ${address}` : null,
@@ -121,7 +121,7 @@ export const UserDeliveryData = () => {
       <Controller
         name='city'
         control={control}
-        defaultValue={cityName ? cityName : null}
+        defaultValue={cityName || null}
         render={({ field }) => (
           <SelectInput
             field={field}
@@ -150,7 +150,7 @@ export const UserDeliveryData = () => {
             field={field}
             options={postOptions}
             placeholder='-Оберіть спосіб доставки-'
-            isSearchable={true}
+            isSearchable
             isDisabled={!selectedCity}
           />
         )}
@@ -168,7 +168,7 @@ export const UserDeliveryData = () => {
             field={field}
             options={branchesOptions}
             placeholder='-Оберіть відділення-'
-            isSearchable={true}
+            isSearchable
             isDisabled={!selectedCity || !selectedPost}
           />
         )}

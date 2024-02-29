@@ -1,8 +1,6 @@
-import { useAppSelector } from '@/hooks/reduxHook';
 import { Icon } from '@iconify/react';
 
-export const getUserPanelButtonsList = () => {
-  const hasStore = useAppSelector((state) => state.storeProfile.name);
+export const getUserPanelButtonsList = (hasStore: boolean) => {
   const storePath = hasStore ? 'store' : 'create-store';
 
   return [

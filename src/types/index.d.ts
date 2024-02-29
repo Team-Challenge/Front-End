@@ -225,6 +225,24 @@ export interface ButtonsBarProps {
   onStatusChange?: (arg0: string) => void;
 }
 
+export interface PaginationProps {
+  itemsPerPage: number;
+  totalItems: number;
+  currentPage: number;
+  paginate: (pageNumber: number) => void;
+  nextPage: () => void;
+  previousPage: () => void;
+  className?: string;
+}
+
+export interface PaginationHookProps<T> {
+  currentPage: number;
+  changePage: (pageNumber: number) => void;
+  nextPage: () => void;
+  previousPage: () => void;
+  pageData: () => T[];
+}
+
 // user info types
 export interface UserInfo {
   email: string;
@@ -347,6 +365,20 @@ export interface ProductAddForm {
     ukrPost: boolean;
   };
   refunds?: boolean;
+}
+
+export interface ProductCardProps {
+  photos: Array<{
+    id: number;
+    main: boolean;
+    product_photo: string;
+    timestamp: string;
+  }>;
+  productName: string;
+  status: string;
+  price: string;
+  isUnique?: boolean;
+  storeName?: string;
 }
 
 // store panel types

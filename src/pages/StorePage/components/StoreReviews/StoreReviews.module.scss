@@ -1,0 +1,23 @@
+@import '@/styles/index.scss';
+
+.reviews {
+  min-height: toRem(572);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $white-smoke;
+  margin-top: -1px;
+
+  &_empty {
+    max-width: toRem(462);
+    width: 100%;
+    text-align: center;
+    letter-spacing: 0.32px;
+    color: $grey;
+
+    @media (max-width: $mobileSmall) {
+      font-size: 0.875rem;
+      letter-spacing: 0.14px;
+    }
+  }
+}
