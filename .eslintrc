@@ -53,6 +53,7 @@
     "react/require-default-props": "off",
     "object-shorthand": "off",
     "jsx-a11y/label-has-associated-control": "off",
+    "react/jsx-no-useless-fragment": "warn",
     "no-console": "off",
     "max-len": [
       "warn",

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { EmptyContentPage } from '@/components/EmptyContentPage';
 import { Icon } from '@iconify/react';
-import { purchaseStatusList } from '@/constants/purchaseStatusList';
+import { purchaseStatusList } from '@/constants/statusesList';
 import s from './Purchases.module.scss';
 
 export const Purchases = () => {
