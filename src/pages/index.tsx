@@ -11,6 +11,7 @@ import { StoreManagement } from './storePanel/StoreManagement';
 import { Orders } from './storePanel/Orders';
 import { Reviews } from './storePanel/Reviews';
 import { ProductAddPage } from './ProductAddPage';
+import { StorePage } from './StorePage';
 
 export {
   Home,
@@ -26,4 +27,5 @@ export {
   Orders,
   Reviews,
   ProductAddPage,
+  StorePage,
 };
