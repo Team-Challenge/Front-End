@@ -55,7 +55,7 @@
     "jsx-a11y/label-has-associated-control": "off",
     "no-console": "off",
     "max-len": [
-      "error",
+      "warn",
       {
         "code": 140
       }
