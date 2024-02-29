@@ -1,4 +1,5 @@
 import { Controller, useFormContext } from 'react-hook-form';
+import { productAddTips } from '@/constants/productAddTips';
 import { refundsRulesList } from '@/constants/refundsRulesList';
 import { ToggleSwitch, Tooltip } from '@/components/UI';
 import { Icon } from '@iconify/react';
@@ -12,7 +13,7 @@ export const ProductRefundRules = () => {
       <div className='product-add_subtitle_wrap'>
         <p className='product-add_subtitle'>Повернення та обмін</p>
         <Tooltip
-          text='Ви можете погодитися на повернення чи обмін – це підніме рівень довіри покупців до якості ваших товарів.'
+          text={productAddTips.refunds}
           isBase={false}
           className={`product-add_tooltip ${s.refunds_tooltip}`}
         >
