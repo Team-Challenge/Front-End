@@ -127,7 +127,7 @@ export const UserDeliveryData = () => {
             field={field}
             options={availableDeliveryCities}
             placeholder='-Оберіть місто-'
-            isSearchable={true}
+            isSearchable
           />
         )}
       />
