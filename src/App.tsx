@@ -9,7 +9,7 @@ import {
   getNovaPostInfo,
   getUkrPostInfo,
 } from './store/deliveryOptions/deliveryThunks';
-import { PageNotFound, Home, ProductAddPage } from './pages';
+import { PageNotFound, Home, ProductAddPage, StorePage } from './pages';
 import { Header } from './components/Header';
 import { UserPanelRoutes } from './components/routes/UserPanelRoutes';
 import { StorePanelRoutes } from './components/routes/StorePanelRoutes';
@@ -48,6 +48,9 @@ export const App = () => {
           )}
           {isAuth && hasStore && (
             <Route path='/account/new-product' element={<ProductAddPage />} />
+          )}
+          {isAuth && hasStore && (
+            <Route path='/account/my-store' element={<StorePage />} />
           )}
         </Routes>
       </div>

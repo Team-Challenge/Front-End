@@ -28,7 +28,7 @@ export const StorePanel = () => {
         </NavLink>
       ))}
       <span className='cabinet-sidebar-nav_line' />
-      <Link to='/account/store' className='cabinet-sidebar-nav_btn'>
+      <Link to='/account/my-store' className='cabinet-sidebar-nav_btn'>
         <Icon icon='solar:square-top-down-outline' />
         Мій магазин
       </Link>
