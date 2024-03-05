@@ -1,6 +1,9 @@
 @import '@/styles/index.scss';
 
 .store {
+  @extend .container;
+  @include adaptiveValue('margin-top', 60, 24, 1440, 0, 480);
+
   &_buttons {
     display: flex;
     align-items: center;
@@ -30,7 +33,7 @@
       letter-spacing: 0.28px;
       padding: toRem(12) toRem(30);
     }
-
+  
     &_active {
       color: $green;
       background: $white-smoke;
@@ -44,13 +47,8 @@
     margin-top: -1px;
     background: $white-smoke;
   }
-}
 
-.myStore {
-  @extend .container;
-  @include adaptiveValue('padding-top', 60, 24, 1440, 0, 480);
-
-  &_button {
+  &_return {
     font-size: 0.875rem;
     font-weight: 500;
     line-height: 1rem;

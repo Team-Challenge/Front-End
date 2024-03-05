@@ -18,8 +18,8 @@ export const StorePage = () => {
   };
 
   return (
-    <section className={s.myStore}>
-      <Link to='/account/store/products' className={s.myStore_button}>
+    <section className={s.store}>
+      <Link to='/account/store/products' className={s.store_return}>
         <Icon icon='solar:alt-arrow-left-outline' /> Назад
       </Link>
       <StoreHeader />
