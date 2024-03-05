@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
 import { getAllProductsInfo } from '@/store/productPage/productPageThunks';
 import { useWindowDimensions } from '@/hooks/useWindowDimensions';
-import { productStatusList } from '@/constants/statusesList';
+import { productStatusList, emptySectionText } from '@/constants';
 import { ButtonsBar } from '@/components/ButtonsBar';
 import { ProductsList } from '@/components/storePanel/products/ProductsList';
 import { AddProductButton } from '@/components/storePanel/AddProductButton';
@@ -46,7 +46,7 @@ export const Products = () => {
   ) : (
     <EmptyContentPage
       title='Ой, тут поки пусто'
-      text='Здається, ви не додали ще жодного товару на наш маркетплейс. Додайте свої унікальні товари та почніть продавати вже зараз!'
+      text={emptySectionText.productsStorePanel}
       item={<AddProductButton />}
     />
   );

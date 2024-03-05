@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { EmptyContentPage } from '@/components/EmptyContentPage';
 import { Icon } from '@iconify/react';
 import { purchaseStatusList } from '@/constants/statusesList';
+import { emptySectionText } from '@/constants/emptySectionText';
 import s from './Purchases.module.scss';
 
 export const Purchases = () => {
@@ -15,7 +16,7 @@ export const Purchases = () => {
     <section className={s.order}>
       <EmptyContentPage
         title='Ой, тут поки пусто'
-        text='Схоже, ви ще нічого не купили на нашому маркетплейсі. Коли вам щось приглянеться, історія та статуси ваших покупок з’являться тут'
+        text={emptySectionText.productsUserPanel}
         item={<Icon icon='solar:bag-smile-outline' />}
       />
       {/* <h4 className={s.order_title}>Мої покупки</h4>
