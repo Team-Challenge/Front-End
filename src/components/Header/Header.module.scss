@@ -163,16 +163,6 @@
       height: 16px;
     }
   }
-
-  &_close {
-    transform: rotate(0);
-    transition: transform 0.3s;
-  }
-
-  &_open {
-    transform: rotate(180deg);
-    transition: transform 0.3s;
-  }
 }
 
 .icon_burger {

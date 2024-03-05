@@ -23,7 +23,7 @@ export const StoreSocialMediaLink = () => {
         value={instagramLink as string}
         required={Boolean(instagramLink)}
         regex={INSTAGRAM_NICKNAME_REGEX}
-        errorMessage={'Будь ласка, введіть ваш нікнейм'}
+        errorMessage='Будь ласка, введіть ваш нікнейм'
         editModeIcon={Boolean(instagramLink)}
       />
     </div>

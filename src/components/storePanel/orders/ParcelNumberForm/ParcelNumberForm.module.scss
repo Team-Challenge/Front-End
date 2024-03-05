@@ -1,0 +1,32 @@
+@import '@/styles/index.scss';
+
+.modal {
+  > div > :first-child {
+    @include mobileTitleDecorationOverride;
+  }
+
+  &_subtitle {
+    max-width: toRem(424);
+    width: 100%;
+    color: $grey;
+    font-size: 0.75rem;
+    font-weight: 300;
+    line-height: 1rem;
+    margin: 0.5rem 0;
+  }
+}
+
+.form {
+  max-width: toRem(424);
+  width: 100%;
+  display: grid;
+  gap: 2rem;
+
+  @media (max-width: $mobile) {
+    gap: 1.5rem;
+  }
+
+  @media (max-width: $mobileSmall) {
+    gap: 1.25rem;
+  }
+}

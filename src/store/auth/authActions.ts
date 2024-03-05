@@ -1,7 +1,7 @@
+import axios from 'axios';
 import { AppDispatch, AuthResponse } from '@/types';
 import { API_URL } from '@/http';
-import { setAuth, setLoading } from './authSlice';
-import axios from 'axios';
+import { setAuth } from './authSlice';
 
 interface ErrorMessage {
   message: string;

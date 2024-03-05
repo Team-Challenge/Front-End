@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import { useWindowDimensions } from './hooks/useWindowDimensions';
 import { useAppDispatch, useAppSelector } from './hooks/reduxHook';
 import { checkAuth } from './store/auth/authActions';
@@ -14,7 +15,6 @@ import { Header } from './components/Header';
 import { UserPanelRoutes } from './components/routes/UserPanelRoutes';
 import { StorePanelRoutes } from './components/routes/StorePanelRoutes';
 import { BurgerMenu } from './components/BurgerMenu';
-import { GoogleOAuthProvider } from '@react-oauth/google';
 
 export const App = () => {
   const dispatch = useAppDispatch();
@@ -34,6 +34,7 @@ export const App = () => {
       dispatch(getUkrPostInfo());
     }
   }, [isAuth]);
+
   return (
     <GoogleOAuthProvider clientId={import.meta.env.VITE_APP_CLIENT_ID}>
       <div>
@@ -49,9 +50,7 @@ export const App = () => {
           {isAuth && hasStore && (
             <Route path='/account/new-product' element={<ProductAddPage />} />
           )}
-          {isAuth && hasStore && (
-            <Route path='/account/my-store' element={<StorePage />} />
-          )}
+          <Route path='/store/:id' element={<StorePage />} />
         </Routes>
       </div>
     </GoogleOAuthProvider>

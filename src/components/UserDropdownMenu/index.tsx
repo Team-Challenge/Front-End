@@ -6,14 +6,15 @@ import { userLogout } from '@/store/userProfile/userProfileThunks';
 import { openModal } from '@/store/modalSlice';
 import { closeComponent } from '@/store/overlayStateSlice';
 import { getUserPanelButtonsList } from '@/constants/userPanelButtonsList';
-import { ButtonUI } from '../UI/ButtonUI';
 import { Icon } from '@iconify/react';
+import { ButtonUI } from '../UI/ButtonUI';
 import s from './UserDropdownMenu.module.scss';
 
 export const UserDropdownMenu = () => {
-  const userPanelButtonsList = getUserPanelButtonsList();
-  const { isAuth } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
+  const { isAuth } = useAppSelector((state) => state.auth);
+  const hasStore = useAppSelector((state) => state.storeProfile.name);
+  const userPanelButtonsList = getUserPanelButtonsList(!!hasStore);
   const dropdownRef = useRef(null);
 
   const handleOpenModal = (id: string) => {
@@ -60,10 +61,17 @@ export const UserDropdownMenu = () => {
         </div>
       ) : (
         <div className={s.dropdown_auth}>
-          <ButtonUI label='Увійти' onClick={() => handleOpenModal('isLogin')} />
+          <ButtonUI
+            label='Увійти'
+            onClick={() => handleOpenModal('isLogin')}
+            className={s.dropdown_auth_login}
+          />
           <div className={s.dropdown_auth_registration}>
             <p>Вперше тут?</p>
-            <button onClick={() => handleOpenModal('isRegistration')}>
+            <button
+              type='button'
+              onClick={() => handleOpenModal('isRegistration')}
+            >
               Зареєструватися
             </button>
           </div>

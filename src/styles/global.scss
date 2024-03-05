@@ -435,3 +435,23 @@ input {
     inset-inline-end: toRem(6);
   }
 }
+
+.ant-rate {
+  margin-inline-end: 2px;
+}
+
+.ant-rate .ant-rate-star:not(:last-child) {
+  margin-inline-end: 2px;
+}
+
+.icon {
+  &_close {
+    transform: rotate(0);
+    transition: transform 0.3s;
+  }
+
+  &_open {
+    transform: rotate(180deg);
+    transition: transform 0.3s;
+  }
+}

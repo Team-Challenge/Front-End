@@ -10,6 +10,7 @@ export const QuantityInput = ({
   required,
   value,
   unit,
+  maxLength,
   errorMessage,
   label,
   field,
@@ -50,11 +51,12 @@ export const QuantityInput = ({
           placeholder={placeholder}
           value={value}
           required={required}
-          className={s.quantity_input}
+          maxLength={maxLength}
           onChange={onChange ? onChange : field.onChange}
           onFocus={handleFocus}
           onBlur={handleBlur}
           onKeyDown={handleKeyDown}
+          className={s.quantity_input}
         />
         <div className={s.quantity_unit}>{unit}</div>
       </div>

@@ -15,6 +15,7 @@ export const TextArea = ({
   maxLength,
   className,
   editModeIcon,
+  errorMessage,
   shouldApplyErrorStyles = true,
   shouldApplySuccessStyles = true,
 }: TextAreaProps) => {
@@ -76,10 +77,14 @@ export const TextArea = ({
         </i>
       )}
 
-      {maxLength && (
-        <p className={s.char_count}>
-          {charCount}/{maxLength} символів
-        </p>
+      {hasError ? (
+        <p className='error-text'>{errorMessage}</p>
+      ) : (
+        maxLength && (
+          <p className={s.char_count}>
+            {charCount}/{maxLength} символів
+          </p>
+        )
       )}
     </div>
   );

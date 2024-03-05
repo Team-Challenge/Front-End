@@ -3,16 +3,19 @@ import { PhotoUploader, Tooltip } from '@/components/UI';
 import { Icon } from '@iconify/react';
 import s from './ProductPhotos.module.scss';
 
+const photosArray = [
+  { id: 1, status: 'First' },
+  { id: 2, status: 'Second' },
+  { id: 3, status: 'Third' },
+  { id: 4, status: 'Fourth' },
+];
+
 export const ProductPhotos = () => {
   const {
     formState: { errors },
   } = useFormContext();
 
-  const hasPhotoErrors =
-    errors.productPhoto1 ||
-    errors.productPhoto2 ||
-    errors.productPhoto3 ||
-    errors.productPhoto4;
+  const hasPhotoErrors = errors.productPhotoFirst;
 
   return (
     <div className={s.photos}>
@@ -22,6 +25,7 @@ export const ProductPhotos = () => {
         </p>
         <Tooltip
           text='Використовуйте природне світло та уникайте спалаху. Під час фотографування акцентуйте увагу на тому, як виглядають прикраси під час носіння. Оберіть світлий та нейтральний фон для кращого візуального враження. Збільште кількість деталей та варіюйте кути зйомки, щоб забезпечити повноцінний огляд прикрас.'
+          isBase={false}
           className={`product-add_tooltip ${s.photos_tooltip}`}
         >
           <Icon icon='heroicons:light-bulb' />
@@ -29,16 +33,25 @@ export const ProductPhotos = () => {
       </div>
 
       <p className='product-add_hint'>
+        Додайте хоча б одне фото, щоб опублікувати товар.
+        <br />
         Натисніть на іконку або перетягніть, щоб завантажити фото. Допустимі
         розміри 130*130
       </p>
 
       <p className={s.photos_tips}>Це фото буде на обкладинці</p>
       <ul className={s.photos_list}>
-        {[1, 2, 3, 4].map((item) => (
-          <li key={item} className={s.photos_item}>
-            <PhotoUploader id={`productPhoto${item}`} required>
-              <Icon icon='solar:camera-outline' />
+        {photosArray.map(({ id, status }) => (
+          <li key={id} className={s.photos_item}>
+            <PhotoUploader
+              id={`productPhoto${status}`}
+              required={status === 'First'}
+              isPhotoDeleted={status !== 'First'}
+            >
+              <Icon
+                icon='solar:camera-outline'
+                className={s.photos_item_icon}
+              />
             </PhotoUploader>
           </li>
         ))}

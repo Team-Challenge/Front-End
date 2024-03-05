@@ -1,11 +1,54 @@
 @import '@/styles/index.scss';
 
 .store {
-  @include adaptiveValue('padding-top', 60, 24, 1440, 0, 480);
+  &_buttons {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: row;
+    margin-top: toRem(60);
 
-  &_container {
-    display: block;
+    @media (max-width: $mobileSmall) {
+      margin-top: toRem(44);
+    }
   }
+
+  &_button {
+    font-family: 'Craftwork Grotesk', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.25rem;
+    letter-spacing: 0.32px;
+    color: $grey;
+    padding: toRem(12) toRem(24);
+
+    @media (max-width: $mobileSmall) {
+      max-width: toRem(160);
+      width: 100%;
+      font-size: 0.875rem;
+      font-weight: 700;
+      letter-spacing: 0.28px;
+      padding: toRem(12) toRem(30);
+    }
+
+    &_active {
+      color: $green;
+      background: $white-smoke;
+      border-top-left-radius: 0.25rem;
+      border-top-right-radius: 0.25rem;
+    }
+  }
+
+  &_block {
+    min-height: toRem(572);
+    margin-top: -1px;
+    background: $white-smoke;
+  }
+}
+
+.myStore {
+  @extend .container;
+  @include adaptiveValue('padding-top', 60, 24, 1440, 0, 480);
 
   &_button {
     font-size: 0.875rem;

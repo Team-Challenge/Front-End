@@ -1,0 +1,60 @@
+@import '@/styles/index.scss';
+
+.delivery {
+  grid-area: delivery;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: start;
+  gap: 0.313rem;
+  border-radius: 0.25rem;
+  background: $azure;
+  padding: toRem(16);
+  margin-top: toRem(16);
+
+  @media (max-width: $desktop) {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-top: toRem(20);
+    padding-bottom: toRem(18);
+  }
+
+  &_user,
+  &_payment {
+    display: flex;
+    gap: 0.5rem;
+
+    svg {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+  }
+
+  &_payment {
+    justify-self: center;
+
+    @media (max-width: $desktop) {
+      justify-self: start;
+    }
+  }
+
+  &_block {
+    display: grid;
+    gap: 0.5rem;
+
+    @media (max-width: $desktop) {
+      gap: 0.563rem;
+    }
+
+    p {
+      font-size: 0.875rem;
+      font-weight: 400;
+      line-height: 1rem;
+    }
+
+    p:first-child {
+      font-weight: 500;
+      letter-spacing: 0.14px;
+    }
+  }
+}

@@ -1,0 +1,13 @@
+@import '@/styles/index.scss';
+
+.orders {
+  overflow: hidden;
+
+  &_title {
+    margin-bottom: toRem(20);
+
+    @media (max-width: $mobile) {
+      margin-bottom: toRem(16);
+    }
+  }
+}

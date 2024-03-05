@@ -11,6 +11,7 @@ export const ProductDescription = () => {
           text='Не знаєте що написати?
           Почніть з опису вигляду самого виробу, з яких матеріалів виготовлений, 
           опишіть процес створення, щоб підкреслити його характер та індивідуальність'
+          isBase={false}
           className={`product-add_tooltip ${s.description_tooltip}`}
         >
           <Icon icon='heroicons:light-bulb' />

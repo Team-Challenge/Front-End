@@ -72,9 +72,9 @@ export const CreateNewStore = () => {
             id='name'
             placeholder='Назва магазину'
             required
-            errorMessage={`Будь ласка, введіть назву магазину`}
+            errorMessage='Будь ласка, введіть назву магазину'
             maxLength={30}
-            maxLengthMessage={`Будь ласка, введіть назву магазину, що не перевищує 30 символів`}
+            maxLengthMessage='Будь ласка, введіть назву магазину, що не перевищує 30 символів'
             className={s.modal_input}
             isServerValidation={hasError}
             isServerError={hasError}

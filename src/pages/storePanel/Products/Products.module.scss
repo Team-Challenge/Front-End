@@ -1,0 +1,75 @@
+@import '@/styles/index.scss';
+
+.products {
+  max-width: toRem(960);
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-areas:
+    'title addProductBtn'
+    'statusBtn statusBtn'
+    'sorting sorting'
+    'list list';
+  justify-items: start;
+  align-items: center;
+  gap: 1.563rem;
+  overflow: hidden;
+
+  @media (max-width: $mobile) {
+    gap: 1.25rem;
+  }
+
+  @media (max-width: $mobileSmall) {
+    gap: 0.5rem;
+  }
+
+  &_sorting {
+    grid-area: sorting;
+    justify-self: end;
+    margin-top: toRem(-14);
+
+    @media (max-width: $mobileSmall) {
+      justify-self: start;
+      margin-top: toRem(-5);
+    }
+  }
+
+  &_title {
+    grid-area: title;
+  }
+
+  &_button {
+    grid-area: addProductBtn;
+    justify-self: end;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Craftwork Grotesk', sans-serif;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.48px;
+    color: $white;
+    background: $green;
+    border-radius: 0.25rem;
+    padding: toRem(10) toRem(35);
+
+    @media (max-width: $mobile) {
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+      letter-spacing: 0.28px;
+      padding: toRem(9) toRem(38);
+    }
+
+    svg {
+      width: 1rem;
+      height: 1rem;
+      color: $white;
+    }
+  }
+
+  &_status {
+    grid-area: statusBtn;
+  }
+}

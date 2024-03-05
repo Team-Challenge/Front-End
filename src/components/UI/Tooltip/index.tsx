@@ -6,7 +6,7 @@ export const Tooltip = ({
   text,
   children,
   className,
-  isBase,
+  isBase = true,
 }: TooltipProps) => {
   const [showTooltip, setShowTooltip] = useState(false);
 

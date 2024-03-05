@@ -46,16 +46,18 @@
     @include adaptiveValue('max-width', 240, 152, 0, 1440, 360);
     @include adaptiveValue('height', 163, 105, 0, 1440, 360);
     width: 100%;
-  
-    svg {
-      width: 1.5rem;
-      height: 1.5rem;
-      color: $green;
-    }
+    display: grid;
+    grid-template-columns: 1fr;
 
     img {
       width: 100%;
       height: 100%;
+    }
+
+    &_icon {
+      width: 1.5rem;
+      height: 1.5rem;
+      color: $green;
     }
   }
 }

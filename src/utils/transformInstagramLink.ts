@@ -5,7 +5,7 @@ export const transformNicknameToInstagramLink = (nickname: string) => {
 };
 
 export const transformInstagramLinkToNickname = (link: string) => {
-  const regex = /https:\/\/www\.instagram\.com\/([^\/?]+)\/?/i;
+  const regex = /https:\/\/www\.instagram\.com\/([^/?]+)\/?/i;
   const match = link.match(regex);
   return match && `@${match[1]}`;
 };

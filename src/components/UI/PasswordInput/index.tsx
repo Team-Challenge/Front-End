@@ -58,6 +58,7 @@ export const PasswordInput = ({
         />
         <div className={s.icon}>
           <button
+            type='button'
             onClick={togglePasswordVisibility}
             className={s.icon_eye}
             tabIndex={-1}

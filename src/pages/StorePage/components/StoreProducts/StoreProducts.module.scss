@@ -1,0 +1,59 @@
+@import '@/styles/index.scss';
+
+.products {
+  min-height: toRem(572);
+  background: $white-smoke;
+  margin-top: -1px;
+
+  &_full {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: toRem(40) toRem(24);
+    border-radius: 0.25rem;
+    border-top-left-radius: 0;
+
+    @media (max-width: $mobileSmall) {
+      padding: toRem(20);
+      gap: 0.5rem;
+    }
+  }
+
+  > div:first-child {
+    align-self: end;
+
+    @media (max-width: $mobileSmall) {
+      align-self: start;
+    }
+  }
+
+  &_empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &_text {
+      max-width: toRem(462);
+      font-weight: 400;
+      line-height: 150%;
+      letter-spacing: 0.32px;
+      text-align: center;
+      color: $grey;
+    }
+  }
+
+  &_list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    row-gap: 2.25rem;
+    column-gap: 1.5rem;
+    justify-items: center;
+    margin-bottom: toRem(60);
+
+    @media (max-width: $mobileSmall) {
+      grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
+      row-gap: 1.125rem;
+      column-gap: 1rem;
+    }
+  }
+}

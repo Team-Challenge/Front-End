@@ -1,0 +1,60 @@
+@import '@/styles/index.scss';
+
+.buttons {
+  width: 100%;
+  display: flex;
+  gap: 0.75rem;
+  padding-bottom: toRem(4);
+  overflow-x: scroll;
+
+  @-moz-document url-prefix() {
+    padding-bottom: toRem(7);
+  }
+
+  @media (max-width: $mobileSmall) {
+    gap: 0.5rem;
+    margin: toRem(6) 0;
+  }
+
+  scrollbar-color: $green $azure;
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    height: 0.125rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+    border-radius: 0.5rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $green;
+    border-radius: 0.5rem;
+  }
+}
+
+
+.button {
+  font-family: 'Craftwork Grotesk', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.25rem;
+  letter-spacing: 0.28px;
+  white-space: nowrap;
+  color: $green;
+  border: 1px solid $azure;
+  border-radius: 1.563rem;
+  padding: toRem(6) toRem(24);
+
+  @media (max-width: $mobileSmall) {
+    font-size: 0.75rem;
+    line-height: 1rem;
+    letter-spacing: 0.36px;
+    padding: toRem(6) toRem(20);
+  }
+}
+
+.active {
+  background: $azure;
+}

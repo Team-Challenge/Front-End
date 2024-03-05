@@ -22,6 +22,7 @@ export const ProductName = () => {
         </p>
         <Tooltip
           text='Чітка та точна назва без помилок – значно полегшить пошук для покупців'
+          isBase={false}
           className={`product-add_tooltip ${s.name_tooltip}`}
         >
           <Icon icon='heroicons:light-bulb' />

@@ -13,7 +13,7 @@ export interface BooleanState {
   [key: string]: boolean;
 }
 
-//auth types
+// auth types
 export interface LoginFormProps {
   isForgotPassword: () => void;
   isSuccessLogin: () => void;
@@ -41,7 +41,7 @@ export interface AuthResponse {
   user: SignUpEmailType;
 }
 
-//UI types
+// UI types
 export interface OrnamentalTitleProps {
   tag: keyof JSX.IntrinsicElements;
   text: string;
@@ -67,10 +67,11 @@ export interface FileDropProps {
 }
 
 export interface PhotoUploaderProps {
+  id: string;
+  required?: boolean;
   children?: ReactNode;
   className?: string;
-  id?: string;
-  required?: boolean;
+  isPhotoDeleted?: boolean;
 }
 
 export interface ModalProps {
@@ -121,6 +122,7 @@ export interface TextAreaProps
   maxLength?: number;
   className?: string;
   editModeIcon?: boolean;
+  errorMessage?: string;
   shouldApplyErrorStyles?: boolean;
   shouldApplySuccessStyles?: boolean;
 }
@@ -167,6 +169,7 @@ export interface QuantityInputProps {
   required?: boolean;
   value?: string;
   unit: string;
+  maxLength?: number;
   errorMessage?: string;
   label?: string;
   field?: any;
@@ -213,7 +216,34 @@ export interface ProfilePhotoProps {
   className?: string;
 }
 
-//user info types
+export interface ButtonsBarProps {
+  buttonsList: Array<{
+    id: number;
+    label: string;
+  }>;
+  className?: string;
+  onStatusChange?: (arg0: string) => void;
+}
+
+export interface PaginationProps {
+  itemsPerPage: number;
+  totalItems: number;
+  currentPage: number;
+  paginate: (pageNumber: number) => void;
+  nextPage: () => void;
+  previousPage: () => void;
+  className?: string;
+}
+
+export interface PaginationHookProps<T> {
+  currentPage: number;
+  changePage: (pageNumber: number) => void;
+  nextPage: () => void;
+  previousPage: () => void;
+  pageData: () => T[];
+}
+
+// user info types
 export interface UserInfo {
   email: string;
   full_name: string;
@@ -280,13 +310,31 @@ export interface BannerModalProps {
   handleBannerUpload: (files: FileList) => Promise<void>;
 }
 
+export interface ProductCharacteristic {
+  parameters?: Array<{
+    length: string;
+    width: string;
+    weight: string;
+    size: null | string;
+  }>;
+  coating?: string[];
+  colors?: string[];
+  deadline?: string;
+  decorative_elements?: string[];
+  metals?: string[];
+  other?: string[];
+  stones?: string[];
+  textiles?: string[];
+  care_instructions?: string;
+}
+
 export interface ProductAddForm {
   productName: string;
   description?: string;
-  productPhoto1: File;
-  productPhoto2: File;
-  productPhoto3: File;
-  productPhoto4: File;
+  productPhotoFirst: File;
+  productPhotoSecond: File;
+  productPhotoThird: File;
+  productPhotoFourth: File;
   category: number;
   subcategory: string;
   status: string;
@@ -317,4 +365,67 @@ export interface ProductAddForm {
     ukrPost: boolean;
   };
   refunds?: boolean;
+}
+
+export interface ProductCardProps {
+  photos: Array<{
+    id: number;
+    main: boolean;
+    product_photo: string;
+    timestamp: string;
+  }>;
+  productName: string;
+  status: string;
+  price: string;
+  isUnique?: boolean;
+  storeName?: string;
+}
+
+// store panel types
+export interface ProductStoreItemProps {
+  photos: Array<{
+    id: number;
+    main: boolean;
+    product_photo: string;
+    timestamp: string;
+  }>;
+  title: string;
+  date: string;
+  code: number;
+  price: string;
+  categoryId: number;
+  status: string;
+  onClick?: () => void;
+}
+
+export interface OrderItemProps {
+  orderNumber: string;
+  date: string;
+  status: string;
+  price: string;
+  updateDate: string;
+}
+
+export interface OrderProductItemProps {
+  img: string;
+  productTitle: string;
+  productCode: string;
+  quantity: string;
+  productPrice: string;
+}
+
+export interface ReviewItemProps {
+  productPhoto: string;
+  productName: string;
+  rating: number;
+  feedback: string;
+  userPhoto: string;
+  userName: string;
+  date: string;
+}
+
+export interface RatingItemProps {
+  rating: number;
+  percent: number;
+  numberOfReviews: number;
 }

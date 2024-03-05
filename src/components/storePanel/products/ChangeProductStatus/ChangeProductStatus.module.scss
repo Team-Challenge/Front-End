@@ -1,0 +1,98 @@
+@import '@/styles/index.scss';
+
+.modal {
+  > div > :first-child {
+    @include mobileTitleDecorationOverride;
+  }
+
+  &_subtitle {
+    letter-spacing: 0.32px;
+    text-align: center;
+
+    @media (max-width: $mobileSmall) {
+      font-size: 0.875rem;
+      line-height: 150%;
+      letter-spacing: 0.14px;
+    }
+  }
+
+  &_button {
+    max-width: toRem(424);
+  }
+}
+
+.status {
+  &_list {
+    width: 100%;
+    display: grid;
+    justify-items: center;
+    gap: 1rem;
+    margin: toRem(24) 0 toRem(32);
+
+    @media (max-width: $mobileSmall) {
+      gap: 0.625rem;
+      margin: toRem(20) 0;
+    }
+  }
+
+  &_item {
+    max-width: toRem(424);
+    width: 100%;
+  }
+
+  &_label {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 500;
+    line-height: 1.25rem;
+    letter-spacing: 0.16px;
+    color: $green;
+    border: 1px solid $white-grey;
+    border-radius: 0.25rem;
+    padding: 1rem;
+    cursor: pointer;
+
+    @media (max-width: $mobileSmall) {
+      max-height: 3rem;
+      font-size: 0.875rem;
+      letter-spacing: 0.28px;
+    }
+  }
+
+  &_input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    appearance: none;
+    width: toRem(20);
+    height: toRem(20);
+    border-radius: 50%;
+    border: 2px solid $light-grey;
+    outline: none;
+    padding: 0;
+    background: transparent;
+
+    &:checked {
+      border: 2px solid $green;
+    }
+
+    &::before {
+      content: "";
+      background: $green;
+      display: block;
+      border-radius: 50%;
+      width: toRem(12);
+      height: toRem(12);
+      transform: scale(0);
+      transition: 120ms transform ease-in-out;
+      transform-origin: center;
+    }
+
+    &:checked::before {
+      transform: scale(1);
+    }
+  }
+}

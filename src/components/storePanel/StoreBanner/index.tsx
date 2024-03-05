@@ -9,8 +9,8 @@ import {
 } from '@/store/storeProfile/storeProfileThunks';
 import { openModal } from '@/store/modalSlice';
 import { FileDrop } from '@/components/UI/FileDrop';
-import { BannerModal } from './BannerModal';
 import { Icon } from '@iconify/react';
+import { BannerModal } from './BannerModal';
 import s from './StoreBanner.module.scss';
 
 export const StoreBanner = () => {
@@ -97,6 +97,7 @@ export const StoreBanner = () => {
       {width <= 991.98 ? (
         <div ref={dropdownRef} className={s.dropdown}>
           <button
+            type='button'
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
             className={s.dropdown_button}
           >
@@ -105,6 +106,7 @@ export const StoreBanner = () => {
           {isDropdownOpen && (
             <div className={s.dropdown_buttons}>
               <button
+                type='button'
                 onClick={handleOpenModal}
                 className={s.dropdown_button_add}
               >
@@ -113,6 +115,7 @@ export const StoreBanner = () => {
               </button>
               {storeBanner && (
                 <button
+                  type='button'
                   onClick={handleDeleteBanner}
                   className={s.dropdown_button_delete}
                 >
@@ -126,7 +129,7 @@ export const StoreBanner = () => {
       ) : (
         storeBanner && (
           <div className={s.banner_buttons}>
-            <button onClick={handleUploadClick}>
+            <button type='button' onClick={handleUploadClick}>
               <Icon icon='solar:camera-outline' />
               Завантажити нове фото
               <input
@@ -135,7 +138,7 @@ export const StoreBanner = () => {
                 onChange={handleBannerInput}
               />
             </button>
-            <button onClick={handleDeleteBanner}>
+            <button type='button' onClick={handleDeleteBanner}>
               <Icon icon='solar:trash-bin-trash-outline' />
               Видалити
             </button>

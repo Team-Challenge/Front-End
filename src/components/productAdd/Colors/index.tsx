@@ -51,6 +51,7 @@ export const Colors = () => {
         <p className='product-add_subtitle'>Кольори</p>
         <Tooltip
           text='Додайте як умога більше характеристик вашого виробу, такі як: основні кольори, розміри та матеріали. Це допоможе майбутнім покупцям знайти його ще простіше.'
+          isBase={false}
           className={`product-add_tooltip ${s.colors_tooltip}`}
         >
           <Icon icon='heroicons:light-bulb' />
@@ -77,14 +78,18 @@ export const Colors = () => {
               tabIndex={0}
               onKeyDown={(event) => handleLabelKeyPress(event, name)}
             >
-              <div className={styleClass}></div>
+              <div className={styleClass} />
               <p>{name}</p>
             </label>
           </li>
         ))}
       </ul>
       {isMobileScreen && (
-        <button onClick={toggleShowAllColors} className={s.colors_button}>
+        <button
+          type='button'
+          onClick={toggleShowAllColors}
+          className={s.colors_button}
+        >
           {showAllColors ? (
             <>
               Сховати всі

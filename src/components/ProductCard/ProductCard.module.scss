@@ -1,0 +1,157 @@
+@import '@/styles/index.scss';
+
+.product {
+  max-width: toRem(300);
+  width: 100%;
+  display: grid;
+  grid-template-areas:
+    'photo photo'
+    'productName price'
+    'status price'
+    'name name';
+  gap: 0.25rem;
+
+  @media (max-width: $mobileSmall) {
+    grid-template-areas: 'photo' 'productName' 'status' 'price' 'name';
+    gap: 0.125rem;
+  }
+
+  &_photo {
+    grid-area: photo;
+    display: grid;
+    grid-template-columns: 1fr;
+    width: toRem(300);
+    height: toRem(203);
+    margin-bottom: toRem(4);
+    overflow: hidden;
+    position: relative;
+
+    img {
+      grid-area: 1/1;
+      max-width: toRem(300);
+      max-height: toRem(203);
+      width: 100%;
+      height: 100%;
+      border-radius: 0.25rem;
+      object-fit: contain;
+    }
+
+    @media (max-width: $mobileSmall) {
+      width: toRem(132);
+      height: toRem(108);
+      margin-bottom: toRem(6);
+    }
+  }
+
+  &_unique::before {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 62px solid $yellow;
+    border-right: 62px solid transparent;
+    border-top-left-radius: 4px;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    @media (max-width: $mobileSmall) {
+      border-top: 40px solid $yellow;
+      border-right: 40px solid transparent;
+    }
+  }
+
+  &_unique::after {
+    content: '';
+    mask: url('@assets/small-decorative-element.svg') no-repeat;
+    mask-size: 100% 100%;
+    display: block;
+    width: 27px;
+    height: 27px;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    transform: rotate(-135deg);
+    background: $white;
+
+    @media (max-width: $mobileSmall) {
+      width: 15px;
+      height: 15px;
+    }
+  }
+
+  &_favorite {
+    grid-area: -1/1;
+    justify-self: end;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid $white-grey;
+    border-radius: 50%;
+    background: $white;
+    margin: toRem(8) toRem(8) 0 0;
+
+    svg {
+      width: 1rem;
+      height: 1rem;
+
+      @media (max-width: $mobileSmall) {
+        width: 0.563rem;
+        height: 0.563rem;
+      }
+    }
+
+    @media (max-width: $mobileSmall) {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+  }
+
+  &_name {
+    grid-area: productName;
+    font-weight: 500;
+    line-height: 1.25rem;
+    letter-spacing: 0.16px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    @media (max-width: $mobileSmall) {
+      font-size: 0.75rem;
+      line-height: 1rem;
+    }
+  }
+
+  &_status {
+    grid-area: status;
+    color: $grey;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1rem;
+
+    @media (max-width: $mobileSmall) {
+      font-size: 0.75rem;
+      font-weight: 300;
+    }
+  }
+
+  &_price {
+    grid-area: price;
+    justify-self: end;
+    font-family: "Craftwork Grotesk";
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.25rem;
+    letter-spacing: 0.32px;
+
+    @media (max-width: $mobileSmall) {
+      justify-self: start;
+      font-size: 0.75rem;
+      line-height: 1rem;
+      letter-spacing: 0.24px;
+      margin-top: toRem(4);
+    }
+  }
+}

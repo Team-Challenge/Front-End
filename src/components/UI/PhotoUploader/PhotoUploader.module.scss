@@ -1,6 +1,7 @@
 @import '@/styles/index.scss';
 
 .uploader {
+  grid-area: 1/1;
   width: 100%;
   height: 100%;
   display: flex;
@@ -29,7 +30,37 @@
   &_photo {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
   }
 }
 
+.button_delete {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: $light-grey;
+
+  grid-area: -1/-2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: end;
+  margin: toRem(-11) toRem(-12) 0 0;
+
+  @media (max-width: $mobile) {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-right: toRem(-10);
+  }
+
+  svg {
+    width: 1.313rem;
+    height: 1.313rem;
+    color: $black;
+
+    @media (max-width: $mobile) {
+      width: 0.938rem;
+      height: 0.938rem;
+    }
+  }
+}

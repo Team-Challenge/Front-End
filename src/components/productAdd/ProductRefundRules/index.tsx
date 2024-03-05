@@ -13,6 +13,7 @@ export const ProductRefundRules = () => {
         <p className='product-add_subtitle'>Повернення та обмін</p>
         <Tooltip
           text='Ви можете погодитися на повернення чи обмін – це підніме рівень довіри покупців до якості ваших товарів.'
+          isBase={false}
           className={`product-add_tooltip ${s.refunds_tooltip}`}
         >
           <Icon icon='heroicons:light-bulb' />
