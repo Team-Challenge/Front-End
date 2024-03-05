@@ -82,8 +82,8 @@ export const StoreSettings = () => {
         setIsSuccessfulChange(true);
         dispatch(openModal('dataStoreChangeNotification'));
         dispatch(getStoreInfo());
-      } catch (error: any) {
-        if (error.code === 'ERR_BAD_REQUEST') {
+      } catch (error: unknown) {
+        if ((error as { code: string }).code === 'ERR_BAD_REQUEST') {
           setError('name', {
             type: 'manual',
             message:
