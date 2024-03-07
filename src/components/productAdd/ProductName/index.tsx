@@ -1,5 +1,6 @@
 import { useFormContext } from 'react-hook-form';
 import { useCharCount } from '@/hooks/useCharCount';
+import { productAddTips } from '@/constants/productAddTips';
 import { TextInput, Tooltip } from '@/components/UI';
 import { Icon } from '@iconify/react';
 import s from './ProductName.module.scss';
@@ -21,7 +22,7 @@ export const ProductName = () => {
           Назва товару<span>*</span>
         </p>
         <Tooltip
-          text='Чітка та точна назва без помилок – значно полегшить пошук для покупців'
+          text={productAddTips.name}
           isBase={false}
           className={`product-add_tooltip ${s.name_tooltip}`}
         >

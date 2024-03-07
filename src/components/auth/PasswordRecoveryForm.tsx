@@ -1,6 +1,6 @@
 import { PasswordRecoveryFormProps } from '@/types';
+import { ButtonUI } from '../UI';
 import { OrnamentalTitle } from '../OrnamentalTitle';
-import { ButtonUI } from '@/components/UI/ButtonUI';
 import s from './Auth.module.scss';
 
 export const PasswordRecoveryForm = ({

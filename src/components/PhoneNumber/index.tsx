@@ -3,7 +3,7 @@ import { PhoneNumberProps } from '@/types';
 import { TextInput } from '../UI/TextInput';
 
 export const PhoneNumber = ({ phoneNumber }: PhoneNumberProps) => {
-  const value = phoneNumber ? phoneNumber : undefined;
+  const value = phoneNumber || undefined;
 
   return (
     <TextInput

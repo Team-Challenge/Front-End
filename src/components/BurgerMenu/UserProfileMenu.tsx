@@ -32,6 +32,7 @@ export const UserProfileMenu = ({ closeUserMenu }: UserProfileMenuProps) => {
   return (
     <div className={s.profile}>
       <button
+        type='button'
         className={`${s.profile_item} ${s.profile_return}`}
         onClick={closeUserMenu}
       >

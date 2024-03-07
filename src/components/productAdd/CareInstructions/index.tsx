@@ -1,4 +1,5 @@
 import { TextArea, Tooltip } from '@/components/UI';
+import { productAddTips } from '@/constants/productAddTips';
 import { Icon } from '@iconify/react';
 import s from './CareInstructions.module.scss';
 
@@ -8,7 +9,7 @@ export const CareInstructions = () => {
       <div className='product-add_subtitle_wrap'>
         <p className='product-add_subtitle'>Інструкція по догляду</p>
         <Tooltip
-          text='Додайте поради, які допоможуть правильно доглядати за вашими прикрасами. Розкажіть, як уникнути подряпин, як правильно чистити та зберігати, щоб забезпечити тривалий та бездоганний вигляд.'
+          text={productAddTips.careInstructions}
           isBase={false}
           className={`product-add_tooltip ${s.instructions_tooltip}`}
         >

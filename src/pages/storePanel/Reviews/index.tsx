@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { ReviewStatisticsPanel } from '@/components/storePanel/ReviewStatisticsPanel';
 import { ReviewsList } from '@/components/storePanel/ReviewsList';
 import { EmptyContentPage } from '@/components/EmptyContentPage';
+import { emptySectionText } from '@/constants/emptySectionText';
 import { Icon } from '@iconify/react';
 import s from './Reviews.module.scss';
 
@@ -17,7 +18,7 @@ export const Reviews = () => {
   ) : (
     <EmptyContentPage
       title='Ой, тут поки пусто'
-      text='Здається, ще ніхто не залишив відгуки про ваші товари. Коли хтось придбає та оцінить ваш товар, нові відгуки та рейтинг з’являться тут'
+      text={emptySectionText.reviewsStorePanel}
       item={<Icon icon='solar:chat-round-like-outline' />}
     />
   );

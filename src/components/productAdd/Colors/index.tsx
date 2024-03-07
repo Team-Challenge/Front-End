@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { useWindowDimensions } from '@/hooks/useWindowDimensions';
 import { colorsList } from '@/constants/colorsList';
+import { productAddTips } from '@/constants/productAddTips';
 import { Tooltip } from '@/components/UI';
 import { Icon } from '@iconify/react';
 import s from './Colors.module.scss';
@@ -50,7 +51,7 @@ export const Colors = () => {
       <div className='product-add_subtitle_wrap'>
         <p className='product-add_subtitle'>Кольори</p>
         <Tooltip
-          text='Додайте як умога більше характеристик вашого виробу, такі як: основні кольори, розміри та матеріали. Це допоможе майбутнім покупцям знайти його ще простіше.'
+          text={productAddTips.colors}
           isBase={false}
           className={`product-add_tooltip ${s.colors_tooltip}`}
         >
@@ -76,6 +77,8 @@ export const Colors = () => {
             <label
               htmlFor={name}
               tabIndex={0}
+              role='checkbox'
+              aria-checked='false'
               onKeyDown={(event) => handleLabelKeyPress(event, name)}
             >
               <div className={styleClass} />

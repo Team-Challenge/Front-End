@@ -6,11 +6,9 @@ import { App } from './App';
 import './styles/global.scss';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <>
-    <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </Provider>
-  </>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>,
 );

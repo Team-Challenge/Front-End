@@ -4,14 +4,10 @@ import { OrnamentalTitle } from '../OrnamentalTitle';
 import { ButtonUI } from '../UI/ButtonUI';
 import s from './Auth.module.scss';
 
-interface SuccessMessageProps {
-  id: string;
-}
-
-export const SuccessMessage = ({ id }: SuccessMessageProps) => {
+export const SuccessMessage = ({ id }: { id: string }) => {
   const dispatch = useAppDispatch();
 
-  const handleCloseModal = (id: string) => {
+  const handleCloseModal = () => {
     dispatch(closeModal(id));
   };
 
@@ -23,7 +19,7 @@ export const SuccessMessage = ({ id }: SuccessMessageProps) => {
         працювали.
         <span>Приємного вивчення!</span>
       </p>
-      <ButtonUI label='Готово' onClick={() => handleCloseModal(id)} />
+      <ButtonUI label='Готово' onClick={handleCloseModal} />
     </div>
   );
 };
