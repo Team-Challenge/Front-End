@@ -19,26 +19,22 @@ export const SignUp = () => {
     dispatch(openModal('isLogin'));
   };
 
-  return (
+  return !isSuccessMessage ? (
     <>
-      {!isSuccessMessage ? (
-        <>
-          <OrnamentalTitle
-            tag='h4'
-            text='Реєстрація'
-            className={s.registration_title}
-          />
-          <RegistrationForm isSuccessRegistration={isSuccessRegistration} />
-          <div className='account-promt'>
-            <p>Вже маєте обліковий запис?</p>
-            <button type='button' onClick={handleOpenLogin}>
-              Увійдіть
-            </button>
-          </div>
-        </>
-      ) : (
-        <SuccessMessage id='isRegistration' />
-      )}
+      <OrnamentalTitle
+        tag='h4'
+        text='Реєстрація'
+        className={s.registration_title}
+      />
+      <RegistrationForm isSuccessRegistration={isSuccessRegistration} />
+      <div className='account-promt'>
+        <p>Вже маєте обліковий запис?</p>
+        <button type='button' onClick={handleOpenLogin}>
+          Увійдіть
+        </button>
+      </div>
     </>
+  ) : (
+    <SuccessMessage id='isRegistration' />
   );
 };

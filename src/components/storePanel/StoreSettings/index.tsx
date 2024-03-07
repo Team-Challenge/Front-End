@@ -105,11 +105,11 @@ export const StoreSettings = () => {
     }
 
     if (instagramLink !== storeLink && storeLink) {
-      const instagramLink = transformNicknameToInstagramLink(data.link);
+      const fullInstagramLink = transformNicknameToInstagramLink(data.link);
 
       const response = await dispatch(
         changeStoreInfo({
-          link: instagramLink,
+          link: fullInstagramLink,
         }),
       );
 
