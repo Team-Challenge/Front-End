@@ -7,6 +7,12 @@ install:
 start:
 	npm start
 
+lint:
+	npm run lint
+
+build:
+	npm run build
+
 ## Docker commmands
 up:
 	docker-compose up
