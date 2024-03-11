@@ -35,22 +35,20 @@ export const Toast = ({
     }, 3000);
   }
 
-  return (
-    isShow && (
-      <div
-        role='button'
-        tabIndex={0}
-        className={`${s.toast} ${typeStyle}`}
-        onClick={() => {
-          handleShowMessage(false);
-          clearInterval(timerId);
-        }}
-        onKeyDown={() => {}}
-      >
-        <div className={s.toast_contentWrapper}>
-          <p className={s.toast_message}>{message}</p>
-        </div>
+  return isShow ? (
+    <div
+      role='button'
+      tabIndex={0}
+      className={`${s.toast} ${typeStyle}`}
+      onClick={() => {
+        handleShowMessage(false);
+        clearInterval(timerId);
+      }}
+      onKeyDown={() => {}}
+    >
+      <div className={s.toast_contentWrapper}>
+        <p className={s.toast_message}>{message}</p>
       </div>
-    )
-  );
+    </div>
+  ) : null;
 };
