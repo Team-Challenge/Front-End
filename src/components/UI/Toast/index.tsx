@@ -4,7 +4,7 @@ type Props = {
   message: string;
   toastType?: string;
   isShow: boolean;
-  handleShowMessage: Function;
+  handleShowMessage: (type: boolean) => void;
 };
 
 export const Toast = ({
@@ -13,21 +13,21 @@ export const Toast = ({
   isShow = false,
   handleShowMessage,
 }: Props) => {
-  let typeStyle = null;
-  let timerId: any = null;
+  let typeStyle = 'success';
+  let timerId: number;
 
   switch (toastType) {
     case 'info':
-      typeStyle = s.info;
+      typeStyle = s.toast_info;
       break;
     case 'success':
-      typeStyle = s.success;
+      typeStyle = s.toast_success;
       break;
     case 'warning':
-      typeStyle = s.warning;
+      typeStyle = s.toast_warning;
       break;
     case 'error':
-      typeStyle = s.error;
+      typeStyle = s.toast_error;
       break;
 
     default:
@@ -36,7 +36,7 @@ export const Toast = ({
   }
 
   if (isShow) {
-    timerId = setTimeout(() => {
+    timerId = window.setTimeout(() => {
       handleShowMessage(false);
     }, 3000);
   }
@@ -44,11 +44,14 @@ export const Toast = ({
   return (
     isShow && (
       <div
+        role='button'
+        tabIndex={0}
         className={`${s.toast} ${typeStyle}`}
         onClick={() => {
           handleShowMessage(false);
           clearInterval(timerId);
         }}
+        onKeyDown={() => {}}
       >
         <div className={s.toast_contentWrapper}>
           <p className={s.toast_message}>{message}</p>

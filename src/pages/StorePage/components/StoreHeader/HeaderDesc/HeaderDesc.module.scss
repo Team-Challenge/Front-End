@@ -1,0 +1,26 @@
+@import '@/styles/index.scss';
+
+.header_desc {
+  grid-area: desc;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  letter-spacing: 0.14px;
+
+  max-width: 30.25rem;
+  max-height: 5.25rem;
+  overflow: hidden;
+
+  @media (max-width: $mobileSmall) {
+    max-width: 20rem;
+    max-height: none;
+  }
+}
+
+.readMore {
+  background-color: $white;
+  color: $main-btn-color;
+
+  display: block;
+  margin: 0.5rem auto auto;
+  padding: 0.5rem;
+}

@@ -1,39 +1,50 @@
-import s from './Contacts.module.scss';
+import { useState } from 'react';
 import { Icon } from '@iconify/react';
 import { useAppSelector } from '@/hooks/reduxHook';
 import { copyToClipboard } from '@/utils/copyToClipboard';
 import { useWindowDimensions } from '@/hooks/useWindowDimensions';
-import { Toast } from '../Toast';
-import { useState } from 'react';
+import { Toast } from '@/components/UI/Toast';
+import s from './Contacts.module.scss';
 
-export const Contacts = () => {
+export const Contacts = ({ hideText }: { hideText: number }) => {
   const phoneNumber = useAppSelector(
     (state) => state.storeProfile.phone_number,
   );
   const instagram = useAppSelector((state) => state.storeProfile.link);
   const { width } = useWindowDimensions();
   const [showMessage, setShowMessage] = useState(false);
+  const [toastType, setToastType] = useState('success');
+  const [text, setText] = useState('Номер скопійовано');
+
+  const copyNumber = (e: React.MouseEvent<HTMLElement>) => {
+    if (e.target !== e.currentTarget) {
+      return;
+    }
+    copyToClipboard(phoneNumber)
+      .then((data) => {
+        if (data) {
+          setToastType('success');
+          setText('Номер скопійовано');
+          setShowMessage(true);
+        }
+      })
+      .catch(() => {
+        setToastType('error');
+        setText('Помилка копіювання номера');
+        setShowMessage(true);
+      });
+  };
 
   return (
     <div className={s.contacts}>
-      {width > 991.98 && <p>Зв’язатися зі мною</p>}
+      {width > hideText && <p>Зв’язатися зі мною</p>}
 
       {width > 479.98 ? (
-        <button
-          type='button'
-          onClick={(e) => {
-            if (e.target !== e.currentTarget) {
-              return;
-            }
-            copyToClipboard(phoneNumber)
-              .then(() => setShowMessage(true))
-              .catch((err) => console.log(err));
-          }}
-        >
+        <button type='button' onClick={copyNumber}>
           <Icon icon='solar:phone-outline' />
           <Toast
-            message='Номер скопійовано'
-            toastType='success'
+            message={text}
+            toastType={toastType}
             handleShowMessage={setShowMessage}
             isShow={showMessage}
           />

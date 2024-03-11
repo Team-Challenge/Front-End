@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import { StoreProducts } from './components/StoreProducts';
 import { StoreReviews } from './components/StoreReviews';
-import { StoreHeader } from './Header';
+import { StoreHeader } from './components/StoreHeader';
 import s from './StorePage.module.scss';
 
 export const StorePage = () => {

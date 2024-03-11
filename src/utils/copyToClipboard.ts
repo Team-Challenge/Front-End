@@ -1,8 +1,8 @@
 export const copyToClipboard = async (data: string) => {
-  try {
+  if (data) {
     await navigator.clipboard.writeText(data);
-    console.log('success');
-  } catch (err) {
-    console.error('Failed to copy!', err);
+    return data;
   }
+
+  throw Error('Failed to copy!');
 };
