@@ -15,8 +15,6 @@ export const StoreHeader = () => {
     (state) => state.storeProfile.description,
   );
 
-  const trimmedName = name.length < 22 ? name : `${name.slice(0, 25)}...`;
-
   return (
     <div className={s.header}>
       {banner && (
@@ -24,12 +22,16 @@ export const StoreHeader = () => {
           <img src={banner} alt='banner' />
         </div>
       )}
-      <div className={s.header_photo}>
+      <div
+        className={`${s.header_photo} ${
+          shopDescription.length > 500 ? s.header_photo_center : ''
+        }`}
+      >
         <img src={shopPhoto || defaultStorePic} alt='shopPhoto' />
       </div>
       <div className={s.header_details}>
         <div className={s.header_info}>
-          <p className={s.header_name}>{trimmedName}</p>
+          <p className={s.header_name}>{name}</p>
           <div className={s.stats_wrapper}>
             <Rating rating={4.3} />
             <p className={s.stats}>

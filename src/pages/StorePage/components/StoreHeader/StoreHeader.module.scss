@@ -7,7 +7,7 @@
   border-radius: 0.25rem 0.25rem 0rem 0rem;
   overflow: hidden;
 
-  @media (max-width: $tablet) {
+  @media (max-width: 1024.98px) {
     height: 7.75rem;
   }
 
@@ -22,7 +22,7 @@
 
 .header {
   display: grid;
-  grid-template-columns: minmax(4.25rem, auto) 1fr minmax(4.25rem, auto);
+  grid-template-columns: minmax(5.5rem, auto) 1fr minmax(5.5rem, auto);
   grid-template-areas:
     'banner banner banner'
     '. details contactsWrapper';
@@ -46,13 +46,18 @@
 
   justify-self: center;
 
-  @media (min-width: 975.98px) {
+  @media (min-width: 1024.98px) {
     grid-area: 1/1/3/1;
     align-self: end;
 
     margin-top: 0;
     margin-left: 1.25rem;
     margin-bottom: 1.5rem;
+
+    &_center {
+      align-self: center;
+      margin-bottom: 0;
+    }
   }
 
   img {
@@ -64,15 +69,18 @@
 
 .header_details {
   grid-area: details;
-  height: 11.25rem;
+  min-height: 11.25rem;
   padding: 1.5rem 0 1.5rem 1.5rem;
 
-  @media (max-width: 975.98px) {
+  @media (max-width: 1024.98px) {
     padding: 1rem 0 1.5rem 0;
     margin-left: 0;
     justify-content: center;
 
-    height: auto;
+    max-width: 27.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1.25rem;
   }
 }
 
@@ -83,6 +91,7 @@
   letter-spacing: 0.16px;
 
   display: grid;
+  align-items: baseline;
   grid-template-columns: auto 1fr;
   grid-template-areas:
     'name stats'
@@ -96,7 +105,7 @@
     letter-spacing: 0.24px;
   }
 
-  @media (max-width: 975.98px) {
+  @media (max-width: 1024.98px) {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-areas:
@@ -124,7 +133,9 @@
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: 0.84px;
+  overflow-wrap: anywhere;
 
+  max-width: 30rem;
   @media (max-width: 1110px) {
     font-size: 1.375rem;
     font-weight: 700;
@@ -140,7 +151,7 @@
     display: inline-flex;
     align-items: center;
 
-    @media (max-width: 975.98px) {
+    @media (max-width: 1024.98px) {
       margin-bottom: 0.5rem;
       color: $grey;
     }
@@ -159,7 +170,7 @@
     top: 36px;
     right: 8px;
 
-    @media (max-width: 975.98px) {
+    @media (max-width: 1024.98px) {
       border-top-right-radius: 8px;
       top: 33px;
       right: -147px;
@@ -188,10 +199,9 @@
 
 .contacts_wrapper {
   grid-area: 1 / 3;
-  justify-self: end;
   align-self: end;
 
-  @media (min-width: 975.98px) {
+  @media (min-width: 1024.98px) {
     grid-area: contactsWrapper;
     justify-self: auto;
     align-self: auto;

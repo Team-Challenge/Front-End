@@ -1,18 +1,12 @@
+import { ToastProps } from '@/types';
 import s from './Toast.module.scss';
-
-type Props = {
-  message: string;
-  toastType?: string;
-  isShow: boolean;
-  handleShowMessage: (type: boolean) => void;
-};
 
 export const Toast = ({
   message = 'Помилка повідомлення!',
   toastType = 'success',
   isShow = false,
   handleShowMessage,
-}: Props) => {
+}: ToastProps) => {
   let typeStyle = 'success';
   let timerId: number;
 
