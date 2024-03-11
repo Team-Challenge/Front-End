@@ -1,4 +1,5 @@
 import { Fragment, useState } from 'react';
+import { Icon } from '@iconify/react';
 import { Controller, useFieldArray, useFormContext } from 'react-hook-form';
 import { PARAMETERS_REGEX } from '@/constants/RegExp';
 import { useWindowDimensions } from '@/hooks/useWindowDimensions';
@@ -6,7 +7,6 @@ import { QuantityInput } from '@/components/UI/QuantityInput';
 import { SelectInput } from '@/components/UI/SelectInput';
 import { ringSizeList } from '@/constants/ringsSizeList';
 import { RingsSizeChart } from '../RingsSizeChart';
-import { Icon } from '@iconify/react';
 import s from './ProductParameters.module.scss';
 
 export const ProductParameters = () => {

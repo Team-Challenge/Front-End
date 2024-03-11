@@ -24,7 +24,7 @@ export const LoginForm = ({
 
   const {
     setError,
-    formState: { errors, isValid },
+    formState: { errors },
   } = methods;
 
   const hasError = Boolean(errors.loginError);
@@ -80,7 +80,6 @@ export const LoginForm = ({
             type='submit'
             label='Увійти'
             variant='main'
-            disabled={!isValid}
             onClick={methods.handleSubmit(
               onSubmit as SubmitHandler<FieldValues>,
             )}

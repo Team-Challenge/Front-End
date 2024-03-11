@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { purchaseStatusList } from '@/constants/statusesList';
+import { purchaseStatusList, emptySectionText } from '@/constants';
 import { ButtonsBar } from '@/components/ButtonsBar';
 import { OrdersList } from '@/components/storePanel/orders/OrdersList';
 import { EmptyContentPage } from '@/components/EmptyContentPage';
@@ -18,7 +18,7 @@ export const Orders = () => {
   ) : (
     <EmptyContentPage
       title='Ой, тут поки пусто'
-      text='Здається, ще ніхто не встиг придбати ваші товари. Коли це станеться, історія та статуси ваших продажів з’являться тут.'
+      text={emptySectionText.ordersStorePanel}
       item={<Icon icon='solar:tag-outline' />}
     />
   );

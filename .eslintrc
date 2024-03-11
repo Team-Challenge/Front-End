@@ -55,6 +55,7 @@
     "jsx-a11y/label-has-associated-control": "off",
     "react/jsx-no-useless-fragment": "warn",
     "no-console": "off",
+    "@typescript-eslint/naming-convention": "warn",
     "max-len": [
       "warn",
       {

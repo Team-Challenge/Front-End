@@ -18,11 +18,20 @@ export const ShopDropdownMenu = () => {
 
   useClickOutside(dropdownRef, handleCloseDropdown);
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      handleCloseDropdown();
+    }
+  };
+
   return (
     <div
       ref={dropdownRef}
       className={`dropdown-menu ${s.dropdown}`}
       onClick={handleCloseDropdown}
+      onKeyDown={handleKeyDown}
+      role='button'
+      tabIndex={0}
     >
       {storePanelButtonsList.map((button) => (
         <NavLink

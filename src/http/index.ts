@@ -1,7 +1,6 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable eqeqeq */
 import axios from 'axios';
-import { AuthResponse } from '@/types';
 
 export const API_URL = import.meta.env.VITE_APP_API_URL
   ? import.meta.env.VITE_APP_API_URL

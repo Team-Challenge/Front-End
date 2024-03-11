@@ -88,9 +88,7 @@ export const PhotoUploader = ({
             className={s.uploader_photo}
           />
         ) : (
-          <>
-            {children || <p>Натисніть або перетягніть щоб завантажити файли</p>}
-          </>
+          children || <p>Натисніть або перетягніть щоб завантажити файли</p>
         )}
       </div>
       {isPhotoDeleted && (

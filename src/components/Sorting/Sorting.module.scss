@@ -43,6 +43,10 @@
   li {
     padding: toRem(12) toRem(16);
   }
+
+  li:focus {
+    background: rgba(240, 246, 247, 0.3);
+  }
 }
 
 .selected {

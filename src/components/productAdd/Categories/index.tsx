@@ -73,9 +73,11 @@ export const Categories = () => {
                       setSelectedCategory(label);
                       setValue('category', id);
 
-                      label === 'Набори'
-                        ? setValue('subcategory', 'Набір')
-                        : setValue('subcategory', '');
+                      if (label === 'Набори') {
+                        setValue('subcategory', 'Набір');
+                      } else {
+                        setValue('subcategory', '');
+                      }
                     }}
                   />
                 )}
