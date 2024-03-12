@@ -1,6 +1,9 @@
 @import '@/styles/index.scss';
 
 .store {
+  @extend .container;
+  @include adaptiveValue('margin-top', 60, 24, 1440, 0, 480);
+
   &_buttons {
     display: flex;
     align-items: center;
@@ -43,5 +46,29 @@
     min-height: toRem(572);
     margin-top: -1px;
     background: $white-smoke;
+  }
+
+  &_return {
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1rem;
+    letter-spacing: 0.14px;
+    color: $green;
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+
+    margin-bottom: toRem(24);
+
+    svg {
+      width: 1rem;
+      height: 1rem;
+    }
+
+    @media (max-width: $mobileSmall) {
+      margin-bottom: toRem(12);
+      font-size: toRem(11);
+      gap: toRem(8);
+    }
   }
 }

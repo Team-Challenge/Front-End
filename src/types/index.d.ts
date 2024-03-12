@@ -429,3 +429,10 @@ export interface RatingItemProps {
   percent: number;
   numberOfReviews: number;
 }
+
+export interface ToastProps {
+  message: string;
+  toastType?: string;
+  isShow: boolean;
+  handleShowMessage: (type: boolean) => void;
+}
