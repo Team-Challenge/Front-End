@@ -2,161 +2,151 @@
 
 .menu {
   width: 100%;
-  height: calc(100% - 80px);
+  height: calc(100% - 88px);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  background: $white;
+  padding: 1rem 1.25rem;
+
   position: fixed;
   left: 0;
   z-index: 25;
-  background: $white;
-  padding: toRem(18) 0;
 
-  &_wrap {
-    height: 100%;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: toRem(230) 1fr;
-    justify-items: start;
-    align-items: stretch;
-    padding: 0 toRem(20);
+  &_generic {
+    justify-content: space-between;
+    gap: 0.75rem;
   }
 
+  &_personal {
+    gap: 0.25rem;
+  }
+}
+
+.icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: $green;
+}
+
+.label {
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1rem;
+  letter-spacing: 0.00875rem;
+}
+
+.category {
   &_list {
     width: 100%;
     display: grid;
-    gap: toRem(22);
+    gap: 0.875rem;
   }
 
   &_item {
+    width: 100%;
     display: grid;
     grid-template-columns: toRem(20) 1fr auto;
-    column-gap: toRem(12);
+    justify-items: start;
     align-items: center;
+    column-gap: toRem(12);
+    padding: 0.25rem 0;
     cursor: pointer;
-
-    p {
-      font-size: toRem(14);
-      font-weight: 500;
-      line-height: 1rem;
-      letter-spacing: 0.14px;
-    }
-  }
-
-  &_icon {
-    width: toRem(20);
-    height: toRem(20);
-    color: $green;
   }
 
   &_arrow {
-    width: toRem(20);
-    height: toRem(20);
+    width: 1.25rem;
+    height: 1.25rem;
     color: $grey;
-  }
+    transition: transform 0.3s;
 
-  &_buttons {
-    width: 100%;
-    display: grid;
+    &.open {
+      transform: rotate(270deg);
+    }
 
-    &_auth {
-      align-content: stretch;
-      align-items: end;
+    &.closed {
+      transform: rotate(90deg);
     }
     
-    &_account {
-      align-items: stretch;
-      align-content: space-between;
-    }
   }
 }
 
-.buttons {
-    &_auth {
-      display: grid;
-      gap: 1rem;
-      margin-top: toRem(18);
-      @include decorativeElementsBurgerMenu;
-    }
-
-    &_account {
-      @include decorativeElementsBurgerMenu;
-    }
-  }
-
-.account {
+.subcategory {
   &_list {
-    margin-top: toRem(6);
     display: grid;
-    gap: toRem(22);
+    gap: 1rem;
+    margin-top: 12px;
+    margin-left: 32px;
   }
 
-  &_item {
-    display: grid;
-    grid-template-columns: toRem(20) 1fr auto;
-    column-gap: toRem(12);
-    align-items: center;
-    font-size: toRem(14);
-    font-weight: 500;
+  &_link {
+    font-size: 0.875rem;
+    font-weight: 400;
     line-height: 1rem;
-    letter-spacing: 0.14px;
-    cursor: pointer;
-  }
-}
+    width: max-content;
 
-.profile {
-  width: 100%;
-  height: 100%;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: toRem(52) 1fr auto;
-  row-gap: toRem(18);
-  align-items: start;
-  justify-items: start;
-
-  &_return {
-    width: 100%;
-    background: $white-grey;
-    padding: 1rem toRem(20);
-
-    svg {
-      transform: rotate(180deg);
-    }
-  }
-
-  &_list {
-    width: 100%;
-    display: grid;
-    gap: toRem(22);
-    padding: 0 toRem(20);
-  }
-
-  &_item {
-    display: flex;
-    align-items: center;
-    gap: toRem(12);
-
-    font-size: toRem(14);
-    font-weight: 500;
-    line-height: 1rem;
-    letter-spacing: 0.14px;
-
-    svg {
+    &:hover {
       color: $green;
-      width: toRem(20);
-      height: toRem(20);
+      font-weight: 500;
+      transition: color 0.3s;
     }
-  }
 
-  &_logout {
-    padding: 0 toRem(20);
+    &_all {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+
+      span {
+        text-transform: lowercase;
+      }
+    }
   }
 }
 
 .button {
+  &_wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: inherit;
+
+    &_panel {
+      @include decorativeElementsBurgerMenu;
+    }
+  }
+
   &_logout {
     width: 100%;
-    @include decorativeElementsBurgerMenu;
 
-    a {
-      margin: toRem(10) 0;
+    &_link {
+      width: max-content;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin: 0.5rem 0;
+      padding: 0.5rem 0;
     }
+
+    @include decorativeElementsBurgerMenu;
+  }
+
+  &_user,
+  &_store {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: max-content;
+    padding: 0.5rem 0;
+  }
+
+  &_store {
+    margin-top: 6px;
+  }
+
+  &_auth {
+    display: grid;
+    gap: 1rem;
+    @include decorativeElementsBurgerMenu;
   }
 }

@@ -1,16 +1,13 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Icon } from '@iconify/react';
+import { useWindowDimensions } from '@/hooks/useWindowDimensions';
+import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
+import { openModal } from '@/store/modalSlice';
 import { userLogout } from '@/store/userProfile/userProfileThunks';
 import { closeComponent } from '@/store/overlayStateSlice';
-import { openModal } from '@/store/modalSlice';
-import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
-import { useWindowDimensions } from '@/hooks/useWindowDimensions';
-import { useMenuHandler } from '@/hooks/useMenuHandler';
-import { categoryList } from '@/constants/categoryList';
-import { Icon } from '@iconify/react';
+import { categoryList } from '@/constants';
 import { ButtonUI } from '../UI';
-import { UserProfileMenu } from './UserProfileMenu';
-import { StoreProfileMenu } from './StoreProfileMenu';
 import s from './BurgerMenu.module.scss';
 
 export const BurgerMenu = () => {
@@ -18,9 +15,15 @@ export const BurgerMenu = () => {
   const { width } = useWindowDimensions();
   const { isAuth } = useAppSelector((state) => state.auth);
   const { hasStore } = useAppSelector((state) => state.storeProfile);
+  const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
 
-  const [isUserMenuOpen, openUserMenu, closeUserMenu] = useMenuHandler();
-  const [isStoreMenuOpen, openStoreMenu, closeStoreMenu] = useMenuHandler();
+  const handleSelectedCategory = (id: number) => {
+    if (selectedCategory === id) {
+      setSelectedCategory(null);
+    } else {
+      setSelectedCategory(id);
+    }
+  };
 
   const handleCloseMenu = () => {
     dispatch(closeComponent('isBurgerMenu'));
@@ -44,105 +47,94 @@ export const BurgerMenu = () => {
   }, []);
 
   return (
-    <div className={s.menu}>
-      {!isUserMenuOpen && !isStoreMenuOpen && (
-        <div className={s.menu_wrap}>
-          <ul className={s.menu_list}>
-            {categoryList.map(({ id, icon, label }) => (
-              <li key={id} className={s.menu_item}>
-                <img src={icon} alt='X' className={s.menu_icon} />
-                <p>{label}</p>
+    <div className={`${s.menu} ${isAuth ? s.menu_personal : s.menu_generic}`}>
+      <ul className={s.category_list}>
+        {categoryList.map(({ id, icon, label, subcategories }) =>
+          id !== 6 ? (
+            <li key={id}>
+              <button
+                type='button'
+                className={s.category_item}
+                onClick={() => handleSelectedCategory(id)}
+              >
+                <img src={icon} alt={label} className={s.icon} />
+                <p className={s.label}>{label}</p>
                 <Icon
                   icon='solar:alt-arrow-right-outline'
-                  className={s.menu_arrow}
+                  className={`${s.category_arrow} ${
+                    selectedCategory === id ? s.open : s.closed
+                  }`}
                 />
-              </li>
-            ))}
-          </ul>
-
-          {width <= 479.98 && (
-            <div
-              className={`${s.menu_buttons} ${
-                !isAuth ? s.menu_buttons_auth : s.menu_buttons_account
-              }`}
-            >
-              {!isAuth ? (
-                <div className={s.buttons_auth}>
-                  <ButtonUI
-                    label='Увійти'
-                    onClick={() => handleOpenModal('isLogin')}
-                  />
-                  <ButtonUI
-                    label='Зареєструватися'
-                    variant='secondary'
-                    onClick={() => handleOpenModal('isRegistration')}
-                  />
-                </div>
-              ) : (
-                <>
-                  <div className={s.buttons_account}>
-                    <ul className={s.account_list}>
-                      <li className={s.account_item} onClick={openUserMenu}>
-                        <Icon
-                          icon='solar:user-outline'
-                          className={s.menu_icon}
-                        />
-                        Мій профіль
-                        <Icon
-                          icon='solar:alt-arrow-right-outline'
-                          className={s.menu_arrow}
-                        />
-                      </li>
-
-                      {hasStore ? (
-                        <li className={s.account_item} onClick={openStoreMenu}>
-                          <Icon
-                            icon='solar:shop-2-outline'
-                            className={s.menu_icon}
-                          />
-                          Мій магазин
-                          <Icon
-                            icon='solar:alt-arrow-right-outline'
-                            className={s.menu_arrow}
-                          />
-                        </li>
-                      ) : (
-                        <Link
-                          className={s.account_item}
-                          to='/account/create-store'
-                          onClick={handleCloseMenu}
-                        >
-                          <Icon
-                            icon='solar:shop-2-outline'
-                            className={s.menu_icon}
-                          />
-                          Мій магазин
-                        </Link>
-                      )}
-                    </ul>
-                  </div>
-                  <div className={s.button_logout}>
-                    <Link
-                      to='/'
-                      className={s.account_item}
-                      onClick={logoutUser}
-                    >
-                      <Icon
-                        icon='solar:logout-2-outline'
-                        className={s.menu_icon}
-                      />
-                      Вийти
+              </button>
+              {selectedCategory === id && selectedCategory !== 6 && (
+                <ul className={s.subcategory_list}>
+                  <li className={s.subcategory_link}>
+                    <Link to='/' className={s.subcategory_link_all}>
+                      Всі прикраси <span>{label}</span>
                     </Link>
-                  </div>
-                </>
+                  </li>
+                  {subcategories &&
+                    subcategories.map((subcategory) => (
+                      <li key={subcategory} className={s.subcategory_link}>
+                        <Link to='/'>{subcategory}</Link>
+                      </li>
+                    ))}
+                </ul>
               )}
-            </div>
-          )}
+            </li>
+          ) : (
+            <li className={s.category_item} key={id}>
+              <img src={icon} alt='Набори' className={s.icon} />
+              <p className={s.label}>{label}</p>
+            </li>
+          ),
+        )}
+      </ul>
+
+      {width <= 479.98 && isAuth && (
+        <div className={s.button_wrap}>
+          <div className={s.button_wrap_panel}>
+            <Link
+              to='/account/profile'
+              className={s.button_user}
+              onClick={handleCloseMenu}
+            >
+              <Icon icon='solar:user-rounded-outline' className={s.icon} />
+
+              <p className={s.label}>Мій профіль</p>
+            </Link>
+
+            {hasStore && (
+              <Link
+                to='/account/store'
+                className={s.button_store}
+                onClick={handleCloseMenu}
+              >
+                <Icon icon='solar:shop-2-outline' className={s.icon} />
+                <p className={s.label}>Мій магазин</p>
+              </Link>
+            )}
+          </div>
+
+          <div className={s.button_logout}>
+            <Link to='/' onClick={logoutUser} className={s.button_logout_link}>
+              <Icon icon='solar:logout-2-outline' className={s.icon} />
+              <p className={s.label}>Вийти</p>
+            </Link>
+          </div>
         </div>
       )}
 
-      {isUserMenuOpen && <UserProfileMenu closeUserMenu={closeUserMenu} />}
-      {isStoreMenuOpen && <StoreProfileMenu closeStoreMenu={closeStoreMenu} />}
+      {width <= 479.98 && !isAuth && (
+        <div className={s.button_auth}>
+          <ButtonUI label='Увійти' onClick={() => handleOpenModal('isLogin')} />
+          <ButtonUI
+            label='Зареєструватися'
+            variant='secondary'
+            onClick={() => handleOpenModal('isRegistration')}
+          />
+        </div>
+      )}
     </div>
   );
 };
