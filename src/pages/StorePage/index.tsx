@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import { useAppSelector } from '@/hooks/reduxHook';
+import { Link } from 'react-router-dom';
+import { Icon } from '@iconify/react';
 import { StoreProducts } from './components/StoreProducts';
 import { StoreReviews } from './components/StoreReviews';
+import { StoreHeader } from './components/StoreHeader';
 import s from './StorePage.module.scss';
 
 export const StorePage = () => {
@@ -15,7 +18,12 @@ export const StorePage = () => {
   };
 
   return (
-    <section className='container'>
+    <section className={s.store}>
+      <Link to='/account/store/products' className={s.store_return}>
+        <Icon icon='solar:alt-arrow-left-outline' /> Назад
+      </Link>
+      <StoreHeader />
+
       <div className={s.store_buttons}>
         <button
           type='button'
