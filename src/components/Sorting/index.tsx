@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { KeyboardEvent, useState } from 'react';
 import { sortingOptions } from '@/constants/sortingOptions';
 import { Icon } from '@iconify/react';
 import s from './Sorting.module.scss';
@@ -16,9 +16,31 @@ export const Sorting = ({ className }: { className?: string }) => {
     setShowDropdown(!showDropdown);
   };
 
+  const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      toggleDropdown();
+    }
+  };
+
+  const handleDropdownItemClick = (
+    event: KeyboardEvent<HTMLLIElement>,
+    label: string,
+  ) => {
+    if (event.key === 'Enter') {
+      handleSortingChange(label);
+      toggleDropdown();
+    }
+  };
+
   return (
     <div className={`${s.sorting} ${className}`}>
-      <div className={s.sort} onClick={toggleDropdown}>
+      <div
+        className={s.sort}
+        onClick={toggleDropdown}
+        onKeyDown={handleKeyDown}
+        role='button'
+        tabIndex={0}
+      >
         Сортувати:
         <p>{selectedOption}</p>
         <Icon icon='solar:alt-arrow-down-outline' />
@@ -29,8 +51,11 @@ export const Sorting = ({ className }: { className?: string }) => {
           {sortingOptions.map(({ id, label }) => (
             <li
               key={id}
-              onClick={() => handleSortingChange(label)}
               className={selectedOption === label ? s.selected : ''}
+              onClick={() => handleSortingChange(label)}
+              onKeyDown={(e) => handleDropdownItemClick(e, label)}
+              tabIndex={0}
+              role='menuitem'
             >
               {label}
             </li>

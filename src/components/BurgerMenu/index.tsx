@@ -7,10 +7,10 @@ import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
 import { useWindowDimensions } from '@/hooks/useWindowDimensions';
 import { useMenuHandler } from '@/hooks/useMenuHandler';
 import { categoryList } from '@/constants/categoryList';
-import { ButtonUI } from '../UI/ButtonUI';
+import { Icon } from '@iconify/react';
+import { ButtonUI } from '../UI';
 import { UserProfileMenu } from './UserProfileMenu';
 import { StoreProfileMenu } from './StoreProfileMenu';
-import { Icon } from '@iconify/react';
 import s from './BurgerMenu.module.scss';
 
 export const BurgerMenu = () => {
@@ -109,7 +109,7 @@ export const BurgerMenu = () => {
                       ) : (
                         <Link
                           className={s.account_item}
-                          to={'/account/create-store'}
+                          to='/account/create-store'
                           onClick={handleCloseMenu}
                         >
                           <Icon

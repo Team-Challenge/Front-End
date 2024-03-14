@@ -80,9 +80,9 @@ export const StoreBanner = () => {
   return (
     <div className={s.banner}>
       <div className={s.banner_image}>
-        {storeBanner ? (
-          <img src={storeBanner} alt='banner' />
-        ) : width >= 991.98 ? (
+        {storeBanner && <img src={storeBanner} alt='banner' />}
+
+        {!storeBanner && width >= 991.98 ? (
           <FileDrop onChange={handleBannerUpload}>
             <div className={s.banner_text}>
               <p>Завантажити фото банера</p>

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Icon } from '@iconify/react';
 import { ProfilePhotoProps } from '@/types';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
 import {
@@ -14,7 +15,6 @@ import {
 import { openModal } from '@/store/modalSlice';
 import { Modal } from '../Modal';
 import { OrnamentalTitle } from '../OrnamentalTitle';
-import { Icon } from '@iconify/react';
 import s from './ProfilePhoto.module.scss';
 
 export const ProfilePhoto = ({
@@ -69,7 +69,8 @@ export const ProfilePhoto = ({
         dispatch(getStoreInfo());
         setDefaultImg(URL.createObjectURL(file));
       }
-    } catch (error) {
+    } catch (e) {
+      const error = e as Error;
       throw error;
     }
   };
@@ -93,16 +94,20 @@ export const ProfilePhoto = ({
   };
 
   const profilePicture = profilePhoto ? (
-    <img src={profilePhoto} alt='photo' />
+    <img src={profilePhoto} alt='user' />
   ) : (
-    <img src={defaultImg} alt='photo' />
+    <img src={defaultImg} alt='user' />
   );
 
   return (
     <div className={`${s.photo} ${className}`}>
       <div className={s.photo_block}>
         <div className={s.photo_img}>{profilePicture}</div>
-        <button className={s.photo_button} onClick={handleOpenModal}>
+        <button
+          type='button'
+          className={s.photo_button}
+          onClick={handleOpenModal}
+        >
           <Icon icon='solar:pen-new-square-outline' />
         </button>
       </div>
@@ -120,7 +125,7 @@ export const ProfilePhoto = ({
               Додати нове
               <input type='file' id={modalId} onChange={handleAddPhoto} />
             </label>
-            <button onClick={handleDeletePhoto}>
+            <button type='button' onClick={handleDeletePhoto}>
               <Icon icon='solar:trash-bin-trash-outline' />
               Видалити
             </button>

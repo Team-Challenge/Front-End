@@ -55,6 +55,7 @@ export const PasswordInput = ({
           })}
           onClick={onClick}
           className={inputClassName}
+          autoComplete={id}
         />
         <div className={s.icon}>
           <button

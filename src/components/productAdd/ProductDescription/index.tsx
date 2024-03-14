@@ -1,4 +1,5 @@
 import { TextArea, Tooltip } from '@/components/UI';
+import { productAddTips } from '@/constants/productAddTips';
 import { Icon } from '@iconify/react';
 import s from './ProductDescription.module.scss';
 
@@ -8,9 +9,7 @@ export const ProductDescription = () => {
       <div className='product-add_subtitle_wrap'>
         <p className='product-add_subtitle'>Опис товару</p>
         <Tooltip
-          text='Не знаєте що написати?
-          Почніть з опису вигляду самого виробу, з яких матеріалів виготовлений, 
-          опишіть процес створення, щоб підкреслити його характер та індивідуальність'
+          text={productAddTips.description}
           isBase={false}
           className={`product-add_tooltip ${s.description_tooltip}`}
         >

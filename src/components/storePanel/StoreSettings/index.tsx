@@ -82,8 +82,8 @@ export const StoreSettings = () => {
         setIsSuccessfulChange(true);
         dispatch(openModal('dataStoreChangeNotification'));
         dispatch(getStoreInfo());
-      } catch (error: any) {
-        if (error.code === 'ERR_BAD_REQUEST') {
+      } catch (error: unknown) {
+        if ((error as { code: string }).code === 'ERR_BAD_REQUEST') {
           setError('name', {
             type: 'manual',
             message:
@@ -105,11 +105,11 @@ export const StoreSettings = () => {
     }
 
     if (instagramLink !== storeLink && storeLink) {
-      const instagramLink = transformNicknameToInstagramLink(data.link);
+      const fullInstagramLink = transformNicknameToInstagramLink(data.link);
 
       const response = await dispatch(
         changeStoreInfo({
-          link: instagramLink,
+          link: fullInstagramLink,
         }),
       );
 

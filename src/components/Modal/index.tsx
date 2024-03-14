@@ -24,7 +24,11 @@ export const Modal = ({ children, modalId, className }: ModalProps) => {
     <div className={`${s.modal} ${className}`}>
       <div className={s.modal_wrap}>
         <div className={s.modal_block}>{children}</div>
-        <button className={s.modal_close} onClick={handleCloseModal}>
+        <button
+          type='button'
+          className={s.modal_close}
+          onClick={handleCloseModal}
+        >
           <Icon icon='pajamas:close' />
         </button>
       </div>

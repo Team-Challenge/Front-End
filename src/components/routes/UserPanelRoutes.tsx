@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { UserPanel } from '../sidebarNav/UserPanel';
+import { useWindowDimensions } from '@/hooks/useWindowDimensions';
 import {
   Profile,
   Purchases,
@@ -8,7 +8,7 @@ import {
   Store,
   Settings,
 } from '@/pages';
-import { useWindowDimensions } from '@/hooks/useWindowDimensions';
+import { UserPanel } from '../sidebarNav/UserPanel';
 
 export const UserPanelRoutes = () => {
   const { width } = useWindowDimensions();
