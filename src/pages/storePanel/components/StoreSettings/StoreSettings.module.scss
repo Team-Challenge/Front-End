@@ -1,18 +1,19 @@
 @import '@/styles/index.scss';
 
 .form {
-  max-width: toRem(424);
+  max-width: 26.5rem;
   width: 100%;
   display: grid;
-  gap: toRem(16);
+  gap: 1rem;
 
   @media (max-width: $tablet) {
     max-width: 100%;
-    width: calc(75% - 20px);
+    width: calc(75% - 1.25rem);
+    margin-top: 1.375rem;
   }
 
   @media (max-width: $mobileSmall) {
-    width: calc(100% - 20px);
+    width: 100%;
   }
 
   &_wrap {
@@ -29,7 +30,7 @@
   }
 
   &_subtitle {
-    font-size: toRem(12);
+    font-size: 0.75rem;
     font-weight: 300;
     line-height: 1rem;
     color: $grey;
@@ -41,7 +42,7 @@
 
   &_char_count {
     font-family: 'Montserrat', sans-serif;
-    font-size: toRem(12);
+    font-size: 0.75rem;
     font-weight: 300;
     line-height: 1rem;
     color: $grey;
@@ -50,13 +51,13 @@
   &_textarea {
     textarea {
       @media (max-width: $mobileSmall) {
-        max-height: 138px;
+        max-height: 8.625rem;
       }
     }
   }
 
   &_button {
-    margin-top: toRem(15);
+    margin-top: 0.938rem;
 
     @media (max-width: $mobile) {
       margin-top: 0;

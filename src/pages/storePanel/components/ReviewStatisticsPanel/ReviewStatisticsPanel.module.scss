@@ -161,6 +161,10 @@
   right: 0px;
   top: -46px;
 
+  @media (max-width: $tablet) {
+    top: -30px;
+  }
+
   @media (max-width: $mobile) {
     font-weight: 300;
     gap: 0.25rem;
