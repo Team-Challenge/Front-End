@@ -1,8 +1,16 @@
 @import '@/styles/index.scss';
 
 .reviews {
-  max-width: toRem(896);
+  max-width: 56rem;
   width: 100%;
+
+  @media (max-width: $tablet) {
+    margin-top: 1.5rem;
+  }
+
+  @media (max-width: $mobile) {
+    margin-top: 0.5rem;
+  }
 
   &_title {
     margin-bottom: 1.75rem;

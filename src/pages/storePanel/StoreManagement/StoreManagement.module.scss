@@ -3,17 +3,18 @@
 .settings {
   display: grid;
   grid-template-columns: 1fr;
-  padding-bottom: toRem(20);
+  padding-bottom: 1.25rem;
 
   @media (max-width: $tablet) {
     justify-items: center;
+    margin-top: 0.5rem;
   }
 
   &_title {
-    margin: toRem(32) 0 toRem(16);
+    margin: 2rem 0 1rem;
 
     @media (max-width: $mobileSmall) {
-      margin-top: toRem(20);
+      margin-top: 1.25rem;
     }
   }
 
@@ -21,14 +22,14 @@
     grid-area: -1 / 1;
     display: grid;
     align-items: center;
-    margin: toRem(40) 0 0 toRem(21);
+    margin: 2.5rem 0 0 1.313rem;
 
     @media (max-width: $tablet) {
       margin: 0;
     }
 
     @media (max-width: $mobileSmall) {
-      margin-top: toRem(12);
+      margin-top: 0.75rem;
     }
   }
 }

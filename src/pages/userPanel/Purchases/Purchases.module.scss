@@ -2,7 +2,7 @@
 
 .order {
   &_title {
-    margin-bottom: toRem(24);
+    margin-bottom: 1.5rem;
   }
 
   &_buttons {
@@ -11,12 +11,12 @@
 
     button {
       font-family: 'Craftwork Grotesk', sans-serif;
-      font-size: toRem(12);
+      font-size: 0.75rem;
       font-weight: 700;
-      line-height: toRem(24);
+      line-height: 1.5rem;
       letter-spacing: 0.36px;
       background: $azure;
-      border-radius: toRem(4);
+      border-radius: 0.25rem;
       padding: 0.5rem 1.5rem;
     }
   }

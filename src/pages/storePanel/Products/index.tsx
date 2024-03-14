@@ -5,11 +5,11 @@ import { getAllProductsInfo } from '@/store/productPage/productPageThunks';
 import { useWindowDimensions } from '@/hooks/useWindowDimensions';
 import { productStatusList, emptySectionText } from '@/constants';
 import { ButtonsBar } from '@/components/ButtonsBar';
-import { ProductsList } from '@/components/storePanel/products/ProductsList';
-import { AddProductButton } from '@/components/storePanel/AddProductButton';
 import { EmptyContentPage } from '@/components/EmptyContentPage';
 import { Sorting } from '@/components/Sorting';
 import { Icon } from '@iconify/react';
+import { ProductsList } from '../components/products/ProductsList';
+import { AddProductButton } from '../components/AddProductButton';
 import s from './Products.module.scss';
 
 export const Products = () => {
@@ -30,9 +30,10 @@ export const Products = () => {
 
   return isProductsAvailable ? (
     <section className={s.products}>
-      <h4 className={s.products_title}>Мої товари</h4>
+      {width >= 991.98 && <h4 className={s.products_title}>Мої товари</h4>}
+
       <Link to='/account/new-product' className={s.products_button}>
-        {width <= 500 ? 'Додати' : 'Додати товар'}
+        Додати товар
         <Icon icon='solar:add-circle-outline' />
       </Link>
       <ButtonsBar

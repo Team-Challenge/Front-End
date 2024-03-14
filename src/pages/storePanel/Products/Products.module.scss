@@ -1,7 +1,7 @@
 @import '@/styles/index.scss';
 
 .products {
-  max-width: toRem(960);
+  max-width: 60rem;
   width: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -15,8 +15,20 @@
   gap: 1.563rem;
   overflow: hidden;
 
+  @media (max-width: $tablet) {
+    grid-template-areas:
+    'statusBtn statusBtn'
+    'addProductBtn sorting'
+    'list list';
+  }
+
   @media (max-width: $mobile) {
     gap: 1.25rem;
+    grid-template-areas:
+    'addProductBtn addProductBtn'
+    'statusBtn statusBtn'
+    'sorting sorting'
+    'list list';
   }
 
   @media (max-width: $mobileSmall) {
@@ -26,11 +38,14 @@
   &_sorting {
     grid-area: sorting;
     justify-self: end;
-    margin-top: toRem(-14);
+    margin-top: -0.875rem;
 
-    @media (max-width: $mobileSmall) {
+    @media (max-width: $tablet) {
+      margin-top: 0;
+    }
+
+    @media (max-width: $mobile) {
       justify-self: start;
-      margin-top: toRem(-5);
     }
   }
 
@@ -53,13 +68,18 @@
     color: $white;
     background: $green;
     border-radius: 0.25rem;
-    padding: toRem(10) toRem(35);
+    padding: 0.625rem 2.188rem;
+
+    @media (max-width: $tablet) {
+      width: 100%;
+    }
 
     @media (max-width: $mobile) {
+      width: 100%;
       font-size: 0.875rem;
       line-height: 1.25rem;
       letter-spacing: 0.28px;
-      padding: toRem(9) toRem(38);
+      padding: 0.875rem 2.375rem;
     }
 
     svg {
@@ -71,5 +91,9 @@
 
   &_status {
     grid-area: statusBtn;
+
+    @media (max-width: $mobile) {
+      margin: 1.063rem 0 0;
+    }
   }
 }

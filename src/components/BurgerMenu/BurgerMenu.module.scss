@@ -2,7 +2,7 @@
 
 .menu {
   width: 100%;
-  height: calc(100% - 88px);
+  height: calc(100% - 5.5rem);
   display: flex;
   flex-direction: column;
   overflow-y: auto;
@@ -76,15 +76,14 @@
   &_list {
     display: grid;
     gap: 1rem;
-    margin-top: 12px;
-    margin-left: 32px;
+    margin: 0.75rem 0 0 2rem;
   }
 
   &_link {
+    width: max-content;
     font-size: 0.875rem;
     font-weight: 400;
     line-height: 1rem;
-    width: max-content;
 
     &:hover {
       color: $green;
@@ -95,7 +94,7 @@
     &_all {
       display: flex;
       align-items: center;
-      gap: 4px;
+      gap: 0.25rem;
 
       span {
         text-transform: lowercase;
@@ -141,7 +140,7 @@
   }
 
   &_store {
-    margin-top: 6px;
+    margin-top: 0.375rem;
   }
 
   &_auth {

@@ -8,28 +8,32 @@
     justify-items: center;
   }
 
+  @media (max-width: $mobile) {
+    margin-top: 0.5rem;
+  }
+
   &_title {
     margin-bottom: 1.5rem;
 
     @media (max-width: $mobileSmall) {
       justify-self: start;
-      margin-bottom: toRem(14);
+      margin-bottom: 0.875rem;
     }
   }
 }
 
 .button {
   &_delete {
-    max-width: toRem(424);
+    max-width: 26.5rem;
     margin-top: 1rem;
 
     @media (max-width: $tablet) {
       max-width: 100%;
-      width: calc(75% - 20px);
+      width: calc(75% - 1.25rem);
     }
 
     @media (max-width: $mobileSmall) {
-      width: calc(100% - 20px);
+      width: 100%;
     }
   }
 }

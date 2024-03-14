@@ -2,8 +2,11 @@
 
 .header {
   box-shadow: 0 toRem(6) toRem(6) 0 rgba(221, 221, 221, 0.2);
+  position: relative;
+  z-index: 26;
 
   svg {
+    color: $black;
     width: toRem(20);
     height: toRem(20);
   }

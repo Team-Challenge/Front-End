@@ -1,5 +1,16 @@
 import { Link } from 'react-router-dom';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
+import { Icon } from '@iconify/react';
+import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
+import {
+  addNewProduct,
+  uploadStorePhoto,
+} from '@/store/productPage/productPageThunks';
+import { closeModal, openModal } from '@/store/modalSlice';
+import { ProductAddForm } from '@/types';
+import { OrnamentalTitle } from '@/components/OrnamentalTitle';
+import { Modal } from '@/components/Modal';
+import { ButtonUI } from '@/components/UI';
 import {
   ProductName,
   ProductDescription,
@@ -12,18 +23,7 @@ import {
   CareInstructions,
   ProductShippingPaymentOptions,
   ProductRefundRules,
-} from '@/components/productAdd';
-import {
-  addNewProduct,
-  uploadStorePhoto,
-} from '@/store/productPage/productPageThunks';
-import { ProductAddForm } from '@/types';
-import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
-import { closeModal, openModal } from '@/store/modalSlice';
-import { OrnamentalTitle } from '@/components/OrnamentalTitle';
-import { Modal } from '@/components/Modal';
-import { ButtonUI } from '@/components/UI';
-import { Icon } from '@iconify/react';
+} from './components';
 import s from './ProductAddPage.module.scss';
 
 export const ProductAddPage = () => {

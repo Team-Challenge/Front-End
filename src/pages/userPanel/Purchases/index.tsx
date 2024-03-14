@@ -1,11 +1,13 @@
 import { useState } from 'react';
-import { EmptyContentPage } from '@/components/EmptyContentPage';
 import { Icon } from '@iconify/react';
+import { useWindowDimensions } from '@/hooks/useWindowDimensions';
+import { EmptyContentPage } from '@/components/EmptyContentPage';
 import { purchaseStatusList } from '@/constants/statusesList';
 import { emptySectionText } from '@/constants/emptySectionText';
 import s from './Purchases.module.scss';
 
 export const Purchases = () => {
+  const { width } = useWindowDimensions();
   const [activeButtonId, setActiveButtonId] = useState<number>(1);
 
   const handleButtonClick = (buttonId: number) => {
@@ -19,7 +21,8 @@ export const Purchases = () => {
         text={emptySectionText.productsUserPanel}
         item={<Icon icon='solar:bag-smile-outline' />}
       />
-      {/* <h4 className={s.order_title}>Мої покупки</h4>
+      {/*
+      {width >= 991.98 && <h4 className={s.order_title}>Мої покупки</h4>}
       <div className={s.order_buttons}>
         {purchaseStatusList.map((status) => (
           <button
