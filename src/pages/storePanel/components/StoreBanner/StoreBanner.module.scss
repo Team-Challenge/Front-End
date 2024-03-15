@@ -65,7 +65,7 @@
   &_buttons {
     display: flex;
     align-items: center;
-    justify-content: end;
+    justify-content: flex-end;
     gap: 0.5rem;
 
     & button {
@@ -131,7 +131,7 @@
   &_button_delete {
     display: flex;
     flex-direction: row-reverse;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
     gap: 0.5rem;
     padding: 0.563rem 0.688rem;

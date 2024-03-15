@@ -76,14 +76,14 @@
   grid-area: profile;
   display: grid;
   grid-template-areas: 'photo name' 'date date';
-  justify-content: end;
+  justify-content: flex-end;
   column-gap: 0.5rem;
   row-gap: 0.25rem;
 
   @media (max-width: $mobileSmall) {
     grid-template-areas: 'photo name date';
     align-items: center;
-    justify-content: start;
+    justify-content: flex-start;
     margin-bottom: 0.75rem;
   }
 
