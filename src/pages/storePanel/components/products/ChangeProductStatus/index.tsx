@@ -4,9 +4,7 @@ import { closeModal } from '@/store/modalSlice';
 import { changeProductInfo } from '@/store/productPage/productPageThunks';
 import { setProductStatus } from '@/store/productPage/productPageSlice';
 import { mutableProductStatuses } from '@/constants/statusesList';
-import { Modal } from '@/components/Modal';
-import { OrnamentalTitle } from '@/components/OrnamentalTitle';
-import { ButtonUI } from '@/components/UI/ButtonUI';
+import { Modal, OrnamentalTitle, ButtonUI } from '@/components/UI';
 import s from './ChangeProductStatus.module.scss';
 
 export const ChangeProductStatus = ({ productId }: { productId: number }) => {

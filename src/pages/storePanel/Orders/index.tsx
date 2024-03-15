@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { purchaseStatusList, emptySectionText } from '@/constants';
-import { ButtonsBar } from '@/components/ButtonsBar';
+import { ButtonsBar, EmptyContentPage } from '@/components/UI';
 import { OrdersList } from '@/pages/storePanel/components/orders/OrdersList';
-import { EmptyContentPage } from '@/components/EmptyContentPage';
 import { Icon } from '@iconify/react';
 import { useWindowDimensions } from '@/hooks/useWindowDimensions';
 import s from './Orders.module.scss';

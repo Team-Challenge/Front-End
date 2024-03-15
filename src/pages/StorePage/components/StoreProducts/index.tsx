@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
 import { getAllProductsInfo } from '@/store/productPage/productPageThunks';
 import { Sorting } from '@/components/Sorting';
 import { ProductCard } from '@/components/ProductCard';
-import { Pagination } from '@/components/UI/Pagination';
+import { Pagination } from '@/components/UI';
 import s from './StoreProducts.module.scss';
 
 export const StoreProducts = () => {

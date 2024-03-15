@@ -1,8 +1,8 @@
 import { DataChangeNotificationModalProps } from '@/types';
 import { useAppDispatch } from '@/hooks/reduxHook';
 import { closeModal } from '@/store/modalSlice';
-import { Modal } from '../Modal';
-import { OrnamentalTitle } from '../OrnamentalTitle';
+import { Modal } from '../UI/Modal';
+import { OrnamentalTitle } from '../UI/OrnamentalTitle';
 import { ButtonUI } from '../UI/ButtonUI';
 import s from './DataChangeNotificationModal.module.scss';
 

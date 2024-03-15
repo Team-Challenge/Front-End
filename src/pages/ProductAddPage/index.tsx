@@ -8,9 +8,7 @@ import {
 } from '@/store/productPage/productPageThunks';
 import { closeModal, openModal } from '@/store/modalSlice';
 import { ProductAddForm } from '@/types';
-import { OrnamentalTitle } from '@/components/OrnamentalTitle';
-import { Modal } from '@/components/Modal';
-import { ButtonUI } from '@/components/UI';
+import { ButtonUI, Modal, OrnamentalTitle } from '@/components/UI';
 import {
   ProductName,
   ProductDescription,

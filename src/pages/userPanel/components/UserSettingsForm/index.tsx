@@ -13,7 +13,7 @@ import {
 import { openModal } from '@/store/modalSlice';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
 import { SettingsFormData, UserSettingsFormProps } from '@/types';
-import { ButtonUI } from '@/components/UI/ButtonUI';
+import { ButtonUI } from '@/components/UI';
 import { UserDeliveryData } from './UserDeliveryData';
 import { UserPassword } from './UserPassword';
 import { UserPhoneNumber } from './UserPhoneNumber';

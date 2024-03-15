@@ -1,5 +1,5 @@
 import { useWindowDimensions } from '@/hooks/useWindowDimensions';
-import { Tooltip } from '@/components/UI/Tooltip';
+import { Tooltip } from '@/components/UI';
 import { Icon } from '@iconify/react';
 import { OrderItemMobile } from './OrderItemMobile';
 import { OrderItemDesktop } from './OrderItemDesktop';

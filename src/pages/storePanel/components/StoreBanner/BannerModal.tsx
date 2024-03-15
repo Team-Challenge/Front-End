@@ -2,10 +2,7 @@ import { useState } from 'react';
 import { BannerModalProps } from '@/types';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
 import { closeModal } from '@/store/modalSlice';
-import { Modal } from '@/components/Modal';
-import { OrnamentalTitle } from '@/components/OrnamentalTitle';
-import { ButtonUI } from '@/components/UI';
-import { FileDrop } from '@/components/UI/FileDrop';
+import { Modal, OrnamentalTitle, ButtonUI, FileDrop } from '@/components/UI';
 import { Icon } from '@iconify/react';
 import s from './StoreBanner.module.scss';
 

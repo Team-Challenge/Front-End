@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useAppDispatch } from '@/hooks/reduxHook';
 import { closeModal, openModal } from '@/store/modalSlice';
-import { OrnamentalTitle } from '@/components/OrnamentalTitle';
+import { OrnamentalTitle } from '@/components/UI/OrnamentalTitle';
 import { RegistrationForm } from './AuthForm/RegistrationForm';
 import { SuccessMessage } from './SuccessMessage';
 import s from './Auth.module.scss';

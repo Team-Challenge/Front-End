@@ -1,6 +1,6 @@
 import { ProductStoreItemProps } from '@/types';
 import { categoryList } from '@/constants/categoryList';
-import { Tooltip } from '@/components/UI/Tooltip';
+import { Tooltip } from '@/components/UI';
 import { Icon } from '@iconify/react';
 import s from './ProductsList.module.scss';
 

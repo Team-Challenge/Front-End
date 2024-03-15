@@ -1,6 +1,6 @@
 import { useAppDispatch } from '@/hooks/reduxHook';
 import { closeModal } from '@/store/modalSlice';
-import { OrnamentalTitle } from '../OrnamentalTitle';
+import { OrnamentalTitle } from '../UI/OrnamentalTitle';
 import { ButtonUI } from '../UI/ButtonUI';
 import s from './Auth.module.scss';
 

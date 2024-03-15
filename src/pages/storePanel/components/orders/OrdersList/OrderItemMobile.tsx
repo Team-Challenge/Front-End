@@ -3,7 +3,7 @@ import { getStatusColor } from '@/utils/getStatusColor';
 import { OrderItemProps } from '@/types';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
 import { openModal } from '@/store/modalSlice';
-import { Tooltip } from '@/components/UI/Tooltip';
+import { Tooltip } from '@/components/UI';
 import { Icon } from '@iconify/react';
 import { OrderProductList } from '../OrderProductList';
 import { ParcelNumberForm } from '../ParcelNumberForm';

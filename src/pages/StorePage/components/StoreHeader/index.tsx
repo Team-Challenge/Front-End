@@ -1,11 +1,11 @@
-import { Icon } from '@iconify/react';
-import { Tooltip } from '@/components/UI';
-import { useAppSelector } from '@/hooks/reduxHook';
 import defaultStorePic from '@assets/default-store-pic.svg';
-import s from './StoreHeader.module.scss';
+import { Icon } from '@iconify/react';
+import { useAppSelector } from '@/hooks/reduxHook';
+import { Tooltip } from '@/components/UI';
 import { Rating } from './Rating';
 import { Contacts } from './Contacts';
 import { HeaderDesc } from './HeaderDesc';
+import s from './StoreHeader.module.scss';
 
 export const StoreHeader = () => {
   const name = useAppSelector((state) => state.storeProfile.name);

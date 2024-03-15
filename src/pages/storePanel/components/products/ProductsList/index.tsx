@@ -4,7 +4,7 @@ import { useWindowDimensions } from '@/hooks/useWindowDimensions';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHook';
 import { openModal } from '@/store/modalSlice';
 import { Icon } from '@iconify/react';
-import { Tooltip } from '@/components/UI/Tooltip';
+import { Tooltip } from '@/components/UI';
 import { ProductItemDesktop } from './ProductItemDesktop';
 import { ProductItemMobile } from './ProductItemMobile';
 import { ChangeProductStatus } from '../ChangeProductStatus';

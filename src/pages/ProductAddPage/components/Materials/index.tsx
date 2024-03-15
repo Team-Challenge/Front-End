@@ -1,7 +1,7 @@
 import { Controller, useFormContext } from 'react-hook-form';
 import { materialsList } from '@/constants/materialsList';
 import { createOptionsList } from '@/utils/createOptionsList';
-import { SelectInput } from '@/components/UI/SelectInput';
+import { SelectInput } from '@/components/UI';
 import s from './Materials.module.scss';
 
 export const Materials = () => {

@@ -1,7 +1,7 @@
 import { Rate } from 'antd';
 import { Icon } from '@iconify/react';
 import { RatingStarIcon } from '@/components/icons/RatingStarIcon';
-import { Tooltip } from '@/components/UI/Tooltip';
+import { Tooltip } from '@/components/UI';
 import { RatingItem } from './RatingItem';
 import s from './ReviewStatisticsPanel.module.scss';
 

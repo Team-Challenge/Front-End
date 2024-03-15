@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useFormContext, Controller } from 'react-hook-form';
 import { useAppSelector } from '@/hooks/reduxHook';
 import { PostDeliveryInfo } from '@/types';
-import { SelectInput } from '@/components/UI/SelectInput';
+import { SelectInput } from '@/components/UI';
 import s from './UserSettingsForm.module.scss';
 
 export const UserDeliveryData = () => {

@@ -2,9 +2,7 @@ import { Link } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '@/hooks/reduxHook';
 import { closeModal, openModal } from '@/store/modalSlice';
 import { Icon } from '@iconify/react';
-import { Modal } from '@/components/Modal';
-import { OrnamentalTitle } from '@/components/OrnamentalTitle';
-import { ButtonUI } from '@/components/UI/ButtonUI';
+import { Modal, OrnamentalTitle, ButtonUI } from '@/components/UI';
 import { CreateNewStore } from './CreateNewStore';
 import s from './Store.module.scss';
 

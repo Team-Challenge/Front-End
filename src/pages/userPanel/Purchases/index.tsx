@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Icon } from '@iconify/react';
 import { useWindowDimensions } from '@/hooks/useWindowDimensions';
-import { EmptyContentPage } from '@/components/EmptyContentPage';
+import { EmptyContentPage } from '@/components/UI';
 import { purchaseStatusList } from '@/constants/statusesList';
 import { emptySectionText } from '@/constants/emptySectionText';
 import s from './Purchases.module.scss';

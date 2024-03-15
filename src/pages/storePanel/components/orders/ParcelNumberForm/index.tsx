@@ -5,10 +5,7 @@ import {
   useForm,
 } from 'react-hook-form';
 import { PARCEL_NUMBER_REGEX } from '@/constants/RegExp';
-import { Modal } from '@/components/Modal';
-import { OrnamentalTitle } from '@/components/OrnamentalTitle';
-import { TextInput } from '@/components/UI/TextInput';
-import { ButtonUI } from '@/components/UI/ButtonUI';
+import { Modal, OrnamentalTitle, TextInput, ButtonUI } from '@/components/UI';
 import s from './ParcelNumberForm.module.scss';
 
 export const ParcelNumberForm = () => {

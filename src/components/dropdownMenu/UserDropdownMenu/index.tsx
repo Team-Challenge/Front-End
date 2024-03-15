@@ -7,7 +7,7 @@ import { openModal } from '@/store/modalSlice';
 import { closeComponent } from '@/store/overlayStateSlice';
 import { getUserPanelButtonsList } from '@/constants/userPanelButtonsList';
 import { Icon } from '@iconify/react';
-import { ButtonUI } from '../UI/ButtonUI';
+import { ButtonUI } from '../../UI/ButtonUI';
 import s from './UserDropdownMenu.module.scss';
 
 export const UserDropdownMenu = () => {
