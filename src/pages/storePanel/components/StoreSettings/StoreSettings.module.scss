@@ -1,0 +1,66 @@
+@import '@/styles/index.scss';
+
+.form {
+  max-width: 26.5rem;
+  width: 100%;
+  display: grid;
+  gap: 1rem;
+
+  @media (max-width: $tablet) {
+    max-width: 100%;
+    width: calc(75% - 1.25rem);
+    margin-top: 1.375rem;
+  }
+
+  @media (max-width: $mobileSmall) {
+    width: 100%;
+  }
+
+  &_wrap {
+    display: grid;
+    gap: 0.25rem;
+
+    p:first-child {
+      margin-bottom: 0.25rem;
+
+      @media (max-width: $mobile) {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &_subtitle {
+    font-size: 0.75rem;
+    font-weight: 300;
+    line-height: 1rem;
+    color: $grey;
+
+    span {
+      color: $red;
+    }
+  }
+
+  &_char_count {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 300;
+    line-height: 1rem;
+    color: $grey;
+  }
+
+  &_textarea {
+    textarea {
+      @media (max-width: $mobileSmall) {
+        max-height: 8.625rem;
+      }
+    }
+  }
+
+  &_button {
+    margin-top: 0.938rem;
+
+    @media (max-width: $mobile) {
+      margin-top: 0;
+    }
+  }
+}

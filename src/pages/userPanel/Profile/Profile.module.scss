@@ -6,43 +6,48 @@
     justify-items: center;
   }
 
+  @media (max-width: $mobile) {
+    margin-top: 0.5rem;
+  }
+
   &_title {
-    margin: toRem(32) 0 toRem(24);
+    margin: 2rem 0 1.5rem;
 
     @media (max-width: $mobile) {
-      margin: toRem(25) 0 toRem(15);
+      margin: 1.563rem 0 0.938rem;
     }
 
     @media (max-width: $mobileSmall) {
-      margin: toRem(19) 0 toRem(11);
+      margin: 1.188rem 0 0.688rem;
     }
   }
 }
 
 .form {
-  max-width: toRem(424);
+  max-width: 26.5rem;
   width: 100%;
   display: grid;
   gap: 2rem;
 
   @media (max-width: $tablet) {
     max-width: 100%;
-    width: calc(75% - 20px);
+    width: calc(75% - 1.25rem);
   }
 
   @media (max-width: $mobile) {
-    gap: toRem(20);
+    gap: 1.25rem;
+    margin-top: 1.688rem;
   }
 
   @media (max-width: $mobileSmall) {
-    width: calc(100% - 20px);
+    width: 100%;
   }
 
   &_label {
     display: grid;
     gap: 0.5rem;
     color: $grey;
-    font-size: toRem(12);
+    font-size: 0.75rem;
     font-weight: 300;
     line-height: 1rem;
 

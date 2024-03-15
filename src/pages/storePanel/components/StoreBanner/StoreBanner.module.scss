@@ -1,0 +1,228 @@
+@import '@/styles/index.scss';
+
+.banner {
+  grid-area: -1 / 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  max-width: 63rem;
+  width: 100%;
+  position: relative;
+
+  @media (max-width: $tablet) {
+    max-width: $tablet;
+  }
+
+  &_image {
+    width: 100%;
+    height: 11.25rem;
+    overflow: hidden;
+
+    @media (max-width: $mobile) {
+      height: 7.75rem;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 0.25rem;
+    }
+  }
+
+  &_border {
+    height: 100%;
+    border: 2px $light-grey dashed;
+    border-radius: 0.25rem;
+  }
+
+  &_text {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    & > p {
+      margin-right: 0.5rem;
+      color: $black;
+      font-family: 'Craftwork Grotesk', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 700;
+      line-height: 1.25rem;
+      letter-spacing: 0.28px;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    & > svg {
+      width: 1rem;
+      height: 1rem;
+      color: $green;
+    }
+  }
+
+  &_buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+
+    & button {
+      font-family: 'Craftwork Grotesk', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 700;
+      letter-spacing: 0.28px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0.75rem;
+
+      &:first-child {
+        color: $green;
+      }
+
+      &:nth-child(2) {
+        color: $red;
+        padding-right: 0;
+      }
+
+      svg {
+        width: 1rem;
+        height: 1rem;
+      }
+
+      input {
+        display: none;
+      }
+    }
+  }
+}
+
+.dropdown {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  z-index: 5;
+
+  &_button {
+    svg {
+      height: 1.5rem;
+      width: 1.5rem;
+      color: $green;
+    }
+  }
+
+  &_buttons {
+    background: $white;
+    border: 1px solid $light-grey;
+    border-radius: toRem(4);
+    position: absolute;
+    top: 27px;
+    right: 0;
+
+    & > :nth-child(2) {
+      border-top: 1px solid $light-grey;
+      width: 100%;
+    }
+  }
+
+  &_button_add,
+  &_button_delete {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.563rem 0.688rem;
+
+    font-family: 'Craftwork Grotesk', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1rem;
+    letter-spacing: 0.36px;
+    white-space: nowrap;
+
+    svg {
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+
+  &_button_add {
+    color: $green;
+  }
+
+  &_button_delete {
+    color: $red;
+  }
+}
+
+.modal {
+  > div > :first-child {
+    @include mobileTitleDecorationOverride;
+  }
+
+  &_block {
+    max-width: 22.5rem;
+    margin-top: 0.625rem;
+  }
+
+  &_text {
+    display: grid;
+    justify-items: center;
+    gap: 0.5rem;
+    padding: 1.563rem 0;
+
+    @media (max-width: $mobileSmall) {
+      gap: 0.375rem;
+    }
+
+    p {
+      font-size: 0.875rem;
+      letter-spacing: 0.01px;
+      line-height: 130%;
+      color: $grey;
+
+      @media (max-width: $mobileSmall) {
+        font-size: 0.625rem;
+      }
+    }
+
+    svg {
+      width: 1.125rem;
+      height: 1.125rem;
+      color: $green;
+    }
+  }
+
+  &_img {
+    height: 6.25rem;
+    border: none;
+
+    @media (max-width: $mobileSmall) {
+      width: 17.5rem;
+      height: 3.938rem;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 0.25rem;
+    }
+  }
+
+  &_hint {
+    font-size: 0.75rem;
+    font-weight: 300;
+    line-height: 1rem;
+    margin-top: 0.25rem;
+  }
+
+  &_button {
+    max-width: 22.5rem;
+    width: 100%;
+    margin-top: 1.25rem;
+  }
+}

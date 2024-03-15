@@ -1,5 +1,4 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { useWindowDimensions } from '@/hooks/useWindowDimensions';
 import { useAppSelector } from '@/hooks/reduxHook';
 import {
   Orders,
@@ -9,16 +8,15 @@ import {
   StoreManagement,
   StorePage,
 } from '@/pages';
-import { StorePanel } from '../sidebarNav/StorePanel';
+import { StorePanelNav } from '../dashboardNav/StorePanelNav';
 
 export const StorePanelRoutes = () => {
-  const { width } = useWindowDimensions();
   const { linkToStore } = useAppSelector((state) => state.storeProfile);
 
   return (
     <main>
       <div className='container user-panel-page'>
-        {width >= 991.98 && <StorePanel />}
+        <StorePanelNav />
         <Routes>
           <Route path='products' element={<Products />} />
           <Route path='settings' element={<StoreManagement />} />

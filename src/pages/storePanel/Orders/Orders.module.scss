@@ -3,11 +3,19 @@
 .orders {
   overflow: hidden;
 
+  @media (max-width: $mobile) {
+    margin-top: 0.5rem;
+  }
+
+  @media (max-width: $mobileSmall) {
+    margin-top: 0.125rem;
+  }
+
   &_title {
-    margin-bottom: toRem(20);
+    margin-bottom: 1.25rem;
 
     @media (max-width: $mobile) {
-      margin-bottom: toRem(16);
+      margin-bottom: 1rem;
     }
   }
 }

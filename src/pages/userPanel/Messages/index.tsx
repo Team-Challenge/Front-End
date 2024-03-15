@@ -1,5 +1,5 @@
 import { Icon } from '@iconify/react';
-import { EmptyContentPage } from '@/components/EmptyContentPage';
+import { EmptyContentPage } from '@/components/UI';
 import { emptySectionText } from '@/constants/emptySectionText';
 // import s from './Messages.module.scss';
 

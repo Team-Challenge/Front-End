@@ -1,5 +1,5 @@
-import { useWindowDimensions } from '@/hooks/useWindowDimensions';
 import { useState } from 'react';
+import { useWindowDimensions } from '@/hooks/useWindowDimensions';
 import { useAppSelector } from '@/hooks/reduxHook';
 import s from './HeaderDesc.module.scss';
 

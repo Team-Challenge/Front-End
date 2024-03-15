@@ -11,10 +11,8 @@ import {
 } from '@/store/storeProfile/storeProfileThunks';
 import { openModal, closeModal } from '@/store/modalSlice';
 import { CreateNewStoreFormData } from '@/types';
-import { OrnamentalTitle } from '@/components/OrnamentalTitle';
+import { OrnamentalTitle, TextInput, ButtonUI } from '@/components/UI';
 import { PhoneNumber } from '@/components/PhoneNumber';
-import { TextInput } from '@/components/UI/TextInput';
-import { ButtonUI } from '@/components/UI/ButtonUI';
 import { Icon } from '@iconify/react';
 import s from './Store.module.scss';
 

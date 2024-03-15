@@ -3,7 +3,7 @@ import { Icon } from '@iconify/react';
 import { useAppSelector } from '@/hooks/reduxHook';
 import { copyToClipboard } from '@/utils/copyToClipboard';
 import { useWindowDimensions } from '@/hooks/useWindowDimensions';
-import { Toast } from '@/components/UI/Toast';
+import { Toast } from '@/components/UI';
 import s from './Contacts.module.scss';
 
 export const Contacts = ({ hideText }: { hideText: number }) => {

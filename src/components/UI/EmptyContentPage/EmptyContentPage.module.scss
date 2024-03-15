@@ -1,0 +1,33 @@
+@import '@/styles/index.scss';
+
+.section {
+  max-width: 28.875rem;
+  display: grid;
+  justify-items: center;
+  margin-top: 5rem;
+  @include adaptiveValue('margin-left', 116, 0, 0, 1440, 900);
+
+  @media (max-width: $tablet) {
+    margin: 2.5rem auto 0;
+  }
+
+  &_text {
+    color: $text-color;
+    text-align: center;
+    letter-spacing: 0.32px;
+    margin: 1rem 0 1.5rem;
+
+    @media (max-width: $mobileSmall) {
+      font-size: 0.875rem;
+      line-height: 150%;
+      letter-spacing: 0.14px;
+      margin: 0.75rem 0 1.25rem;
+    }
+  }
+
+  svg {
+    width: toRem(88);
+    height: toRem(88);
+    color: $light-cyan;
+  }
+}

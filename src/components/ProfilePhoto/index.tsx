@@ -13,8 +13,8 @@ import {
   uploadStorePhoto,
 } from '@/store/storeProfile/storeProfileThunks';
 import { openModal } from '@/store/modalSlice';
-import { Modal } from '../Modal';
-import { OrnamentalTitle } from '../OrnamentalTitle';
+import { Modal } from '../UI/Modal';
+import { OrnamentalTitle } from '../UI/OrnamentalTitle';
 import s from './ProfilePhoto.module.scss';
 
 export const ProfilePhoto = ({

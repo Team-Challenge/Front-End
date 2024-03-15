@@ -1,0 +1,64 @@
+@import '@/styles/index.scss';
+
+.form {
+  max-width: 26.5rem;
+  display: grid;
+  gap: 2rem;
+
+  @media (max-width: $tablet) {
+    max-width: 100%;
+    width: calc(75% - 1.25rem);
+    gap: 1.5rem;
+  }
+
+  @media (max-width: $mobileSmall) {
+    width: 100%;
+    gap: 1rem
+  }
+
+  &_wrap {
+    display: grid;
+    gap: 1.25rem;
+
+    @media (max-width: $mobileSmall) {
+      gap: 1rem;
+    }
+  }
+
+  &_subtitle {
+    font-weight: 500;
+    line-height: 110%;
+    margin-bottom: -0.5rem;
+
+    @media (max-width: $mobileSmall) {
+      margin-bottom: -0.25rem;
+    }
+  }
+
+  &_btn {
+    @media (max-width: $mobileSmall) {
+      margin-top: 0.25rem;
+    }
+  }
+}
+
+.block {
+  display: grid;
+  gap: 1rem;
+
+  @media (max-width: $mobile) {
+    gap: 0.75rem;
+  }
+}
+
+.hints {
+  color: $grey;
+  font-size: 0.75rem;
+  font-weight: 300;
+  line-height: 1rem;
+  margin-bottom: -0.5rem;
+
+  @media (max-width: $mobileSmall) {
+    margin-bottom: -0.25rem;
+  }
+}

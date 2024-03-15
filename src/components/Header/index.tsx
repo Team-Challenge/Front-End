@@ -6,9 +6,9 @@ import { categoryList } from '@/constants/categoryList';
 import { Icon } from '@iconify/react';
 import { SignIn } from '../auth/SignIn';
 import { SignUp } from '../auth/SignUp';
-import { UserDropdownMenu } from '../UserDropdownMenu';
-import { ShopDropdownMenu } from '../ShopDropdownMenu';
-import { Modal } from '../Modal';
+import { UserDropdownMenu } from '../dropdownMenu/UserDropdownMenu';
+import { ShopDropdownMenu } from '../dropdownMenu/ShopDropdownMenu';
+import { Modal } from '../UI/Modal';
 import LogoImg from '../../assets/logo.svg';
 import s from './Header.module.scss';
 

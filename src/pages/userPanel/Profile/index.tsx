@@ -1,3 +1,4 @@
+import defaultUserPic from '@assets/default-user-pic.svg';
 import {
   FieldValues,
   FormProvider,
@@ -10,13 +11,14 @@ import {
   changeFullName,
   getUserInfo,
 } from '@/store/userProfile/userProfileThunks';
+import { useWindowDimensions } from '@/hooks/useWindowDimensions';
 import { ProfilePhoto } from '@/components/ProfilePhoto';
 import { FullName } from '@/components/FullName';
-import { ButtonUI } from '@/components/UI/ButtonUI';
-import defaultUserPic from '@assets/default-user-pic.svg';
+import { ButtonUI } from '@/components/UI';
 import s from './Profile.module.scss';
 
 export const Profile = () => {
+  const { width } = useWindowDimensions();
   const dispatch = useAppDispatch();
   const fullName = useAppSelector((state) => state.userProfile.full_name);
   const userPhoto = useAppSelector(
@@ -41,7 +43,7 @@ export const Profile = () => {
         modalId='userPhoto'
         profilePhoto={userPhoto}
       />
-      <h4 className={s.profile_title}>Персональні дані</h4>
+      {width >= 991.98 && <h4 className={s.profile_title}>Персональні дані</h4>}
       <FormProvider {...methods}>
         <form
           id='fullNameSetting'
