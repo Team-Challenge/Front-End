@@ -15,6 +15,9 @@ export const StoreHeader = () => {
     (state) => state.storeProfile.description,
   );
 
+  const desktopDescMaxLength = 220;
+  const mobileDescMaxLength = 76;
+
   return (
     <div className={s.header}>
       {banner && (
@@ -24,8 +27,10 @@ export const StoreHeader = () => {
       )}
       <div
         className={`${s.header_photo} ${
-          shopDescription.length > 500 ? s.header_photo_center : ''
-        }`}
+          shopDescription.length > desktopDescMaxLength
+            ? s.header_photo_top
+            : ''
+        } ${banner ? s.header_photo_banner : ''}`}
       >
         <img src={shopPhoto || defaultStorePic} alt='shopPhoto' />
       </div>
@@ -45,11 +50,16 @@ export const StoreHeader = () => {
               <Icon icon='solar:question-circle-outline' />
             </Tooltip>
           </div>
-          {shopDescription && <HeaderDesc />}
+          {shopDescription && (
+            <HeaderDesc
+              desktopText={desktopDescMaxLength}
+              mobileText={mobileDescMaxLength}
+            />
+          )}
         </div>
       </div>
       <div className={s.contacts_wrapper}>
-        <Contacts hideText={1260} />
+        <Contacts hideText={1040} />
       </div>
     </div>
   );
