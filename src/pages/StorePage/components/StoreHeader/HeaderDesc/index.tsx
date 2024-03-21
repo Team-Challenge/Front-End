@@ -3,41 +3,50 @@ import { useWindowDimensions } from '@/hooks/useWindowDimensions';
 import { useAppSelector } from '@/hooks/reduxHook';
 import s from './HeaderDesc.module.scss';
 
-export const HeaderDesc = () => {
+export const HeaderDesc = ({
+  desktopText,
+  mobileText,
+}: {
+  desktopText: number;
+  mobileText: number;
+}) => {
   const [isShow, setIsShow] = useState(false);
   const { width } = useWindowDimensions();
   const shopDescription = useAppSelector(
     (state) => state.storeProfile.description,
   );
 
+  if (!shopDescription) {
+    return null;
+  }
+
+  if (shopDescription.trim().length === 0) {
+    return null;
+  }
+
+  const descMaxLength = width > 479.98 ? desktopText : mobileText;
+
   const trimmedDesc =
-    shopDescription.length < 100
+    shopDescription.length < descMaxLength
       ? shopDescription
-      : `${shopDescription.slice(0, 100)}...`;
+      : `${shopDescription.slice(0, descMaxLength)}...`;
 
-  console.log(trimmedDesc);
+  const description = isShow ? shopDescription : trimmedDesc;
 
-  const mobileDesc = isShow ? shopDescription : trimmedDesc;
-
-  return shopDescription.trim().length ? (
-    <p className={s.header_desc}>
-      {width > 479.98 && shopDescription}
-      {width < 479.98 && (
-        <>
-          {mobileDesc}
-          {trimmedDesc.length > 76 && (
-            <button
-              type='button'
-              className={s.readMore}
-              onClick={() => {
-                setIsShow(!isShow);
-              }}
-            >
-              {isShow ? 'приховати' : 'читати більше'}
-            </button>
-          )}
-        </>
+  return (
+    <div className={s.desc_wrapper}>
+      <p className={s.header_desc}>{description} </p>
+      {shopDescription.length > descMaxLength && (
+        <button
+          type='button'
+          className={s.readMore}
+          onClick={() => {
+            setIsShow(!isShow);
+          }}
+        >
+          {isShow ? 'приховати' : '...читати більше'}
+        </button>
       )}
-    </p>
-  ) : null;
+    </div>
+  );
 };

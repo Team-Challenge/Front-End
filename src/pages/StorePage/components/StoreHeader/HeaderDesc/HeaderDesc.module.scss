@@ -1,7 +1,12 @@
 @import '@/styles/index.scss';
 
-.header_desc {
+.desc_wrapper {
   grid-area: desc;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+
   font-size: 0.875rem;
   line-height: 1.5;
   letter-spacing: 0.14px;
@@ -10,15 +15,30 @@
 
   @media (max-width: $mobileSmall) {
     max-width: 20rem;
-    max-height: none;
+  }
+}
+
+.header_desc {
+  grid-area: 1/1;
+
+  @media (max-width: $mobileSmall) {
+    grid-area: unset;
   }
 }
 
 .readMore {
+  grid-area: 1/1;
+
+  align-self: end;
+  justify-self: end;
   background-color: $white;
   color: $main-btn-color;
 
-  display: block;
-  margin: 0.5rem auto auto;
-  padding: 0.5rem;
+  @media (max-width: 1023.98px) {
+    grid-area: unset;
+
+    justify-self: center;
+
+    padding: 0.5rem;
+  }
 }
